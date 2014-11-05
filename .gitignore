@@ -1,3 +1,30 @@
+# https://git.gree-dev.net/athena/client/blob/ba23862fee291cdbb97c54f01a175b7226d4ce1d/.gitignore
+
+# Ignore files build by ndk and eclipse
+libs/
+bin/
+obj/
+gen/
+assets/
+local.properties
+
+# Ignore files build by airplay and marmalade
+build_*_xcode/
+build_*_vc10/
+
+# Ignore files build by xcode
+*.mode*v*
+*.pbxuser
+*.xcbkptlist
+*.xcworkspacedata
+*.xcuserstate
+xcschememanagement.plist
+build/
+.DS_Store
+._.*
+xcuserdata/
+DerivedData/
+
 # Compiled Object files
 *.slo
 *.lo
