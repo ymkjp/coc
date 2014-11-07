@@ -4,4 +4,6 @@
 #define DISPLAY_TIME_SPLASH_SCENE 0.02
 #define TRANSITION_TIME 0.1
 
+#define DEFAULT_ZOOM_RATE 1.5
+
 #endif // __DEFINITIONS_H__

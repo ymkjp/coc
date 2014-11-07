@@ -32,8 +32,6 @@ bool BattleScene::init()
     scrollView = ScrollView::create(visibleSize);
     backgroundLayer = Layer::create();
     
-    CCLOG("DISPLAY INFO: %f, %f, %f, %f", visibleSize.width, origin.x, visibleSize.height, origin.y);
-    
     auto lister = EventListenerTouchOneByOne::create();
     lister->setSwallowTouches(true);
     
@@ -50,22 +48,24 @@ bool BattleScene::init()
 void BattleScene::addBattleStage()
 {
     scrollView->setBounceable(false);
-    
     auto spriteRight = Sprite::create("BackgroundStage1.png");
     auto spriteLeft = Sprite::create("BackgroundStage1.png");
     spriteLeft->setFlippedX(true);
+    CCLOG("[CONTENT SIZE] %f, %f",spriteRight->getContentSize().width, spriteRight->getContentSize().height);
+    
     
     spriteRight->setScale(0.525);
     spriteLeft->setScale(0.525);
     
-    spriteRight->setPosition(Point(origin.x + visibleSize.width * 0.75, origin.y + visibleSize.height / 2));
-    spriteLeft->setPosition(Point(origin.x + visibleSize.width * 0.25, origin.y + visibleSize.height / 2));
+    spriteRight->setPosition(Vec2(origin.x + visibleSize.width * 0.75, origin.y + visibleSize.height / 2));
+    spriteLeft->setPosition(Vec2(origin.x + visibleSize.width * 0.25, origin.y + visibleSize.height / 2));
     
     backgroundLayer->addChild(spriteRight);
     backgroundLayer->addChild(spriteLeft);
     
+    backgroundLayer->setScale(DEFAULT_ZOOM_RATE);
+    
     scrollView->setContainer(backgroundLayer);
-    scrollView->setContentSize(backgroundLayer->getContentSize());
     scrollView->setDelegate(this);
     
     addChild(scrollView);
@@ -80,10 +80,18 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CCLOG("2. moved");
+    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta());
 }
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+    CCLOG("DISPLAY INFO: %f, %f, %f, %f", visibleSize.width, origin.x, visibleSize.height, origin.y);
+    CCLOG("[noConvert]    location.x: %f, location.y: %f", touch->getLocation().x, touch->getLocation().y);
+    CCLOG("[NodeSpace]    location.x: %f, location.y: %f", this->convertToNodeSpace(touch->getLocation()).x, this->convertToNodeSpace(touch->getLocation()).y);
+    CCLOG("[WorldSpace]   location.x: %f, location.y: %f", this->convertToWorldSpace(touch->getLocation()).x, this->convertToWorldSpace(touch->getLocation()).y);
+    CCLOG("[NodeSpaceAR]  location.x: %f, location.y: %f", this->convertToNodeSpaceAR(touch->getLocation()).x, this->convertToNodeSpaceAR(touch->getLocation()).y);
+    CCLOG("[WorldSpaceAR] location.x: %f, location.y: %f", this->convertToWorldSpaceAR(touch->getLocation()).x, this->convertToWorldSpaceAR(touch->getLocation()).y);
+    
     CCLOG("3. ended");
 }
 
