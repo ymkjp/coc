@@ -55,11 +55,9 @@
 		5C062A4F1A0A496C00FA2D45 /* StageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A481A0A496C00FA2D45 /* StageScene.cpp */; };
 		5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
 		5C062A521A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
-		5C062A541A0A4C4700FA2D45 /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C062A531A0A4C4700FA2D45 /* SplashScreen.png */; };
-		5C062A551A0A4C4700FA2D45 /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C062A531A0A4C4700FA2D45 /* SplashScreen.png */; };
 		5C1D1BB31A0A5553007AD29E /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */; };
-		5C4E28C11A0BA801001864CC /* BattleStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C4E28BF1A0BA801001864CC /* BattleStage.cpp */; };
-		5C4E28C21A0BA801001864CC /* BattleStage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C4E28BF1A0BA801001864CC /* BattleStage.cpp */; };
+		5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
+		5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -151,10 +149,8 @@
 		5C062A481A0A496C00FA2D45 /* StageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StageScene.cpp; sourceTree = "<group>"; };
 		5C062A491A0A496C00FA2D45 /* StageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageScene.h; sourceTree = "<group>"; };
 		5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
-		5C062A531A0A4C4700FA2D45 /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SplashScreen.png; path = ../../Sprites/SplashScreen.png; sourceTree = "<group>"; };
 		5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackgroundStage1.png; path = ../../CocosAnimation/res/BackgroundStage1.png; sourceTree = "<group>"; };
-		5C4E28BF1A0BA801001864CC /* BattleStage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleStage.cpp; sourceTree = "<group>"; };
-		5C4E28C01A0BA801001864CC /* BattleStage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleStage.h; sourceTree = "<group>"; };
+		5C4E28C31A0BAF39001864CC /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -276,9 +272,9 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C4E28C31A0BAF39001864CC /* SplashScreen.png */,
 				5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
-				5C062A531A0A4C4700FA2D45 /* SplashScreen.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -291,8 +287,6 @@
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
-				5C4E28BF1A0BA801001864CC /* BattleStage.cpp */,
-				5C4E28C01A0BA801001864CC /* BattleStage.h */,
 				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
@@ -452,6 +446,7 @@
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
+				5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
@@ -469,7 +464,6 @@
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
-				5C062A541A0A4C4700FA2D45 /* SplashScreen.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,8 +472,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C062A551A0A4C4700FA2D45 /* SplashScreen.png in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
+				5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,7 +485,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C4E28C11A0BA801001864CC /* BattleStage.cpp in Sources */,
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
@@ -508,7 +501,6 @@
 			files = (
 				5C062A4D1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
-				5C4E28C21A0BA801001864CC /* BattleStage.cpp in Sources */,
 				5C062A521A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */,
 				5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
 				5C062A4F1A0A496C00FA2D45 /* StageScene.cpp in Sources */,
