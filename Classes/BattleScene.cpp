@@ -32,15 +32,6 @@ bool BattleScene::init()
     scrollView = ScrollView::create(visibleSize);
     backgroundLayer = Layer::create();
     
-    auto lister = EventListenerTouchOneByOne::create();
-    lister->setSwallowTouches(true);
-    
-    lister->onTouchBegan = CC_CALLBACK_2(BattleScene::onTouchBegan, this);
-    lister->onTouchMoved = CC_CALLBACK_2(BattleScene::onTouchMoved, this);
-    lister->onTouchEnded = CC_CALLBACK_2(BattleScene::onTouchEnded, this);
-    lister->onTouchCancelled = CC_CALLBACK_2(BattleScene::onTouchCancelled, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(lister, this);
-    
     addBattleStage();
     return true;
 }
@@ -52,7 +43,6 @@ void BattleScene::addBattleStage()
     auto spriteLeft = Sprite::create("BackgroundStage1.png");
     spriteLeft->setFlippedX(true);
     CCLOG("[CONTENT SIZE] %f, %f",spriteRight->getContentSize().width, spriteRight->getContentSize().height);
-    
     
     spriteRight->setScale(0.525);
     spriteLeft->setScale(0.525);
@@ -67,8 +57,25 @@ void BattleScene::addBattleStage()
     
     scrollView->setContainer(backgroundLayer);
     scrollView->setDelegate(this);
+    scrollView->setMaxScale(MAX_ZOOM_RATE);
+    scrollView->setMinScale(MIN_ZOOM_RATE);
     
     addChild(scrollView);
+    
+    auto lister = EventListenerTouchOneByOne::create();
+    lister->setSwallowTouches(true);
+    lister->onTouchBegan = CC_CALLBACK_2(BattleScene::onTouchBegan, this);
+    lister->onTouchMoved = CC_CALLBACK_2(BattleScene::onTouchMoved, this);
+    lister->onTouchEnded = CC_CALLBACK_2(BattleScene::onTouchEnded, this);
+    lister->onTouchCancelled = CC_CALLBACK_2(BattleScene::onTouchCancelled, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(lister, this);
+    
+    auto multi_listener = EventListenerTouchAllAtOnce::create();
+    multi_listener->onTouchesBegan = CC_CALLBACK_2(BattleScene::onTouchesBegan, this);
+    multi_listener->onTouchesMoved = CC_CALLBACK_2(BattleScene::onTouchesMoved, this);
+    multi_listener->onTouchesCancelled = CC_CALLBACK_2(BattleScene::onTouchesCancelled, this);
+    multi_listener->onTouchesEnded = CC_CALLBACK_2(BattleScene::onTouchesEnded, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(multi_listener, this);
 }
 
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
@@ -98,6 +105,26 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 void BattleScene::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CCLOG("4. cancelled");
+}
+
+void BattleScene::onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent)
+{
+CCLOG("11. Touches Began");
+}
+
+void BattleScene::onTouchesMoved(const std::vector<cocos2d::Touch*>& touches,cocos2d::Event *pEvent)
+{
+    CCLOG("11. Touches Moved");
+}
+
+void BattleScene::onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent)
+{
+    CCLOG("11. Touches Ended");
+}
+
+void BattleScene::onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent)
+{
+    CCLOG("11. Touches Cancelled");
 }
 
 

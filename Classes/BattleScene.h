@@ -26,6 +26,11 @@ public:
     virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     
+    virtual void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent);
+    virtual void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches,cocos2d::Event *pEvent);
+    virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent);
+    virtual void onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent);
+    
     void scrollViewDidScroll(ScrollView *view);
     void scrollViewDidZoom(ScrollView *view);
     
