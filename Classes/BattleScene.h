@@ -9,6 +9,11 @@ USING_NS_CC;
 #include "extensions/cocos-ext.h"
 USING_NS_CC_EXT;
 
+struct ScrollStatus {
+    int scrolling;
+    int zooming;
+};
+
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
 public:

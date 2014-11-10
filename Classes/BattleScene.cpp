@@ -87,7 +87,10 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     CCLOG("2. moved");
-    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta());
+    ScrollStatus status;
+    if (status.scrolling) {
+        backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta());
+    }
 }
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
@@ -131,9 +134,13 @@ void BattleScene::onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches
 void BattleScene::scrollViewDidScroll(ScrollView *view)
 {
     CCLOG("スクロール！");
+    ScrollStatus status;
+    status.scrolling = 1;
 }
 
 void BattleScene::scrollViewDidZoom(ScrollView *view)
 {
     CCLOG("ズーム！");
+    ScrollStatus status;
+    status.zooming = 1;
 }
