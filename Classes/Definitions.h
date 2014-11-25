@@ -4,8 +4,19 @@
 #define DISPLAY_TIME_SPLASH_SCENE 0.02
 #define TRANSITION_TIME 0.1
 
-#define DEFAULT_ZOOM_RATE 1.8
-#define MAX_ZOOM_RATE 4.0
-#define MIN_ZOOM_RATE 1.0
+#define INIT_ZOOM_RATE 0.5
+#define DEFAULT_ZOOM_RATE 0.5 // 0.65
+#define MAX_ZOOM_RATE 3.5 // MIN: 0.521094
+
+#define WORLD_MAP_WIDTH 44
+#define WORLD_MAP_HEIGHT 44
+
+inline static bool isInMapRange(Vec2 targetPoint)
+{
+    return (0 <= targetPoint.x
+            && 0 <= targetPoint.y
+            && targetPoint.x < WORLD_MAP_WIDTH
+            && targetPoint.y < WORLD_MAP_HEIGHT);
+};
 
 #endif // __DEFINITIONS_H__

@@ -2,21 +2,22 @@
 #define __BATTLE_SCENE_H__
 
 #include "cocos2d.h"
-#include "editor-support/cocostudio/CocoStudio.h"
-
 USING_NS_CC;
 
 #include "extensions/cocos-ext.h"
 USING_NS_CC_EXT;
 
-struct ScrollStatus {
-    int scrolling;
-    int zooming;
-};
+#include "cocostudio/CocoStudio.h"
+using namespace cocostudio;
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
 public:
+    struct ScrollStatus {
+        int scrollingDelay;
+        int zoomingDelay;
+    } scrollStatus;
+ 
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
     
@@ -36,17 +37,28 @@ public:
     virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent);
     virtual void onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent);
     
-    void scrollViewDidScroll(ScrollView *view);
-    void scrollViewDidZoom(ScrollView *view);
-    
-protected:
-    void addBattleStage();
+    virtual void scrollViewDidScroll(ScrollView *view);
+    virtual void scrollViewDidZoom(ScrollView *view);
+
+    virtual void addBattleStage();
+    virtual void addBuildings();
+    virtual void addEventDispacher();
+    virtual void addUILayer();
     
 private:
+    Size visibleSize;
+    Vec2 origin;
     ScrollView *scrollView;
     Layer *backgroundLayer;
-    cocos2d::Size visibleSize;
-    cocos2d::Vec2 origin;
+    Layer *tiledMapLayer;
+    
+    TMXTiledMap *tiledMap;
+    TMXLayer *domainTMXLayer;
+    TMXLayer *wallTMXLayer;
+    
+    SpriteBatchNode* spriteBatch;
+    
+    virtual Vec2 convertToCoord(Vec2 pos);
 };
 
 #endif // __BATTLE_SCENE_H__

@@ -51,13 +51,28 @@
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
 		5C062A4D1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
-		5C062A4E1A0A496C00FA2D45 /* StageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A481A0A496C00FA2D45 /* StageScene.cpp */; };
-		5C062A4F1A0A496C00FA2D45 /* StageScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A481A0A496C00FA2D45 /* StageScene.cpp */; };
 		5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
 		5C062A521A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
-		5C1D1BB31A0A5553007AD29E /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */; };
+		5C2408761A11D503004A785F /* image in Resources */ = {isa = PBXBuildFile; fileRef = 5C2408731A11D503004A785F /* image */; };
+		5C2408771A11D503004A785F /* image in Resources */ = {isa = PBXBuildFile; fileRef = 5C2408731A11D503004A785F /* image */; };
+		5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24087E1A11FA9C004A785F /* BackgroundStage1.png */; };
+		5C2408801A11FA9C004A785F /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24087E1A11FA9C004A785F /* BackgroundStage1.png */; };
+		5C24088F1A12EF26004A785F /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088D1A12EF26004A785F /* assets.plist */; };
+		5C2408901A12EF26004A785F /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088D1A12EF26004A785F /* assets.plist */; };
+		5C2408911A12EF26004A785F /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088E1A12EF26004A785F /* assets.png */; };
+		5C2408921A12EF26004A785F /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088E1A12EF26004A785F /* assets.png */; };
+		5C2408991A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
+		5C24089A1A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
 		5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
 		5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
+		5C7F9D781A24518A0015A766 /* CocosProject in Resources */ = {isa = PBXBuildFile; fileRef = 5C7F9D771A2451890015A766 /* CocosProject */; };
+		5C7F9D791A24518A0015A766 /* CocosProject in Resources */ = {isa = PBXBuildFile; fileRef = 5C7F9D771A2451890015A766 /* CocosProject */; };
+		5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
+		5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
+		5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
+		5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
+		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
+		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -102,7 +117,7 @@
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D6058910D05DD3D006BFB54 /* ClashOfClans iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ClashOfClans iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* kenta_ky_yamamoto_coc ClashOfClans iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kenta_ky_yamamoto_coc ClashOfClans iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		46880B8519C43A87006E1F66 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -118,7 +133,7 @@
 		503AE10417EB98FF00D1A890 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = mac/Prefix.pch; sourceTree = "<group>"; };
 		503AE11117EB99EE00D1A890 /* libcurl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.dylib; path = usr/lib/libcurl.dylib; sourceTree = SDKROOT; };
 		503AE11A17EB9C5A00D1A890 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		5087E76F17EB910900C73F5D /* ClashOfClans Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ClashOfClans Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5087E76F17EB910900C73F5D /* kenta_ky_yamamoto_coc ClashOfClans Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kenta_ky_yamamoto_coc ClashOfClans Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5087E77217EB970100C73F5D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		5087E77317EB970100C73F5D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		5087E77417EB970100C73F5D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -146,11 +161,20 @@
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
 		5C062A461A0A496C00FA2D45 /* SplashScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplashScene.cpp; sourceTree = "<group>"; };
 		5C062A471A0A496C00FA2D45 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
-		5C062A481A0A496C00FA2D45 /* StageScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StageScene.cpp; sourceTree = "<group>"; };
-		5C062A491A0A496C00FA2D45 /* StageScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageScene.h; sourceTree = "<group>"; };
 		5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
-		5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackgroundStage1.png; path = ../../CocosAnimation/res/BackgroundStage1.png; sourceTree = "<group>"; };
+		5C2408731A11D503004A785F /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
+		5C24087E1A11FA9C004A785F /* BackgroundStage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundStage1.png; sourceTree = "<group>"; };
+		5C24088D1A12EF26004A785F /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
+		5C24088E1A12EF26004A785F /* assets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets.png; sourceTree = "<group>"; };
+		5C2408971A14542B004A785F /* Unit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
+		5C2408981A14542B004A785F /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		5C4E28C31A0BAF39001864CC /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
+		5C7F9D771A2451890015A766 /* CocosProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CocosProject; sourceTree = "<group>"; };
+		5CA2120B1A1E20E10053BAED /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
+		5CA2120C1A1E20E10053BAED /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
+		5CF695201A198DC0000939B2 /* MapNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapNavigator.cpp; sourceTree = "<group>"; };
+		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -218,8 +242,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* ClashOfClans iOS.app */,
-				5087E76F17EB910900C73F5D /* ClashOfClans Mac.app */,
+				1D6058910D05DD3D006BFB54 /* kenta_ky_yamamoto_coc ClashOfClans iOS.app */,
+				5087E76F17EB910900C73F5D /* kenta_ky_yamamoto_coc ClashOfClans Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,8 +296,13 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C7F9D771A2451890015A766 /* CocosProject */,
+				5CB8218C1A1600D400BC505A /* map_01.tmx */,
+				5C24088D1A12EF26004A785F /* assets.plist */,
+				5C24088E1A12EF26004A785F /* assets.png */,
+				5C24087E1A11FA9C004A785F /* BackgroundStage1.png */,
+				5C2408731A11D503004A785F /* image */,
 				5C4E28C31A0BAF39001864CC /* SplashScreen.png */,
-				5C1D1BB01A0A5553007AD29E /* BackgroundStage1.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 			);
 			name = Resources;
@@ -285,13 +314,17 @@
 			children = (
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
+				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
-				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
-				5C062A481A0A496C00FA2D45 /* StageScene.cpp */,
-				5C062A491A0A496C00FA2D45 /* StageScene.h */,
+				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
+				5CF695211A198DC0000939B2 /* MapNavigator.h */,
+				5C2408981A14542B004A785F /* Unit.h */,
+				5C2408971A14542B004A785F /* Unit.cpp */,
+				5CA2120B1A1E20E10053BAED /* Building.cpp */,
+				5CA2120C1A1E20E10053BAED /* Building.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -362,7 +395,7 @@
 			);
 			name = "ClashOfClans iOS";
 			productName = iphone;
-			productReference = 1D6058910D05DD3D006BFB54 /* ClashOfClans iOS.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* kenta_ky_yamamoto_coc ClashOfClans iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5087E73D17EB910900C73F5D /* ClashOfClans Mac */ = {
@@ -380,7 +413,7 @@
 			);
 			name = "ClashOfClans Mac";
 			productName = iphone;
-			productReference = 5087E76F17EB910900C73F5D /* ClashOfClans Mac.app */;
+			productReference = 5087E76F17EB910900C73F5D /* kenta_ky_yamamoto_coc ClashOfClans Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -392,7 +425,7 @@
 				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = VV92L2UFFR;
 					};
 				};
 			};
@@ -445,18 +478,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
+				5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */,
+				5C7F9D781A24518A0015A766 /* CocosProject in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */,
+				5C24088F1A12EF26004A785F /* assets.plist in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				5C2408911A12EF26004A785F /* assets.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
-				5C1D1BB31A0A5553007AD29E /* BackgroundStage1.png in Resources */,
+				5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */,
+				5C2408761A11D503004A785F /* image in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -472,8 +510,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C2408921A12EF26004A785F /* assets.png in Resources */,
+				5C2408901A12EF26004A785F /* assets.plist in Resources */,
+				5C2408801A11FA9C004A785F /* BackgroundStage1.png in Resources */,
+				5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */,
+				5C2408771A11D503004A785F /* image in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */,
+				5C7F9D791A24518A0015A766 /* CocosProject in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,11 +530,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
+				5C2408991A14542B004A785F /* Unit.cpp in Sources */,
+				5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */,
 				5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */,
 				5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */,
-				5C062A4E1A0A496C00FA2D45 /* StageScene.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,9 +547,11 @@
 			files = (
 				5C062A4D1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				5C24089A1A14542B004A785F /* Unit.cpp in Sources */,
+				5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */,
 				5C062A521A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */,
 				5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
-				5C062A4F1A0A496C00FA2D45 /* StageScene.cpp in Sources */,
+				5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,8 +575,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GREE, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GREE, Inc.";
 				COMPRESS_PNG_FILES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -548,6 +598,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "1D9BF79B-3D1F-4C88-97AC-489FAF101D32";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -559,8 +610,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GREE, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: GREE, Inc.";
 				COMPRESS_PNG_FILES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ios/Prefix.pch;
@@ -578,6 +631,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "1D9BF79B-3D1F-4C88-97AC-489FAF101D32";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -591,7 +645,9 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kenta Ogura (5S8MRQH53T)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -610,6 +666,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "86e5ea88-848d-4e94-ad16-3b27066d396c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -620,7 +677,9 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kenta Ogura (5S8MRQH53T)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = mac/Prefix.pch;
@@ -637,6 +696,7 @@
 				);
 				INFOPLIST_FILE = mac/Info.plist;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "86e5ea88-848d-4e94-ad16-3b27066d396c";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -646,7 +706,9 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GREE, Inc.";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -665,10 +727,13 @@
 					"$(SRCROOT)/../cocos2d/external",
 					"$(SRCROOT)/../cocos2d/external/chipmunk/include/chipmunk",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				PRODUCT_NAME = "kenta_ky_yamamoto_coc $(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1D9BF79B-3D1F-4C88-97AC-489FAF101D32";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -677,6 +742,8 @@
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: GREE, Inc.";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -694,10 +761,13 @@
 					"$(SRCROOT)/../cocos2d/external",
 					"$(SRCROOT)/../cocos2d/external/chipmunk/include/chipmunk",
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				PRODUCT_NAME = "kenta_ky_yamamoto_coc $(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1D9BF79B-3D1F-4C88-97AC-489FAF101D32";
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -712,7 +782,7 @@
 				1D6058950D05DD3E006BFB54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "ClashOfClans Mac" */ = {
 			isa = XCConfigurationList;
@@ -721,7 +791,7 @@
 				5087E76E17EB910900C73F5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "ClashOfClans" */ = {
 			isa = XCConfigurationList;
@@ -730,7 +800,7 @@
 				C01FCF5008A954540054247B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
