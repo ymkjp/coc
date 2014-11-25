@@ -579,7 +579,7 @@
         <Project Name="UnitWallbreakerWalkEast.csd" />
         <Project Name="UnitWallbreakerWalkSouth.csd" />
         <Project Name="UnitWallbreakerAttackAll.csd" />
-        <PlistImageFolder PListFile="assets.plist" LastPlistWriteTime="2014-11-25T16:31:14+09:00" LastImageWriteTime="2014-11-25T16:31:14+09:00" Name=".assets_PList.Dir">
+        <PlistImageFolder PListFile="assets.plist" LastPlistWriteTime="2014-11-25T16:33:50+09:00" LastImageWriteTime="2014-11-25T16:31:14+09:00" Name=".assets_PList.Dir">
           <PlistImageFile Name="stage_archer_tower_1031.0.png" Key="stage/archer_tower/1031.0.png" />
           <PlistImageFile Name="stage_archer_tower_1032.0.png" Key="stage/archer_tower/1032.0.png" />
           <PlistImageFile Name="stage_archer_tower_1033.0.png" Key="stage/archer_tower/1033.0.png" />
@@ -687,6 +687,7 @@
           <PlistImageFile Name="stage_canon_1325.0.png" Key="stage/canon/1325.0.png" />
           <PlistImageFile Name="stage_canon_1326.0.png" Key="stage/canon/1326.0.png" />
           <PlistImageFile Name="stage_canon_1327.0.png" Key="stage/canon/1327.0.png" />
+          <PlistImageFile Name="stage_canon_1715.1.png" Key="stage/canon/1715.1.png" />
           <PlistImageFile Name="stage_elixer_tank_2831.7.png" Key="stage/elixer_tank/2831.7.png" />
           <PlistImageFile Name="stage_elixer_tank_2832.0.png" Key="stage/elixer_tank/2832.0.png" />
           <PlistImageFile Name="stage_elixer_tank_2833.0.png" Key="stage/elixer_tank/2833.0.png" />
@@ -723,6 +724,8 @@
           <PlistImageFile Name="stage_field_12.png" Key="stage/field/12.png" />
           <PlistImageFile Name="stage_field_13.png" Key="stage/field/13.png" />
           <PlistImageFile Name="stage_field_14.png" Key="stage/field/14.png" />
+          <PlistImageFile Name="stage_field_256.0.png" Key="stage/field/256.0.png" />
+          <PlistImageFile Name="stage_field_271.0.png" Key="stage/field/271.0.png" />
           <PlistImageFile Name="stage_gold_bank_2812.0.png" Key="stage/gold_bank/2812.0.png" />
           <PlistImageFile Name="stage_gold_bank_2813.0.png" Key="stage/gold_bank/2813.0.png" />
           <PlistImageFile Name="stage_gold_bank_2814.0.png" Key="stage/gold_bank/2814.0.png" />
@@ -807,6 +810,15 @@
           <PlistImageFile Name="stage_map_8.1.png" Key="stage/map/8.1.png" />
           <PlistImageFile Name="stage_map_8.2.png" Key="stage/map/8.2.png" />
           <PlistImageFile Name="stage_map_9.1.png" Key="stage/map/9.1.png" />
+          <PlistImageFile Name="stage_town_hall_1648.0.png" Key="stage/town_hall/1648.0.png" />
+          <PlistImageFile Name="stage_town_hall_1648.1.png" Key="stage/town_hall/1648.1.png" />
+          <PlistImageFile Name="stage_town_hall_1661.1.png" Key="stage/town_hall/1661.1.png" />
+          <PlistImageFile Name="stage_town_hall_1662.0.png" Key="stage/town_hall/1662.0.png" />
+          <PlistImageFile Name="stage_town_hall_1667.1.png" Key="stage/town_hall/1667.1.png" />
+          <PlistImageFile Name="stage_town_hall_1668.1.png" Key="stage/town_hall/1668.1.png" />
+          <PlistImageFile Name="stage_town_hall_1669.2.png" Key="stage/town_hall/1669.2.png" />
+          <PlistImageFile Name="stage_town_hall_1671.0.png" Key="stage/town_hall/1671.0.png" />
+          <PlistImageFile Name="stage_town_hall_1673.0.png" Key="stage/town_hall/1673.0.png" />
           <PlistImageFile Name="stage_trench_mortar_1940.0.png" Key="stage/trench_mortar/1940.0.png" />
           <PlistImageFile Name="stage_trench_mortar_1941.0.png" Key="stage/trench_mortar/1941.0.png" />
           <PlistImageFile Name="stage_trench_mortar_1942.0.png" Key="stage/trench_mortar/1942.0.png" />
@@ -863,6 +875,7 @@
           <PlistImageFile Name="stage_trench_mortar_2015.0.png" Key="stage/trench_mortar/2015.0.png" />
           <PlistImageFile Name="stage_trench_mortar_2016.0.png" Key="stage/trench_mortar/2016.0.png" />
           <PlistImageFile Name="stage_trench_mortar_2019.0.png" Key="stage/trench_mortar/2019.0.png" />
+          <PlistImageFile Name="stage_trench_mortar_bullet.png" Key="stage/trench_mortar/bullet.png" />
           <PlistImageFile Name="stage_ui_ArcherIcon.png" Key="stage/ui/ArcherIcon.png" />
           <PlistImageFile Name="stage_ui_BarbarianIcon.png" Key="stage/ui/BarbarianIcon.png" />
           <PlistImageFile Name="stage_ui_BlackFlameMid.png" Key="stage/ui/BlackFlameMid.png" />
@@ -1181,19 +1194,6 @@
           <PlistImageFile Name="unit_wallbreaker_walk_south_1516.1.png" Key="unit/wallbreaker/walk/south/1516.1.png" />
           <PlistImageFile Name="unit_wallbreaker_walk_south_1517.0.png" Key="unit/wallbreaker/walk/south/1517.0.png" />
           <PlistImageFile Name="unit_wallbreaker_walk_south_1517.1.png" Key="unit/wallbreaker/walk/south/1517.1.png" />
-          <PlistImageFile Name="stage_canon_1715.1.png" Key="stage/canon/1715.1.png" />
-          <PlistImageFile Name="stage_field_256.0.png" Key="stage/field/256.0.png" />
-          <PlistImageFile Name="stage_field_271.0.png" Key="stage/field/271.0.png" />
-          <PlistImageFile Name="stage_town_hall_1648.0.png" Key="stage/town_hall/1648.0.png" />
-          <PlistImageFile Name="stage_town_hall_1648.1.png" Key="stage/town_hall/1648.1.png" />
-          <PlistImageFile Name="stage_town_hall_1661.1.png" Key="stage/town_hall/1661.1.png" />
-          <PlistImageFile Name="stage_town_hall_1662.0.png" Key="stage/town_hall/1662.0.png" />
-          <PlistImageFile Name="stage_town_hall_1667.1.png" Key="stage/town_hall/1667.1.png" />
-          <PlistImageFile Name="stage_town_hall_1668.1.png" Key="stage/town_hall/1668.1.png" />
-          <PlistImageFile Name="stage_town_hall_1669.2.png" Key="stage/town_hall/1669.2.png" />
-          <PlistImageFile Name="stage_town_hall_1671.0.png" Key="stage/town_hall/1671.0.png" />
-          <PlistImageFile Name="stage_town_hall_1673.0.png" Key="stage/town_hall/1673.0.png" />
-          <PlistImageFile Name="stage_trench_mortar_bullet.png" Key="stage/trench_mortar/bullet.png" />
         </PlistImageFolder>
         <Project Name="BattleMatchingScene.csd" />
         <Project Name="BattleMatchingLayer.csd" />

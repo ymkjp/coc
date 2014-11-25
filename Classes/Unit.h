@@ -35,26 +35,20 @@ public:
     
     Sprite* sprite;
     Node* unitNode;
-    virtual bool init(TMXTiledMap* tiledMap, Unit::__TYPE unitType);
-    static Unit* create(TMXTiledMap* tiledMap, Unit::__TYPE unitType) {
+    virtual bool init(Unit::__TYPE unitType);
+    static Unit* create(Unit::__TYPE unitType) {
         auto p = new Unit();
-        if (p->init(tiledMap, unitType)) {
+        if (p->init(unitType)) {
             p->autorelease();
             return p;
         }
         CC_SAFE_DELETE(p);
         return nullptr;
     }
-    
-    virtual void run(Vec2 pos, Vec2 tileCoord);
 
 protected:
-    TMXTiledMap* _tiledMap;
     SpriteFrameCache* spriteFrameCache;
     Vec2 pos;
-
-    virtual void addAnimation();
-    virtual Vec2 convertToTile(Vec2 pos);
   
     __TYPE _type;
     __STATUS _status;

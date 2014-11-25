@@ -2,31 +2,43 @@
 
 USING_NS_CC;
 
-bool MapNavigator::init(TMXTiledMap* tiledMap)
+bool MapNavigator::init(TMXTiledMap* _tiledMap)
 {
-//    tiledMap = tiledMap;
+    tiledMap = _tiledMap;
     domainTMXLayer = tiledMap->getLayer("Domain");
     wallTMXLayer = tiledMap->getLayer("Wall");
     return true;
 }
 
 /**
+ {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
+ */
+inline bool MapNavigator::isTravelable(Vec2 pos)
+{
+    for (std::string name: blockLayers) {
+        if (0 != tiledMap->getLayer(name.c_str())->getTileGIDAt(pos)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
+ @param Vec2 goalPoint should be __STATUS::NONE
  @link http://2dgames.jp/2012/05/22/a-starar/
  */
 std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
     //    CCLOG("=== Nav started ===");
     
-    auto goalTile = domainTMXLayer->getTileAt(goalPoint);
-    goalTile->setScale(2);
-    
     std::set<Vec2> openSet;
     
     AStar worldGrid[WORLD_MAP_WIDTH][WORLD_MAP_HEIGHT] = {};
+    
     for (int x = 0; x < sizeof(worldGrid) / sizeof(worldGrid[0]); ++x) {
         for (int y = 0; y < sizeof(worldGrid[x]) / sizeof(worldGrid[x][0]); ++y) {
             AStar plainNode;
-            plainNode.status = (0 == wallTMXLayer->getTileGIDAt(Vec2(x,y))) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
+            plainNode.status = (this->isTravelable(Vec2(x,y))) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
             plainNode.pos = Vec2(x,y);
             worldGrid[x][y] = plainNode;
         }

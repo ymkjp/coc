@@ -11,6 +11,8 @@
 #define WORLD_MAP_WIDTH 44
 #define WORLD_MAP_HEIGHT 44
 
+#define BLOCK_LAYERS_NUM 7
+
 inline static bool isInMapRange(Vec2 targetPoint)
 {
     return (0 <= targetPoint.x

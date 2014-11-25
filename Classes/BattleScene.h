@@ -10,6 +10,8 @@ USING_NS_CC_EXT;
 #include "cocostudio/CocoStudio.h"
 using namespace cocostudio;
 
+#include "MapNavigator.h"
+
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
 public:
@@ -45,6 +47,9 @@ public:
     virtual void addEventDispacher();
     virtual void addUILayer();
     
+    AStar* worldGrid[WORLD_MAP_WIDTH][WORLD_MAP_HEIGHT] = {};
+    std::stack<Vec2>* worldPathCache = {};
+    
 private:
     Size visibleSize;
     Vec2 origin;
@@ -59,6 +64,11 @@ private:
     SpriteBatchNode* spriteBatch;
     
     virtual Vec2 convertToCoord(Vec2 pos);
+    virtual Vec2 convertToTile(Vec2 pos);
+    virtual bool isTargetLayer(std::string name, Vec2 coord);
+    const std::array<Vec2, 4> nextBlocks = {Vec2(-1,0), Vec2(0,-1), Vec2(1,0), Vec2(0,1)};
+    
+    virtual Vec2 findCoord(Vec2 pos);
 };
 
 #endif // __BATTLE_SCENE_H__
