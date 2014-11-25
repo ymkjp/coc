@@ -10,9 +10,6 @@ bool MapNavigator::init(TMXTiledMap* _tiledMap)
     return true;
 }
 
-/**
- {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
- */
 inline bool MapNavigator::isTravelable(Vec2 pos)
 {
     for (std::string name: blockLayers) {
@@ -30,7 +27,21 @@ inline bool MapNavigator::isTravelable(Vec2 pos)
 std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
     //    CCLOG("=== Nav started ===");
+    AStar* openedNode = this->findLastNode(startPoint, goalPoint);
     
+    // todo: empty?
+    AStar* paths = openedNode;
+    while (paths->parent != nullptr) {
+        pathToGoal.push(paths->pos);
+        paths = paths->parent;
+    }
+    //    CCLOG("=== Nav finished ===");
+    
+    return &pathToGoal;
+}
+
+AStar* MapNavigator::findLastNode(Vec2 startPoint, Vec2 goalPoint)
+{
     std::set<Vec2> openSet;
     
     AStar worldGrid[WORLD_MAP_WIDTH][WORLD_MAP_HEIGHT] = {};
@@ -47,7 +58,7 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
     AStar startNode;
     startNode.status = AStar::__STATUS::OPEN;
     startNode.cost = 0;
-    startNode.distance = heuristicCost(startPoint, goalPoint);
+    startNode.distance = startPoint.getDistanceSq(goalPoint);
     startNode.parent = nullptr;
     startNode.pos = startPoint;
     worldGrid[static_cast<int>(startPoint.x)][static_cast<int>(startPoint.y)] = startNode;
@@ -63,7 +74,7 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
             AStar openNode;
             openNode.cost = 0;
             openNode.status = AStar::__STATUS::OPEN;
-            openNode.distance = heuristicCost(targetPoint, goalPoint);
+            openNode.distance = targetPoint.getDistanceSq(goalPoint);
             openNode.pos = targetPoint;
             openNode.parent = &startNode;
             worldGrid[static_cast<int>(targetPoint.x)][static_cast<int>(targetPoint.y)] = openNode;
@@ -108,7 +119,7 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
                 AStar nextNode;
                 nextNode.status = AStar::__STATUS::OPEN;
                 nextNode.cost = steps;
-                nextNode.distance = heuristicCost(nextPoint, goalPoint);
+                nextNode.distance = nextPoint.getDistanceSq(goalPoint);
                 nextNode.pos = nextPoint;
                 nextNode.parent = bestNode;
                 worldGrid[static_cast<int>(nextPoint.x)][static_cast<int>(nextPoint.y)] = nextNode;
@@ -119,25 +130,5 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         openSet.erase(bestPoint);
         bestNode = {};
     }
-    
-    // todo: empty?
-    AStar* paths = openedNode;
-    while (paths->parent != nullptr) {
-        pathToGoal.push(paths->pos);
-        paths = paths->parent;
-    }
-    //    CCLOG("=== Nav finished ===");
-    
-    return &pathToGoal;
-}
-
-/**
- @todo Vec2::getDistanceSq
- */
-inline float MapNavigator::heuristicCost(Vec2 startPoint, Vec2 goalPoint)
-{
-    float dx, dy;
-    dx = fabs(goalPoint.x - startPoint.x);
-    dy = fabs(goalPoint.y - startPoint.y);
-    return hypotf(dx, dy);
+    return openedNode;
 }
