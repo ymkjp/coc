@@ -1,5 +1,4 @@
 #include "BattleScene.h"
-#include "Unit.h"
 #include "MapNavigator.h"
 
 Scene* BattleScene::createScene()
@@ -68,27 +67,56 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     }
     Vec2 tileCoord = this->convertToCoord(touch->getLocation());
     if (isInMapRange(tileCoord) && 0 == wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
-        auto unit = Unit::create(Unit::__TYPE::Wallbreaker);
+        auto unit = Unit::create(Unit::__TYPE::Barbarian);
+        unit->retain();
         auto goalCoord = this->findGoalCoord(tileCoord, Building::Resources);
         auto mapNavigator = MapNavigator::create(tiledMap);
         auto path = mapNavigator->navigate(tileCoord, goalCoord);
         
         if (path->empty()) {CCLOG("HMM... EMPTY PATH IS DETECTED");return;};
+        
+        Vec2 nextCoord;
+        Vec2 prevCoord;
+        Vec2 directionPoint;
         Vector<FiniteTimeAction*> arrayOfactions;
+        MoveTo* moveAction;
         while (!path->empty()) {
-            auto node = path->top();
-            auto directionPoint = this->convertToTile(node);
-            auto move = MoveTo::create(0.5, directionPoint);
-            arrayOfactions.pushBack(move);
+            nextCoord = path->top();
+            directionPoint = this->convertToTile(nextCoord);
+            moveAction = MoveTo::create(0.5, directionPoint);
+            auto posDiff =  Vec2((int)prevCoord.x - (int)nextCoord.x, (int)prevCoord.y - (int)nextCoord.y);
+//            Node* animatedNode = unit->createAnimatedNode(posDiff);
+            //            FiniteTimeAction* func = CallFunc::create(CC_CALLBACK_0(Unit::animateNode, unit));
+//            FiniteTimeAction* func = CallFuncN::create([this,&animatedNode](Ref* target) {
+//                auto node = tiledMapLayer->getChildByName("unit");
+//                CCLOG("[node:%s]",node->getName().c_str());
+////                unit->unitNode = animatedNode;
+//                tiledMapLayer->removeChildByName("unit");
+//                tiledMapLayer->addChild(animatedNode,1,"unit");
+//                // @todo
+//            });
+//            arrayOfactions.pushBack(func);
+            
+            arrayOfactions.pushBack(moveAction);
             path->pop();
+            prevCoord = nextCoord;
         }
+//        FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BattleScene::attack, this));
+        FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::attack, unit));
+        arrayOfactions.pushBack(attack);
         auto seq = Sequence::create(arrayOfactions);
         unit->unitNode->setPosition(domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         unit->unitNode->runAction(seq);
         
-        tiledMapLayer->addChild(unit->unitNode);
+        tiledMapLayer->addChild(unit->unitNode,1,"unit");
     }
     return;
+}
+
+void BattleScene::attack()
+{
+    auto node = tiledMapLayer->getChildByName("unit");
+    CCLOG("node:%s",node->getName().c_str());
 }
 
 /**
@@ -99,7 +127,7 @@ inline Vec2 BattleScene::findGoalCoord(Vec2 startCoord, Building::__CATEGORY tar
     // 1. ターゲットのマスを経路探索で近いものから算出
     // 2.　ターゲット4マスの周囲12マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
     // 2'. ターゲット9マスの周囲16マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
-    // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする
+    // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする // todo
 
     auto types = Building::getTypesByCategory(targetCategory);
     
@@ -120,7 +148,6 @@ inline Vec2 BattleScene::findGoalCoord(Vec2 startCoord, Building::__CATEGORY tar
             nearestCoord = coord;
         }
     }
-    CCLOG("nearestCoord(%f,%f)",nearestCoord.x,nearestCoord.y);
     auto space = buildingGrid.at(nearestCoord.x).at(nearestCoord.y)->getSpace();
     auto coordsSurround = Building::coordsSurround.at(space);
     int bestScore = -1;

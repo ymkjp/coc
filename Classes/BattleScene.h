@@ -15,6 +15,7 @@ using namespace cocostudio;
 
 #include "Definitions.h"
 #include "Building.h"
+#include "Unit.h"
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
@@ -47,9 +48,9 @@ public:
     virtual void addEventDispacher();
     virtual void addUILayer();
     virtual void initBuildings();
-    
     std::stack<Vec2>* worldPathCache = {};
     
+    void attack();
 private:
     Size visibleSize;
     Vec2 origin;

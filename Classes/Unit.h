@@ -28,9 +28,13 @@ public:
     };
     enum __COMPASS {
         North = 0,
-        South,
+        NorthEast,
         East,
+        SouthEast,
+        South,
+        SouthWest,
         West,
+        NorthWest,
     };
     
     Sprite* sprite;
@@ -45,15 +49,26 @@ public:
         CC_SAFE_DELETE(p);
         return nullptr;
     }
+    const static std::map<Vec2, __COMPASS> compassByCoords;
 
-protected:
-    SpriteFrameCache* spriteFrameCache;
+    Node* createAnimatedNode(Vec2 posDiff);
+    void animateNode();
+    void attack();
+    void update( float frame );
+    
+    __TYPE type;
+    __STATUS status;
+    __ACTION action;
+    __COMPASS compass;
     Vec2 pos;
+    Vec2 posDiff;
+    
+protected:
+    timeline::ActionTimeline* actionTimeline;
+
   
-    __TYPE _type;
-    __STATUS _status;
-    __ACTION _action;
-    __COMPASS _compass;
+    
+    bool isNextCoord(float num);
 };
 
 #endif // __UNIT_H__
