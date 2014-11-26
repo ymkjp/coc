@@ -1,7 +1,6 @@
 #ifndef __BATTLE_SCENE_H__
 #define __BATTLE_SCENE_H__
 
-#include <array>
 #include <vector>
 
 #include "cocos2d.h"
@@ -14,8 +13,10 @@ USING_NS_CC_EXT;
 using namespace cocostudio;
 
 #include "Definitions.h"
+#include "Tmx.h"
 #include "Building.h"
 #include "Unit.h"
+
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
@@ -49,31 +50,21 @@ public:
     virtual void addUILayer();
     virtual void initBuildings();
     std::stack<Vec2>* worldPathCache = {};
+//    
+//    void attack();
     
-    void attack();
 private:
     Size visibleSize;
     Vec2 origin;
     ScrollView *scrollView;
     Layer *backgroundLayer;
     Layer *tiledMapLayer;
-    
-    TMXTiledMap *tiledMap;
-    TMXLayer *domainTMXLayer;
-    TMXLayer *wallTMXLayer;
+
+    Tmx* tmx;
     
     SpriteBatchNode* spriteBatch;
     
-    virtual Vec2 convertToCoord(Vec2 pos);
-    virtual Vec2 convertToTile(Vec2 pos);
     virtual bool isTargetLayer(std::string name, Vec2 coord);
-    
-    virtual Vec2 findGoalCoord(Vec2 pos, Building::__CATEGORY targetType);
-
-    std::map<Building::__TYPE, std::vector<Vec2>> buildingCoords;
-
-    std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {};
-    
     virtual void addToBuildingCache(Building::__TYPE type, Vec2 coord);
 };
 

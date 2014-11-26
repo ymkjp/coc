@@ -73,6 +73,7 @@
 		5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
 		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
+		5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8E6BB1A265C8200D50450 /* Tmx.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -175,6 +176,8 @@
 		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
 		5CF695201A198DC0000939B2 /* MapNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapNavigator.cpp; sourceTree = "<group>"; };
 		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
+		5CF8E6BB1A265C8200D50450 /* Tmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tmx.cpp; sourceTree = "<group>"; };
+		5CF8E6BC1A265C8200D50450 /* Tmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tmx.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -325,6 +328,8 @@
 				5CA2120C1A1E20E10053BAED /* Building.h */,
 				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
 				5CF695211A198DC0000939B2 /* MapNavigator.h */,
+				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
+				5CF8E6BC1A265C8200D50450 /* Tmx.h */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -529,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */,
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				5C2408991A14542B004A785F /* Unit.cpp in Sources */,
 				5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */,

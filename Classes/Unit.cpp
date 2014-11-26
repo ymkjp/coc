@@ -14,10 +14,11 @@ const std::map<Vec2, Unit::__COMPASS> Unit::compassByCoords =
     {Vec2(-1,0),  NorthWest},
 };
 
-bool Unit::init(Unit::__TYPE unitType)
+bool Unit::init(Tmx* _tmx, Unit::__TYPE unitType, Vec2 _coord)
 {
+    tmx = _tmx;
     type = unitType;
-//    SpriteFrameCache::getInstance();
+    coord = _coord;
 
     unitNode = Node::create();
     auto childNode = CSLoader::createNode("CocosProject/res/UnitBarbarianWalkEast.csb");
@@ -29,6 +30,7 @@ bool Unit::init(Unit::__TYPE unitType)
 //    cocos2d::Node *node = CSLoader::getInstance()->createNodeFromProtocolBuffers("HogeScene.csb");
 //    this->addChild(node);
     
+    this->play();
     return true;
 }
 
@@ -43,9 +45,101 @@ inline bool Unit::isNextCoord(float num)
     return (num == -1.0f || num == 0.0f || num == 1.0f);
 }
 
-Node* Unit::createAnimatedNode(Vec2 posDiff){
+Node* Unit::createAnimatedNode(Vec2 posDiff)
+{
     return this->unitNode;
 }
+
+void Unit::play()
+{
+    auto goalCoord = this->findGoalCoord(this->coord, Building::Resources);
+    auto mapNavigator = MapNavigator::create(tmx->tiledMap);
+    auto path = mapNavigator->navigate(this->coord, goalCoord);
+    
+    if (path->empty()) {CCLOG("HMM... EMPTY PATH IS DETECTED");return;};
+    
+    Vec2 nextCoord;
+    Vec2 prevCoord;
+    Vec2 directionPoint;
+    Vector<FiniteTimeAction*> arrayOfactions;
+    MoveTo* moveAction;
+    while (!path->empty()) {
+        nextCoord = path->top();
+        directionPoint = tmx->convertToTile(nextCoord);
+        moveAction = MoveTo::create(0.5, directionPoint);
+        auto posDiff =  Vec2((int)prevCoord.x - (int)nextCoord.x, (int)prevCoord.y - (int)nextCoord.y);
+        //            Node* animatedNode = unit->createAnimatedNode(posDiff);
+        //            FiniteTimeAction* func = CallFunc::create(CC_CALLBACK_0(Unit::animateNode, unit));
+        //            FiniteTimeAction* func = CallFuncN::create([this,&animatedNode](Ref* target) {
+        //                auto node = tiledMapLayer->getChildByName("unit");
+        //                CCLOG("[node:%s]",node->getName().c_str());
+        ////                unit->unitNode = animatedNode;
+        //                tiledMapLayer->removeChildByName("unit");
+        //                tiledMapLayer->addChild(animatedNode,1,"unit");
+        //                // @todo
+        //            });
+        //            arrayOfactions.pushBack(func);
+        
+        arrayOfactions.pushBack(moveAction);
+        path->pop();
+        prevCoord = nextCoord;
+    }
+    //        FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BattleScene::attack, this));
+    FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::attack, this));
+    arrayOfactions.pushBack(attack);
+    auto seq = Sequence::create(arrayOfactions);
+
+    this->unitNode->runAction(seq);    
+}
+
+
+/**
+ @todo Highlight the nearest coord
+ */
+inline Vec2 Unit::findGoalCoord(Vec2 startCoord, Building::__CATEGORY targetCategory)
+{
+    // 1. ターゲットのマスを経路探索で近いものから算出
+    // 2.　ターゲット4マスの周囲12マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
+    // 2'. ターゲット9マスの周囲16マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
+    // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする // todo
+    
+    auto types = Building::getTypesByCategory(targetCategory);
+    
+    std::vector<Vec2> targetCoords;
+    for (auto type: types) {
+        targetCoords.insert(
+                            targetCoords.end(),
+                            tmx->buildingCoords[type].begin(),
+                            tmx->buildingCoords[type].end());
+    }
+    
+    auto navi = MapNavigator::create(tmx->tiledMap);
+    
+    Vec2 nearestCoord = Vec2(-1,-1);
+    float nearestDistance;
+    float distance;
+    for (auto coord: targetCoords) {
+        distance = startCoord.getDistanceSq(coord);
+        if (nearestCoord == Vec2(-1,-1) ||  distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestCoord = coord;
+        }
+    }
+    auto space = tmx->buildingGrid.at(nearestCoord.x).at(nearestCoord.y)->getSpace();
+    auto coordsSurround = Building::coordsSurround.at(space);
+    int bestScore = -1;
+    Vec2 bestCoord;
+    float lastNodeScore;
+    for (auto coord: coordsSurround) {
+        lastNodeScore = navi->findLastNode(startCoord, nearestCoord + coord)->GetScore();
+        if (bestScore == -1 || lastNodeScore < bestScore) {
+            bestScore = lastNodeScore;
+            bestCoord = nearestCoord + coord;
+        }
+    }
+    return bestCoord;
+}
+
 
 void Unit::attack()
 {

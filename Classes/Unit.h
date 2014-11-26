@@ -7,6 +7,10 @@ USING_NS_CC;
 #include "cocostudio/CocoStudio.h"
 using namespace cocostudio;
 
+#include "Tmx.h"
+#include "Building.h"
+#include "MapNavigator.h"
+
 class Unit : public Ref
 {
 public:
@@ -39,10 +43,10 @@ public:
     
     Sprite* sprite;
     Node* unitNode;
-    virtual bool init(Unit::__TYPE unitType);
-    static Unit* create(Unit::__TYPE unitType) {
+    virtual bool init(Tmx* tmx, Unit::__TYPE unitType, Vec2 coord);
+    static Unit* create(Tmx* tmx, Unit::__TYPE unitType, Vec2 coord) {
         auto p = new Unit();
-        if (p->init(unitType)) {
+        if (p->init(tmx, unitType, coord)) {
             p->autorelease();
             return p;
         }
@@ -53,20 +57,23 @@ public:
 
     Node* createAnimatedNode(Vec2 posDiff);
     void animateNode();
+    void play();
     void attack();
     void update( float frame );
+    
+    virtual Vec2 findGoalCoord(Vec2 pos, Building::__CATEGORY targetType);
     
     __TYPE type;
     __STATUS status;
     __ACTION action;
     __COMPASS compass;
-    Vec2 pos;
+    Vec2 coord;
     Vec2 posDiff;
     
 protected:
+    Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
 
-  
     
     bool isNextCoord(float num);
 };
