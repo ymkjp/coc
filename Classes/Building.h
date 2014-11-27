@@ -7,6 +7,9 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "cocostudio/CocoStudio.h"
+using namespace cocostudio;
+
 #include "Definitions.h"
 #include "Tmx.h"
 
@@ -55,9 +58,12 @@ public:
     {
         return Building::typesByCategory.at(category);
     };
-    
+
     const static std::map<__SPACE, std::vector<Vec2>> coordsSurround;
     
+    bool isTargetLayer(std::string name, Vec2 coord);
+    
+
 protected:
     Tmx* tmx;
     const std::map<BuildingType, __SPACE> typeSpace = {
@@ -69,7 +75,7 @@ protected:
         {ArcherTower,  Regular},
         {Wall,         Small},
     };
-    
+    void initNode();
 };
 
 #endif // __BUILDING_H__

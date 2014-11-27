@@ -41,4 +41,17 @@ enum UnitType {
     Wallbreaker,
 };
 
+
+enum Compass {
+    North,
+    NorthEast,
+    East,
+    SouthEast,
+    South,
+    SouthWest,
+    West,
+    NorthWest,
+};
+
+
 #endif // __DEFINITIONS_H__

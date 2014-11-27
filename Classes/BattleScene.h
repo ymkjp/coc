@@ -54,7 +54,7 @@ public:
 
     Vector<Unit*> units;
     Vector<Building*> buildings;
-    void addToBuildingCache(BuildingType type, Vec2 coord);
+    void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);
 
 private:
     Size visibleSize;
