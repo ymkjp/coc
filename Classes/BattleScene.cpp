@@ -71,8 +71,8 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
         auto unit = Unit::create(tmx, Barbarian, tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
-        tiledMapLayer->addChild(unit->unitNode,1,"unit");
         units.pushBack(unit);
+        tiledMapLayer->addChild(unit);
     }
     return;
 }
@@ -186,7 +186,7 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
     building->buildingNode->setPosition(pos);
-    tiledMapLayer->addChild(building->buildingNode);
+    tiledMapLayer->addChild(building);
 }
 
 void BattleScene::addEventDispacher()

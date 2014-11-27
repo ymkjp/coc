@@ -11,7 +11,7 @@ using namespace cocostudio;
 #include "Building.h"
 #include "MapNavigator.h"
 
-class Unit : public Ref
+class Unit : public Node
 {
 public:
     enum __STATUS {
@@ -19,7 +19,8 @@ public:
         Died,
     };
     enum __ACTION {
-        Walking = 0,
+        NoActing = 0,
+        Walking,
         Attacking,
         Damaged,
     };
@@ -47,13 +48,23 @@ public:
     }
     const static std::map<Vec2, __COMPASS> compassByCoords;
 
+    const std::map<UnitType, Building::__CATEGORY> attackType = {
+        {Barbarian, Building::Melee},
+        {Archer, Building::Melee},
+        {Giant, Building::Defenses},
+        {Goblin, Building::Resources},
+        {Wallbreaker, Building::Walls},
+    };
+
     Node* createAnimatedNode(Vec2 posDiff);
     void animateNode();
-    void play();
-    void attack();
+    void play(float frame);
+    void startAttacking();
+    void attack(float frame);
     void update( float frame );
     
-    virtual Vec2 findGoalCoord(Vec2 pos, Building::__CATEGORY targetType);
+    Building* findTargetBuilding(Vec2 pos);
+    Vec2 getPointToGo();
     
     UnitType type;
     __STATUS status;
@@ -63,11 +74,15 @@ public:
     Vec2 posDiff;
     
 protected:
+    int count = 0;
     Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
     timeline::ActionTimelineCache* actionTimelineCache;
     
+    Building* targetBuilding;
     bool isNextCoord(float num);
+    
+    float damagePerSec = 0;
 };
 
 #endif // __UNIT_H__

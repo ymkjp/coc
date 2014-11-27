@@ -15,12 +15,12 @@ using namespace cocostudio;
 
 class Tmx;
 
-class Building : public Ref
+class Building : public Node
 {
 public:
     enum __CATEGORY {
         NoCategory = 0,
-        AnyBuildings,
+        Melee,
         TownHalls,
         Resources,
         Defenses,
@@ -62,9 +62,11 @@ public:
     const static std::map<__SPACE, std::vector<Vec2>> coordsSurround;
     
     bool isTargetLayer(std::string name, Vec2 coord);
-    
+    void attacked(float damage);
+    void broken();
 
 protected:
+    float hitpoints = 400;
     Tmx* tmx;
     const std::map<BuildingType, __SPACE> typeSpace = {
         {TownHall,     Large},

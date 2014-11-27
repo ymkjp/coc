@@ -7,7 +7,8 @@ const std::map<Building::__CATEGORY, std::vector<BuildingType>> Building::typesB
 {
     {Resources, {ElixerTank, GoldBank}},
     {Defenses, {Canon, TrenchMortar, ArcherTower}},
-    {AnyBuildings, {TownHall, ElixerTank, GoldBank, Canon, TrenchMortar, ArcherTower, /** Wall */}},
+    {Walls, {Wall}},
+    {Melee, {TownHall, ElixerTank, GoldBank, Canon, TrenchMortar, ArcherTower, /** Wall */}},
 };
 
 const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = {
@@ -30,7 +31,7 @@ bool Building::init(Tmx* _tmx, BuildingType _type, Vec2 _coord)
 {
     tmx = _tmx;
 //    cache = SpriteFrameCache::getInstance();
-    status = Building::Alive;
+    status = Alive;
     type = _type;
     coord = _coord;
 
@@ -109,6 +110,26 @@ void Building::initNode()
             buildingNode = Node::create();
             break;
     }
+    this->addChild(buildingNode);
+}
+
+void Building::attacked(float damage)
+{
+    CCLOG("hitpoints %f",hitpoints);
+    if (hitpoints < damage) {
+        status = Died;
+        tmx->eraseBuilding(this);
+        this->broken();
+    } else {
+        hitpoints -= damage;
+    }
+}
+
+void Building::broken()
+{
+    buildingNode->removeFromParentAndCleanup(true);
+    buildingNode = CCSprite::createWithSpriteFrameName("stage/field/271.0.png");
+    this->addChild(buildingNode);
 }
 
 Building::__SPACE Building::getSpace()

@@ -19,7 +19,9 @@ bool Unit::init(Tmx* _tmx, UnitType unitType, Vec2 _coord)
     tmx = _tmx;
     type = unitType;
     coord = _coord;
-
+    damagePerSec = 60;
+    action = Walking;
+    
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
     unitNode = Node::create();
@@ -28,11 +30,11 @@ bool Unit::init(Tmx* _tmx, UnitType unitType, Vec2 _coord)
     childNode->runAction(actionTimeline);
     actionTimeline->gotoFrameAndPlay(0, true);
     unitNode->addChild(childNode,1 ,"childNode");
-    
+    this->addChild(unitNode);
 //    cocos2d::Node *node = CSLoader::getInstance()->createNodeFromProtocolBuffers("HogeScene.csb");
 //    this->addChild(node);
     
-    this->play();
+    this->play(1);
     return true;
 }
 
@@ -51,12 +53,15 @@ Node* Unit::createAnimatedNode(Vec2 posDiff)
     return this->unitNode;
 }
 
-void Unit::play()
+void Unit::play(float frame)
 {
-    auto goalCoord = this->findGoalCoord(this->coord, Building::Resources);
+    CCLOG("Unit::play %f",frame);
+    // @todo 2nd target
+    this->targetBuilding = this->findTargetBuilding(this->coord);
     auto mapNavigator = MapNavigator::create(tmx->tiledMap);
-    auto path = mapNavigator->navigate(this->coord, goalCoord);
-    
+    auto goalPoint = this->getPointToGo();
+    auto path = mapNavigator->navigate(this->coord, goalPoint);
+    this->coord = goalPoint;
     if (path->empty()) {CCLOG("HMM... EMPTY PATH IS DETECTED");return;};
     
     Vec2 nextCoord;
@@ -86,7 +91,7 @@ void Unit::play()
         prevCoord = nextCoord;
     }
     //        FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BattleScene::attack, this));
-    FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::attack, this));
+    FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::startAttacking, this));
     arrayOfactions.pushBack(attack);
     auto seq = Sequence::create(arrayOfactions);
 
@@ -97,16 +102,18 @@ void Unit::play()
 /**
  @todo Highlight the nearest coord
  */
-inline Vec2 Unit::findGoalCoord(Vec2 startCoord, Building::__CATEGORY targetCategory)
+inline Building* Unit::findTargetBuilding(Vec2 startCoord)
 {
     // 1. ターゲットのマスを経路探索で近いものから算出
     // 2.　ターゲット4マスの周囲12マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
     // 2'. ターゲット9マスの周囲16マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
     // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする // todo
     
+    Building::__CATEGORY targetCategory = attackType.at(type);
     auto types = Building::getTypesByCategory(targetCategory);
     
-    std::vector<Vec2> targetCoords;
+    std::vector<Vec2> targetCoords = {};
+    CCLOG("findTargetBuilding::targetCoords.size%lu",targetCoords.size());
     for (auto type: types) {
         targetCoords.insert(
                             targetCoords.end(),
@@ -114,38 +121,40 @@ inline Vec2 Unit::findGoalCoord(Vec2 startCoord, Building::__CATEGORY targetCate
                             tmx->buildingCoords[type].end());
     }
     
-    auto navi = MapNavigator::create(tmx->tiledMap);
-    
     Vec2 nearestCoord = Vec2(-1,-1);
     float nearestDistance;
     float distance;
     for (auto coord: targetCoords) {
+        ++count ; CCLOG("[%i]findTargetBuilding::coord(%f,%f)",count,coord.x,coord.y);
         distance = startCoord.getDistanceSq(coord);
         if (nearestCoord == Vec2(-1,-1) ||  distance < nearestDistance) {
             nearestDistance = distance;
             nearestCoord = coord;
         }
     }
-    
-    auto space = tmx->buildingGrid.at(nearestCoord.x).at(nearestCoord.y)->getSpace();
+    return tmx->buildingGrid.at(nearestCoord.x).at(nearestCoord.y);
+}
+
+inline Vec2 Unit::getPointToGo()
+{
+    auto navi = MapNavigator::create(tmx->tiledMap);
+    auto space = targetBuilding->getSpace();
     auto coordsSurround = Building::coordsSurround.at(space);
     int bestScore = -1;
     Vec2 bestCoord;
     float lastNodeScore;
     for (auto coord: coordsSurround) {
-        lastNodeScore = navi->findLastNode(startCoord, nearestCoord + coord)->GetScore();
+        lastNodeScore = navi->findLastNode(this->coord, targetBuilding->coord + coord)->GetScore();
         if (bestScore == -1 || lastNodeScore < bestScore) {
             bestScore = lastNodeScore;
-            bestCoord = nearestCoord + coord;
+            bestCoord = targetBuilding->coord + coord;
         }
     }
     return bestCoord;
 }
 
-
-void Unit::attack()
+void Unit::startAttacking()
 {
-    action = Attacking;
     CCLOG("Unit attattak%i",__LINE__);
     auto childNode = unitNode->getChildByName("childNode");
     auto newChildNode = CSLoader::createNode("CocosProject/res/UnitBarbarianAttackEast.csb");
@@ -154,13 +163,32 @@ void Unit::attack()
     newChildNode->runAction(action);
     action->gotoFrameAndPlay(0, true);
 
-    childNode->stopAction(actionTimeline);
+//    childNode->stopAction(actionTimeline);
     unitNode->removeChild(childNode);
     unitNode->addChild(newChildNode /** ,1,"childNode"*/ );
+    actionTimeline = action;
     
-//    actionTimeline = action;
-    CCLOG("Unit attattak finished%i",__LINE__);
+    if (this->action == Walking) {
+        this->action = Attacking;
+        CCLOG("attaking xxxxxxx");
+        this->schedule(schedule_selector(Unit::attack), 1.0f);
+    }
     
+    CCLOG("[%i]Unit::startAttacking finished %i",__LINE__,this->action);
+}
+
+void Unit::attack(float frame)
+{
+    CCLOG("targetBuilding->status %i",this->targetBuilding->status);
+    if (this->targetBuilding->status == Building::Alive) {
+        CCLOG("[%i]Unit::attack still alive, attack again!",__LINE__);
+        this->targetBuilding->attacked(damagePerSec);
+    } else {
+        CCLOG("[%i]Unit::attack target died, next attack!",__LINE__);
+        action = Walking;
+        this->scheduleOnce(schedule_selector(Unit::play), 1.0f);
+        this->unschedule(schedule_selector(Unit::attack));
+    }
 }
 
 void Unit::animateNode()

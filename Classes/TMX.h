@@ -29,6 +29,8 @@ public:
     Vec2 convertToTile(Vec2 pos);
     Vec2 convertToIso(Vec2 pos);
     
+    void eraseBuilding(Building* building);
+    
     // Caches
     std::map<BuildingType, std::vector<Vec2>> buildingCoords;
     std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {};
