@@ -26,19 +26,20 @@ inline bool MapNavigator::isTravelable(Vec2 pos)
  */
 std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
-    //    CCLOG("=== Nav started ===");
-    AStar* openedNode = this->findLastNode(startPoint, goalPoint);
+    openedNode = this->findLastNode(startPoint, goalPoint);
     
     AStar* paths = openedNode;
     while (paths->parent != nullptr) {
         pathToGoal.push(paths->pos);
         paths = paths->parent;
     }
-    //    CCLOG("=== Nav finished ===");
     
     return &pathToGoal;
 }
 
+/**
+ @todo Cache worldGrid in BattleScene
+ */
 AStar* MapNavigator::findLastNode(Vec2 startPoint, Vec2 goalPoint)
 {
     std::set<Vec2> openSet;
@@ -90,7 +91,6 @@ AStar* MapNavigator::findLastNode(Vec2 startPoint, Vec2 goalPoint)
     Vec2 nextPoint;
     Vec2 openPoint;
     AStar* bestNode = nullptr;
-    AStar* openedNode = nullptr;
     while (isFound == 0 && steps < WORLD_MAP_HEIGHT * WORLD_MAP_WIDTH) {
         ++steps;
         for (std::set<Vec2>::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)

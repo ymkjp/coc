@@ -46,6 +46,7 @@ public:
     }
     virtual std::stack<Vec2>* navigate(Vec2 startPoint, Vec2 goalPoint);
     virtual AStar* findLastNode(Vec2 startPoint, Vec2 goalPoint);
+    AStar* openedNode = nullptr;
 
 protected:
     TMXTiledMap *tiledMap;
