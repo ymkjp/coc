@@ -155,7 +155,6 @@ inline Vec2 Unit::getPointToGo()
 
 void Unit::startAttacking()
 {
-    CCLOG("Unit attattak%i",__LINE__);
     auto childNode = unitNode->getChildByName("childNode");
     auto newChildNode = CSLoader::createNode("CocosProject/res/UnitBarbarianAttackEast.csb");
 
@@ -165,16 +164,13 @@ void Unit::startAttacking()
 
 //    childNode->stopAction(actionTimeline);
     unitNode->removeChild(childNode);
-    unitNode->addChild(newChildNode /** ,1,"childNode"*/ );
+    unitNode->addChild(newChildNode ,1,"childNode");
     actionTimeline = action;
     
     if (this->action == Walking) {
         this->action = Attacking;
-        CCLOG("attaking xxxxxxx");
         this->schedule(schedule_selector(Unit::attack), 1.0f);
     }
-    
-    CCLOG("[%i]Unit::startAttacking finished %i",__LINE__,this->action);
 }
 
 void Unit::attack(float frame)
@@ -186,7 +182,17 @@ void Unit::attack(float frame)
     } else {
         CCLOG("[%i]Unit::attack target died, next attack!",__LINE__);
         action = Walking;
-        this->scheduleOnce(schedule_selector(Unit::play), 1.0f);
+        
+        auto childNode = unitNode->getChildByName("childNode");
+        auto newChildNode = CSLoader::createNode("CocosProject/res/UnitBarbarianWalkEast.csb");
+        auto action = actionTimelineCache->createAction("CocosProject/res/UnitBarbarianWalkEast.csb");
+        newChildNode->runAction(action);
+        action->gotoFrameAndPlay(0, true);
+        unitNode->removeChild(childNode);
+        unitNode->addChild(newChildNode ,1,"childNode");
+        actionTimeline = action;
+        
+        this->scheduleOnce(schedule_selector(Unit::play), 0);
         this->unschedule(schedule_selector(Unit::attack));
     }
 }

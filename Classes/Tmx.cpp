@@ -41,18 +41,18 @@ Vec2 Tmx::convertToIso(Vec2 rawPos)
 void Tmx::eraseBuilding(Building* building)
 {
     auto coords = &buildingCoords.at(building->type);
-    CCLOG("[Tmx::eraseBuilding] type:%i, building->coord(%f,%f)",building->type,building->coord.x,building->coord.y);
+//    CCLOG("[Tmx::eraseBuilding] type:%i, building->coord(%f,%f)",building->type,building->coord.x,building->coord.y);
     
-    for(int i =0; i <coords->size(); ++i){
-        CCLOG("[Tmx::eraseBuilding] cached coord(%f,%f)",coords->at(i).x,coords->at(i).y);
-    }
+//    for(int i =0; i <coords->size(); ++i){
+//        CCLOG("[Tmx::eraseBuilding] cached coord(%f,%f)",coords->at(i).x,coords->at(i).y);
+//    }
     
     coords->erase(remove(coords->begin(), coords->end(), building->coord), coords->end());
     
-    CCLOG("[Tmx::eraseBuilding] coords.size%lu",coords->size());
-    for(int i =0; i <coords->size(); ++i){
-        CCLOG("[Tmx::eraseBuilding] remain coord(%f,%f)",coords->at(i).x,coords->at(i).y);
-    }
+//    CCLOG("[Tmx::eraseBuilding] coords.size%lu",coords->size());
+//    for(int i =0; i <coords->size(); ++i){
+//        CCLOG("[Tmx::eraseBuilding] remain coord(%f,%f)",coords->at(i).x,coords->at(i).y);
+//    }
     
     buildingGrid[building->coord.x][building->coord.y] = nullptr;
 }

@@ -29,7 +29,6 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
     //    CCLOG("=== Nav started ===");
     AStar* openedNode = this->findLastNode(startPoint, goalPoint);
     
-    // todo: empty?
     AStar* paths = openedNode;
     while (paths->parent != nullptr) {
         pathToGoal.push(paths->pos);
