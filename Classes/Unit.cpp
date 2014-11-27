@@ -20,9 +20,12 @@ bool Unit::init(Tmx* _tmx, Unit::__TYPE unitType, Vec2 _coord)
     type = unitType;
     coord = _coord;
 
+    actionTimelineCache = timeline::ActionTimelineCache::getInstance();
+    
     unitNode = Node::create();
+//    unitNode->retain();
     auto childNode = CSLoader::createNode("CocosProject/res/UnitBarbarianWalkEast.csb");
-    actionTimeline = timeline::ActionTimelineCache::createAction("CocosProject/res/UnitBarbarianWalkEast.csb");
+    actionTimeline = actionTimelineCache->createAction("CocosProject/res/UnitBarbarianWalkEast.csb");
     childNode->runAction(actionTimeline);
     actionTimeline->gotoFrameAndPlay(0, true);
     unitNode->addChild(childNode,1 ,"childNode");
@@ -146,14 +149,17 @@ void Unit::attack()
     action = Attacking;
     CCLOG("Unit attattak%i",__LINE__);
     auto childNode = unitNode->getChildByName("childNode");
+    auto newChildNode = CSLoader::createNode("CocosProject/res/UnitBarbarianAttackEast.csb");
+
+    auto action = actionTimelineCache->createAction("CocosProject/res/UnitBarbarianAttackEast.csb");
+    newChildNode->runAction(action);
+    action->gotoFrameAndPlay(0, true);
+
     childNode->stopAction(actionTimeline);
     unitNode->removeChild(childNode);
-
-    auto newChildNode = CSLoader::createNode("CocosProject/res/UnitBarbarianAttackEast.csb");
-    actionTimeline = timeline::ActionTimelineCache::createAction("CocosProject/res/UnitBarbarianAttackEast.csb");
-    newChildNode->runAction(actionTimeline);
-    actionTimeline->gotoFrameAndPlay(0, true);
-    unitNode->addChild(newChildNode);
+    unitNode->addChild(newChildNode /** ,1,"childNode"*/ );
+    
+//    actionTimeline = action;
     CCLOG("Unit attattak finished%i",__LINE__);
     
 }

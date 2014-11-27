@@ -29,31 +29,10 @@ bool Building::init(__TYPE _type, Vec2 _coord)
     status = Building::Alive;
     type = _type;
     coord = _coord;
-    this->addBuilding();
     return true;
 }
 
 Building::__SPACE Building::getSpace()
 {
     return typeSpace.at(type);
-}
-
-void Building::addBuilding()
-{
-    
-    return;
-}
-
-inline Vec2 Building::convertToIso(Vec2 rawPos)
-{
-    return Vec2(-1,-1);
-    
-//    Size tileSize = _tiledMap->getTileSize();
-//    Size mapSize = _tiledMap->getMapSize();
-//    auto pos = Vec2(rawPos.x, mapSize.height - rawPos.y);
-//    
-//    float ratio = tileSize.width / tileSize.height;
-//    float x = tileSize.width * 0.5 * (pos.x/(tileSize.width / ratio) - pos.y/tileSize.height);
-//    float y = tileSize.height * 0.5 * (mapSize.height - pos.x/(tileSize.width / ratio) - pos.y/tileSize.height);
-//    return Vec2(x, y) + Vec2(mapSize.width * 0.65, mapSize.height);
 }

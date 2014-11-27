@@ -73,7 +73,7 @@ public:
 protected:
     Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
-
+    timeline::ActionTimelineCache* actionTimelineCache;
     
     bool isNextCoord(float num);
 };

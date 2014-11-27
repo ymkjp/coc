@@ -25,11 +25,11 @@ public:
     
     Vec2 convertToCoord(Vec2 pos);
     Vec2 convertToTile(Vec2 pos);
-
+    Vec2 convertToIso(Vec2 pos);
+    
     // Caches
     std::map<Building::__TYPE, std::vector<Vec2>> buildingCoords;
     std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {};
-    
 };
 
 #endif // __TMX_H__

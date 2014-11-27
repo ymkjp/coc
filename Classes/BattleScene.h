@@ -49,9 +49,9 @@ public:
     virtual void addEventDispacher();
     virtual void addUILayer();
     virtual void initBuildings();
-    std::stack<Vec2>* worldPathCache = {};
-//    
-//    void attack();
+
+    Vector<Unit*> units;
+    void addToBuildingCache(Building::__TYPE type, Vec2 coord);
     
 private:
     Size visibleSize;
@@ -63,9 +63,7 @@ private:
     Tmx* tmx;
     
     SpriteBatchNode* spriteBatch;
-    
-    virtual bool isTargetLayer(std::string name, Vec2 coord);
-    virtual void addToBuildingCache(Building::__TYPE type, Vec2 coord);
+    bool isTargetLayer(std::string name, Vec2 coord);
 };
 
 #endif // __BATTLE_SCENE_H__

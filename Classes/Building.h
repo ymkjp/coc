@@ -7,6 +7,8 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "Definitions.h"
+
 class Building : public Ref
 {
 public:
@@ -38,7 +40,7 @@ public:
         Large = 9,
     };
     Vec2 coord;
-    Node* node;
+    Node* buildingNode;
     __TYPE type;
     __STATUS status;
     
@@ -52,8 +54,6 @@ public:
         CC_SAFE_DELETE(p);
         return nullptr;
     }
-    virtual void addBuilding();
-    
 //    virtual __CATEGORY getCategory(__TYPE type)
 //    {
 //        return typeCategory.at(type);
@@ -93,7 +93,6 @@ protected:
         {ArcherTower,  Regular},
         {Wall,         Small},
     };
-    virtual Vec2 convertToIso(Vec2 pos);
 };
 
 #endif // __BUILDING_H__

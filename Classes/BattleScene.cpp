@@ -72,6 +72,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
         auto unit = Unit::create(tmx, Unit::__TYPE::Barbarian, tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         tiledMapLayer->addChild(unit->unitNode,1,"unit");
+        units.pushBack(unit);
     }
     return;
 }
@@ -112,36 +113,16 @@ void BattleScene::addBattleStage()
     scrollView->setMinScale(visibleSize.width / spriteRight->getContentSize().width * 0.5);
 }
 
-void BattleScene::addEventDispacher()
+
+inline bool BattleScene::isTargetLayer(std::string name, Vec2 coord)
 {
-    auto scrollViewListner = EventListenerTouchOneByOne::create();
-    scrollViewListner->setSwallowTouches(true);
-    scrollViewListner->onTouchBegan = [this](Touch* touch, Event* event) -> bool {
-        return true;
-    };
-    scrollViewListner->onTouchEnded = [this](Touch* touch, Event* event) -> void {
-        this->runAction(Sequence::create(DelayTime::create(0.001),CallFunc::create([this](){
-            this->scrollStatus.scrollingDelay = false;
-        }), nullptr));
-        return;
-    };
-    scrollView->getEventDispatcher()->addEventListenerWithSceneGraphPriority(scrollViewListner, scrollView);
-    this->addChild(scrollView);
-    
-    auto listner = EventListenerTouchOneByOne::create();
-    //    listner->setSwallowTouches(true);
-    listner->onTouchBegan = CC_CALLBACK_2(BattleScene::onTouchBegan, this);
-    listner->onTouchMoved = CC_CALLBACK_2(BattleScene::onTouchMoved, this);
-    listner->onTouchEnded = CC_CALLBACK_2(BattleScene::onTouchEnded, this);
-    listner->onTouchCancelled = CC_CALLBACK_2(BattleScene::onTouchCancelled, this);
-    
-    tmx->domainTMXLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listner, tmx->domainTMXLayer);
+    return (isInMapRange(coord) && 0 != tmx->tiledMap->getLayer(name.c_str())->getTileGIDAt(coord));
 }
 
 /**
  @fixme ZORDER
  @fixme too fast animation
-  {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
+ {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
  */
 void BattleScene::initBuildings()
 {
@@ -191,6 +172,7 @@ void BattleScene::initBuildings()
                 auto mortar = CSLoader::createNode("CocosProject/res/TrenchMortar.csb");
                 auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/TrenchMortar.csb");
                 mortar->runAction(action);
+                action->setTimeSpeed(0.1);
                 action->gotoFrameAndPlay(0, true);
                 mortar->setPosition(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5);
                 tiledMapLayer->addChild(mortar);
@@ -209,6 +191,7 @@ void BattleScene::initBuildings()
                 this->addToBuildingCache(Building::Canon, coord);
                 auto canon = CSLoader::createNode("CocosProject/res/Canon.csb");
                 auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/Canon.csb");
+                action->setTimeSpeed(0.01);
                 canon->runAction(action);
                 action->gotoFrameAndPlay(0, true);
                 canon->setPosition(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5);
@@ -244,9 +227,30 @@ inline void BattleScene::addToBuildingCache(Building::__TYPE type, Vec2 coord)
     tmx->buildingCoords[type].push_back(coord);
 }
 
-inline bool BattleScene::isTargetLayer(std::string name, Vec2 coord)
+void BattleScene::addEventDispacher()
 {
-    return (isInMapRange(coord) && 0 != tmx->tiledMap->getLayer(name.c_str())->getTileGIDAt(coord));
+    auto scrollViewListner = EventListenerTouchOneByOne::create();
+    scrollViewListner->setSwallowTouches(true);
+    scrollViewListner->onTouchBegan = [this](Touch* touch, Event* event) -> bool {
+        return true;
+    };
+    scrollViewListner->onTouchEnded = [this](Touch* touch, Event* event) -> void {
+        this->runAction(Sequence::create(DelayTime::create(0.001),CallFunc::create([this](){
+            this->scrollStatus.scrollingDelay = false;
+        }), nullptr));
+        return;
+    };
+    scrollView->getEventDispatcher()->addEventListenerWithSceneGraphPriority(scrollViewListner, scrollView);
+    this->addChild(scrollView);
+    
+    auto listner = EventListenerTouchOneByOne::create();
+    //    listner->setSwallowTouches(true);
+    listner->onTouchBegan = CC_CALLBACK_2(BattleScene::onTouchBegan, this);
+    listner->onTouchMoved = CC_CALLBACK_2(BattleScene::onTouchMoved, this);
+    listner->onTouchEnded = CC_CALLBACK_2(BattleScene::onTouchEnded, this);
+    listner->onTouchCancelled = CC_CALLBACK_2(BattleScene::onTouchCancelled, this);
+    
+    tmx->domainTMXLayer->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listner, tmx->domainTMXLayer);
 }
 
 void BattleScene::onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *pEvent)
