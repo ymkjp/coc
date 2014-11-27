@@ -14,7 +14,7 @@ const std::map<Vec2, Unit::__COMPASS> Unit::compassByCoords =
     {Vec2(-1,0),  NorthWest},
 };
 
-bool Unit::init(Tmx* _tmx, Unit::__TYPE unitType, Vec2 _coord)
+bool Unit::init(Tmx* _tmx, UnitType unitType, Vec2 _coord)
 {
     tmx = _tmx;
     type = unitType;
@@ -23,7 +23,6 @@ bool Unit::init(Tmx* _tmx, Unit::__TYPE unitType, Vec2 _coord)
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
     unitNode = Node::create();
-//    unitNode->retain();
     auto childNode = CSLoader::createNode("CocosProject/res/UnitBarbarianWalkEast.csb");
     actionTimeline = actionTimelineCache->createAction("CocosProject/res/UnitBarbarianWalkEast.csb");
     childNode->runAction(actionTimeline);
@@ -39,7 +38,6 @@ bool Unit::init(Tmx* _tmx, Unit::__TYPE unitType, Vec2 _coord)
 
 void Unit::update( float frame )
 {
-    //    CCLOG("だるい");
 }
 
 
@@ -128,6 +126,7 @@ inline Vec2 Unit::findGoalCoord(Vec2 startCoord, Building::__CATEGORY targetCate
             nearestCoord = coord;
         }
     }
+    
     auto space = tmx->buildingGrid.at(nearestCoord.x).at(nearestCoord.y)->getSpace();
     auto coordsSurround = Building::coordsSurround.at(space);
     int bestScore = -1;

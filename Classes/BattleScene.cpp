@@ -69,7 +69,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
     if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
-        auto unit = Unit::create(tmx, Unit::__TYPE::Barbarian, tileCoord);
+        auto unit = Unit::create(tmx, Barbarian, tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         tiledMapLayer->addChild(unit->unitNode,1,"unit");
         units.pushBack(unit);
@@ -132,6 +132,7 @@ void BattleScene::initBuildings()
             auto coord = Vec2(x,y);
             auto coordPos = tmx->convertToTile(coord);
             
+            
             auto eastCoord = coord + Vec2(1,0);
             auto westCoord = coord + Vec2(-1,0);
             auto southCoord = coord + Vec2(0,1);
@@ -142,7 +143,7 @@ void BattleScene::initBuildings()
             auto eessCoord = coord + Vec2(2, 2);
             auto ssCoord = coord + Vec2(0, 2);
             if (this->isTargetLayer("Wall", coord)) {
-                this->addToBuildingCache(Building::Wall, coord);
+                this->addToBuildingCache(Wall, coord);
                 auto* filename = String::create("stage/wall/");
                 if (this->isTargetLayer("Wall", westCoord) && this->isTargetLayer("Wall", northCoord)) {
                     filename->append("1027.0.png");
@@ -160,7 +161,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("ArcherTower", eastCoord)
                        && this->isTargetLayer("ArcherTower", southCoord)
                        && this->isTargetLayer("ArcherTower", esCoord)) {
-                this->addToBuildingCache(Building::ArcherTower, coord);
+                this->addToBuildingCache(ArcherTower, coord);
                 Sprite* sprite = CCSprite::createWithSpriteFrameName("stage/archer_tower/1036.0.png");
                 sprite->setPosition(coordPos);
                 spriteBatch->addChild(sprite);
@@ -168,7 +169,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("TrenchMortar", eastCoord)
                        && this->isTargetLayer("TrenchMortar", southCoord)
                        && this->isTargetLayer("TrenchMortar", esCoord)) {
-                this->addToBuildingCache(Building::TrenchMortar, coord);
+                this->addToBuildingCache(TrenchMortar, coord);
                 auto mortar = CSLoader::createNode("CocosProject/res/TrenchMortar.csb");
                 auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/TrenchMortar.csb");
                 mortar->runAction(action);
@@ -180,7 +181,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("TownHall", eeCoord)
                        && this->isTargetLayer("TownHall", eessCoord)
                        && this->isTargetLayer("TownHall", ssCoord)) {
-                this->addToBuildingCache(Building::TownHall, coord);
+                this->addToBuildingCache(TownHall, coord);
                 auto hall = CSLoader::createNode("CocosProject/res/TownHall.csb");
                 hall->setPosition(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 1.5);
                 tiledMapLayer->addChild(hall);
@@ -188,7 +189,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("Canon", eastCoord)
                        && this->isTargetLayer("Canon", southCoord)
                        && this->isTargetLayer("Canon", esCoord)) {
-                this->addToBuildingCache(Building::Canon, coord);
+                this->addToBuildingCache(Canon, coord);
                 auto canon = CSLoader::createNode("CocosProject/res/Canon.csb");
                 auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/Canon.csb");
                 action->setTimeSpeed(0.01);
@@ -200,7 +201,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("GoldBank", eastCoord)
                        && this->isTargetLayer("GoldBank", southCoord)
                        && this->isTargetLayer("GoldBank", esCoord)) {
-                this->addToBuildingCache(Building::GoldBank, coord);
+                this->addToBuildingCache(GoldBank, coord);
                 auto bank = CSLoader::createNode("CocosProject/res/GoldBank.csb");
                 bank->setScale(0.75);
                 bank->setPosition(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5);
@@ -209,7 +210,7 @@ void BattleScene::initBuildings()
                        && this->isTargetLayer("ElixerTank", eastCoord)
                        && this->isTargetLayer("ElixerTank", southCoord)
                        && this->isTargetLayer("ElixerTank", esCoord)) {
-                this->addToBuildingCache(Building::ElixerTank, coord);
+                this->addToBuildingCache(ElixerTank, coord);
                 auto tank = CSLoader::createNode("CocosProject/res/ElixerTank.csb");
                 tank->setPosition(coordPos);
                 tank->setScale(0.75);
@@ -219,10 +220,10 @@ void BattleScene::initBuildings()
     }
 }
 
-inline void BattleScene::addToBuildingCache(Building::__TYPE type, Vec2 coord)
+inline void BattleScene::addToBuildingCache(BuildingType type, Vec2 coord)
 {
-    auto building = Building::create(type, coord);
-    building->retain();
+    auto building = Building::create(tmx, type, coord);
+    buildings.pushBack(building);
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
 }

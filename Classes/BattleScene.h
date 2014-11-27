@@ -2,6 +2,8 @@
 #define __BATTLE_SCENE_H__
 
 #include <vector>
+#include <array>
+#include <map>
 
 #include "cocos2d.h"
 USING_NS_CC;
@@ -51,8 +53,9 @@ public:
     virtual void initBuildings();
 
     Vector<Unit*> units;
-    void addToBuildingCache(Building::__TYPE type, Vec2 coord);
-    
+    Vector<Building*> buildings;
+    void addToBuildingCache(BuildingType type, Vec2 coord);
+
 private:
     Size visibleSize;
     Vec2 origin;

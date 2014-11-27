@@ -1,6 +1,8 @@
 #include "Building.h"
 
-const std::map<Building::__CATEGORY, std::vector<Building::__TYPE>> Building::typesByCategory =
+USING_NS_CC;
+
+const std::map<Building::__CATEGORY, std::vector<BuildingType>> Building::typesByCategory =
 {
     {Resources, {ElixerTank, GoldBank}},
     {Defenses, {Canon, TrenchMortar, ArcherTower}},
@@ -23,8 +25,9 @@ const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = 
     }},
 };
 
-bool Building::init(__TYPE _type, Vec2 _coord)
+bool Building::init(Tmx* _tmx, BuildingType _type, Vec2 _coord)
 {
+    tmx = _tmx;
 //    cache = SpriteFrameCache::getInstance();
     status = Building::Alive;
     type = _type;

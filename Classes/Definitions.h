@@ -21,4 +21,24 @@ inline static bool isInMapRange(Vec2 targetPoint)
             && targetPoint.y < WORLD_MAP_HEIGHT);
 };
 
+enum BuildingType {
+    NoType = 0,
+    TownHall,
+    ElixerTank,
+    GoldBank,
+    Canon,
+    TrenchMortar,
+    ArcherTower,
+    Wall,
+};
+
+
+enum UnitType {
+    Archer = 0,
+    Barbarian,
+    Giant,
+    Goblin,
+    Wallbreaker,
+};
+
 #endif // __DEFINITIONS_H__

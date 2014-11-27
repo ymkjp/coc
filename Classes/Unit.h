@@ -14,13 +14,6 @@ using namespace cocostudio;
 class Unit : public Ref
 {
 public:
-    enum __TYPE {
-        Archer = 0,
-        Barbarian,
-        Giant,
-        Goblin,
-        Wallbreaker,
-    };
     enum __STATUS {
         Alive = 0,
         Died,
@@ -41,10 +34,9 @@ public:
         NorthWest,
     };
     
-    Sprite* sprite;
     Node* unitNode;
-    virtual bool init(Tmx* tmx, Unit::__TYPE unitType, Vec2 coord);
-    static Unit* create(Tmx* tmx, Unit::__TYPE unitType, Vec2 coord) {
+    virtual bool init(Tmx* tmx, UnitType unitType, Vec2 coord);
+    static Unit* create(Tmx* tmx, UnitType unitType, Vec2 coord) {
         auto p = new Unit();
         if (p->init(tmx, unitType, coord)) {
             p->autorelease();
@@ -63,7 +55,7 @@ public:
     
     virtual Vec2 findGoalCoord(Vec2 pos, Building::__CATEGORY targetType);
     
-    __TYPE type;
+    UnitType type;
     __STATUS status;
     __ACTION action;
     __COMPASS compass;
