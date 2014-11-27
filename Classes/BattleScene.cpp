@@ -98,7 +98,7 @@ void BattleScene::addBattleStage()
     
     // Adjust tiledMap to the background
     auto tiledMapPosition = Vec2(origin.x + spriteRight->getContentSize().width * 0.05, origin.y + spriteRight->getContentSize().height * 0.1);
-//    tiledMap->setVisible(false); // XXX
+//    tmx->tiledMap->setVisible(false); // DEBUG
     tiledMapLayer->addChild(tmx->tiledMap);
     tiledMapLayer->addChild(spriteBatch);
     tiledMapLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
