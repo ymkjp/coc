@@ -74,6 +74,7 @@ void Unit::play(float frame)
         directionPoint = tmx->convertToTile(nextCoord);
         moveAction = MoveTo::create(0.5, directionPoint);
         auto posDiff =  Vec2((int)prevCoord.x - (int)nextCoord.x, (int)prevCoord.y - (int)nextCoord.y);
+        // @todo 向き先に応じてアニメーションを切り替え
         //            Node* animatedNode = unit->createAnimatedNode(posDiff);
         //            FiniteTimeAction* func = CallFunc::create(CC_CALLBACK_0(Unit::animateNode, unit));
         //            FiniteTimeAction* func = CallFuncN::create([this,&animatedNode](Ref* target) {
@@ -104,7 +105,7 @@ void Unit::play(float frame)
  */
 inline Building* Unit::findTargetBuilding(Vec2 startCoord)
 {
-    // 1. ターゲットのマスを経路探索で近いものから算出
+    // 1. ターゲットのマスを経路探索で近いものから算出 (@todo 今は単純距離になっているので経路探索のキャッシュ対応後修正)
     // 2.　ターゲット4マスの周囲12マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
     // 2'. ターゲット9マスの周囲16マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
     // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする // todo
@@ -176,11 +177,9 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
     CCLOG("targetBuilding->status %i",this->targetBuilding->status);
-    if (this->targetBuilding->status == Building::Alive) {
-        CCLOG("[%i]Unit::attack still alive, attack again!",__LINE__);
-        this->targetBuilding->attacked(damagePerSec);
-    } else {
-        CCLOG("[%i]Unit::attack target died, next attack!",__LINE__);
+    this->targetBuilding->attacked(damagePerSec);
+    if (this->targetBuilding->status == Building::Died) {
+        CCLOG("[%i]Unit::attack target died!",__LINE__);
         action = Walking;
         
         auto childNode = unitNode->getChildByName("childNode");
