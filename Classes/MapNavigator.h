@@ -10,6 +10,7 @@ USING_NS_CC;
 #include <math.h>
 
 #include "Definitions.h"
+#include "Tmx.h"
 
 struct AStar
 {
@@ -34,8 +35,8 @@ struct AStar
 class MapNavigator : public Ref
 {
 public:
-    virtual bool init(TMXTiledMap* tiledMap);
-    static MapNavigator* create(TMXTiledMap* tiledMap) {
+    virtual bool init(Tmx* tiledMap);
+    static MapNavigator* create(Tmx* tiledMap) {
         auto p = new MapNavigator();
         if (p->init(tiledMap)) {
             p->autorelease();
@@ -49,13 +50,11 @@ public:
     AStar* openedNode = nullptr;
 
 protected:
-    TMXTiledMap *tiledMap;
-    TMXLayer *domainTMXLayer;
-    TMXLayer *wallTMXLayer;
+    Tmx* tmx;
     const std::set<Vec2> surround {Vec2(-1,1),Vec2(-1,0),Vec2(-1,-1),Vec2(0,-1),Vec2(1,-1),Vec2(1,0),Vec2(1,1),Vec2(0,1)};
     const std::array<std::string, BLOCK_LAYERS_NUM> blockLayers =  {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
     std::stack<Vec2> pathToGoal;
-    bool isTravelable(Vec2 pos);
+    bool isTravelable(float posX, float posY);
 };
 
 #endif // __MAP_NAVIGATOR_H__

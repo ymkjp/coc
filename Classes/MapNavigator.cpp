@@ -2,22 +2,16 @@
 
 USING_NS_CC;
 
-bool MapNavigator::init(TMXTiledMap* _tiledMap)
+bool MapNavigator::init(Tmx* _tmx)
 {
-    tiledMap = _tiledMap;
-    domainTMXLayer = tiledMap->getLayer("Domain");
-    wallTMXLayer = tiledMap->getLayer("Wall");
+    tmx = _tmx;
     return true;
 }
 
-inline bool MapNavigator::isTravelable(Vec2 pos)
+inline bool MapNavigator::isTravelable(float posX, float posY)
 {
-    for (std::string name: blockLayers) {
-        if (0 != tiledMap->getLayer(name.c_str())->getTileGIDAt(pos)) {
-            return false;
-        }
-    }
-    return true;
+    Building* building = tmx->buildingGrid.at(posX).at(posY);
+    return (building == nullptr);
 }
 
 /**
@@ -28,12 +22,12 @@ std::stack<Vec2>* MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
     openedNode = this->findLastNode(startPoint, goalPoint);
     
-    AStar* paths = openedNode;
-    while (paths->parent != nullptr) {
-        pathToGoal.push(paths->pos);
-        paths = paths->parent;
+    AStar* path = openedNode;
+    pathToGoal = {};
+    while (path->parent != nullptr) {
+        pathToGoal.push(path->pos);
+        path = path->parent;
     }
-    
     return &pathToGoal;
 }
 
@@ -49,7 +43,7 @@ AStar* MapNavigator::findLastNode(Vec2 startPoint, Vec2 goalPoint)
     for (int x = 0; x < sizeof(worldGrid) / sizeof(worldGrid[0]); ++x) {
         for (int y = 0; y < sizeof(worldGrid[x]) / sizeof(worldGrid[x][0]); ++y) {
             AStar plainNode;
-            plainNode.status = (this->isTravelable(Vec2(x,y))) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
+            plainNode.status = (this->isTravelable(x,y)) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
             plainNode.pos = Vec2(x,y);
             worldGrid[x][y] = plainNode;
         }

@@ -33,7 +33,7 @@ public:
     
     // Caches
     std::map<BuildingType, std::vector<Vec2>> buildingCoords;
-    std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {};
+    std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {{}};
 };
 
 #endif // __TMX_H__

@@ -34,6 +34,9 @@ bool Unit::init(Tmx* _tmx, UnitType unitType, Vec2 _coord)
 //    cocos2d::Node *node = CSLoader::getInstance()->createNodeFromProtocolBuffers("HogeScene.csb");
 //    this->addChild(node);
     
+    mapNavigator = MapNavigator::create(tmx);
+    mapNavigator->retain();
+    
     this->play(1);
     return true;
 }
@@ -55,10 +58,9 @@ Node* Unit::createAnimatedNode(Vec2 posDiff)
 
 void Unit::play(float frame)
 {
-    CCLOG("Unit::play %f",frame);
+    CCLOG("Unit::play frame[%f]",frame);
     // @todo 2nd target
     this->targetBuilding = this->findTargetBuilding(this->coord);
-    auto mapNavigator = MapNavigator::create(tmx->tiledMap);
     auto goalPoint = this->getPointToGo();
     auto path = mapNavigator->navigate(this->coord, goalPoint);
     this->coord = goalPoint;
@@ -138,14 +140,13 @@ inline Building* Unit::findTargetBuilding(Vec2 startCoord)
 
 inline Vec2 Unit::getPointToGo()
 {
-    auto navi = MapNavigator::create(tmx->tiledMap);
     auto space = targetBuilding->getSpace();
     auto coordsSurround = Building::coordsSurround.at(space);
     int bestScore = -1;
     Vec2 bestCoord;
     float lastNodeScore;
     for (auto coord: coordsSurround) {
-        lastNodeScore = navi->findLastNode(this->coord, targetBuilding->coord + coord)->GetScore();
+        lastNodeScore = mapNavigator->findLastNode(this->coord, targetBuilding->coord + coord)->GetScore();
         if (bestScore == -1 || lastNodeScore < bestScore) {
             bestScore = lastNodeScore;
             bestCoord = targetBuilding->coord + coord;

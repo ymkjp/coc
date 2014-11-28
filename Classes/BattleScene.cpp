@@ -23,11 +23,7 @@ bool BattleScene::init()
     tiledMapLayer = Layer::create();
     
     tmx = Tmx::create();
-    tmx->retain();
-//
-//    tiledMap = TMXTiledMap::create("map_01.tmx");
-//    domainTMXLayer = tiledMap->getLayer("Domain");
-//    wallTMXLayer = tiledMap->getLayer("Wall");
+    tmx->retain(); // tmx inherits Ref* not Node*
     
     // @todo Not yet used
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();

@@ -82,6 +82,8 @@ protected:
     Building* targetBuilding;
     bool isNextCoord(float num);
     
+    MapNavigator* mapNavigator;
+    
     float damagePerSec = 0;
 };
 

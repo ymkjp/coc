@@ -6,6 +6,7 @@ bool Tmx::init()
     tiledMap = TMXTiledMap::create("map_01.tmx");
     domainTMXLayer = tiledMap->getLayer("Domain");
     wallTMXLayer = tiledMap->getLayer("Wall");
+
     return true;
 }
 
