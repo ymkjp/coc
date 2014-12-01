@@ -1,6 +1,7 @@
 #ifndef __UNIT_H__
 #define __UNIT_H__
 
+
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -50,6 +51,7 @@ public:
 
     const std::map<UnitType, Building::__CATEGORY> attackType = {
         {Barbarian, Building::Melee},
+//        {Barbarian, Building::TownHalls}, /** For debug */
         {Archer, Building::Melee},
         {Giant, Building::Defenses},
         {Goblin, Building::Resources},
@@ -63,8 +65,7 @@ public:
     void attack(float frame);
     void update( float frame );
     
-    Building* findTargetBuilding(Vec2 pos);
-    Vec2 getPointToGo();
+    Vec2 findPointToGo();
     
     UnitType type;
     __STATUS status;
@@ -74,7 +75,6 @@ public:
     Vec2 posDiff;
     
 protected:
-    int count = 0;
     Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
     timeline::ActionTimelineCache* actionTimelineCache;
@@ -82,9 +82,9 @@ protected:
     Building* targetBuilding;
     bool isNextCoord(float num);
     
-    MapNavigator* mapNavigator;
-    
     float damagePerSec = 0;
+    
+    std::vector<Vec2> getTargetCoords(Building::__CATEGORY category);
 };
 
 #endif // __UNIT_H__

@@ -16,6 +16,7 @@ public:
     CREATE_FUNC(SplashScene);
     
 private:
+    
     void GoToBattleScene(float dt);
 };
 

@@ -1,13 +1,16 @@
 #ifndef __MAP_NAVIGATOR_H__
 #define __MAP_NAVIGATOR_H__
 
+#include <iostream>
+#include <thread>
+#include <future>
+
 #include "cocos2d.h"
 USING_NS_CC;
 
 #include <set>
 #include <stack>
 #include <array>
-#include <math.h>
 
 #include "Definitions.h"
 #include "Tmx.h"
@@ -45,16 +48,25 @@ public:
         CC_SAFE_DELETE(p);
         return nullptr;
     }
-    virtual std::stack<Vec2>* navigate(Vec2 startPoint, Vec2 goalPoint);
-    virtual AStar* findLastNode(Vec2 startPoint, Vec2 goalPoint);
-    AStar* openedNode = nullptr;
+    virtual std::stack<Vec2> navigate(Vec2 startPoint, Vec2 goalPoint);
+    bool isTravelable(float posX, float posY);
+
+    AStar* path;
 
 protected:
     Tmx* tmx;
+    std::mutex mtx;
     const std::set<Vec2> surround {Vec2(-1,1),Vec2(-1,0),Vec2(-1,-1),Vec2(0,-1),Vec2(1,-1),Vec2(1,0),Vec2(1,1),Vec2(0,1)};
-    const std::array<std::string, BLOCK_LAYERS_NUM> blockLayers =  {"TownHall", "ElixerTank", "GoldBank", "Canon", "TrenchMortar", "ArcherTower", "Wall"};
     std::stack<Vec2> pathToGoal;
-    bool isTravelable(float posX, float posY);
+    
+    AStar worldGrid[WORLD_MAP_WIDTH][WORLD_MAP_HEIGHT] = {};
+    std::set<Vec2> openSet;
+    
+    AStar plainNode = {};
+    AStar startNode = {};
+    
+    AStar* openedNode = nullptr;
+    AStar* bestNode = nullptr;
 };
 
 #endif // __MAP_NAVIGATOR_H__

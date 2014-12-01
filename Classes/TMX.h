@@ -30,7 +30,7 @@ public:
     Vec2 convertToIso(Vec2 pos);
     
     void eraseBuilding(Building* building);
-    
+    bool noBuildings();
     // Caches
     std::map<BuildingType, std::vector<Vec2>> buildingCoords;
     std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {{}};

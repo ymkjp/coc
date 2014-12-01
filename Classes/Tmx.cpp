@@ -39,6 +39,18 @@ Vec2 Tmx::convertToIso(Vec2 rawPos)
     return Vec2(x, y) + Vec2(mapSize.width * 0.65, mapSize.height);
 }
 
+bool Tmx::noBuildings()
+{
+    for (auto buildingArray: buildingGrid) {
+        for (auto building: buildingArray) {
+            if (building != nullptr && building->type != Wall) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 void Tmx::eraseBuilding(Building* building)
 {
     auto coords = &buildingCoords.at(building->type);
@@ -57,3 +69,4 @@ void Tmx::eraseBuilding(Building* building)
     
     buildingGrid[building->coord.x][building->coord.y] = nullptr;
 }
+

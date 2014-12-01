@@ -9,9 +9,16 @@ const std::map<Building::__CATEGORY, std::vector<BuildingType>> Building::typesB
     {Defenses, {Canon, TrenchMortar, ArcherTower}},
     {Walls, {Wall}},
     {Melee, {TownHall, ElixerTank, GoldBank, Canon, TrenchMortar, ArcherTower, /** Wall */}},
+    /** For Debug */
+    {TownHalls, {TownHall,}},
 };
 
 const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = {
+    {Small, /** count: 8 */ {
+        Vec2(-1,-1), Vec2(-1,0), Vec2(-1,1),
+        Vec2(0,-1), Vec2(0,1),
+        Vec2(1,-1), Vec2(1,0), Vec2(1,1),
+    }},
     {Regular, /** count: 12 */ {
         Vec2(-1,-1), Vec2(-1,0), Vec2(-1,1), Vec2(-1,2),
         Vec2(0,-1), Vec2(0,2),
@@ -27,6 +34,19 @@ const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = 
     }},
 };
 
+const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsBuildingSpace = {
+    {Small, /** count: 1 */ {
+        Vec2(0,0), // @fixme
+    }},
+    {Regular, /** count: 4 */ {
+        Vec2(0,1), Vec2(1,1), Vec2(1,0)
+    }},
+    {Large,  /** count: 9 */ {
+        Vec2(0,1), Vec2(1,1), Vec2(1,0),
+        Vec2(0,2), Vec2(1,2), Vec2(2,0), Vec2(2,1), Vec2(2,2),
+    }},
+};
+
 bool Building::init(Tmx* _tmx, BuildingType _type, Vec2 _coord)
 {
     tmx = _tmx;
@@ -38,6 +58,24 @@ bool Building::init(Tmx* _tmx, BuildingType _type, Vec2 _coord)
     this->initNode();
     
     return true;
+}
+
+
+bool Building::isBuildingRange(Vec2 targetCoord)
+{
+    if (targetCoord == this->coord) {
+        return true;
+    }
+    Vec2 coordInRange;
+    auto space = this->getSpace();
+    auto diffCoords = Building::coordsBuildingSpace.at(space);
+    for (auto diffCoord: diffCoords) {
+        coordInRange = this->coord + diffCoord;
+        if (coordInRange == targetCoord) {
+            return true;
+        }
+    }
+    return false;
 }
 
 inline bool Building::isTargetLayer(std::string name, Vec2 coord)

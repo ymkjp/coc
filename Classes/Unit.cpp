@@ -34,9 +34,6 @@ bool Unit::init(Tmx* _tmx, UnitType unitType, Vec2 _coord)
 //    cocos2d::Node *node = CSLoader::getInstance()->createNodeFromProtocolBuffers("HogeScene.csb");
 //    this->addChild(node);
     
-    mapNavigator = MapNavigator::create(tmx);
-    mapNavigator->retain();
-    
     this->play(1);
     return true;
 }
@@ -59,20 +56,26 @@ Node* Unit::createAnimatedNode(Vec2 posDiff)
 void Unit::play(float frame)
 {
     CCLOG("Unit::play frame[%f]",frame);
-    // @todo 2nd target
-    this->targetBuilding = this->findTargetBuilding(this->coord);
-    auto goalPoint = this->getPointToGo();
+    if (tmx->noBuildings()) {
+        CCLOG("@todo GAME DONE!");
+        return;
+    }
+    auto goalPoint = this->findPointToGo();
+    auto mapNavigator = MapNavigator::create(tmx);
     auto path = mapNavigator->navigate(this->coord, goalPoint);
     this->coord = goalPoint;
-    if (path->empty()) {CCLOG("HMM... EMPTY PATH IS DETECTED");return;};
+    if (path.empty()) {
+        CCLOG("HMM... EMPTY PATH IS DETECTED");
+        return;
+    };
     
     Vec2 nextCoord;
     Vec2 prevCoord;
     Vec2 directionPoint;
     Vector<FiniteTimeAction*> arrayOfactions;
     MoveTo* moveAction;
-    while (!path->empty()) {
-        nextCoord = path->top();
+    while (!path.empty()) {
+        nextCoord = path.top();
         directionPoint = tmx->convertToTile(nextCoord);
         moveAction = MoveTo::create(0.5, directionPoint);
         auto posDiff =  Vec2((int)prevCoord.x - (int)nextCoord.x, (int)prevCoord.y - (int)nextCoord.y);
@@ -90,7 +93,7 @@ void Unit::play(float frame)
         //            arrayOfactions.pushBack(func);
         
         arrayOfactions.pushBack(moveAction);
-        path->pop();
+        path.pop();
         prevCoord = nextCoord;
     }
     //        FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BattleScene::attack, this));
@@ -102,56 +105,118 @@ void Unit::play(float frame)
 }
 
 
-/**
- @todo Highlight the nearest coord
- */
-inline Building* Unit::findTargetBuilding(Vec2 startCoord)
+inline std::vector<Vec2> Unit::getTargetCoords(Building::__CATEGORY category)
 {
-    // 1. ターゲットのマスを経路探索で近いものから算出 (@todo 今は単純距離になっているので経路探索のキャッシュ対応後修正)
-    // 2.　ターゲット4マスの周囲12マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
-    // 2'. ターゲット9マスの周囲16マスに経路探索をかけて最もコストの低かったマスを goalCoord とする
-    // 3. 経路探索でゴールにたどり着かなかった場合、単純移動距離の短い壁を goalCoord とする // todo
-    
-    Building::__CATEGORY targetCategory = attackType.at(type);
-    auto types = Building::getTypesByCategory(targetCategory);
+    auto types = Building::getTypesByCategory(category);
     
     std::vector<Vec2> targetCoords = {};
-    CCLOG("findTargetBuilding::targetCoords.size%lu",targetCoords.size());
     for (auto type: types) {
+//        CCLOG("[Unit::getTargetCoords]type%i",type);
         targetCoords.insert(
                             targetCoords.end(),
                             tmx->buildingCoords[type].begin(),
                             tmx->buildingCoords[type].end());
     }
-    
-    Vec2 nearestCoord = Vec2(-1,-1);
-    float nearestDistance;
-    float distance;
-    for (auto coord: targetCoords) {
-        ++count ; CCLOG("[%i]findTargetBuilding::coord(%f,%f)",count,coord.x,coord.y);
-        distance = startCoord.getDistanceSq(coord);
-        if (nearestCoord == Vec2(-1,-1) ||  distance < nearestDistance) {
-            nearestDistance = distance;
-            nearestCoord = coord;
-        }
-    }
-    return tmx->buildingGrid.at(nearestCoord.x).at(nearestCoord.y);
+    return targetCoords;
 }
 
-inline Vec2 Unit::getPointToGo()
+/**
+ @todo Highlight the nearest coord
+ ターゲット {4マスの周囲12マス|9マスの周囲16マス} に経路探索をかけて最もコストの低かったマスを goalCoord とする
+ */
+inline Vec2 Unit::findPointToGo()
 {
-    auto space = targetBuilding->getSpace();
-    auto coordsSurround = Building::coordsSurround.at(space);
-    int bestScore = -1;
+    std::vector<Vec2> targetCoords = {};
+    Building::__CATEGORY targetCategory = attackType.at(type);
+    targetCoords = this->getTargetCoords(targetCategory);
+
+    if (targetCoords.empty()) {
+//        CCLOG("targetCoords is empty, Attack type: Melee");
+        targetCoords = this->getTargetCoords(Building::Melee);
+    }
+    
+    auto mapNavigator = MapNavigator::create(tmx);
+    
+    float bestScore = -1;
     Vec2 bestCoord;
     float lastNodeScore;
-    for (auto coord: coordsSurround) {
-        lastNodeScore = mapNavigator->findLastNode(this->coord, targetBuilding->coord + coord)->GetScore();
-        if (bestScore == -1 || lastNodeScore < bestScore) {
-            bestScore = lastNodeScore;
-            bestCoord = targetBuilding->coord + coord;
+    float distanceSq;
+    Building* building;
+    bool isToBreakWall = false;
+    
+    for (auto targetCoord: targetCoords) {
+        building = tmx->buildingGrid[targetCoord.x][targetCoord.y];
+        if (targetCategory == Building::Walls) {
+            // Walls (Wallbreaker) の場合
+            isToBreakWall = true;
+            break;
+        }
+        auto surroundCoords = Building::coordsSurround.at(building->getSpace());
+        for (auto coord: surroundCoords) {
+//            CCLOG("[isToBreakWall?%i] distanceSq(%f),bestScore(%f)",isToBreakWall,distanceSq,bestScore);
+            auto startCoord = this->coord;
+            auto goalCoord = building->coord + coord;
+            distanceSq = fabs(goalCoord.getDistanceSq(startCoord));
+            if (bestScore == -1 || distanceSq * DISTANCE_WEIGHT_VS_PF < bestScore) {
+//                CCLOG("[isToBreakWall]bestCoord(%f,%f),bestScore(%f)",bestCoord.x,bestCoord.y,bestScore);
+                isToBreakWall = true;
+                bestScore = distanceSq;
+                bestCoord = goalCoord;
+//                    targetBuilding = building; // @todo remove this line
+            }
+            if (!mapNavigator->isTravelable(goalCoord.x,goalCoord.y)) {
+                CCLOG("There are some buildings at goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
+                continue;
+            } else {
+                CCLOG("Ready for nav! goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
+            }
+            lastNodeScore = mapNavigator->navigate(startCoord, goalCoord).size();
+            CCLOG("[!isToBreakWall]goalCoord(%f,%f),lastNodeScore(%f)",goalCoord.x,goalCoord.y,lastNodeScore);
+            if (bestScore == -1 || lastNodeScore < bestScore) {
+                bestScore = lastNodeScore;
+                bestCoord = goalCoord;
+                targetBuilding = building;
+                isToBreakWall = false;
+            }
         }
     }
+    if  (isToBreakWall) {
+        CCLOG("[isToBreakWall!]");
+        targetCoords = this->getTargetCoords(Building::Walls);
+        float bestScore = -1;
+        float distanceSq;
+        Building* wall;
+        
+        for (auto targetCoord: targetCoords) {
+            wall = tmx->buildingGrid[targetCoord.x][targetCoord.y];
+            auto surroundCoords = Building::coordsSurround.at(wall->getSpace());
+            for (auto coord: surroundCoords) {
+                auto startCoord = this->coord;
+                auto goalCoord = wall->coord + coord;
+                if (!mapNavigator->isTravelable(goalCoord.x,goalCoord.y) || building->isBuildingRange(goalCoord)) {
+                    CCLOG("[WALL] There are some buildings at goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
+                    continue;
+                } else {
+                    CCLOG("[WALL] Ready for nav! goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
+                }
+                auto startToGoalDistance = fabs(startCoord.getDistanceSq(goalCoord));
+                auto buildingToGoalDistance = fabs(building->coord.getDistanceSq(goalCoord));
+                distanceSq = startToGoalDistance + 100 * buildingToGoalDistance;
+                CCLOG("[calc]startToGoalDistance:%f,buildingToGoalDistance:%f,distanceSq:%f",
+                      startToGoalDistance,
+                      buildingToGoalDistance,
+                      distanceSq
+                      );
+                if (bestScore == -1 || distanceSq < bestScore) {
+                    bestScore = distanceSq;
+                    bestCoord = goalCoord;
+                    targetBuilding = wall;
+                    CCLOG("[WALL] bestScore:%f,bestCoord(%f,%f)",bestScore,bestCoord.x,bestCoord.y);
+                }
+            }
+        }
+    }
+    CCLOG("[end]bestCoord(%f,%f),bestScore(%f)",bestCoord.x,bestCoord.y,bestScore);
     return bestCoord;
 }
 
@@ -204,7 +269,7 @@ void Unit::animateNode()
         CCLOG("POS DIFF OUT OF RANGE (%f,%f)",posDiff.x,posDiff.y);
         return;// this->unitNode;
     }
-    CCLOG("[type%i]posDiff(%f,%f)",type,posDiff.x,posDiff.y);
+//    CCLOG("[type%i]posDiff(%f,%f)",type,posDiff.x,posDiff.y);
     
     std::string fileName = "CocosProject/res/Unit";
     switch (type) {
@@ -258,10 +323,9 @@ void Unit::animateNode()
     auto node = CSLoader::createNode(fileName);
     auto actionTimeline = timeline::ActionTimelineCache::createAction(fileName);
     node->runAction(actionTimeline);
-//    node-
     actionTimeline->gotoFrameAndPlay(0, true);
     unitNode = node;
-    return;// unitNode;
+    return;
 }
 
 

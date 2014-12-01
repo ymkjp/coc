@@ -65,7 +65,9 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
     if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
-        auto unit = Unit::create(tmx, Barbarian, tileCoord);
+//        auto unit = Unit::create(tmx, Barbarian, tileCoord);
+        auto unit = Unit::create(tmx, Wallbreaker, tileCoord);
+
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         units.pushBack(unit);
         tiledMapLayer->addChild(unit);
@@ -94,7 +96,7 @@ void BattleScene::addBattleStage()
     
     // Adjust tiledMap to the background
     auto tiledMapPosition = Vec2(origin.x + spriteRight->getContentSize().width * 0.05, origin.y + spriteRight->getContentSize().height * 0.1);
-//    tmx->tiledMap->setVisible(false); // DEBUG
+    tmx->tiledMap->setVisible(TILEDMAP_VISIBLE_ON);
     tiledMapLayer->addChild(tmx->tiledMap);
     tiledMapLayer->addChild(spriteBatch);
     tiledMapLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
