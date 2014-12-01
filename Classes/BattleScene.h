@@ -18,8 +18,7 @@ using namespace cocostudio;
 #include "Definitions.h"
 #include "Tmx.h"
 #include "Building.h"
-#include "Unit.h"
-
+#include "UnitArcher.h"
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {

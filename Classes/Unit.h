@@ -1,7 +1,6 @@
 #ifndef __UNIT_H__
 #define __UNIT_H__
 
-
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -37,16 +36,7 @@ public:
     };
     
     Node* unitNode;
-    virtual bool init(Tmx* tmx, UnitType unitType, Vec2 coord);
-    static Unit* create(Tmx* tmx, UnitType unitType, Vec2 coord) {
-        auto p = new Unit();
-        if (p->init(tmx, unitType, coord)) {
-            p->autorelease();
-            return p;
-        }
-        CC_SAFE_DELETE(p);
-        return nullptr;
-    }
+    virtual bool init(Tmx* tmx, Vec2 coord);
     const static std::map<Vec2, __COMPASS> compassByCoords;
 
     const std::map<UnitType, Building::__CATEGORY> attackType = {
@@ -57,15 +47,16 @@ public:
         {Goblin, Building::Resources},
         {Wallbreaker, Building::Walls},
     };
+    virtual UnitType getUnitType() = 0;
 
-    Node* createAnimatedNode(Vec2 posDiff);
-    void animateNode();
-    void play(float frame);
-    void startAttacking();
-    void attack(float frame);
-    void update( float frame );
-    
-    Vec2 findPointToGo();
+    virtual void play(float frame);
+    virtual void update( float frame );
+    virtual void attack(float frame);
+    virtual void startAttacking();
+    virtual void animateNode() = 0;
+    virtual Vec2 findPointToGo() = 0;
+    virtual Node* getActingNode() = 0;
+    virtual timeline::ActionTimeline* getActionTimeline() = 0;
     
     UnitType type;
     __STATUS status;
@@ -80,7 +71,7 @@ protected:
     timeline::ActionTimelineCache* actionTimelineCache;
     
     Building* targetBuilding;
-    bool isNextCoord(float num);
+    virtual bool isNextCoord(float num);
     
     float damagePerSec = 0;
     

@@ -47,6 +47,7 @@
 		521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 521A8E6319F0C34300D177D7 /* Default-736h@3x.png */; };
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
+		5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -157,6 +158,8 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitArcher.cpp; sourceTree = "<group>"; };
+		5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitArcher.h; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -324,6 +327,8 @@
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
 				5C2408971A14542B004A785F /* Unit.cpp */,
 				5C2408981A14542B004A785F /* Unit.h */,
+				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
+				5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */,
 				5CA2120B1A1E20E10053BAED /* Building.cpp */,
 				5CA2120C1A1E20E10053BAED /* Building.h */,
 				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
@@ -541,6 +546,7 @@
 				5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */,
 				5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */,
 				5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
