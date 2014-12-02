@@ -42,73 +42,24 @@ __String UnitArcher::createFilename()
     }
     
     fileName.append(".csb");
-    CCLOG("fileName%s",fileName.getCString());
+    CCLOG("fileName:%s,this->action:%i,,this->compass:%i",fileName.getCString(),this->action,this->compass);
     return fileName.getCString();
 }
 
-void UnitArcher::animateNode()
+std::vector<Vec2> UnitArcher::getSurroundedCoords(Vec2 targetCoord)
 {
-    posDiff = Vec2(1,1);
-    if (!this->isNextCoord(posDiff.x) || !this->isNextCoord(posDiff.y)) {
-        CCLOG("POS DIFF OUT OF RANGE (%f,%f)",posDiff.x,posDiff.y);
-        return;
-    }
-    
-    std::string fileName = "CocosProject/res/Unit";
-    switch (type) {
-        case Archer:
-            fileName.append("Archer");
-            break;
-        case Barbarian:
-            fileName.append("Barbarian");
-            break;
-        case Giant:
-            fileName.append("Giant");
-            break;
-        case Goblin:
-            fileName.append("Goblin");
-            break;
-        case Wallbreaker:
-            fileName.append("Wallbreaker");
-            break;
-        default:
-            CCLOG("type%i",type);
-            return;
-            break;
-    }
-    fileName.append("Walk");
-    
-    auto directionCompass = compassByCoords.at(posDiff);
-    CCLOG("directionCompass:%i",directionCompass);
-    bool isFlip = false;
-    switch (directionCompass) {
-        case North:
-            fileName.append("South");
-            break;
-        case East:
-            fileName.append("East");
-            break;
-        case South:
-            fileName.append("North");
-            break;
-        case West:
-            fileName.append("East");
-            isFlip = true;
-            break;
-        default:
-            // @todo
-            return;// this->unitNode;
-            break;
-    }
-    fileName.append(".csb");
-    CCLOG("[FileName]%s",fileName.c_str());
-    
-    auto node = CSLoader::createNode(fileName);
-    auto actionTimeline = timeline::ActionTimelineCache::createAction(fileName);
-    node->runAction(actionTimeline);
-    actionTimeline->gotoFrameAndPlay(0, true);
-    unitNode = node;
-    return;
+    // 射程距離 3
+    const std::vector<Vec2> surroundedCoords = {
+        Vec2(-4,-4),Vec2(-4,-3),Vec2(-4,-2),Vec2(-4,-1),Vec2(-4,0),Vec2(-4,1),Vec2(-4,2),Vec2(-4,3),Vec2(-4,4),Vec2(-4,5), // 10
+        Vec2(-3,-4),Vec2(-3,-3),Vec2(-3,-2),Vec2(-3,-1),Vec2(-3,0),Vec2(-3,1),Vec2(-3,2),Vec2(-3,3),Vec2(-3,4),Vec2(-3,5),
+        Vec2(-2,-4),Vec2(-2,-3),Vec2(-2,-2),Vec2(-2,-1),Vec2(-2,0),Vec2(-2,1),Vec2(-2,2),Vec2(-2,3),Vec2(-2,4),Vec2(-2,5),
+        Vec2(-1,-4),Vec2(-1,-3),Vec2(-1,-2),Vec2(-1,-1),Vec2(-1,0),Vec2(-1,1),Vec2(-1,2),Vec2(-1,3),Vec2(-1,4),Vec2(-1,5),
+        Vec2(0,-4),Vec2(0,-3),Vec2(0,-2),Vec2(0,-1),Vec2(0,0),Vec2(0,2),Vec2(0,3),Vec2(0,4),Vec2(0,5),
+        Vec2(1,-4),Vec2(1,-3),Vec2(1,-2),Vec2(1,-1),Vec2(1,0),Vec2(1,2),Vec2(1,3),Vec2(1,4),Vec2(1,5),
+        Vec2(2,-4),Vec2(2,-3),Vec2(2,-2),Vec2(2,-1),Vec2(2,0),Vec2(2,2),Vec2(2,3),Vec2(2,4),Vec2(2,5),
+        Vec2(3,-4),Vec2(3,-3),Vec2(3,-2),Vec2(3,-1),Vec2(3,0),Vec2(3,2),Vec2(3,3),Vec2(3,4),Vec2(3,5),
+        Vec2(4,-4),Vec2(4,-3),Vec2(4,-2),Vec2(4,-1),Vec2(4,0),Vec2(4,2),Vec2(4,3),Vec2(4,4),Vec2(4,5),
+        Vec2(5,-4),Vec2(5,-3),Vec2(5,-2),Vec2(5,-1),Vec2(5,0),Vec2(5,1),Vec2(5,2),Vec2(5,3),Vec2(5,4),Vec2(5,5), // 10
+    };
+    return surroundedCoords;
 }
-
-

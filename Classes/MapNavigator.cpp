@@ -24,10 +24,15 @@ bool MapNavigator::isTravelable(float posX, float posY)
  */
 std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
-//    goalPoint = Vec2(21,19);
+    CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
+    startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
     
-//    CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
-//    startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
+    // スタート地点とゴール地点が同じ場合は empty path を返す
+    if (startPoint == goalPoint) {
+        pathToGoal = {};
+        return pathToGoal;
+    }
+    
     auto result = std::async(std::launch::async, [this, startPoint, goalPoint] {
         for (int x = 0; x < sizeof(worldGrid) / sizeof(worldGrid[0]); ++x) {
             for (int y = 0; y < sizeof(worldGrid[x]) / sizeof(worldGrid[x][0]); ++y) {
@@ -69,12 +74,18 @@ std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         
         // Find goal from openSet
         bool isFound = false;
+        this->isOverSteps = false;
         int steps = 0;
         Vec2 bestPoint;
         Vec2 nextPoint;
         openedNode = {};
-        while (isFound == false && steps < 200 /** 200で諦める */) {
+        while (isFound == false) {
             ++steps;
+            if (PATH_FINDING_MAX_THRESHOLD < steps) {
+                CCLOG("PATH_FINDING_MAX_THRESHOLD");
+                this->isOverSteps = true;
+                break;
+            }
             for (std::set<Vec2>::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)
             {
 //                CCLOG("[%i]openedPoint(%f,%f)",steps,openedPoint->x,openedPoint->y);

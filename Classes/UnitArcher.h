@@ -16,10 +16,12 @@ public:
         return nullptr;
     }
     
-    void animateNode();
     UnitType getUnitType();
 
     __String createFilename();
+    
+    std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
+    
 };
 
 #endif // __UNIT_ARCHER_H__

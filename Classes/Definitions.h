@@ -17,6 +17,8 @@
 
 #define BLOCK_LAYERS_NUM 7
 
+#define PATH_FINDING_MAX_THRESHOLD 200
+
 #define TILEDMAP_VISIBLE_ON false
 
 

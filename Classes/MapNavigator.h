@@ -52,6 +52,7 @@ public:
     bool isTravelable(float posX, float posY);
 
     AStar* path;
+    bool isOverSteps = false;
 
 protected:
     Tmx* tmx;

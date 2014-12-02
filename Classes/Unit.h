@@ -57,12 +57,12 @@ public:
     
     // 必要に応じて子クラスで定義
     virtual Vec2 findPointToGo();
+    virtual Vec2 findNearestWallGoalPoint();
     virtual std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     virtual Node* getActingNode();
     virtual timeline::ActionTimeline* getActionTimeline();
     
     // 子クラスで定義
-    virtual void animateNode() = 0;
     virtual __String createFilename() = 0;
     
     UnitType type;
@@ -84,6 +84,9 @@ protected:
     float damagePerSec = 0;
     
     std::vector<Vec2> getTargetCoords(Building::__CATEGORY category);
+    
+    void testAdd(__String fileName, Vec2 pos);
+    void updateNode();
 };
 
 #endif // __UNIT_H__
