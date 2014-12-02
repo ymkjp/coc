@@ -25,7 +25,7 @@
         <Project Name="UnitGiantAttackEast.csd" />
         <Project Name="UnitGiantAttackNorth.csd" />
         <Image Name="RedBarMid.png" />
-        <PlistImageFolder PListFile="asset.plist" LastPlistWriteTime="2014-11-25T15:57:39+09:00" LastImageWriteTime="2014-11-25T15:57:39+09:00" Name=".asset_PList.Dir">
+        <PlistImageFolder PListFile="asset.plist" LastPlistWriteTime="1601-01-01T09:00:00+09:00" LastImageWriteTime="2014-11-25T15:57:39+09:00" Name=".asset_PList.Dir">
           <PlistImageFile Name="stage_archer_tower_1031.0.png" Key="stage/archer_tower/1031.0.png" />
           <PlistImageFile Name="stage_archer_tower_1032.0.png" Key="stage/archer_tower/1032.0.png" />
           <PlistImageFile Name="stage_archer_tower_1033.0.png" Key="stage/archer_tower/1033.0.png" />

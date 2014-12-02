@@ -48,6 +48,7 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */; };
+		5C02A06C1A2DDEA80067B758 /* CocosProject_01 in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A06B1A2DDEA80067B758 /* CocosProject_01 */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -160,6 +161,7 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitArcher.cpp; sourceTree = "<group>"; };
 		5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitArcher.h; sourceTree = "<group>"; };
+		5C02A06B1A2DDEA80067B758 /* CocosProject_01 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CocosProject_01; path = ../../CocosProject_01; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5C02A06B1A2DDEA80067B758 /* CocosProject_01 */,
 				5C7F9D771A2451890015A766 /* CocosProject */,
 				5CB8218C1A1600D400BC505A /* map_01.tmx */,
 				5C24088D1A12EF26004A785F /* assets.plist */,
@@ -511,6 +514,7 @@
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				5C02A06C1A2DDEA80067B758 /* CocosProject_01 in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);

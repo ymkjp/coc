@@ -18,11 +18,8 @@ public:
     
     void animateNode();
     UnitType getUnitType();
-    
-    Vec2 findPointToGo();
-    
-    Node* getActingNode();
-    timeline::ActionTimeline* getActionTimeline();
+
+    __String createFilename();
 };
 
 #endif // __UNIT_ARCHER_H__

@@ -73,7 +73,7 @@ std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         Vec2 bestPoint;
         Vec2 nextPoint;
         openedNode = {};
-        while (isFound == false && steps < WORLD_MAP_HEIGHT * WORLD_MAP_WIDTH) {
+        while (isFound == false && steps < 200 /** 200で諦める */) {
             ++steps;
             for (std::set<Vec2>::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)
             {

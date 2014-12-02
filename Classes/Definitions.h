@@ -1,6 +1,8 @@
 #ifndef __DEFINITIONS_H__
 #define __DEFINITIONS_H__
 
+#define PI 3.1415926
+
 #define DISPLAY_TIME_SPLASH_SCENE 0.02
 #define TRANSITION_TIME 0.1
 

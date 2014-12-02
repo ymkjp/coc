@@ -53,10 +53,17 @@ public:
     virtual void update( float frame );
     virtual void attack(float frame);
     virtual void startAttacking();
+    
+    
+    // 必要に応じて子クラスで定義
+    virtual Vec2 findPointToGo();
+    virtual std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
+    virtual Node* getActingNode();
+    virtual timeline::ActionTimeline* getActionTimeline();
+    
+    // 子クラスで定義
     virtual void animateNode() = 0;
-    virtual Vec2 findPointToGo() = 0;
-    virtual Node* getActingNode() = 0;
-    virtual timeline::ActionTimeline* getActionTimeline() = 0;
+    virtual __String createFilename() = 0;
     
     UnitType type;
     __STATUS status;
@@ -72,6 +79,7 @@ protected:
     
     Building* targetBuilding;
     virtual bool isNextCoord(float num);
+    virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
     
     float damagePerSec = 0;
     
