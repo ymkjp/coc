@@ -16,10 +16,19 @@ public:
         return nullptr;
     }
     
-    UnitType getUnitType();
-
-    __String createFilename();
+    // 親クラスで virtual pure 規定された定義しなければならないメソッド
+    UnitType getUnitType()
+    {
+        return Archer;
+    }
     
+    __String getUnitNameString()
+    {
+        return "Archer";
+    }
+    
+    //
+    // 親クラスで virtual 規定された任意で上書きできるメソッド
     std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     
 };

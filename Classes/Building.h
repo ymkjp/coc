@@ -13,54 +13,30 @@ using namespace cocostudio;
 #include "Definitions.h"
 #include "Tmx.h"
 
-class Tmx;
-
 class Building : public Node
 {
 public:
-    enum __CATEGORY {
-        NoCategory = 0,
-        Melee,
-        TownHalls,
-        Resources,
-        Defenses,
-        Walls,
-    };
     enum __STATUS {
         Died = 0,
         Alive,
-    };
-    enum __SPACE {
-        Small = 1,
-        Regular = 6,
-        Large = 9,
     };
     Vec2 coord;
     Node* buildingNode;
     BuildingType type;
     __STATUS status;
     
-    virtual bool init(Tmx* tmx, BuildingType type, Vec2 coord);
-    static Building* create(Tmx* tmx, BuildingType type, Vec2 coord) {
-        auto p = new Building();
-        if (p->init(tmx, type, coord)) {
-            p->autorelease();
-            return p;
-        }
-        CC_SAFE_DELETE(p);
-        return nullptr;
-    }
+    virtual bool init(Tmx* tmx, Vec2 coord);
 
-    virtual __SPACE getSpace();
+    virtual BuildingSpace getSpace();
     
-    const static std::map<__CATEGORY, std::vector<BuildingType>> typesByCategory;
-    static std::vector<BuildingType> getTypesByCategory(__CATEGORY category)
+    const static BuildingTypesByCategory typesByCategory;
+    static std::vector<BuildingType> getTypesByCategory(BuildingCategory category)
     {
         return Building::typesByCategory.at(category);
     };
 
-    const static std::map<__SPACE, std::vector<Vec2>> coordsSurround;
-    const static std::map<__SPACE, std::vector<Vec2>> coordsBuildingSpace;
+    const static std::map<BuildingSpace, std::vector<Vec2>> coordsSurround;
+    const static std::map<BuildingSpace, std::vector<Vec2>> coordsBuildingSpace;
 
     bool isBuildingRange(Vec2 coord);
     bool isTargetLayer(std::string name, Vec2 coord);
@@ -70,7 +46,7 @@ public:
 protected:
     float hitpoints = 400;
     Tmx* tmx;
-    const std::map<BuildingType, __SPACE> typeSpace = {
+    const BuildingSpaceByType typeSpace = {
         {TownHall,     Large},
         {ElixerTank,   Regular},
         {GoldBank,     Regular},
@@ -80,6 +56,10 @@ protected:
         {Wall,         Small},
     };
     void initNode();
+    
+    // 子クラスで定義されるべきメソッド
+    virtual BuildingType getType() = 0;
+    
 };
 
 #endif // __BUILDING_H__

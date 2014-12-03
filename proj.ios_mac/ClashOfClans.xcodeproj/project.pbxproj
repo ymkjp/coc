@@ -49,6 +49,20 @@
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */; };
 		5C02A06C1A2DDEA80067B758 /* CocosProject_01 in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A06B1A2DDEA80067B758 /* CocosProject_01 */; };
+		5C02A0731A2ED0170067B758 /* BuildingDefense.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */; };
+		5C02A0791A2ED8DB0067B758 /* NodeFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */; };
+		5C02A07C1A2EE6620067B758 /* BuildingTownhall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */; };
+		5C02A07F1A2EEDC60067B758 /* BuildingWall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A07D1A2EEDC60067B758 /* BuildingWall.cpp */; };
+		5C02A0821A2EF08E0067B758 /* BuildingCanon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0801A2EF08E0067B758 /* BuildingCanon.cpp */; };
+		5C02A0851A2EF1290067B758 /* BuildingResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0831A2EF1290067B758 /* BuildingResource.cpp */; };
+		5C02A0881A2EF2180067B758 /* BuildingElixertank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0861A2EF2180067B758 /* BuildingElixertank.cpp */; };
+		5C02A08B1A2EF2C70067B758 /* BuildingGoldbank.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0891A2EF2C70067B758 /* BuildingGoldbank.cpp */; };
+		5C02A0901A2EF3C00067B758 /* BuildingArchertower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A08C1A2EF3C00067B758 /* BuildingArchertower.cpp */; };
+		5C02A0911A2EF3C00067B758 /* BuildingTrenchmortar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A08E1A2EF3C00067B758 /* BuildingTrenchmortar.cpp */; };
+		5C02A0941A2F0E980067B758 /* UnitBarbarian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0921A2F0E980067B758 /* UnitBarbarian.cpp */; };
+		5C02A09B1A2F0F7B0067B758 /* UnitGiant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */; };
+		5C02A09C1A2F0F7B0067B758 /* UnitGoblin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */; };
+		5C02A09D1A2F0F7B0067B758 /* UnitWallbreaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -162,6 +176,34 @@
 		5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitArcher.cpp; sourceTree = "<group>"; };
 		5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitArcher.h; sourceTree = "<group>"; };
 		5C02A06B1A2DDEA80067B758 /* CocosProject_01 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CocosProject_01; path = ../../CocosProject_01; sourceTree = "<group>"; };
+		5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingDefense.cpp; sourceTree = "<group>"; };
+		5C02A0721A2ED0170067B758 /* BuildingDefense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingDefense.h; sourceTree = "<group>"; };
+		5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFactory.cpp; sourceTree = "<group>"; };
+		5C02A0781A2ED8DB0067B758 /* NodeFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeFactory.h; sourceTree = "<group>"; };
+		5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingTownhall.cpp; sourceTree = "<group>"; };
+		5C02A07B1A2EE6620067B758 /* BuildingTownhall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingTownhall.h; sourceTree = "<group>"; };
+		5C02A07D1A2EEDC60067B758 /* BuildingWall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingWall.cpp; sourceTree = "<group>"; };
+		5C02A07E1A2EEDC60067B758 /* BuildingWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingWall.h; sourceTree = "<group>"; };
+		5C02A0801A2EF08E0067B758 /* BuildingCanon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingCanon.cpp; sourceTree = "<group>"; };
+		5C02A0811A2EF08E0067B758 /* BuildingCanon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingCanon.h; sourceTree = "<group>"; };
+		5C02A0831A2EF1290067B758 /* BuildingResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingResource.cpp; sourceTree = "<group>"; };
+		5C02A0841A2EF1290067B758 /* BuildingResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingResource.h; sourceTree = "<group>"; };
+		5C02A0861A2EF2180067B758 /* BuildingElixertank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingElixertank.cpp; sourceTree = "<group>"; };
+		5C02A0871A2EF2180067B758 /* BuildingElixertank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingElixertank.h; sourceTree = "<group>"; };
+		5C02A0891A2EF2C70067B758 /* BuildingGoldbank.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingGoldbank.cpp; sourceTree = "<group>"; };
+		5C02A08A1A2EF2C70067B758 /* BuildingGoldbank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingGoldbank.h; sourceTree = "<group>"; };
+		5C02A08C1A2EF3C00067B758 /* BuildingArchertower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingArchertower.cpp; sourceTree = "<group>"; };
+		5C02A08D1A2EF3C00067B758 /* BuildingArchertower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingArchertower.h; sourceTree = "<group>"; };
+		5C02A08E1A2EF3C00067B758 /* BuildingTrenchmortar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingTrenchmortar.cpp; sourceTree = "<group>"; };
+		5C02A08F1A2EF3C00067B758 /* BuildingTrenchmortar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingTrenchmortar.h; sourceTree = "<group>"; };
+		5C02A0921A2F0E980067B758 /* UnitBarbarian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitBarbarian.cpp; sourceTree = "<group>"; };
+		5C02A0931A2F0E980067B758 /* UnitBarbarian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBarbarian.h; sourceTree = "<group>"; };
+		5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitGiant.cpp; sourceTree = "<group>"; };
+		5C02A0961A2F0F7B0067B758 /* UnitGiant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitGiant.h; sourceTree = "<group>"; };
+		5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitGoblin.cpp; sourceTree = "<group>"; };
+		5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitGoblin.h; sourceTree = "<group>"; };
+		5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitWallbreaker.cpp; sourceTree = "<group>"; };
+		5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitWallbreaker.h; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -328,12 +370,40 @@
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
+				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
+				5C02A0781A2ED8DB0067B758 /* NodeFactory.h */,
 				5C2408971A14542B004A785F /* Unit.cpp */,
 				5C2408981A14542B004A785F /* Unit.h */,
 				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
 				5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */,
+				5C02A0921A2F0E980067B758 /* UnitBarbarian.cpp */,
+				5C02A0931A2F0E980067B758 /* UnitBarbarian.h */,
+				5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */,
+				5C02A0961A2F0F7B0067B758 /* UnitGiant.h */,
+				5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */,
+				5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */,
+				5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */,
+				5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */,
 				5CA2120B1A1E20E10053BAED /* Building.cpp */,
 				5CA2120C1A1E20E10053BAED /* Building.h */,
+				5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */,
+				5C02A0721A2ED0170067B758 /* BuildingDefense.h */,
+				5C02A0831A2EF1290067B758 /* BuildingResource.cpp */,
+				5C02A0841A2EF1290067B758 /* BuildingResource.h */,
+				5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */,
+				5C02A07B1A2EE6620067B758 /* BuildingTownhall.h */,
+				5C02A07D1A2EEDC60067B758 /* BuildingWall.cpp */,
+				5C02A07E1A2EEDC60067B758 /* BuildingWall.h */,
+				5C02A0801A2EF08E0067B758 /* BuildingCanon.cpp */,
+				5C02A0811A2EF08E0067B758 /* BuildingCanon.h */,
+				5C02A08C1A2EF3C00067B758 /* BuildingArchertower.cpp */,
+				5C02A08D1A2EF3C00067B758 /* BuildingArchertower.h */,
+				5C02A08E1A2EF3C00067B758 /* BuildingTrenchmortar.cpp */,
+				5C02A08F1A2EF3C00067B758 /* BuildingTrenchmortar.h */,
+				5C02A0861A2EF2180067B758 /* BuildingElixertank.cpp */,
+				5C02A0871A2EF2180067B758 /* BuildingElixertank.h */,
+				5C02A0891A2EF2C70067B758 /* BuildingGoldbank.cpp */,
+				5C02A08A1A2EF2C70067B758 /* BuildingGoldbank.h */,
 				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
 				5CF695211A198DC0000939B2 /* MapNavigator.h */,
 				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
@@ -543,17 +613,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C02A0881A2EF2180067B758 /* BuildingElixertank.cpp in Sources */,
 				5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */,
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				5C2408991A14542B004A785F /* Unit.cpp in Sources */,
+				5C02A0821A2EF08E0067B758 /* BuildingCanon.cpp in Sources */,
 				5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */,
+				5C02A0941A2F0E980067B758 /* UnitBarbarian.cpp in Sources */,
 				5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */,
+				5C02A0731A2ED0170067B758 /* BuildingDefense.cpp in Sources */,
+				5C02A09B1A2F0F7B0067B758 /* UnitGiant.cpp in Sources */,
+				5C02A0791A2ED8DB0067B758 /* NodeFactory.cpp in Sources */,
 				5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */,
+				5C02A08B1A2EF2C70067B758 /* BuildingGoldbank.cpp in Sources */,
+				5C02A0901A2EF3C00067B758 /* BuildingArchertower.cpp in Sources */,
+				5C02A07C1A2EE6620067B758 /* BuildingTownhall.cpp in Sources */,
+				5C02A09C1A2F0F7B0067B758 /* UnitGoblin.cpp in Sources */,
 				5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */,
+				5C02A07F1A2EEDC60067B758 /* BuildingWall.cpp in Sources */,
+				5C02A0911A2EF3C00067B758 /* BuildingTrenchmortar.cpp in Sources */,
+				5C02A0851A2EF1290067B758 /* BuildingResource.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				5C02A09D1A2F0F7B0067B758 /* UnitWallbreaker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

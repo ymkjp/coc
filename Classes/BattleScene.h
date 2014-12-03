@@ -17,8 +17,9 @@ using namespace cocostudio;
 
 #include "Definitions.h"
 #include "Tmx.h"
-#include "Building.h"
-#include "UnitArcher.h"
+#include "Unit.h" // @todo setPosition あたり直したら消せる
+//#include "Building.h"
+#include "NodeFactory.h"
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
@@ -31,7 +32,6 @@ public:
     static cocos2d::Scene* createScene();
     
     virtual bool init();
-    
     CREATE_FUNC(BattleScene);
     
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -64,6 +64,7 @@ private:
     Layer *tiledMapLayer;
 
     Tmx* tmx;
+    NodeFactory* nodeFactory;
     
     SpriteBatchNode* spriteBatch;
     bool isTargetLayer(std::string name, Vec2 coord);

@@ -48,7 +48,7 @@ public:
         CC_SAFE_DELETE(p);
         return nullptr;
     }
-    virtual std::stack<Vec2> navigate(Vec2 startPoint, Vec2 goalPoint);
+    virtual PathToGoal navigate(Vec2 startPoint, Vec2 goalPoint);
     bool isTravelable(float posX, float posY);
 
     AStar* path;
@@ -57,11 +57,11 @@ public:
 protected:
     Tmx* tmx;
     std::mutex mtx;
-    const std::set<Vec2> surround {Vec2(-1,1),Vec2(-1,0),Vec2(-1,-1),Vec2(0,-1),Vec2(1,-1),Vec2(1,0),Vec2(1,1),Vec2(0,1)};
-    std::stack<Vec2> pathToGoal;
+    const Vec2Set surround {Vec2(-1,1),Vec2(-1,0),Vec2(-1,-1),Vec2(0,-1),Vec2(1,-1),Vec2(1,0),Vec2(1,1),Vec2(0,1)};
+    PathToGoal pathToGoal;
     
     AStar worldGrid[WORLD_MAP_WIDTH][WORLD_MAP_HEIGHT] = {};
-    std::set<Vec2> openSet;
+    Vec2Set openSet;
     
     AStar plainNode = {};
     AStar startNode = {};

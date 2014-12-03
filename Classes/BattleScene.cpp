@@ -22,17 +22,22 @@ bool BattleScene::init()
     backgroundLayer = Layer::create();
     tiledMapLayer = Layer::create();
     
+    // マップ関連のキャッシュとかを持ってくれるTmxクラス
     tmx = Tmx::create();
     tmx->retain(); // tmx inherits Ref* not Node*
-    
-    // @todo Not yet used
+
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
     spriteBatch = SpriteBatchNode::create("assets.png");
     
+    // 各 Building, Unit をつくってくれるNodeFactoryクラス
+    nodeFactory = NodeFactory::create(tmx);
+    nodeFactory->retain();
+    
     this->addBattleStage();
     this->initBuildings();
-    this->addEventDispacher();
+    
+    this->addEventDispacher(); // ディスパッチャー外すの忘れそう
 //    this->addUILayer();
     
     return true;
@@ -65,9 +70,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
     if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
-//        auto unit = Unit::create(tmx, Barbarian, tileCoord);
-        auto unit = UnitArcher::create(tmx, tileCoord);
-
+        auto unit = nodeFactory->createUnit(Archer, tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         units.pushBack(unit);
         tiledMapLayer->addChild(unit);
@@ -179,7 +182,7 @@ void BattleScene::initBuildings()
 
 inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
 {
-    auto building = Building::create(tmx, type, coord);
+    auto building = nodeFactory->createBuilding(type, coord);
     buildings.pushBack(building);
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);

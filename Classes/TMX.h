@@ -14,6 +14,7 @@ USING_NS_CC_EXT;
 #include "Building.h"
 
 class Building;
+class Unit;
 
 class Tmx : public Ref
 {
@@ -31,9 +32,10 @@ public:
     
     void eraseBuilding(Building* building);
     bool noBuildings();
+
     // Caches
-    std::map<BuildingType, std::vector<Vec2>> buildingCoords;
-    std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> buildingGrid = {{}};
+    BuildingCoordsByType buildingCoords;
+    BuildingGrid buildingGrid = {{}};
 };
 
 #endif // __TMX_H__

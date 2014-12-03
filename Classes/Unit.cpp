@@ -2,7 +2,7 @@
 
 USING_NS_CC;
 
-const std::map<Vec2, Unit::__COMPASS> Unit::compassByCoords =
+const std::map<Vec2, Compass> Unit::compassByCoords =
 {
     {Vec2(-1,-1), North},
     {Vec2(-1,0),  NorthEast},
@@ -200,13 +200,13 @@ Vec2 Unit::findPointToGo()
 {
     // ユニットタイプに応じた攻撃ターゲットのカテゴリを取得
     std::vector<Vec2> targetCoords = {};
-    Building::__CATEGORY targetCategory = attackType.at(type);
+    BuildingCategory targetCategory = attackType.at(type);
     
     // カテゴリに対応したcoordを bmx->buildingCoords から取得
     targetCoords = this->getTargetCoords(targetCategory);
     if (targetCoords.empty()) {
         // 好みの標的がなければ Melee mode
-        targetCoords = this->getTargetCoords(Building::Melee);
+        targetCoords = this->getTargetCoords(Melee);
     }
     
     auto mapNavigator = MapNavigator::create(tmx);
@@ -255,7 +255,7 @@ Vec2 Unit::findNearestWallGoalPoint()
     Vec2 wallCoord;
     Building* building;
     
-    auto targetCoords = this->getTargetCoords(Building::Walls);
+    auto targetCoords = this->getTargetCoords(Walls);
     
     // 壁を走査して単純距離が最も近い壁を探す
     for (auto targetCoord: targetCoords) {
@@ -293,7 +293,7 @@ Vec2 Unit::findNearestWallGoalPoint()
     return goalCoord;
 }
 
-std::vector<Vec2> Unit::getTargetCoords(Building::__CATEGORY category)
+std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 {
     auto types = Building::getTypesByCategory(category);
     
@@ -316,4 +316,49 @@ Node* Unit::getActingNode()
 timeline::ActionTimeline* Unit::getActionTimeline()
 {
     return actionTimelineCache->createAction(this->createFilename().getCString());
+}
+
+/**
+ @example "CocosProject_01/res/UnitArcherWalkEast.csb"
+ */
+__String Unit::createFilename()
+{
+    __String fileName = "CocosProject_01/res/Unit";
+    
+    fileName.append(this->nameStringBytype.at(this->type));
+    
+    switch (this->action) {
+        case Unit::Attacking:
+            fileName.append("Attack");
+            break;
+        case Unit::Walking:
+            fileName.append("Walk");
+            break;
+        default:
+            CCLOG("[default?!] Unit::getActionTimeline unexpected action");
+            fileName.append("Walk");
+            break;
+    }
+    
+    // 上・横・下 (真北と真南は直前の compass に依存するためここ以前で設定されていない想定)
+    if (this->compass == East) {
+        fileName.append("East");
+    } else if (this->compass == West) {
+        fileName.append("West");
+    } else if (this->compass == NorthEast) {
+        fileName.append("NorthEast");
+    } else if (this->compass == NorthWest) {
+        fileName.append("NorthWest");
+    } else if (this->compass == SouthEast) {
+        fileName.append("SouthEast");
+    } else if (this->compass == SouthWest) {
+        fileName.append("SouthWest");
+    } else {
+        CCLOG("[default] Unit::getActionTimeline unexpected direction:%i",this->compass);
+        fileName.append("SouthEast");
+    }
+    
+    fileName.append(".csb");
+    CCLOG("fileName:%s,this->action:%i,,this->compass:%i",fileName.getCString(),this->action,this->compass);
+    return fileName.getCString();
 }

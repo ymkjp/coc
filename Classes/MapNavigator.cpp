@@ -22,7 +22,7 @@ bool MapNavigator::isTravelable(float posX, float posY)
  @param Vec2 goalPoint should be __STATUS::NONE
  @link http://2dgames.jp/2012/05/22/a-starar/
  */
-std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
+PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
     CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
     startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
@@ -53,7 +53,7 @@ std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         
         // Open first 8 nodes
         Vec2 targetPoint;
-        for (std::set<Vec2>::iterator i = surround.begin(); i != surround.end(); ++i)
+        for (Vec2Set::iterator i = surround.begin(); i != surround.end(); ++i)
         {
             targetPoint = startPoint + *i;
             if (isInMapRange(targetPoint) && worldGrid[static_cast<int>(targetPoint.x)][static_cast<int>(targetPoint.y)].status == AStar::__STATUS::NONE)
@@ -86,7 +86,7 @@ std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
                 this->isOverSteps = true;
                 break;
             }
-            for (std::set<Vec2>::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)
+            for (Vec2Set::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)
             {
 //                CCLOG("[%i]openedPoint(%f,%f)",steps,openedPoint->x,openedPoint->y);
                 openedNode = &worldGrid[static_cast<int>(openedPoint->x)][static_cast<int>(openedPoint->y)];
@@ -109,7 +109,7 @@ std::stack<Vec2> MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
             
 //            CCLOG("[%i]bestPoint(%f,%f)",steps,bestPoint.x,bestPoint.y);
             
-            for (std::set<Vec2>::iterator i = surround.begin(); i != surround.end(); ++i)
+            for (Vec2Set::iterator i = surround.begin(); i != surround.end(); ++i)
             {
                 nextPoint = bestPoint + Vec2(i->x,i->y);
                 if (isInMapRange(nextPoint)

@@ -21,6 +21,9 @@
 
 #define TILEDMAP_VISIBLE_ON false
 
+class Tmx;
+class Unit;
+class Building;
 
 inline static bool isInMapRange(Vec2 targetPoint)
 {
@@ -31,7 +34,7 @@ inline static bool isInMapRange(Vec2 targetPoint)
 };
 
 enum BuildingType {
-    NoType = 0,
+    NoBuidlingType = 0,
     TownHall,
     ElixerTank,
     GoldBank,
@@ -41,6 +44,20 @@ enum BuildingType {
     Wall,
 };
 
+enum BuildingCategory {
+    NoBuildingCategory = 0,
+    Melee,
+    TownHalls,
+    Resources,
+    Defenses,
+    Walls,
+};
+
+enum BuildingSpace {
+    Small = 1,
+    Regular = 6,
+    Large = 9,
+};
 
 enum UnitType {
     Archer = 0,
@@ -49,7 +66,6 @@ enum UnitType {
     Goblin,
     Wallbreaker,
 };
-
 
 enum Compass {
     North,
@@ -62,5 +78,17 @@ enum Compass {
     NorthWest,
 };
 
+// For Tmx
+typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
+typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;
+
+// For Building
+typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;
+typedef std::map<BuildingSpace, std::vector<Vec2>> BuildingVec2sBySpace;
+typedef std::map<BuildingType, BuildingSpace> BuildingSpaceByType;
+
+// For MapNavigator
+typedef std::set<Vec2> Vec2Set;
+typedef std::stack<Vec2> PathToGoal;
 
 #endif // __DEFINITIONS_H__

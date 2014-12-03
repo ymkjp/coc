@@ -3,7 +3,7 @@
 USING_NS_CC;
 
 
-const std::map<Building::__CATEGORY, std::vector<BuildingType>> Building::typesByCategory =
+const BuildingTypesByCategory Building::typesByCategory =
 {
     {Resources, {ElixerTank, GoldBank}},
     {Defenses, {Canon, TrenchMortar, ArcherTower}},
@@ -13,7 +13,7 @@ const std::map<Building::__CATEGORY, std::vector<BuildingType>> Building::typesB
     {TownHalls, {TownHall,}},
 };
 
-const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = {
+const BuildingVec2sBySpace Building::coordsSurround = {
     {Small, /** count: 8 */ {
         Vec2(-1,-1), Vec2(-1,0), Vec2(-1,1),
         Vec2(0,-1), Vec2(0,1),
@@ -34,7 +34,7 @@ const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsSurround = 
     }},
 };
 
-const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsBuildingSpace = {
+const BuildingVec2sBySpace Building::coordsBuildingSpace = {
     {Small, /** count: 1 */ {
         Vec2(0,0), // @fixme
     }},
@@ -47,12 +47,12 @@ const std::map<Building::__SPACE, std::vector<Vec2>> Building::coordsBuildingSpa
     }},
 };
 
-bool Building::init(Tmx* _tmx, BuildingType _type, Vec2 _coord)
+bool Building::init(Tmx* _tmx, Vec2 _coord)
 {
     tmx = _tmx;
 //    cache = SpriteFrameCache::getInstance();
     status = Alive;
-    type = _type;
+    type = this->getType();
     coord = _coord;
 
     this->initNode();
@@ -153,7 +153,6 @@ void Building::initNode()
 
 void Building::attacked(float damage)
 {
-    CCLOG("hitpoints %f",hitpoints);
     if (hitpoints < damage) {
         status = Died;
         tmx->eraseBuilding(this);
@@ -161,6 +160,7 @@ void Building::attacked(float damage)
     } else {
         hitpoints -= damage;
     }
+    CCLOG("hitpoints %f",hitpoints);
 }
 
 void Building::broken()
@@ -170,7 +170,7 @@ void Building::broken()
     this->addChild(buildingNode);
 }
 
-Building::__SPACE Building::getSpace()
+BuildingSpace Building::getSpace()
 {
     return typeSpace.at(type);
 }
