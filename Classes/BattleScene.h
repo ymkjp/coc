@@ -52,8 +52,6 @@ public:
     virtual void addUILayer();
     virtual void initBuildings();
 
-    Vector<Unit*> units;
-    Vector<Building*> buildings;
     void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);
 
 private:

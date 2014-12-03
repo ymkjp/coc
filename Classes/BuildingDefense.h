@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
+#include "Definitions.h"
 #include "Building.h"
 
 class BuildingDefense : public Building
@@ -12,6 +13,8 @@ public:
     float minRange = 0;
     float maxRange = 0;
     Unit* targetUnit;
+    
+    void updateAttackRangeGrid();
 };
 
 #endif // __BUILDING_DEFENSE_H__

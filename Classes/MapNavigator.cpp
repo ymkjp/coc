@@ -13,10 +13,10 @@ bool MapNavigator::init(Tmx* _tmx)
 
 bool MapNavigator::isTravelable(float posX, float posY)
 {
+    // @todo 建物の上でも歩けるはず
     Building* building = tmx->buildingGrid.at(posX).at(posY);
     return building == nullptr;
 }
-
 
 /**
  @param Vec2 goalPoint should be __STATUS::NONE

@@ -12,9 +12,7 @@ USING_NS_CC_EXT;
 
 #include "Definitions.h"
 #include "Building.h"
-
-class Building;
-class Unit;
+#include "Unit.h"
 
 class Tmx : public Ref
 {
@@ -32,10 +30,14 @@ public:
     
     void eraseBuilding(Building* building);
     bool noBuildings();
-
+    
     // Caches
     BuildingCoordsByType buildingCoords;
     BuildingGrid buildingGrid = {{}};
+    BuildingAttackRangeGrid buildingAttackRangeGrid = {{}};
+    
+    Vector<Unit*> units;
+    Vector<Building*> buildings;
 };
 
 #endif // __TMX_H__

@@ -227,6 +227,7 @@ Vec2 Unit::findPointToGo()
             auto goalCoord = building->coord + coord;
             
             // 攻撃地点に建物が建っていればこの攻撃地点はスキップ
+            // @todo 判定を Wall に変更すべき
             if (!mapNavigator->isTravelable(goalCoord.x,goalCoord.y)) {
 //                CCLOG("There are some buildings at goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
                 continue;

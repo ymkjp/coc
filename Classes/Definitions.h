@@ -24,6 +24,7 @@
 class Tmx;
 class Unit;
 class Building;
+class BuildingDefense;
 
 inline static bool isInMapRange(Vec2 targetPoint)
 {
@@ -81,6 +82,7 @@ enum Compass {
 // For Tmx
 typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
 typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;
+typedef std::array<std::array<std::vector<BuildingDefense*>, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingAttackRangeGrid;
 
 // For Building
 typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;

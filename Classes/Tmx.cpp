@@ -68,5 +68,7 @@ void Tmx::eraseBuilding(Building* building)
 //    }
     
     buildingGrid[building->coord.x][building->coord.y] = nullptr;
+    
+    buildings.eraseObject(building);
+    CCLOG("Tmx.buildings.size(%lu)",buildings.size());
 }
-
