@@ -10,9 +10,8 @@ USING_NS_CC;
 class BuildingTrenchmortar : public BuildingDefense
 {
 public:
-    float minRange = 0;
-    float maxRange = 0;
-    Unit* targetUnit;
+    float minRange = 4;
+    float maxRange = 11;
     
     static BuildingTrenchmortar* create(Tmx* tmx, Vec2 coord) {
         auto p = new BuildingTrenchmortar();
@@ -28,6 +27,17 @@ public:
     BuildingType getType()
     {
         return TrenchMortar;
+    }
+    
+    
+    float getMinRange()
+    {
+        return minRange;
+    }
+    
+    float getMaxRange()
+    {
+        return maxRange;
     }
 };
 

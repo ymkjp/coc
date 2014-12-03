@@ -26,6 +26,9 @@ public:
     {
         return "Barbarian";
     }
+    
+protected:
+    
 };
 
 #endif // __UNIT_BARBARIAN_H__

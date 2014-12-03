@@ -1,4 +1,4 @@
-#ifndef __UNIT_Wallbreaker_H__
+#ifndef __UNIT_WALLBREAKER_H__
 #define __UNIT_WALLBREAKER_H__
 
 #include "Unit.h"
@@ -21,11 +21,6 @@ public:
     {
         return Wallbreaker;
     }
-    
-    __String getUnitNameString()
-    {
-        return "Wallbreaker";
-    }
 };
 
-#endif // __UNIT_Wallbreaker_H__
+#endif // __UNIT_WALLBREAKER_H__

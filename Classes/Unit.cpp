@@ -1,18 +1,7 @@
 #include "Unit.h"
+#include "BuildingDefense.h"
 
 USING_NS_CC;
-
-const std::map<Vec2, Compass> Unit::compassByCoords =
-{
-    {Vec2(-1,-1), North},
-    {Vec2(-1,0),  NorthEast},
-    {Vec2(1,-1),  East},
-    {Vec2(1,0),   SouthEast},
-    {Vec2(1,1),   South},
-    {Vec2(0,1),   SouthWest},
-    {Vec2(-1,1),  West},
-    {Vec2(-1,0),  NorthWest},
-};
 
 bool Unit::init(Tmx* _tmx, Vec2 _coord)
 {
@@ -20,8 +9,11 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     type = this->getUnitType();
     coord = _coord;
     damagePerSec = 60;
+    status = Alive;
     action = Walking;
     compass = East;
+    
+    hitpoints = this->getHitPoints();
     
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
@@ -38,19 +30,88 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     return true;
 }
 
-void Unit::testAdd(__String fileName, Vec2 pos)
+void Unit::play(float frame)
 {
-    auto node = CSLoader::createNode(fileName.getCString());
-    auto anim = actionTimelineCache->createAction(fileName.getCString());
-    node->runAction(anim);
-    anim->gotoFrameAndPlay(0, true);
-    node->setScale(5);
-    node->setPosition(pos);
-    this->addChild(node);
+    CCLOG("Unit::play frame[%f]",frame);
+    if (this->tmx->noBuildings()) {
+        CCLOG("@todo GAME DONE!");
+        return;
+    }
+    auto startCoord = this->coord;
+    auto goalPoint = this->findPointToGo();
+    auto mapNavigator = MapNavigator::create(this->tmx);
+    auto path = mapNavigator->navigate(startCoord, goalPoint);
+    //    CCLOG("Over steps?:%i",mapNavigator->isOverSteps);
+    if (mapNavigator->isOverSteps) {
+        // 経路を閾値内で見つけられなかった場合、最寄りの壁を攻撃する
+        goalPoint = findNearestWallGoalPoint();
+        //        CCLOG("[Wall]goalPoint(%f,%f)",goalPoint.x,goalPoint.y);
+        path = mapNavigator->navigate(startCoord, goalPoint);
+    }
+    
+    Vec2 nextCoord;
+    Vec2 prevCoord = startCoord;
+    Vec2 directionPoint;
+    Vector<FiniteTimeAction*> arrayOfactions;
+    MoveTo* moveAction;
+    
+    // 道のりがあれば移動 (なければ攻撃開始)
+    while (!path.empty()) {
+        nextCoord = path.top();
+        directionPoint = this->tmx->convertToTile(nextCoord);
+        moveAction = MoveTo::create(0.5, directionPoint);
+        
+        // 向き先に応じてアニメーションを切り替え
+        FiniteTimeAction* func = CallFunc::create([=]() {
+            //            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
+            this->setCompass(prevCoord, nextCoord);
+            this->updateNode();
+            this->pushTobuildingAttackRange(nextCoord);
+            this->coord = nextCoord;
+        });
+        arrayOfactions.pushBack(func);
+        
+        arrayOfactions.pushBack(moveAction);
+        path.pop();
+        prevCoord = nextCoord;
+    }
+    FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::startAttacking, this));
+    arrayOfactions.pushBack(attack);
+    auto seq = Sequence::create(arrayOfactions);
+    
+    this->unitNode->runAction(seq);
 }
 
-void Unit::update( float frame )
+void Unit::pushTobuildingAttackRange(Vec2 coord)
 {
+    auto defenseBuildings = &tmx->buildingAttackRangeGrid.at(coord.x).at(coord.y);
+    if (defenseBuildings->size() > 0) {
+        for (auto defense: *defenseBuildings) {
+            defense->targetUnits.pushBack(this);
+        }
+    }
+}
+
+void Unit::attacked(float damage)
+{
+    CCLOG(">> Unit::attacked[%i]::hitpoints%f,damage:%f",type,this->hitpoints,damage);
+    this->hitpoints -= damage;
+    if (hitpoints < 0) {
+        status = Died;
+        this->die();
+    }
+}
+
+void Unit::die()
+{
+    this->unscheduleAllCallbacks();
+    
+    auto prevPos = unitNode->getPosition();
+    unitNode->removeFromParentAndCleanup(true);
+    unitNode = CCSprite::createWithSpriteFrameName("stage/field/271.0.png");
+    // @todo position
+    unitNode->setPosition(prevPos);
+    this->addChild(unitNode);
 }
 
 void Unit::startAttacking()
@@ -79,6 +140,7 @@ inline void Unit::updateNode()
     auto childNode = unitNode->getChildByName("childNode");
     auto newChildNode = this->getActingNode();
     auto action = this->getActionTimeline();
+    childNode->stopAllActions();
     newChildNode->runAction(action);
     action->gotoFrameAndPlay(0, true);
     unitNode->removeChild(childNode);
@@ -89,57 +151,6 @@ inline void Unit::updateNode()
 inline bool Unit::isNextCoord(float num)
 {
     return (num == -1.0f || num == 0.0f || num == 1.0f);
-}
-
-void Unit::play(float frame)
-{
-    CCLOG("Unit::play frame[%f]",frame);
-    if (this->tmx->noBuildings()) {
-        CCLOG("@todo GAME DONE!");
-        return;
-    }
-    auto startCoord = this->coord;
-    auto goalPoint = this->findPointToGo();
-    auto mapNavigator = MapNavigator::create(this->tmx);
-    auto path = mapNavigator->navigate(startCoord, goalPoint);
-//    CCLOG("Over steps?:%i",mapNavigator->isOverSteps);
-    if (mapNavigator->isOverSteps) {
-        // 経路を閾値内で見つけられなかった場合、最寄りの壁を攻撃する
-        goalPoint = findNearestWallGoalPoint();
-//        CCLOG("[Wall]goalPoint(%f,%f)",goalPoint.x,goalPoint.y);
-        path = mapNavigator->navigate(startCoord, goalPoint);
-    }
-    
-    Vec2 nextCoord;
-    Vec2 prevCoord = startCoord;
-    Vec2 directionPoint;
-    Vector<FiniteTimeAction*> arrayOfactions;
-    MoveTo* moveAction;
-    
-    // 道のりがあれば移動 (なければ攻撃開始)
-    while (!path.empty()) {
-        nextCoord = path.top();
-        directionPoint = this->tmx->convertToTile(nextCoord);
-        moveAction = MoveTo::create(0.5, directionPoint);
-        
-        // 向き先に応じてアニメーションを切り替え
-        FiniteTimeAction* func = CallFunc::create([=]() {
-//            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
-            this->setCompass(prevCoord, nextCoord);
-            this->updateNode();
-            this->coord = nextCoord;
-        });
-        arrayOfactions.pushBack(func);
-        
-        arrayOfactions.pushBack(moveAction);
-        path.pop();
-        prevCoord = nextCoord;
-    }
-    FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::startAttacking, this));
-    arrayOfactions.pushBack(attack);
-    auto seq = Sequence::create(arrayOfactions);
-
-    this->unitNode->runAction(seq);    
 }
 
 void Unit::setCompass(Vec2 prevCoord, Vec2 nextCoord)
@@ -360,6 +371,34 @@ __String Unit::createFilename()
     }
     
     fileName.append(".csb");
-    CCLOG("fileName:%s,this->action:%i,,this->compass:%i",fileName.getCString(),this->action,this->compass);
+//    CCLOG("fileName:%s,this->action:%i,,this->compass:%i",fileName.getCString(),this->action,this->compass);
     return fileName.getCString();
+}
+
+
+const std::map<Vec2, Compass> Unit::compassByCoords =
+{
+    {Vec2(-1,-1), North},
+    {Vec2(-1,0),  NorthEast},
+    {Vec2(1,-1),  East},
+    {Vec2(1,0),   SouthEast},
+    {Vec2(1,1),   South},
+    {Vec2(0,1),   SouthWest},
+    {Vec2(-1,1),  West},
+    {Vec2(-1,0),  NorthWest},
+};
+
+void Unit::testAdd(__String fileName, Vec2 pos)
+{
+    auto node = CSLoader::createNode(fileName.getCString());
+    auto anim = actionTimelineCache->createAction(fileName.getCString());
+    node->runAction(anim);
+    anim->gotoFrameAndPlay(0, true);
+    node->setScale(5);
+    node->setPosition(pos);
+    this->addChild(node);
+}
+
+void Unit::update( float frame )
+{
 }

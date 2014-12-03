@@ -55,11 +55,11 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     type = this->getType();
     coord = _coord;
 
+    this->virtualInit();
     this->initNode();
     
     return true;
 }
-
 
 bool Building::isBuildingRange(Vec2 targetCoord)
 {
@@ -160,13 +160,18 @@ void Building::attacked(float damage)
     } else {
         hitpoints -= damage;
     }
-    CCLOG("hitpoints %f",hitpoints);
+    CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
 }
 
 void Building::broken()
 {
+    this->unscheduleAllCallbacks();
+
+    // @todo tmx のキャッシュを再構築
+    auto prevPos = buildingNode->getPosition();
     buildingNode->removeFromParentAndCleanup(true);
     buildingNode = CCSprite::createWithSpriteFrameName("stage/field/271.0.png");
+    buildingNode->setPosition(prevPos);
     this->addChild(buildingNode);
 }
 

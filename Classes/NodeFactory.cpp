@@ -11,6 +11,11 @@ USING_NS_CC;
 #include "BuildingWall.h"
 
 #include "UnitArcher.h"
+#include "UnitBarbarian.h"
+#include "UnitGiant.h"
+#include "UnitGoblin.h"
+#include "UnitWallbreaker.h"
+
 
 bool NodeFactory::init(Tmx* _tmx)
 {
@@ -23,6 +28,18 @@ Unit* NodeFactory::createUnit(UnitType type, Vec2 coord)
     switch (type) {
         case Archer:
             return UnitArcher::create(tmx, coord);
+            break;
+        case Barbarian:
+            return UnitBarbarian::create(tmx, coord);
+            break;
+        case Giant:
+            return UnitGiant::create(tmx, coord);
+            break;
+        case Goblin:
+            return UnitGoblin::create(tmx, coord);
+            break;
+        case Wallbreaker:
+            return UnitWallbreaker::create(tmx, coord);
             break;
             
         default:
@@ -62,3 +79,10 @@ Building* NodeFactory::createBuilding(BuildingType type, Vec2 coord)
             break;
     }
 }
+
+
+void NodeFactory::updateAttackRangeGrid()
+{
+    BuildingDefense::updateAttackRangeGrid(this->tmx);
+}
+

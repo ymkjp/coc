@@ -55,11 +55,15 @@ protected:
         {ArcherTower,  Regular},
         {Wall,         Small},
     };
+    
     void initNode();
     
     // 子クラスで定義されるべきメソッド
     virtual BuildingType getType() = 0;
-    
+
+    // 子クラスで再定義されてもいいメソッド
+    virtual bool virtualInit() {return true;};
+
 };
 
 #endif // __BUILDING_H__

@@ -22,10 +22,9 @@ public:
         return Goblin;
     }
     
-    __String getUnitNameString()
-    {
-        return "Goblin";
-    }
+    
+protected:
+    
 };
 
 #endif // __UNIT_GOBLIN_H__

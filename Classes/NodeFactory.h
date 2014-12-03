@@ -22,6 +22,7 @@ public:
     
     Building* createBuilding(BuildingType type, Vec2 coord);
     Unit* createUnit(UnitType type, Vec2 tileCoord);
+    void updateAttackRangeGrid();
     
 protected:
     Tmx* tmx;

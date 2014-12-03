@@ -54,8 +54,6 @@ public:
     virtual timeline::ActionTimeline* getActionTimeline();
     virtual __String createFilename();
     
-    // 子クラスで定義させる
-    virtual __String getUnitNameString() = 0;
     
     UnitType type;
     __STATUS status;
@@ -64,7 +62,13 @@ public:
     Vec2 coord;
     Vec2 posDiff;
     
+    void attacked(float damage);
+    
+    
 protected:
+    float hitpoints;
+    float damagePerSec;
+    
     Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
     timeline::ActionTimelineCache* actionTimelineCache;
@@ -73,9 +77,10 @@ protected:
     virtual bool isNextCoord(float num);
     virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
     
-    float damagePerSec = 0;
+    void die();
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
+    
     const std::map<UnitType, std::string> nameStringBytype =
     {
         {Archer, "Archer"},
@@ -85,6 +90,21 @@ protected:
         {Wallbreaker, "Wallbreaker"},
     };
     
+    const std::map<UnitType, float> hitpointsByType =
+    {
+        {Archer, 20},
+        {Barbarian, 45},
+        {Giant, 300},
+        {Goblin, 25},
+        {Wallbreaker, 20},
+    };
+    
+    float getHitPoints()
+    {
+        return hitpointsByType.at(type);
+    }
+    
+    void pushTobuildingAttackRange(Vec2 coord);
     void testAdd(__String fileName, Vec2 pos);
     void updateNode();
 };

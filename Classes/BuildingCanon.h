@@ -10,9 +10,7 @@ USING_NS_CC;
 class BuildingCanon : public BuildingDefense
 {
 public:
-    float minRange = 0;
-    float maxRange = 0;
-    Unit* targetUnit;
+    float maxRange = 9;
     
     static BuildingCanon* create(Tmx* tmx, Vec2 coord) {
         auto p = new BuildingCanon();
@@ -28,6 +26,11 @@ public:
     BuildingType getType()
     {
         return Canon;
+    }
+    
+    float getMaxRange()
+    {
+        return maxRange;
     }
 };
 

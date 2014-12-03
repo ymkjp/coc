@@ -11,8 +11,7 @@ class BuildingArchertower : public BuildingDefense
 {
 public:
     float minRange = 0;
-    float maxRange = 0;
-    Unit* targetUnit;
+    float maxRange = 10;
     
     static BuildingArchertower* create(Tmx* tmx, Vec2 coord) {
         auto p = new BuildingArchertower();
@@ -29,6 +28,12 @@ public:
     {
         return ArcherTower;
     }
+    
+    float getMaxRange()
+    {
+        return maxRange;
+    }
+
 };
 
 #endif // __BUILDING_ARCHERTOWER_H__

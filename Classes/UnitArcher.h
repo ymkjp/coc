@@ -22,14 +22,11 @@ public:
         return Archer;
     }
     
-    __String getUnitNameString()
-    {
-        return "Archer";
-    }
-    
-    //
     // 親クラスで virtual 規定された任意で上書きできるメソッド
     std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
+    
+    
+protected:
     
 };
 

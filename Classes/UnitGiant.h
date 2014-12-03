@@ -22,10 +22,9 @@ public:
         return Giant;
     }
     
-    __String getUnitNameString()
-    {
-        return "Giant";
-    }
+
+protected:
+
 };
 
 #endif // __UNIT_GIANT_H__
