@@ -26,6 +26,7 @@ bool BattleScene::init()
     tmx = Tmx::create();
     tmx->retain(); // tmx inherits Ref* not Node*
 
+    // 画像関連のキャッシュ
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
     spriteBatch = SpriteBatchNode::create("assets.png");
@@ -39,19 +40,15 @@ bool BattleScene::init()
     nodeFactory->updateAttackRangeGrid();
     
     this->addEventDispacher(); // ディスパッチャー外すの忘れそう
-//    this->addUILayer();
+    this->addUINode();
     
     return true;
 }
 
-void BattleScene::addUILayer()
+void BattleScene::addUINode()
 {
-    Node *uiHeaderNode = CSLoader::getInstance()->createNodeFromXML("CocosProject/cocosstudio/UILayer_02.csd");
-    uiHeaderNode->setScale(visibleSize.width / uiHeaderNode->getContentSize().width);
-    this->addChild(uiHeaderNode);
-    Node *uiButtomNode = CSLoader::getInstance()->createNodeFromXML("CocosProject/cocosstudio/UILayer_01.csd");
-    uiButtomNode->setScale(visibleSize.width / uiButtomNode->getContentSize().width);
-    this->addChild(uiButtomNode);
+    Node* ui = UI::create();
+    this->addChild(ui);
 }
 
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)

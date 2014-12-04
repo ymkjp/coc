@@ -17,9 +17,9 @@ using namespace cocostudio;
 
 #include "Definitions.h"
 #include "Tmx.h"
-#include "Unit.h" // @todo setPosition あたり直したら消せる
-//#include "Building.h"
+#include "Unit.h" // setPosition あたり直したら読み込み不要
 #include "NodeFactory.h"
+#include "UI.h"
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
@@ -49,7 +49,7 @@ public:
 
     virtual void addBattleStage();
     virtual void addEventDispacher();
-    virtual void addUILayer();
+    virtual void addUINode();
     virtual void initBuildings();
 
     void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);

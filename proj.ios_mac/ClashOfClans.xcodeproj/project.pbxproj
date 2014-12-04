@@ -63,6 +63,7 @@
 		5C02A09B1A2F0F7B0067B758 /* UnitGiant.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */; };
 		5C02A09C1A2F0F7B0067B758 /* UnitGoblin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */; };
 		5C02A09D1A2F0F7B0067B758 /* UnitWallbreaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */; };
+		5C02A0A01A2FF4A10067B758 /* UI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A09E1A2FF4A10067B758 /* UI.cpp */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -81,8 +82,6 @@
 		5C24089A1A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
 		5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
 		5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
-		5C7F9D781A24518A0015A766 /* CocosProject in Resources */ = {isa = PBXBuildFile; fileRef = 5C7F9D771A2451890015A766 /* CocosProject */; };
-		5C7F9D791A24518A0015A766 /* CocosProject in Resources */ = {isa = PBXBuildFile; fileRef = 5C7F9D771A2451890015A766 /* CocosProject */; };
 		5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
@@ -204,6 +203,8 @@
 		5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitGoblin.h; sourceTree = "<group>"; };
 		5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitWallbreaker.cpp; sourceTree = "<group>"; };
 		5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitWallbreaker.h; sourceTree = "<group>"; };
+		5C02A09E1A2FF4A10067B758 /* UI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UI.cpp; sourceTree = "<group>"; };
+		5C02A09F1A2FF4A10067B758 /* UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -217,7 +218,6 @@
 		5C2408971A14542B004A785F /* Unit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
 		5C2408981A14542B004A785F /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		5C4E28C31A0BAF39001864CC /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
-		5C7F9D771A2451890015A766 /* CocosProject */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CocosProject; sourceTree = "<group>"; };
 		5CA2120B1A1E20E10053BAED /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
 		5CA2120C1A1E20E10053BAED /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
@@ -347,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				5C02A06B1A2DDEA80067B758 /* CocosProject_01 */,
-				5C7F9D771A2451890015A766 /* CocosProject */,
 				5CB8218C1A1600D400BC505A /* map_01.tmx */,
 				5C24088D1A12EF26004A785F /* assets.plist */,
 				5C24088E1A12EF26004A785F /* assets.png */,
@@ -370,6 +369,8 @@
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
+				5C02A09E1A2FF4A10067B758 /* UI.cpp */,
+				5C02A09F1A2FF4A10067B758 /* UI.h */,
 				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
 				5C02A0781A2ED8DB0067B758 /* NodeFactory.h */,
 				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
@@ -562,7 +563,6 @@
 			files = (
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */,
-				5C7F9D781A24518A0015A766 /* CocosProject in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */,
 				5C24088F1A12EF26004A785F /* assets.plist in Resources */,
@@ -601,7 +601,6 @@
 				5C2408771A11D503004A785F /* image in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */,
-				5C7F9D791A24518A0015A766 /* CocosProject in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,6 +625,7 @@
 				5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */,
 				5C02A0731A2ED0170067B758 /* BuildingDefense.cpp in Sources */,
 				5C02A09B1A2F0F7B0067B758 /* UnitGiant.cpp in Sources */,
+				5C02A0A01A2FF4A10067B758 /* UI.cpp in Sources */,
 				5C02A0791A2ED8DB0067B758 /* NodeFactory.cpp in Sources */,
 				5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */,
 				5C02A08B1A2EF2C70067B758 /* BuildingGoldbank.cpp in Sources */,

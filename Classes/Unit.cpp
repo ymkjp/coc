@@ -138,9 +138,9 @@ void Unit::attack(float frame)
 inline void Unit::updateNode()
 {
     auto childNode = unitNode->getChildByName("childNode");
+    childNode->stopAllActions();
     auto newChildNode = this->getActingNode();
     auto action = this->getActionTimeline();
-    childNode->stopAllActions();
     newChildNode->runAction(action);
     action->gotoFrameAndPlay(0, true);
     unitNode->removeChild(childNode);

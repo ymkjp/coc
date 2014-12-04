@@ -110,8 +110,8 @@ void Building::initNode()
         }
         case TrenchMortar:
         {
-            buildingNode = CSLoader::createNode("CocosProject/res/TrenchMortar.csb");
-            auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/TrenchMortar.csb");
+            buildingNode = CSLoader::createNode("CocosProject_01/res/TrenchMortar.csb");
+            auto action = timeline::ActionTimelineCache::createAction("CocosProject_01/res/TrenchMortar.csb");
             buildingNode->runAction(action);
             action->setTimeSpeed(0.1);
             action->gotoFrameAndPlay(0, true);
@@ -119,13 +119,13 @@ void Building::initNode()
         }
         case TownHall:
         {
-            buildingNode = CSLoader::createNode("CocosProject/res/TownHall.csb");
+            buildingNode = CSLoader::createNode("CocosProject_01/res/TownHall.csb");
             break;
         }
         case Canon:
         {
-            buildingNode = CSLoader::createNode("CocosProject/res/Canon.csb");
-            auto action = timeline::ActionTimelineCache::createAction("CocosProject/res/Canon.csb");
+            buildingNode = CSLoader::createNode("CocosProject_01/res/Canon.csb");
+            auto action = timeline::ActionTimelineCache::createAction("CocosProject_01/res/Canon.csb");
             action->setTimeSpeed(0.01);
             buildingNode->runAction(action);
             action->gotoFrameAndPlay(0, true);
@@ -133,13 +133,13 @@ void Building::initNode()
         }
         case GoldBank:
         {
-            buildingNode = CSLoader::createNode("CocosProject/res/GoldBank.csb");
+            buildingNode = CSLoader::createNode("CocosProject_01/res/GoldBank.csb");
             buildingNode->setScale(0.75);
             break;
         }
         case ElixerTank:
         {
-            buildingNode = CSLoader::createNode("CocosProject/res/ElixerTank.csb");
+            buildingNode = CSLoader::createNode("CocosProject_01/res/ElixerTank.csb");
             buildingNode->setScale(0.75);
             break;
         }
