@@ -66,6 +66,7 @@
 		5C02A0A61A3013420067B758 /* cocosstudio in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A51A3013420067B758 /* cocosstudio */; };
 		5C02A0A81A3013C80067B758 /* RedBarMid.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A71A3013C80067B758 /* RedBarMid.png */; };
 		5C02A0AA1A3020C50067B758 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A91A3020C50067B758 /* res */; };
+		5C02A0AD1A3086610067B758 /* StageSelectorScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0AB1A3086610067B758 /* StageSelectorScene.cpp */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -209,6 +210,8 @@
 		5C02A0A51A3013420067B758 /* cocosstudio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosstudio; sourceTree = "<group>"; };
 		5C02A0A71A3013C80067B758 /* RedBarMid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedBarMid.png; path = cocosstudio/RedBarMid.png; sourceTree = "<group>"; };
 		5C02A0A91A3020C50067B758 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
+		5C02A0AB1A3086610067B758 /* StageSelectorScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StageSelectorScene.cpp; sourceTree = "<group>"; };
+		5C02A0AC1A3086610067B758 /* StageSelectorScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StageSelectorScene.h; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
 				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
+				5C02A0AB1A3086610067B758 /* StageSelectorScene.cpp */,
+				5C02A0AC1A3086610067B758 /* StageSelectorScene.h */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
 				5C02A09E1A2FF4A10067B758 /* UI.cpp */,
@@ -634,6 +639,7 @@
 				5C02A0731A2ED0170067B758 /* BuildingDefense.cpp in Sources */,
 				5C02A09B1A2F0F7B0067B758 /* UnitGiant.cpp in Sources */,
 				5C02A0A01A2FF4A10067B758 /* UI.cpp in Sources */,
+				5C02A0AD1A3086610067B758 /* StageSelectorScene.cpp in Sources */,
 				5C02A0791A2ED8DB0067B758 /* NodeFactory.cpp in Sources */,
 				5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */,
 				5C02A08B1A2EF2C70067B758 /* BuildingGoldbank.cpp in Sources */,

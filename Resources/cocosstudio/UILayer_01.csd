@@ -21,7 +21,7 @@
             <PrePosition X="0.0104" Y="0.0266" />
             <PreSize X="0.9792" Y="0.2188" />
             <Children>
-              <NodeObjectData Name="Panel_Barbarian" ActionTag="7" FrameEvent="" Tag="5" ObjectIndex="2" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Barbarian" ActionTag="7" FrameEvent="" Tag="5" ObjectIndex="2" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="34.0000" Y="15.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -30,6 +30,16 @@
                 <PrePosition X="0.0362" Y="0.1071" />
                 <PreSize X="0.0883" Y="0.7857" />
                 <Children>
+                  <NodeObjectData Name="stage_ui_unit_background_Copy_Copy_Copy_Copy" ActionTag="-1258676611" FrameEvent="" Tag="94" ObjectIndex="31" ctype="SpriteObjectData">
+                    <Position X="0.0000" Y="0.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="108.0000" />
+                    <PrePosition X="0.0000" Y="0.0000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_background.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Sprite_4" ActionTag="11" FrameEvent="" Tag="9" ObjectIndex="4" ctype="SpriteObjectData">
                     <Position X="41.0001" Y="39.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -39,6 +49,16 @@
                     <PrePosition X="0.4940" Y="0.3545" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/BarbarianIcon.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_frame_Copy_Copy_Copy_Copy" ActionTag="952744688" FrameEvent="" Tag="95" ObjectIndex="32" ctype="SpriteObjectData">
+                    <Position X="-2.9991" Y="-4.6665" />
+                    <Scale ScaleX="1.0500" ScaleY="1.0500" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="109.0000" />
+                    <PrePosition X="-0.0361" Y="-0.0424" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_1" ActionTag="32" FrameEvent="" Tag="30" ObjectIndex="1" FontSize="22" LabelText="x99&#xA;" ctype="TextObjectData">
                     <Position X="38.0000" Y="96.0000" />
@@ -69,7 +89,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
-              <NodeObjectData Name="Panel_Archer" ActionTag="13" FrameEvent="" Tag="11" ObjectIndex="3" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Archer" ActionTag="13" FrameEvent="" Tag="11" ObjectIndex="3" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="137.7500" Y="15.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -78,6 +98,16 @@
                 <PrePosition X="0.1465" Y="0.1071" />
                 <PreSize X="0.0883" Y="0.7857" />
                 <Children>
+                  <NodeObjectData Name="stage_ui_unit_background_Copy_Copy_Copy" ActionTag="-733109858" FrameEvent="" Tag="92" ObjectIndex="29" ctype="SpriteObjectData">
+                    <Position X="0.0000" Y="0.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="108.0000" />
+                    <PrePosition X="0.0000" Y="0.0000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_background.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Sprite_5" ActionTag="12" FrameEvent="" Tag="10" ObjectIndex="5" ctype="SpriteObjectData">
                     <Position X="37.0001" Y="41.0001" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -87,6 +117,16 @@
                     <PrePosition X="0.4458" Y="0.3727" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/ArcherIcon.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_frame_Copy_Copy_Copy" ActionTag="1269844411" FrameEvent="" Tag="93" ObjectIndex="30" ctype="SpriteObjectData">
+                    <Position X="-1.6659" Y="-3.3333" />
+                    <Scale ScaleX="1.0500" ScaleY="1.0500" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="109.0000" />
+                    <PrePosition X="-0.0201" Y="-0.0303" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_1_Copy" ActionTag="33" FrameEvent="" Tag="31" ObjectIndex="2" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="98.0000" />
@@ -117,7 +157,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
-              <NodeObjectData Name="Panel_Goblin" ActionTag="15" FrameEvent="" Tag="13" ObjectIndex="4" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Goblin" ActionTag="15" FrameEvent="" Tag="13" ObjectIndex="4" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="240.5000" Y="14.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -126,6 +166,16 @@
                 <PrePosition X="0.2559" Y="0.1000" />
                 <PreSize X="0.0883" Y="0.7857" />
                 <Children>
+                  <NodeObjectData Name="stage_ui_unit_background_Copy_Copy" ActionTag="170333472" FrameEvent="" Tag="91" ObjectIndex="28" ctype="SpriteObjectData">
+                    <Position X="0.0000" Y="0.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="108.0000" />
+                    <PrePosition X="0.0000" Y="0.0000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_background.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Sprite_2" ActionTag="9" FrameEvent="" Tag="7" ObjectIndex="2" ctype="SpriteObjectData">
                     <Position X="41.0001" Y="40.5001" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -135,6 +185,16 @@
                     <PrePosition X="0.4940" Y="0.3682" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/GoblinIcon.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_frame_Copy_Copy" ActionTag="65227225" FrameEvent="" Tag="90" ObjectIndex="27" ctype="SpriteObjectData">
+                    <Position X="-1.9996" Y="-3.0000" />
+                    <Scale ScaleX="1.0500" ScaleY="1.0500" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="109.0000" />
+                    <PrePosition X="-0.0241" Y="-0.0273" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_1_Copy_Copy" ActionTag="34" FrameEvent="" Tag="32" ObjectIndex="3" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="97.0000" />
@@ -165,7 +225,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
-              <NodeObjectData Name="Panel_Giant" ActionTag="17" FrameEvent="" Tag="15" ObjectIndex="5" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Giant" ActionTag="17" FrameEvent="" Tag="15" ObjectIndex="5" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="342.2500" Y="13.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -174,6 +234,16 @@
                 <PrePosition X="0.3641" Y="0.0929" />
                 <PreSize X="0.0883" Y="0.7857" />
                 <Children>
+                  <NodeObjectData Name="stage_ui_unit_background_Copy" ActionTag="-1959632025" FrameEvent="" Tag="87" ObjectIndex="24" ctype="SpriteObjectData">
+                    <Position X="0.0000" Y="0.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="108.0000" />
+                    <PrePosition X="0.0000" Y="0.0000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_background.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Sprite_3" ActionTag="10" FrameEvent="" Tag="8" ObjectIndex="3" ctype="SpriteObjectData">
                     <Position X="40.5002" Y="41.0001" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -183,6 +253,16 @@
                     <PrePosition X="0.4880" Y="0.3727" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/GiantIcon.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_frame_Copy" ActionTag="-1411730493" FrameEvent="" Tag="89" ObjectIndex="26" ctype="SpriteObjectData">
+                    <Position X="-1.9999" Y="-2.0000" />
+                    <Scale ScaleX="1.0500" ScaleY="1.0500" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="109.0000" />
+                    <PrePosition X="-0.0241" Y="-0.0182" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_1_Copy_Copy_Copy" ActionTag="35" FrameEvent="" Tag="33" ObjectIndex="4" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="97.0000" />
@@ -213,7 +293,7 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
-              <NodeObjectData Name="Panel_Wallbreaker" CanEdit="False" ActionTag="19" FrameEvent="" Tag="17" ObjectIndex="6" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Wallbreaker" CanEdit="False" ActionTag="19" FrameEvent="" Tag="17" ObjectIndex="6" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="440.0000" Y="12.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -222,6 +302,16 @@
                 <PrePosition X="0.4681" Y="0.0857" />
                 <PreSize X="0.0883" Y="0.7857" />
                 <Children>
+                  <NodeObjectData Name="stage_ui_unit_background" ActionTag="-1732595739" FrameEvent="" Tag="85" ObjectIndex="22" ctype="SpriteObjectData">
+                    <Position X="0.0000" Y="0.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="108.0000" />
+                    <PrePosition X="0.0000" Y="0.0000" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_background.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Sprite_1_Copy_Copy" CanEdit="False" ActionTag="20" FrameEvent="" Tag="18" ObjectIndex="9" ctype="SpriteObjectData">
                     <Position X="41.0001" Y="41.0001" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -231,6 +321,16 @@
                     <PrePosition X="0.4940" Y="0.3727" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/WallbreakerIcon.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_frame" ActionTag="-2029377484" FrameEvent="" Tag="86" ObjectIndex="23" ctype="SpriteObjectData">
+                    <Position X="-0.9998" Y="-3.0000" />
+                    <Scale ScaleX="1.0500" ScaleY="1.0500" />
+                    <AnchorPoint />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="86.0000" Y="109.0000" />
+                    <PrePosition X="-0.0120" Y="-0.0273" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_1_Copy_Copy_Copy_Copy" CanEdit="False" ActionTag="37" FrameEvent="" Tag="35" ObjectIndex="6" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="40.0000" Y="99.0000" />
@@ -261,6 +361,46 @@
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
+              <NodeObjectData Name="stage_ui_Empty_Unit" ActionTag="187879826" FrameEvent="" Tag="81" ObjectIndex="18" ctype="SpriteObjectData">
+                <Position X="577.0000" Y="67.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="86.0000" Y="109.0000" />
+                <PrePosition X="0.6138" Y="0.4786" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/ui/Empty_Unit.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_ui_Empty_Unit_Copy" ActionTag="1437833570" FrameEvent="" Tag="82" ObjectIndex="19" ctype="SpriteObjectData">
+                <Position X="672.0000" Y="67.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="86.0000" Y="109.0000" />
+                <PrePosition X="0.7149" Y="0.4786" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/ui/Empty_Unit.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_ui_Empty_Unit_Copy_Copy" ActionTag="1013554461" FrameEvent="" Tag="83" ObjectIndex="20" ctype="SpriteObjectData">
+                <Position X="769.0000" Y="67.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="86.0000" Y="109.0000" />
+                <PrePosition X="0.8181" Y="0.4786" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/ui/Empty_Unit.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_ui_Empty_Unit_Copy_Copy_Copy" ActionTag="-1625305115" FrameEvent="" Tag="84" ObjectIndex="21" ctype="SpriteObjectData">
+                <Position X="865.0000" Y="67.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="86.0000" Y="109.0000" />
+                <PrePosition X="0.9202" Y="0.4786" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/ui/Empty_Unit.png" Plist="assets.plist" />
+              </NodeObjectData>
             </Children>
             <SingleColor A="255" R="37" G="37" B="37" />
             <FirstColor A="255" R="37" G="37" B="37" />
@@ -268,41 +408,41 @@
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
           <NodeObjectData Name="EndBattleButtonPanel" ActionTag="28" FrameEvent="" Tag="26" ObjectIndex="7" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="11.5876" Y="159.2106" />
-            <Scale ScaleX="1.4000" ScaleY="1.4000" />
+            <Position X="12.5875" Y="155.2104" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
-            <Size X="140.0000" Y="40.0000" />
-            <PrePosition X="0.0121" Y="0.2488" />
-            <PreSize X="0.1458" Y="0.0625" />
+            <Size X="148.0000" Y="40.0000" />
+            <PrePosition X="0.0131" Y="0.2425" />
+            <PreSize X="0.1542" Y="0.0625" />
             <Children>
-              <NodeObjectData Name="Image_RedButton" ActionTag="-1772562742" FrameEvent="" Tag="63" ObjectIndex="2" Scale9Enable="True" LeftEage="12" RightEage="12" Scale9OriginX="12" Scale9Width="3" Scale9Height="38" ctype="ImageViewObjectData">
+              <NodeObjectData Name="Image_RedButton" ActionTag="-1772562742" FrameEvent="" Tag="63" ObjectIndex="2" LeftEage="12" RightEage="12" Scale9OriginX="12" Scale9Width="3" Scale9Height="38" ctype="ImageViewObjectData">
                 <Position X="0.0000" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
-                <Size X="140.0000" Y="32.0000" />
+                <Size X="152.0000" Y="38.0000" />
                 <PrePosition X="0.0000" Y="0.0000" />
                 <PreSize X="1.0000" Y="0.8000" />
                 <FileData Type="PlistSubImage" Path="stage/ui/RedButton.png" Plist="assets.plist" />
               </NodeObjectData>
               <NodeObjectData Name="Text_EndBattle_Shadow" ActionTag="1090316623" FrameEvent="" Tag="52" ObjectIndex="31" FontSize="13" LabelText="End Battle" ctype="TextObjectData">
-                <Position X="15.4724" Y="6.6964" />
+                <Position X="21.1254" Y="11.6555" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="25" G="25" B="25" />
                 <Size X="107.0000" Y="14.0000" />
-                <PrePosition X="0.1105" Y="0.1674" />
+                <PrePosition X="0.1427" Y="0.2914" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
               <NodeObjectData Name="Text_7" ActionTag="38" FrameEvent="" Tag="36" ObjectIndex="7" FontSize="13" LabelText="End Battle" ctype="TextObjectData">
-                <Position X="13.9993" Y="8.0386" />
+                <Position X="19.6523" Y="12.9977" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="107.0000" Y="14.0000" />
-                <PrePosition X="0.1000" Y="0.2010" />
+                <PrePosition X="0.1328" Y="0.3249" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
@@ -311,22 +451,9 @@
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
-                <Size X="125.0000" Y="36.0000" />
+                <Size X="148.0000" Y="36.0000" />
                 <PrePosition X="0.0000" Y="0.0000" />
-                <PreSize X="0.8929" Y="0.9000" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
-                <PressedFileData Type="Default" Path="Default/Button_Press.png" />
-                <NormalFileData Type="Default" Path="Default/Button_Normal.png" />
-              </NodeObjectData>
-              <NodeObjectData Name="Unit" ActionTag="108892093" VisibleForFrame="False" FrameEvent="" Tag="53" ObjectIndex="2" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
-                <Position X="7.1429" Y="-7.1429" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint />
-                <CColor A="255" R="255" G="255" B="255" />
-                <Size X="125.0000" Y="36.0000" />
-                <PrePosition X="0.0000" Y="0.0000" />
-                <PreSize X="0.0000" Y="0.0000" />
+                <PreSize X="1.0000" Y="0.9000" />
                 <TextColor A="255" R="65" G="65" B="70" />
                 <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
                 <PressedFileData Type="Default" Path="Default/Button_Press.png" />
@@ -618,12 +745,12 @@
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
               <NodeObjectData Name="Text_OverallDamage" ActionTag="69" FrameEvent="" Tag="67" ObjectIndex="23" FontSize="14" LabelText="Overall Damage" ctype="TextObjectData">
-                <Position X="85.3127" Y="85.0000" />
+                <Position X="88.3130" Y="85.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="166.0000" Y="15.0000" />
-                <PrePosition X="0.4740" Y="0.7727" />
+                <PrePosition X="0.4906" Y="0.7727" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>

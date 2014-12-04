@@ -72,56 +72,46 @@
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
           <NodeObjectData Name="Panel_ReturnHome" ActionTag="1700139942" FrameEvent="" Tag="63" ObjectIndex="1" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="469.0000" Y="111.0000" />
+            <Position X="469.0000" Y="109.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint ScaleX="0.5000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <Size X="160.0000" Y="76.0000" />
-            <PrePosition X="0.4885" Y="0.1734" />
-            <PreSize X="0.1667" Y="0.1187" />
+            <Size X="138.0000" Y="76.0000" />
+            <PrePosition X="0.4885" Y="0.1703" />
+            <PreSize X="0.1437" Y="0.1187" />
             <Children>
-              <NodeObjectData Name="Image_1" CanEdit="False" ActionTag="-687144215" FrameEvent="" Tag="64" ObjectIndex="1" Scale9Enable="True" LeftEage="24" RightEage="24" Scale9OriginX="24" Scale9Width="6" Scale9Height="75" ctype="ImageViewObjectData">
-                <Position X="0.0000" Y="0.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+              <NodeObjectData Name="Button_ReturnHome" ActionTag="-1963118851" FrameEvent="" Tag="67" ObjectIndex="1" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="158" Scale9Height="75" ctype="ButtonObjectData">
+                <Position X="-3.0000" Y="-0.0001" />
+                <Scale ScaleX="1.0800" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
-                <Size X="160.0000" Y="75.0000" />
-                <PrePosition X="0.0000" Y="0.0000" />
-                <PreSize X="0.7273" Y="0.9868" />
-                <FileData Type="PlistSubImage" Path="stage/battle_result/GreenButton.png" Plist="assets.plist" />
+                <Size X="158.0000" Y="75.0000" />
+                <PrePosition X="-0.0217" Y="0.0000" />
+                <PreSize X="1.0290" Y="1.0000" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
+                <PressedFileData Type="PlistSubImage" Path="stage/battle_result/GreenButtonPressed.png" Plist="assets.plist" />
+                <NormalFileData Type="PlistSubImage" Path="stage/battle_result/GreenButton.png" Plist="assets.plist" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_ReturnHome_Shadow" CanEdit="False" ActionTag="42569196" FrameEvent="" Tag="66" ObjectIndex="2" FontSize="20" LabelText="Return&#xA;home" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                <Position X="29.0000" Y="16.0000" />
+              <NodeObjectData Name="Text_ReturnHome_Shadow" ActionTag="42569196" FrameEvent="" Tag="66" ObjectIndex="2" FontSize="20" LabelText="Return&#xA;home" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="8.0000" Y="14.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="22" G="22" B="22" />
                 <Size X="106.0000" Y="44.0000" />
-                <PrePosition X="0.1318" Y="0.2105" />
+                <PrePosition X="0.0580" Y="0.1842" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_ReturnHome" CanEdit="False" ActionTag="-258055486" FrameEvent="" Tag="65" ObjectIndex="1" FontSize="20" LabelText="Return&#xA;home" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                <Position X="27.0000" Y="18.0000" />
+              <NodeObjectData Name="Text_ReturnHome" ActionTag="-258055486" FrameEvent="" Tag="65" ObjectIndex="1" FontSize="20" LabelText="Return&#xA;home" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="6.0000" Y="16.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="106.0000" Y="44.0000" />
-                <PrePosition X="0.1227" Y="0.2368" />
+                <PrePosition X="0.0435" Y="0.2105" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
-              </NodeObjectData>
-              <NodeObjectData Name="Button_ReturnHome" CanEdit="False" ActionTag="-1963118851" VisibleForFrame="False" FrameEvent="" Tag="67" ObjectIndex="1" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
-                <Position X="0.0000" Y="0.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint />
-                <CColor A="255" R="255" G="255" B="255" />
-                <Size X="220.0000" Y="76.0000" />
-                <PrePosition X="0.0000" Y="0.0000" />
-                <PreSize X="1.0000" Y="1.0000" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
-                <PressedFileData Type="Default" Path="Default/Button_Press.png" />
-                <NormalFileData Type="Default" Path="Default/Button_Normal.png" />
               </NodeObjectData>
             </Children>
             <SingleColor A="255" R="150" G="200" B="255" />
@@ -138,7 +128,7 @@
             <PrePosition X="0.2802" Y="0.2469" />
             <PreSize X="0.4167" Y="0.6250" />
             <Children>
-              <NodeObjectData Name="stage_battle_result_954.0" ActionTag="-1582794760" Rotation="286.1205" RotationSkewX="286.1205" RotationSkewY="286.1205" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
+              <NodeObjectData Name="stage_battle_result_954.0" CanEdit="False" ActionTag="-1582794760" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
                 <Position X="207.0000" Y="305.0000" />
                 <Scale ScaleX="10.0000" ScaleY="10.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -146,7 +136,7 @@
                 <Size X="41.0000" Y="59.0000" />
                 <PrePosition X="0.5175" Y="0.7625" />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/battle_result/954.0.png" Plist="assets.plist" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/background_bright.png" Plist="assets.plist" />
               </NodeObjectData>
               <NodeObjectData Name="Panel_Ribbon" CanEdit="False" ActionTag="-1764269216" FrameEvent="" Tag="77" ObjectIndex="5" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="26.9996" Y="271.9995" />
@@ -165,7 +155,7 @@
                     <Size X="159.0000" Y="68.0000" />
                     <PrePosition X="0.8469" Y="0.4875" />
                     <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/952.0.png" Plist="assets.plist" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/ribbon.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="stage_battle_result_952.0" CanEdit="False" ActionTag="861673501" FrameEvent="" Tag="73" ObjectIndex="4" ctype="SpriteObjectData">
                     <Position X="81.0000" Y="39.0000" />
@@ -175,7 +165,7 @@
                     <Size X="159.0000" Y="68.0000" />
                     <PrePosition X="0.2531" Y="0.4875" />
                     <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/952.0.png" Plist="assets.plist" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/ribbon.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_Victory_Shadow" CanEdit="False" ActionTag="-1939945564" FrameEvent="" Tag="87" ObjectIndex="11" FontSize="20" LabelText="Victory" ctype="TextObjectData">
                     <Position X="178.5000" Y="38.5000" />
@@ -220,7 +210,7 @@
                     <Size X="135.0000" Y="48.0000" />
                     <PrePosition X="2.4875" Y="5.4166" />
                     <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/1512.1.png" Plist="assets.plist" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/stars.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="stage_battle_result_1512.1_Copy" ActionTag="-1481626295" FrameEvent="" Tag="80" ObjectIndex="7" ctype="SpriteObjectData">
                     <Position X="397.9996" Y="325.9963" />
@@ -230,7 +220,7 @@
                     <Size X="135.0000" Y="48.0000" />
                     <PrePosition X="0.4975" Y="0.8150" />
                     <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/1512.1.png" Plist="assets.plist" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/stars.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_TotalDamage_Shadow" ActionTag="-265980536" FrameEvent="" Tag="82" ObjectIndex="7" FontSize="12" LabelText="Total damage:" ctype="TextObjectData">
                     <Position X="402.0000" Y="345.0000" />

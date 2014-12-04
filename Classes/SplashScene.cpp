@@ -1,5 +1,5 @@
 #include "SplashScene.h"
-#include "BattleScene.h"
+#include "StageSelectorScene.h"
 #include "Definitions.h"
 
 USING_NS_CC;
@@ -35,13 +35,13 @@ bool SplashScene::init()
     backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     
     this->addChild(backgroundSprite);
-    this->scheduleOnce(schedule_selector(SplashScene::GoToBattleScene), DISPLAY_TIME_SPLASH_SCENE);
+    this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     
     return true;
 }
 
-void SplashScene::GoToBattleScene(float dt)
+void SplashScene::GoToStageSelectorScene(float dt)
 {
-    auto scene = BattleScene::createScene();
+    auto scene = StageSelectorScene::createScene();
     Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }

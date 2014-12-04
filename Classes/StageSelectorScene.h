@@ -1,9 +1,9 @@
-#ifndef __SPLASH_SCENE_H__
-#define __SPLASH_SCENE_H__
+#ifndef __STAGE_SELECTOR_SCENE_H__
+#define __STAGE_SELECTOR_SCENE_H__
 
 #include "cocos2d.h"
 
-class SplashScene : public cocos2d::Layer
+class StageSelectorScene : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -13,11 +13,11 @@ public:
     virtual bool init();  
     
     // implement the "static create()" method manually
-    CREATE_FUNC(SplashScene);
+    CREATE_FUNC(StageSelectorScene);
     
 private:
     
-    void GoToStageSelectorScene(float dt);
+    void GoToBattleScene(float dt);
 };
 
-#endif // __SPLASH_SCENE_H__
+#endif // __STAGE_SELECTOR_SCENE_H__
