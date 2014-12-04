@@ -48,7 +48,6 @@
 		521A8EA919F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		521A8EAA19F11F5000D177D7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 521A8EA819F11F5000D177D7 /* fonts */; };
 		5C02A0661A2CCD9A0067B758 /* UnitArcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */; };
-		5C02A06C1A2DDEA80067B758 /* CocosProject_01 in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A06B1A2DDEA80067B758 /* CocosProject_01 */; };
 		5C02A0731A2ED0170067B758 /* BuildingDefense.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */; };
 		5C02A0791A2ED8DB0067B758 /* NodeFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */; };
 		5C02A07C1A2EE6620067B758 /* BuildingTownhall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */; };
@@ -64,6 +63,9 @@
 		5C02A09C1A2F0F7B0067B758 /* UnitGoblin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */; };
 		5C02A09D1A2F0F7B0067B758 /* UnitWallbreaker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */; };
 		5C02A0A01A2FF4A10067B758 /* UI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C02A09E1A2FF4A10067B758 /* UI.cpp */; };
+		5C02A0A61A3013420067B758 /* cocosstudio in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A51A3013420067B758 /* cocosstudio */; };
+		5C02A0A81A3013C80067B758 /* RedBarMid.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A71A3013C80067B758 /* RedBarMid.png */; };
+		5C02A0AA1A3020C50067B758 /* res in Resources */ = {isa = PBXBuildFile; fileRef = 5C02A0A91A3020C50067B758 /* res */; };
 		5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4B1A0A496C00FA2D45 /* BattleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A431A0A496C00FA2D45 /* BattleScene.cpp */; };
 		5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
@@ -174,7 +176,6 @@
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnitArcher.cpp; sourceTree = "<group>"; };
 		5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitArcher.h; sourceTree = "<group>"; };
-		5C02A06B1A2DDEA80067B758 /* CocosProject_01 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CocosProject_01; path = ../../CocosProject_01; sourceTree = "<group>"; };
 		5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuildingDefense.cpp; sourceTree = "<group>"; };
 		5C02A0721A2ED0170067B758 /* BuildingDefense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingDefense.h; sourceTree = "<group>"; };
 		5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeFactory.cpp; sourceTree = "<group>"; };
@@ -205,6 +206,9 @@
 		5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitWallbreaker.h; sourceTree = "<group>"; };
 		5C02A09E1A2FF4A10067B758 /* UI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UI.cpp; sourceTree = "<group>"; };
 		5C02A09F1A2FF4A10067B758 /* UI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UI.h; sourceTree = "<group>"; };
+		5C02A0A51A3013420067B758 /* cocosstudio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosstudio; sourceTree = "<group>"; };
+		5C02A0A71A3013C80067B758 /* RedBarMid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RedBarMid.png; path = cocosstudio/RedBarMid.png; sourceTree = "<group>"; };
+		5C02A0A91A3020C50067B758 /* res */ = {isa = PBXFileReference; lastKnownFileType = folder; path = res; sourceTree = "<group>"; };
 		5C062A431A0A496C00FA2D45 /* BattleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BattleScene.cpp; sourceTree = "<group>"; };
 		5C062A441A0A496C00FA2D45 /* BattleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BattleScene.h; sourceTree = "<group>"; };
 		5C062A451A0A496C00FA2D45 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
@@ -346,13 +350,15 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5C02A06B1A2DDEA80067B758 /* CocosProject_01 */,
+				5C02A0A91A3020C50067B758 /* res */,
+				5C02A0A51A3013420067B758 /* cocosstudio */,
 				5CB8218C1A1600D400BC505A /* map_01.tmx */,
 				5C24088D1A12EF26004A785F /* assets.plist */,
 				5C24088E1A12EF26004A785F /* assets.png */,
 				5C24087E1A11FA9C004A785F /* BackgroundStage1.png */,
 				5C2408731A11D503004A785F /* image */,
 				5C4E28C31A0BAF39001864CC /* SplashScreen.png */,
+				5C02A0A71A3013C80067B758 /* RedBarMid.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 			);
 			name = Resources;
@@ -362,9 +368,9 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
-				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
 				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
 				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
@@ -564,6 +570,7 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
+				5C02A0A61A3013420067B758 /* cocosstudio in Resources */,
 				5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */,
 				5C24088F1A12EF26004A785F /* assets.plist in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
@@ -583,9 +590,10 @@
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
+				5C02A0AA1A3020C50067B758 /* res in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
-				5C02A06C1A2DDEA80067B758 /* CocosProject_01 in Resources */,
 				521A8E6419F0C34300D177D7 /* Default-667h@2x.png in Resources */,
+				5C02A0A81A3013C80067B758 /* RedBarMid.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

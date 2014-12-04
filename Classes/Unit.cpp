@@ -331,11 +331,11 @@ timeline::ActionTimeline* Unit::getActionTimeline()
 }
 
 /**
- @example "CocosProject_01/res/UnitArcherWalkEast.csb"
+ @example "res/UnitArcherWalkEast.csb"
  */
 __String Unit::createFilename()
 {
-    __String fileName = "CocosProject_01/res/Unit";
+    __String fileName = "res/Unit";
     
     fileName.append(this->nameStringBytype.at(this->type));
     
