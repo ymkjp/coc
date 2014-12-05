@@ -9,8 +9,8 @@ USING_NS_CC;
 #define TRANSITION_TIME 0.1
 
 #define INIT_ZOOM_RATE 0.5
-//#define DEFAULT_ZOOM_RATE 0.3 // For debug
-#define DEFAULT_ZOOM_RATE 0.65
+#define DEFAULT_ZOOM_RATE 0.3 // For debug
+//#define DEFAULT_ZOOM_RATE 0.65
 #define MAX_ZOOM_RATE 3.5 // MIN: 0.521094
 
 #define WORLD_MAP_WIDTH 44
@@ -35,6 +35,12 @@ inline static bool isInMapRange(Vec2 targetPoint)
             && 0 <= targetPoint.y
             && targetPoint.x < WORLD_MAP_WIDTH
             && targetPoint.y < WORLD_MAP_HEIGHT);
+};
+
+enum Stages {
+    Amigo,
+    Benito,
+    Carmen,
 };
 
 enum BuildingType {
@@ -80,6 +86,11 @@ enum Compass {
     SouthWest,
     West,
     NorthWest,
+};
+
+enum UITypes {
+    BattleControllerUI,
+    BattleResultUI,
 };
 
 // For Tmx

@@ -1,15 +1,15 @@
 #include "BattleScene.h"
 
-Scene* BattleScene::createScene()
+Scene* BattleScene::createScene(Stages stage)
 {
     auto scene = Scene::create();
-    auto layer = BattleScene::create();
+    auto layer = BattleScene::create(stage);
     scene->addChild(layer);
     
     return scene;
 }
 
-bool BattleScene::init()
+bool BattleScene::init(Stages stage)
 {
     if ( !Layer::init() )
     {
@@ -22,10 +22,10 @@ bool BattleScene::init()
     backgroundLayer = Layer::create();
     tiledMapLayer = Layer::create();
     
-    // マップ関連のキャッシュとかを持ってくれるTmxクラス
-    tmx = Tmx::create();
-    tmx->retain(); // tmx inherits Ref* not Node*
-
+    // ステージ関連のTmxクラス
+    tmx = Tmx::create(stage);
+    this->addChild(tmx,TmxOrder);
+    
     // 画像関連のキャッシュ
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
@@ -40,15 +40,10 @@ bool BattleScene::init()
     nodeFactory->updateAttackRangeGrid();
     
     this->addEventDispacher(); // ディスパッチャー外すの忘れそう
-    this->addUINode();
     
-    return true;
-}
+    tmx->showBattleController();
 
-void BattleScene::addUINode()
-{
-    Node* ui = UI::create();
-    this->addChild(ui);
+    return true;
 }
 
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)

@@ -2,6 +2,10 @@
 #define __STAGE_SELECTOR_SCENE_H__
 
 #include "cocos2d.h"
+#include "cocostudio/CocoStudio.h"
+#include "cocosGUI.h"
+
+#include "Definitions.h"
 
 class StageSelectorScene : public cocos2d::Layer
 {
@@ -16,8 +20,13 @@ public:
     CREATE_FUNC(StageSelectorScene);
     
 private:
-    
-    void GoToBattleScene(float dt);
+    Stages selectedStage;
+    const std::map<Stages,std::string> stageNameByStages = {
+        {Amigo, "Amigo"},
+        {Benito, "Benito"},
+        {Carmen, "Carmen"},
+    };
+    void goToBattleScene(float dt);
 };
 
 #endif // __STAGE_SELECTOR_SCENE_H__

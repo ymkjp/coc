@@ -89,6 +89,9 @@
 		5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
 		5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
+		5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9D1A30C10C0045BB87 /* map_02.tmx */; };
+		5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9E1A30C10C0045BB87 /* map_03.tmx */; };
+		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
 		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8E6BB1A265C8200D50450 /* Tmx.cpp */; };
@@ -228,6 +231,9 @@
 		5CA2120B1A1E20E10053BAED /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
 		5CA2120C1A1E20E10053BAED /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
+		5CD19A9D1A30C10C0045BB87 /* map_02.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_02.tmx; sourceTree = "<group>"; };
+		5CD19A9E1A30C10C0045BB87 /* map_03.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_03.tmx; sourceTree = "<group>"; };
+		5CD19A9F1A30C10C0045BB87 /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
 		5CF695201A198DC0000939B2 /* MapNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapNavigator.cpp; sourceTree = "<group>"; };
 		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
 		5CF8E6BB1A265C8200D50450 /* Tmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tmx.cpp; sourceTree = "<group>"; };
@@ -353,6 +359,9 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CD19A9D1A30C10C0045BB87 /* map_02.tmx */,
+				5CD19A9E1A30C10C0045BB87 /* map_03.tmx */,
+				5CD19A9F1A30C10C0045BB87 /* tileset.png */,
 				5C02A0A91A3020C50067B758 /* res */,
 				5C02A0A51A3013420067B758 /* cocosstudio */,
 				5CB8218C1A1600D400BC505A /* map_01.tmx */,
@@ -583,14 +592,17 @@
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */,
 				5C2408911A12EF26004A785F /* assets.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */,
 				5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */,
 				5C2408761A11D503004A785F /* image in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
+				5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,

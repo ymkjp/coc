@@ -34,7 +34,9 @@ void Unit::play(float frame)
 {
     CCLOG("Unit::play frame[%f]",frame);
     if (this->tmx->noBuildings()) {
-        CCLOG("@todo GAME DONE!");
+        // Finish battle
+        this->unscheduleAllCallbacks();
+        tmx->showBattleResult();
         return;
     }
     auto startCoord = this->coord;

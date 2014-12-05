@@ -1,11 +1,14 @@
 #include "Tmx.h"
 USING_NS_CC;
 
-bool Tmx::init()
+bool Tmx::init(Stages stage)
 {
-    tiledMap = TMXTiledMap::create("map_01.tmx");
+    tiledMap = TMXTiledMap::create(tmxFileNameByStages.at(stage).c_str());
     domainTMXLayer = tiledMap->getLayer("Domain");
     wallTMXLayer = tiledMap->getLayer("Wall");
+    
+    ui = UI::create();
+    this->addChild(ui);
 
     return true;
 }
@@ -71,4 +74,14 @@ void Tmx::eraseBuilding(Building* building)
     
     buildings.eraseObject(building);
     CCLOG("Tmx.buildings.size(%lu)",buildings.size());
+}
+
+void Tmx::showBattleResult()
+{
+    ui->showBattleResult();
+}
+
+void Tmx::showBattleController()
+{
+    ui->showBattleController();
 }

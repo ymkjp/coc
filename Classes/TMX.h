@@ -13,12 +13,21 @@ USING_NS_CC_EXT;
 #include "Definitions.h"
 #include "Building.h"
 #include "Unit.h"
+#include "UI.h"
 
-class Tmx : public Ref
+class Tmx : public Node
 {
 public:
-    virtual bool init();
-    CREATE_FUNC(Tmx);
+    virtual bool init(Stages stage);
+    static Tmx* create(Stages stage) {
+        auto p = new Tmx();
+        if (p->init(stage)) {
+            p->autorelease();
+            return p;
+        }
+        CC_SAFE_DELETE(p);
+        return nullptr;
+    }
 
     TMXTiledMap* tiledMap;
     TMXLayer *domainTMXLayer;
@@ -38,6 +47,18 @@ public:
     
     Vector<Unit*> units;
     Vector<Building*> buildings;
+    
+    void showBattleController();
+    void showBattleResult();
+    
+
+protected:
+    UI* ui;
+    const std::map<Stages,std::string> tmxFileNameByStages = {
+        {Amigo,"map_01.tmx"},
+        {Benito,"map_02.tmx"},
+        {Carmen,"map_03.tmx"},
+    };
 };
 
 #endif // __TMX_H__

@@ -16,7 +16,7 @@
             <Position X="0.0000" Y="0.0000" />
             <Scale ScaleX="1.6800" ScaleY="1.6800" />
             <AnchorPoint />
-            <CColor A="255" R="0" G="0" B="0" />
+            <CColor A="255" R="255" G="255" B="255" />
             <Size X="257.0000" Y="383.0000" />
             <PrePosition X="0.0000" Y="0.0000" />
             <PreSize X="0.5354" Y="0.5984" />
@@ -31,6 +31,16 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/map/8.2.png" Plist="assets.plist" />
               </NodeObjectData>
+              <NodeObjectData Name="stage_map_8.0" ActionTag="-538560163" FrameEvent="" Tag="49" ObjectIndex="1" ctype="SpriteObjectData">
+                <Position X="-0.0033" Y="189.1934" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="257.0000" Y="320.0000" />
+                <PrePosition X="0.0000" Y="0.4940" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/map/8.0.png" Plist="assets.plist" />
+              </NodeObjectData>
               <NodeObjectData Name="stage_map_8.1" ActionTag="-1781284367" FrameEvent="" Tag="50" ObjectIndex="2" ctype="SpriteObjectData">
                 <Position X="0.0000" Y="365.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -40,16 +50,6 @@
                 <PrePosition X="0.0000" Y="0.9530" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/map/8.1.png" Plist="assets.plist" />
-              </NodeObjectData>
-              <NodeObjectData Name="stage_map_8.0" ActionTag="-538560163" FrameEvent="" Tag="49" ObjectIndex="1" ctype="SpriteObjectData">
-                <Position X="-88.8917" Y="277.8850" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint ScaleY="0.5000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <Size X="257.0000" Y="320.0000" />
-                <PrePosition X="-0.3459" Y="0.7255" />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/map/8.0.png" Plist="assets.plist" />
               </NodeObjectData>
             </Children>
             <SingleColor A="255" R="150" G="200" B="255" />
@@ -359,48 +359,38 @@
                     <PrePosition X="0.3144" Y="0.8183" />
                     <PreSize X="0.2083" Y="0.1250" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow" CanEdit="False" ActionTag="1035288043" FrameEvent="" Tag="92" ObjectIndex="4" FontSize="20" LabelText="Amigo&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow" ActionTag="1035288043" FrameEvent="" Tag="92" ObjectIndex="4" FontSize="22" LabelText="Amigo&#xA;" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="84.0000" Y="22.0000" />
+                        <Size X="94.0000" Y="24.0000" />
                         <PrePosition X="0.5283" Y="0.7667" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title" CanEdit="False" ActionTag="-931721457" FrameEvent="" Tag="90" ObjectIndex="3" FontSize="20" LabelText="Amigo" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title" ActionTag="-931721457" FrameEvent="" Tag="90" ObjectIndex="3" FontSize="22" LabelText="Amigo" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="84.0000" Y="22.0000" />
+                        <Size X="94.0000" Y="24.0000" />
                         <PrePosition X="0.5102" Y="0.7867" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_4.0" CanEdit="False" ActionTag="-1459349327" FrameEvent="" Tag="93" ObjectIndex="34" ctype="SpriteObjectData">
-                        <Position X="51.3188" Y="36.3342" />
+                      <NodeObjectData Name="Button_Amigo" ActionTag="1435659690" FrameEvent="" Tag="94" ObjectIndex="2" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
+                        <Position X="28.9804" Y="15.0004" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.5132" Y="0.3633" />
-                        <PreSize X="0.0000" Y="0.0000" />
-                        <FileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
-                      </NodeObjectData>
-                      <NodeObjectData Name="Button_Amigo" CanEdit="False" ActionTag="1435659690" VisibleForFrame="False" FrameEvent="" Tag="94" ObjectIndex="2" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
-                        <Position X="50.0000" Y="38.0000" />
-                        <Scale ScaleX="1.0000" ScaleY="1.2000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="46.0000" Y="36.0000" />
-                        <PrePosition X="0.5000" Y="0.3800" />
+                        <PrePosition X="0.2898" Y="0.1500" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
-                        <PressedFileData Type="Default" Path="Default/Button_Press.png" />
-                        <NormalFileData Type="Default" Path="Default/Button_Normal.png" />
+                        <PressedFileData Type="PlistSubImage" Path="stage/map/26.0.png" Plist="assets.plist" />
+                        <NormalFileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
                       </NodeObjectData>
                     </Children>
                     <SingleColor A="255" R="150" G="200" B="255" />
@@ -417,48 +407,38 @@
                     <PrePosition X="0.0616" Y="0.4292" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow_Copy" CanEdit="False" ActionTag="992981008" FrameEvent="" Tag="96" ObjectIndex="5" FontSize="20" LabelText="Benito&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow_Copy" ActionTag="992981008" FrameEvent="" Tag="96" ObjectIndex="5" FontSize="22" LabelText="Benito&#xA;" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="98.0000" Y="22.0000" />
+                        <Size X="109.0000" Y="24.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title_Copy" CanEdit="False" ActionTag="733282375" FrameEvent="" Tag="97" ObjectIndex="6" FontSize="20" LabelText="Benito&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Copy" ActionTag="733282375" FrameEvent="" Tag="97" ObjectIndex="6" FontSize="22" LabelText="Benito&#xA;" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="98.0000" Y="22.0000" />
+                        <Size X="109.0000" Y="24.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_4.0_Copy" CanEdit="False" ActionTag="384441044" FrameEvent="" Tag="98" ObjectIndex="35" ctype="SpriteObjectData">
-                        <Position X="51.3188" Y="36.3342" />
+                      <NodeObjectData Name="Button_Benito" ActionTag="1254619647" FrameEvent="" Tag="142" ObjectIndex="6" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
+                        <Position X="28.9803" Y="18.0000" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
-                        <PreSize X="0.0000" Y="0.0000" />
-                        <FileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
-                      </NodeObjectData>
-                      <NodeObjectData Name="Button_Benito" CanEdit="False" ActionTag="-684128095" VisibleForFrame="False" FrameEvent="" Tag="99" ObjectIndex="3" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
-                        <Position X="50.0000" Y="38.0000" />
-                        <Scale ScaleX="1.0000" ScaleY="1.2000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="46.0000" Y="36.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
+                        <PrePosition X="0.2898" Y="0.1800" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
-                        <PressedFileData Type="Default" Path="Default/Button_Press.png" />
-                        <NormalFileData Type="Default" Path="Default/Button_Normal.png" />
+                        <PressedFileData Type="PlistSubImage" Path="stage/map/26.0.png" Plist="assets.plist" />
+                        <NormalFileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
                       </NodeObjectData>
                     </Children>
                     <SingleColor A="255" R="150" G="200" B="255" />
@@ -475,48 +455,38 @@
                     <PrePosition X="0.5408" Y="0.1200" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow_Copy_Copy" CanEdit="False" ActionTag="-1331449526" FrameEvent="" Tag="101" ObjectIndex="7" FontSize="20" LabelText="Carmen" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow_Copy_Copy" ActionTag="-1331449526" FrameEvent="" Tag="101" ObjectIndex="7" FontSize="22" LabelText="Carmen" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="110.0000" Y="22.0000" />
+                        <Size X="119.0000" Y="24.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title_Copy_Copy" CanEdit="False" ActionTag="-664536767" FrameEvent="" Tag="102" ObjectIndex="8" FontSize="20" LabelText="Carmen" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Copy_Copy" ActionTag="-664536767" FrameEvent="" Tag="102" ObjectIndex="8" FontSize="22" LabelText="Carmen" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="110.0000" Y="22.0000" />
+                        <Size X="119.0000" Y="24.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_4.0_Copy_Copy" CanEdit="False" ActionTag="-1409815570" FrameEvent="" Tag="103" ObjectIndex="36" ctype="SpriteObjectData">
-                        <Position X="51.3188" Y="36.3342" />
+                      <NodeObjectData Name="Button_Carmen" ActionTag="-590078685" FrameEvent="" Tag="143" ObjectIndex="7" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
+                        <Position X="29.8860" Y="18.0000" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                        <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
-                        <PreSize X="0.0000" Y="0.0000" />
-                        <FileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
-                      </NodeObjectData>
-                      <NodeObjectData Name="Button_Carmen" CanEdit="False" ActionTag="1749184863" VisibleForFrame="False" FrameEvent="" Tag="104" ObjectIndex="4" TouchEnable="True" FontSize="14" ButtonText="Button" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
-                        <Position X="50.0000" Y="38.0000" />
-                        <Scale ScaleX="1.0000" ScaleY="1.2000" />
-                        <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                        <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="46.0000" Y="36.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
+                        <PrePosition X="0.2989" Y="0.1800" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
-                        <PressedFileData Type="Default" Path="Default/Button_Press.png" />
-                        <NormalFileData Type="Default" Path="Default/Button_Normal.png" />
+                        <PressedFileData Type="PlistSubImage" Path="stage/map/26.0.png" Plist="assets.plist" />
+                        <NormalFileData Type="PlistSubImage" Path="stage/map/4.0.png" Plist="assets.plist" />
                       </NodeObjectData>
                     </Children>
                     <SingleColor A="255" R="150" G="200" B="255" />

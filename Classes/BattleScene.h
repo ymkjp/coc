@@ -19,7 +19,6 @@ using namespace cocostudio;
 #include "Tmx.h"
 #include "Unit.h" // setPosition あたり直したら読み込み不要
 #include "NodeFactory.h"
-#include "UI.h"
 
 class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
 {
@@ -29,10 +28,18 @@ public:
         int zoomingDelay;
     } scrollStatus;
  
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(Stages stage);
     
-    virtual bool init();
-    CREATE_FUNC(BattleScene);
+    virtual bool init(Stages stage);
+    static BattleScene* create(Stages stage) {
+        auto p = new BattleScene();
+        if (p->init(stage)) {
+            p->autorelease();
+            return p;
+        }
+        CC_SAFE_DELETE(p);
+        return nullptr;
+    }
     
     virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event);
     virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event);
@@ -49,12 +56,15 @@ public:
 
     virtual void addBattleStage();
     virtual void addEventDispacher();
-    virtual void addUINode();
     virtual void initBuildings();
 
     void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);
 
 private:
+    // Z値が大きければ上に表示される
+    enum localZOrder {
+        TmxOrder = 1000, // ゲーム結果画面の表示のときにUIを表示する
+    };
     Size visibleSize;
     Vec2 origin;
     ScrollView *scrollView;

@@ -1,6 +1,5 @@
 #include "StageSelectorScene.h"
 #include "BattleScene.h"
-#include "Definitions.h"
 
 USING_NS_CC;
 
@@ -31,22 +30,35 @@ bool StageSelectorScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     // バイナリ版 (.csb) だとフォントが反映されないため、XML版 (.csd) を使って描画している
-    Node* ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/StageSelectorLayer.csd");
+    auto ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/StageSelectorLayer.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui);
-//    
-//    auto backgroundSprite = Sprite::create("SplashScreen.png");
-//    backgroundSprite->setContentSize(visibleSize);
-//    backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-//    
-//    this->addChild(backgroundSprite);
-//    this->scheduleOnce(schedule_selector(StageSelectorScene::GoToBattleScene), DISPLAY_TIME_SPLASH_SCENE);
-//    
+    
+    // Panel_RightPart -> ScrollView_1 -> Panel_Amigo -> Button_Amigo
+    auto scrollView = ui->getChildByName("Panel_RightPart")->getChildByName("ScrollView_1");
+    
+    for (auto stage: stageNameByStages) {
+        __String panelName = "Panel_";
+        __String buttonName = "Button_";
+        panelName.append(stage.second);
+        buttonName.append(stage.second);
+        auto btn = dynamic_cast<cocos2d::ui::Button*>(scrollView
+                                                      ->getChildByName(panelName.getCString())
+                                                      ->getChildByName(buttonName.getCString()));
+        btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
+        {
+            if (type == ui::Widget::TouchEventType::ENDED) {
+                selectedStage = stage.first;
+                this->scheduleOnce(schedule_selector(StageSelectorScene::goToBattleScene), DISPLAY_TIME_SPLASH_SCENE);
+            }
+        });
+    }
+    
     return true;
 }
 
-void StageSelectorScene::GoToBattleScene(float dt)
+void StageSelectorScene::goToBattleScene(float dt)
 {
-    auto scene = BattleScene::createScene();
+    auto scene = BattleScene::createScene(selectedStage);
     Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
