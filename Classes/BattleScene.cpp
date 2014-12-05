@@ -200,7 +200,7 @@ void BattleScene::addEventDispacher()
     this->addChild(scrollView);
     
     auto listner = EventListenerTouchOneByOne::create();
-    //    listner->setSwallowTouches(true);
+//    listner->setSwallowTouches(true);
     listner->onTouchBegan = CC_CALLBACK_2(BattleScene::onTouchBegan, this);
     listner->onTouchMoved = CC_CALLBACK_2(BattleScene::onTouchMoved, this);
     listner->onTouchEnded = CC_CALLBACK_2(BattleScene::onTouchEnded, this);
