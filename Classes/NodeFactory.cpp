@@ -16,7 +16,7 @@ USING_NS_CC;
 #include "UnitGoblin.h"
 #include "UnitWallbreaker.h"
 
-// 主にマップ情報 Tmx を初期化時に必要とする Node の生成を担当するクラス
+// マップ情報 Tmx を初期化時に必要とする Node の生成を担当するクラス
 // メソッド呼び出しの時に Tmx を必要とするメソッド呼び出しも行っている
 
 bool NodeFactory::init(Tmx* _tmx)

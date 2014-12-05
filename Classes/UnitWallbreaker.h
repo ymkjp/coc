@@ -21,6 +21,16 @@ public:
     {
         return Wallbreaker;
     }
+    
+    // Unit クラスを上書き
+    Vec2 findPointToGo() {
+        return this->findNearestWallGoalPoint();
+    }
+    
+    void startAttacking();
+    
+    
+
 };
 
 #endif // __UNIT_WALLBREAKER_H__

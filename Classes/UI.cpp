@@ -14,21 +14,55 @@ bool UI::init()
 
 void UI::showBattleController()
 {
-    CCLOG("UI::showBattleController()!");
-    
     this->removeAllChildren();
-    auto ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/UILayer_01.csd");
+    ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/BattleController.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,1,BattleControllerUI);
+    
+    // UnitSelectorPanel -> Panel_Barbarian -> Button_Barbarian
+    auto selector = ui->getChildByName("UnitSelectorPanel");
+    
+    for (auto _unitNameByType: unitNameByType) {
+        __String panelName = "Panel_";
+        __String buttonName = "Button_";
+        
+        panelName.append(_unitNameByType.second);
+        buttonName.append(_unitNameByType.second);
+        auto btn = dynamic_cast<cocos2d::ui::Button*>(selector
+                                                      ->getChildByName(panelName.getCString())
+                                                      ->getChildByName(buttonName.getCString()));
+        btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
+                                   {
+                                       if (type == ui::Widget::TouchEventType::ENDED) {
+                                           selectedUnit = _unitNameByType.first;
+                                           changeFrameVisibility();
+                                       }
+                                   });
+    }
+    
+}
+
+inline void UI::changeFrameVisibility()
+{
+    auto selector = ui->getChildByName("UnitSelectorPanel");
+    for (auto _unitNameByType: unitNameByType) {
+        __String panelName = "Panel_";
+        __String frameName = "stage_ui_unit_frame_";
+        frameName.append(_unitNameByType.second);
+        panelName.append(_unitNameByType.second);
+        
+        selector
+        ->getChildByName(panelName.getCString())
+        ->getChildByName(frameName.getCString())
+        ->setVisible(_unitNameByType.first == selectedUnit);
+    }
 }
 
 void UI::showBattleResult()
 {
-    CCLOG("UI::showBattleResult()!");
-    
     this->removeAllChildren();
     
-    auto ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/BattleResult.csd");
+    ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/BattleResult.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,1,BattleResultUI);
     

@@ -8,7 +8,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     tmx = _tmx;
     type = this->getUnitType();
     coord = _coord;
-    damagePerSec = 60;
+    damagePerAttack = damagePerAttackByType.at(type);
     status = Alive;
     action = Walking;
     compass = East;
@@ -127,9 +127,9 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
 //    CCLOG("targetBuilding->status %i",this->targetBuilding->status);
-    this->targetBuilding->attacked(damagePerSec);
+    this->targetBuilding->attacked(damagePerAttack);
     if (this->targetBuilding->status == Building::Died) {
-        CCLOG("[%i]Unit::attack target died!",__LINE__);
+        CCLOG("Unit::attack target died!");
         action = Walking;
         this->updateNode();
         this->scheduleOnce(schedule_selector(Unit::play), 0);
@@ -165,38 +165,38 @@ void Unit::setCompass(Vec2 prevCoord, Vec2 nextCoord)
     auto dy = posDiff.y;
     auto currentCompass = this->compass;
     if (dx == -1 && dy == -1) {
-        // 真北の場合は前回の向きに影響される
-        if (currentCompass == NorthEast
-            || currentCompass == East
-            || currentCompass == SouthEast) {
-            this->compass = NorthEast;
-        } else if (currentCompass == NorthWest
-                   || currentCompass == West
-                   || currentCompass == SouthWest) {
-            this->compass = NorthWest;
-        }
-    } else if (dx == -1 && dy == 0) {
-        this->compass = NorthWest;
-    } else if (dx == -1 && dy == 1) {
-        this->compass = West;
-    } else if (dx == 0 && dy == -1) {
-        this->compass = NorthEast;
-    } else if (dx == 0 && dy == 1) {
-        this->compass = SouthWest;
-    } else if (dx == 1 && dy == -1) {
-        this->compass = East;
-    } else if (dx == 1 && dy == 0) {
-        this->compass = SouthEast;
-    } else if (dx == 1 && dy == 1) {
         // 真南の場合は前回の向きに影響される
         if (currentCompass == NorthEast
             || currentCompass == East
             || currentCompass == SouthEast) {
-            this->compass = SouthEast;
+            this->compass = SouthWest;
         } else if (currentCompass == NorthWest
                    || currentCompass == West
                    || currentCompass == SouthWest) {
-            this->compass = SouthWest;
+            this->compass = SouthEast;
+        }
+    } else if (dx == -1 && dy == 0) {
+        this->compass = SouthEast;
+    } else if (dx == -1 && dy == 1) {
+        this->compass = East;
+    } else if (dx == 0 && dy == -1) {
+        this->compass = SouthWest;
+    } else if (dx == 0 && dy == 1) {
+        this->compass = NorthEast;
+    } else if (dx == 1 && dy == -1) {
+        this->compass = West;
+    } else if (dx == 1 && dy == 0) {
+        this->compass = NorthWest;
+    } else if (dx == 1 && dy == 1) {
+        // 真北の場合は前回の向きに影響される
+        if (currentCompass == NorthEast
+            || currentCompass == East
+            || currentCompass == SouthEast) {
+            this->compass = NorthWest;
+        } else if (currentCompass == NorthWest
+                   || currentCompass == West
+                   || currentCompass == SouthWest) {
+            this->compass = NorthEast;
         }
     }
     
@@ -339,7 +339,7 @@ __String Unit::createFilename()
 {
     __String fileName = "res/Unit";
     
-    fileName.append(this->nameStringBytype.at(this->type));
+    fileName.append(unitNameByType.at(this->type));
     
     switch (this->action) {
         case Unit::Attacking:

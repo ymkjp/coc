@@ -51,6 +51,8 @@ public:
     void showBattleController();
     void showBattleResult();
     
+    UnitType getSelectedUnit();
+    
 
 protected:
     UI* ui;

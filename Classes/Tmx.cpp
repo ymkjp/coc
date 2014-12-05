@@ -85,3 +85,8 @@ void Tmx::showBattleController()
 {
     ui->showBattleController();
 }
+
+UnitType Tmx::getSelectedUnit()
+{
+    return ui->selectedUnit;
+}

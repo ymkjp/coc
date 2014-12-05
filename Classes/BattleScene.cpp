@@ -63,7 +63,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
     if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
-        auto unit = nodeFactory->createUnit(Barbarian, tileCoord);
+        auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         tmx->units.pushBack(unit);
         tiledMapLayer->addChild(unit);

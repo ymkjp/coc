@@ -52,7 +52,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/battle_result/wizerd_black.png" Plist="assets.plist" />
               </NodeObjectData>
-              <NodeObjectData Name="Bottom" ActionTag="1129870946" FrameEvent="" Tag="90" ObjectIndex="7" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Bottom" ActionTag="1129870946" FrameEvent="" Tag="90" ObjectIndex="7" TouchEnable="True" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="0.0000" Y="-1.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -60,8 +60,8 @@
                 <Size X="960.0000" Y="180.0000" />
                 <PrePosition X="0.0000" Y="-0.0016" />
                 <PreSize X="1.0000" Y="0.2813" />
-                <SingleColor A="255" R="150" G="200" B="255" />
-                <FirstColor A="255" R="150" G="200" B="255" />
+                <SingleColor A="255" R="18" G="18" B="18" />
+                <FirstColor A="255" R="18" G="18" B="18" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
@@ -235,7 +235,7 @@
             <PrePosition X="0.4865" Y="0.1625" />
             <PreSize X="0.1437" Y="0.1187" />
             <Children>
-              <NodeObjectData Name="Button_ReturnHome" CanEdit="False" ActionTag="-1963118851" FrameEvent="" Tag="67" ObjectIndex="1" TouchEnable="True" FontSize="24" ButtonText="Home    " Scale9Width="158" Scale9Height="75" ctype="ButtonObjectData">
+              <NodeObjectData Name="Button_ReturnHome" ActionTag="-1963118851" FrameEvent="" Tag="67" ObjectIndex="1" TouchEnable="True" FontSize="24" ButtonText="Home    " Scale9Width="158" Scale9Height="75" ctype="ButtonObjectData">
                 <Position X="0.0000" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />

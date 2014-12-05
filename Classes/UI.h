@@ -19,10 +19,15 @@ public:
     // UI画面はバイナリ版 (.csb) だとフォントが反映されないため、XML版 (.csd) を使って描画している
     void showBattleController();
     void showBattleResult();
-
+    
+    UnitType selectedUnit = NoUnitType;
+    
 protected:
     Size visibleSize;
     Vec2 origin;
+    Node* ui;
+    
+    void changeFrameVisibility();
 };
 
 #endif // __UI_H__

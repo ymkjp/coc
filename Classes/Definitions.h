@@ -70,7 +70,8 @@ enum BuildingSpace {
 };
 
 enum UnitType {
-    Archer = 0,
+    NoUnitType = 0,
+    Archer,
     Barbarian,
     Giant,
     Goblin,
@@ -91,6 +92,15 @@ enum Compass {
 enum UITypes {
     BattleControllerUI,
     BattleResultUI,
+};
+
+const std::map<UnitType, std::string> unitNameByType =
+{
+    {Archer, "Archer"},
+    {Barbarian, "Barbarian"},
+    {Giant, "Giant"},
+    {Goblin, "Goblin"},
+    {Wallbreaker, "Wallbreaker"},
 };
 
 // For Tmx

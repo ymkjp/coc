@@ -383,12 +383,6 @@
 				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
-				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
-				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
-				5C02A0AB1A3086610067B758 /* StageSelectorScene.cpp */,
-				5C02A0AC1A3086610067B758 /* StageSelectorScene.h */,
-				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
-				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
 				5C02A09E1A2FF4A10067B758 /* UI.cpp */,
 				5C02A09F1A2FF4A10067B758 /* UI.h */,
 				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
@@ -397,38 +391,9 @@
 				5CF695211A198DC0000939B2 /* MapNavigator.h */,
 				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
 				5CF8E6BC1A265C8200D50450 /* Tmx.h */,
-				5C2408971A14542B004A785F /* Unit.cpp */,
-				5C2408981A14542B004A785F /* Unit.h */,
-				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
-				5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */,
-				5C02A0921A2F0E980067B758 /* UnitBarbarian.cpp */,
-				5C02A0931A2F0E980067B758 /* UnitBarbarian.h */,
-				5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */,
-				5C02A0961A2F0F7B0067B758 /* UnitGiant.h */,
-				5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */,
-				5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */,
-				5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */,
-				5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */,
-				5CA2120B1A1E20E10053BAED /* Building.cpp */,
-				5CA2120C1A1E20E10053BAED /* Building.h */,
-				5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */,
-				5C02A0721A2ED0170067B758 /* BuildingDefense.h */,
-				5C02A0801A2EF08E0067B758 /* BuildingCanon.cpp */,
-				5C02A0811A2EF08E0067B758 /* BuildingCanon.h */,
-				5C02A08C1A2EF3C00067B758 /* BuildingArchertower.cpp */,
-				5C02A08D1A2EF3C00067B758 /* BuildingArchertower.h */,
-				5C02A08E1A2EF3C00067B758 /* BuildingTrenchmortar.cpp */,
-				5C02A08F1A2EF3C00067B758 /* BuildingTrenchmortar.h */,
-				5C02A0861A2EF2180067B758 /* BuildingElixertank.cpp */,
-				5C02A0871A2EF2180067B758 /* BuildingElixertank.h */,
-				5C02A0891A2EF2C70067B758 /* BuildingGoldbank.cpp */,
-				5C02A08A1A2EF2C70067B758 /* BuildingGoldbank.h */,
-				5C02A0831A2EF1290067B758 /* BuildingResource.cpp */,
-				5C02A0841A2EF1290067B758 /* BuildingResource.h */,
-				5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */,
-				5C02A07B1A2EE6620067B758 /* BuildingTownhall.h */,
-				5C02A07D1A2EEDC60067B758 /* BuildingWall.cpp */,
-				5C02A07E1A2EEDC60067B758 /* BuildingWall.h */,
+				5CD19AA61A3171020045BB87 /* Scene */,
+				5CD19AA31A31707B0045BB87 /* Unit */,
+				5CD19AA51A3170AE0045BB87 /* Building */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -480,6 +445,65 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		5CD19AA31A31707B0045BB87 /* Unit */ = {
+			isa = PBXGroup;
+			children = (
+				5C2408971A14542B004A785F /* Unit.cpp */,
+				5C2408981A14542B004A785F /* Unit.h */,
+				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
+				5C02A05D1A2CCD9A0067B758 /* UnitArcher.h */,
+				5C02A0921A2F0E980067B758 /* UnitBarbarian.cpp */,
+				5C02A0931A2F0E980067B758 /* UnitBarbarian.h */,
+				5C02A0951A2F0F7B0067B758 /* UnitGiant.cpp */,
+				5C02A0961A2F0F7B0067B758 /* UnitGiant.h */,
+				5C02A0971A2F0F7B0067B758 /* UnitGoblin.cpp */,
+				5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */,
+				5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */,
+				5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */,
+			);
+			name = Unit;
+			sourceTree = "<group>";
+		};
+		5CD19AA51A3170AE0045BB87 /* Building */ = {
+			isa = PBXGroup;
+			children = (
+				5CA2120B1A1E20E10053BAED /* Building.cpp */,
+				5CA2120C1A1E20E10053BAED /* Building.h */,
+				5C02A0711A2ED0170067B758 /* BuildingDefense.cpp */,
+				5C02A0721A2ED0170067B758 /* BuildingDefense.h */,
+				5C02A0801A2EF08E0067B758 /* BuildingCanon.cpp */,
+				5C02A0811A2EF08E0067B758 /* BuildingCanon.h */,
+				5C02A08C1A2EF3C00067B758 /* BuildingArchertower.cpp */,
+				5C02A08D1A2EF3C00067B758 /* BuildingArchertower.h */,
+				5C02A08E1A2EF3C00067B758 /* BuildingTrenchmortar.cpp */,
+				5C02A08F1A2EF3C00067B758 /* BuildingTrenchmortar.h */,
+				5C02A0861A2EF2180067B758 /* BuildingElixertank.cpp */,
+				5C02A0871A2EF2180067B758 /* BuildingElixertank.h */,
+				5C02A0891A2EF2C70067B758 /* BuildingGoldbank.cpp */,
+				5C02A08A1A2EF2C70067B758 /* BuildingGoldbank.h */,
+				5C02A0831A2EF1290067B758 /* BuildingResource.cpp */,
+				5C02A0841A2EF1290067B758 /* BuildingResource.h */,
+				5C02A07A1A2EE6620067B758 /* BuildingTownhall.cpp */,
+				5C02A07B1A2EE6620067B758 /* BuildingTownhall.h */,
+				5C02A07D1A2EEDC60067B758 /* BuildingWall.cpp */,
+				5C02A07E1A2EEDC60067B758 /* BuildingWall.h */,
+			);
+			name = Building;
+			sourceTree = "<group>";
+		};
+		5CD19AA61A3171020045BB87 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				5C062A461A0A496C00FA2D45 /* SplashScene.cpp */,
+				5C062A471A0A496C00FA2D45 /* SplashScene.h */,
+				5C02A0AB1A3086610067B758 /* StageSelectorScene.cpp */,
+				5C02A0AC1A3086610067B758 /* StageSelectorScene.h */,
+				5C062A431A0A496C00FA2D45 /* BattleScene.cpp */,
+				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 

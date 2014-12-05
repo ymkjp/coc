@@ -67,7 +67,7 @@ public:
     
 protected:
     float hitpoints;
-    float damagePerSec;
+    float damagePerAttack;
     
     Tmx* tmx;
     timeline::ActionTimeline* actionTimeline;
@@ -81,15 +81,6 @@ protected:
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
     
-    const std::map<UnitType, std::string> nameStringBytype =
-    {
-        {Archer, "Archer"},
-        {Barbarian, "Barbarian"},
-        {Giant, "Giant"},
-        {Goblin, "Goblin"},
-        {Wallbreaker, "Wallbreaker"},
-    };
-    
     const std::map<UnitType, float> hitpointsByType =
     {
         {Archer, 20},
@@ -98,6 +89,16 @@ protected:
         {Goblin, 25},
         {Wallbreaker, 20},
     };
+    
+    const std::map<UnitType, float> damagePerAttackByType =
+    {
+        {Archer, 12},
+        {Barbarian, 65},
+        {Giant, 38},
+        {Goblin, 19},
+        {Wallbreaker, 960},
+    };
+    
     
     float getHitPoints()
     {
