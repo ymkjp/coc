@@ -29,7 +29,7 @@ bool BattleScene::init(Stages stage)
     // 画像関連のキャッシュ
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
-    spriteBatch = SpriteBatchNode::create("assets.png");
+//    spriteBatch = SpriteBatchNode::create("assets.png");
     
     // 各 Building, Unit をつくってくれるNodeFactoryクラス
     nodeFactory = NodeFactory::create(tmx);
@@ -62,7 +62,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
         return;
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
-    if (isInMapRange(tileCoord) && 0 == tmx->wallTMXLayer->getTileGIDAt(tileCoord) /** @fixme not only wall **/) {
+    if (isInMapRange(tileCoord) && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
         auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
         unit->unitNode->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         tmx->units.pushBack(unit);
@@ -94,7 +94,7 @@ void BattleScene::addBattleStage()
     auto tiledMapPosition = Vec2(origin.x + spriteRight->getContentSize().width * 0.05, origin.y + spriteRight->getContentSize().height * 0.1);
     tmx->tiledMap->setVisible(TILEDMAP_VISIBLE_ON);
     tiledMapLayer->addChild(tmx->tiledMap);
-    tiledMapLayer->addChild(spriteBatch);
+//    tiledMapLayer->addChild(spriteBatch);
     tiledMapLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
     tiledMapLayer->setPosition(tiledMapPosition);
     backgroundLayer->addChild(tiledMapLayer);
@@ -186,7 +186,6 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
 void BattleScene::addEventDispacher()
 {
     auto scrollViewListner = EventListenerTouchOneByOne::create();
-    scrollViewListner->setSwallowTouches(true);
     scrollViewListner->onTouchBegan = [this](Touch* touch, Event* event) -> bool {
         return true;
     };

@@ -5,7 +5,6 @@ bool Tmx::init(Stages stage)
 {
     tiledMap = TMXTiledMap::create(tmxFileNameByStages.at(stage).c_str());
     domainTMXLayer = tiledMap->getLayer("Domain");
-    wallTMXLayer = tiledMap->getLayer("Wall");
     
     ui = UI::create();
     this->addChild(ui);

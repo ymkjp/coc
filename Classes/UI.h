@@ -28,6 +28,7 @@ protected:
     Node* ui;
     
     void changeFrameVisibility();
+    void goToStageSelectorScene();
 };
 
 #endif // __UI_H__

@@ -31,7 +31,6 @@ public:
 
     TMXTiledMap* tiledMap;
     TMXLayer *domainTMXLayer;
-    TMXLayer *wallTMXLayer;
     
     Vec2 convertToCoord(Vec2 pos);
     Vec2 convertToTile(Vec2 pos);

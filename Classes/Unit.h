@@ -70,7 +70,7 @@ protected:
     float damagePerAttack;
     
     Tmx* tmx;
-    timeline::ActionTimeline* actionTimeline;
+    timeline::ActionTimeline* motionAction;
     timeline::ActionTimelineCache* actionTimelineCache;
     
     Building* targetBuilding;
@@ -78,6 +78,13 @@ protected:
     virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
     
     void die();
+    
+    enum NodeTag {
+        MotionNode,
+    };
+    
+    enum LocalZOrder {
+    };
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
     

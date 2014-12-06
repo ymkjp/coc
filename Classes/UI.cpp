@@ -19,6 +19,7 @@ void UI::showBattleController()
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,1,BattleControllerUI);
     
+    
     // UnitSelectorPanel -> Panel_Barbarian -> Button_Barbarian
     auto selector = ui->getChildByName("UnitSelectorPanel");
     
@@ -40,6 +41,16 @@ void UI::showBattleController()
                                    });
     }
     
+    // EndBattleButtonPanel -> Button_EndButtle
+    auto btn = dynamic_cast<cocos2d::ui::Button*>(ui
+                                                  ->getChildByName("EndBattleButtonPanel")
+                                                  ->getChildByName("Button_EndButtle"));
+    btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
+                               {
+                                   if (type == ui::Widget::TouchEventType::ENDED) {
+                                       this->showBattleResult();
+                                   }
+                               });
 }
 
 inline void UI::changeFrameVisibility()
@@ -72,8 +83,13 @@ void UI::showBattleResult()
                                                   ->getChildByName("Button_ReturnHome"));
     btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type) {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
-                                       auto scene = StageSelectorScene::createScene();
-                                       Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+                                       this->goToStageSelectorScene();
                                    }
                                });
+}
+
+void UI::goToStageSelectorScene()
+{
+    auto scene = StageSelectorScene::createScene();
+    Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }

@@ -17,14 +17,25 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
+    // 子ノードを追加。そこに追加していく。
+    // @fixme thisでok
     unitNode = Node::create();
-    auto childNode = this->getActingNode();
-    actionTimeline = this->getActionTimeline();
-    
-    childNode->runAction(actionTimeline);
-    actionTimeline->gotoFrameAndPlay(0, true);
-    unitNode->addChild(childNode,1 ,"childNode");
     this->addChild(unitNode);
+    
+    // 歩きのアクション
+    auto motionNode = this->getActingNode();
+    motionAction = this->getActionTimeline();
+    motionNode->runAction(motionAction);
+    motionAction->gotoFrameAndPlay(0, true);
+    unitNode->addChild(motionNode,1 ,MotionNode);
+
+    // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
+    auto lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
+    auto lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
+    lifeGageNode->runAction(lifeGageAction);
+    lifeGageAction->gotoFrameAndPause(0);
+    lifeGageNode->setPositionY(40);
+    unitNode->addChild(lifeGageNode);
     
     this->play(1);
     return true;
@@ -139,15 +150,15 @@ void Unit::attack(float frame)
 
 inline void Unit::updateNode()
 {
-    auto childNode = unitNode->getChildByName("childNode");
+    auto childNode = unitNode->getChildByTag(MotionNode);
     childNode->stopAllActions();
     auto newChildNode = this->getActingNode();
     auto action = this->getActionTimeline();
     newChildNode->runAction(action);
     action->gotoFrameAndPlay(0, true);
     unitNode->removeChild(childNode);
-    unitNode->addChild(newChildNode ,1,"childNode");
-    actionTimeline = action;
+    unitNode->addChild(newChildNode ,1, MotionNode);
+    motionAction = action;
 }
 
 inline bool Unit::isNextCoord(float num)
