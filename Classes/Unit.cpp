@@ -13,30 +13,28 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     action = Walking;
     compass = East;
     
-    hitpoints = this->getHitPoints();
+    hitpoints = this->getFullHitPoints();
+    
+    attackSpeed = attackSpeedByType.at(type);
     
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
-    // 子ノードを追加。そこに追加していく。
-    // @fixme thisでok
-    unitNode = Node::create();
-    this->addChild(unitNode);
-    
     // 歩きのアクション
-    auto motionNode = this->getActingNode();
+    motionNode = this->getActingNode();
     motionAction = this->getActionTimeline();
     motionNode->runAction(motionAction);
     motionAction->gotoFrameAndPlay(0, true);
-    unitNode->addChild(motionNode,1 ,MotionNode);
+    this->addChild(motionNode, MotionOrder, MotionTag);
+    
+    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
 
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
-    auto lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
-    auto lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
+    lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
+    lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
     lifeGageNode->runAction(lifeGageAction);
-    lifeGageAction->gotoFrameAndPause(0);
+    lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
-    unitNode->addChild(lifeGageNode);
-    
+    this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
     this->play(1);
     return true;
 }
@@ -48,6 +46,9 @@ void Unit::play(float frame)
         // Finish battle
         this->unscheduleAllCallbacks();
         tmx->showBattleResult();
+        return;
+    }
+    if (status == Died) {
         return;
     }
     auto startCoord = this->coord;
@@ -77,10 +78,12 @@ void Unit::play(float frame)
         // 向き先に応じてアニメーションを切り替え
         FiniteTimeAction* func = CallFunc::create([=]() {
             //            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
-            this->setCompass(prevCoord, nextCoord);
-            this->updateNode();
-            this->pushTobuildingAttackRange(nextCoord);
-            this->coord = nextCoord;
+            if (status == Alive) {
+                this->setCompass(prevCoord, nextCoord);
+                this->updateMotionNode();
+                this->pushTobuildingAttackRange(nextCoord);
+                this->coord = nextCoord;
+            }
         });
         arrayOfactions.pushBack(func);
         
@@ -92,7 +95,7 @@ void Unit::play(float frame)
     arrayOfactions.pushBack(attack);
     auto seq = Sequence::create(arrayOfactions);
     
-    this->unitNode->runAction(seq);
+    this->runAction(seq);
 }
 
 void Unit::pushTobuildingAttackRange(Vec2 coord)
@@ -108,57 +111,74 @@ void Unit::pushTobuildingAttackRange(Vec2 coord)
 void Unit::attacked(float damage)
 {
     CCLOG(">> Unit::attacked[%i]::hitpoints%f,damage:%f",type,this->hitpoints,damage);
+    if (status == Died) {
+        return;
+    }
     this->hitpoints -= damage;
+    this->updateLifeGage();
     if (hitpoints < 0) {
-        status = Died;
         this->die();
     }
 }
 
 void Unit::die()
 {
+    status = Died;
     this->unscheduleAllCallbacks();
+    this->stopAllActions();
     
-    auto prevPos = unitNode->getPosition();
-    unitNode->removeFromParentAndCleanup(true);
-    unitNode = CCSprite::createWithSpriteFrameName("stage/field/271.0.png");
-    // @todo position
-    unitNode->setPosition(prevPos);
-    this->addChild(unitNode);
+    auto prevNode = this->getChildByTag(MotionTag);
+    auto grave = CCSprite::createWithSpriteFrameName("stage/field/13.png");
+    grave->setPosition(prevNode->getPosition());
+    this->removeChildByTag(LifeGageTag);
+    this->removeChild(prevNode);
+    this->addChild(grave, GraveOrder);
 }
 
 void Unit::startAttacking()
 {
     this->action = Attacking;
-    this->updateNode();
-    this->schedule(schedule_selector(Unit::attack), 1.0f);
+    this->updateMotionNode();
+    this->schedule(schedule_selector(Unit::attack), attackSpeed);
 }
 
 
 void Unit::attack(float frame)
 {
-//    CCLOG("targetBuilding->status %i",this->targetBuilding->status);
-    this->targetBuilding->attacked(damagePerAttack);
+    if (status == Alive && this->targetBuilding->status == Building::Alive) {
+        this->targetBuilding->attacked(damagePerAttack);
+    }
     if (this->targetBuilding->status == Building::Died) {
         CCLOG("Unit::attack target died!");
         action = Walking;
-        this->updateNode();
+        this->updateMotionNode();
         this->scheduleOnce(schedule_selector(Unit::play), 0);
         this->unschedule(schedule_selector(Unit::attack));
     }
 }
 
-inline void Unit::updateNode()
+inline void Unit::updateMotionNode()
 {
-    auto childNode = unitNode->getChildByTag(MotionNode);
-    childNode->stopAllActions();
-    auto newChildNode = this->getActingNode();
-    auto action = this->getActionTimeline();
-    newChildNode->runAction(action);
-    action->gotoFrameAndPlay(0, true);
-    unitNode->removeChild(childNode);
-    unitNode->addChild(newChildNode ,1, MotionNode);
-    motionAction = action;
+    if (status == Alive) {
+        auto prevMotionNode = this->getChildByTag(MotionTag);
+        auto nextMotionNode = this->getActingNode();
+        auto action = this->getActionTimeline();
+        nextMotionNode->runAction(action);
+        action->gotoFrameAndPlay(0, true);
+        this->removeChild(prevMotionNode);
+        this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        
+        motionAction = action;
+    }
+}
+
+inline void Unit::updateLifeGage()
+{
+    int percentage = hitpoints / getFullHitPoints() * 100;
+    if (0 <= percentage) {
+        CCLOG("percentage%i",percentage);
+        lifeGageAction->gotoFrameAndPause(percentage);
+    }
 }
 
 inline bool Unit::isNextCoord(float num)
@@ -365,7 +385,7 @@ __String Unit::createFilename()
             break;
     }
     
-    // 上・横・下 (真北と真南は直前の compass に依存するためここ以前で設定されていない想定)
+    // 東・西・東・南西・北東・北西 (真北と真南は直前の compass に依存するため渡ってこない想定)
     if (this->compass == East) {
         fileName.append("East");
     } else if (this->compass == West) {

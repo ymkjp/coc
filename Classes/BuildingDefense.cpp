@@ -49,11 +49,11 @@ inline bool BuildingDefense::inAttackRange(Unit* unit)
 
 void BuildingDefense::attack(Unit* unit)
 {
-    CCLOG("Before attack: unit->status(%u)",unit->status);
+    if (unit->status == Unit::Alive) {
     unit->attacked(getDamagePerShot());
+    }
 
     if (unit->status == Unit::Died) {
-        CCLOG("Unit[%i] died!",unit->type);
         targetUnits.eraseObject(unit);
     }
 }

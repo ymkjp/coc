@@ -26,7 +26,6 @@ public:
         Damaged,
     };
     
-    Node* unitNode;
     virtual bool init(Tmx* tmx, Vec2 coord);
     const static std::map<Vec2, Compass> compassByCoords;
 
@@ -68,9 +67,15 @@ public:
 protected:
     float hitpoints;
     float damagePerAttack;
+    float attackSpeed;
+    
+    Node* motionNode;
+    timeline::ActionTimeline* motionAction;
+    
+    Node* lifeGageNode;
+    timeline::ActionTimeline* lifeGageAction;
     
     Tmx* tmx;
-    timeline::ActionTimeline* motionAction;
     timeline::ActionTimelineCache* actionTimelineCache;
     
     Building* targetBuilding;
@@ -80,10 +85,14 @@ protected:
     void die();
     
     enum NodeTag {
-        MotionNode,
+        MotionTag,
+        LifeGageTag,
     };
     
+// Z値が大きければ上に表示される
     enum LocalZOrder {
+        GraveOrder,
+        MotionOrder,
     };
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
@@ -106,15 +115,24 @@ protected:
         {Wallbreaker, 960},
     };
     
+    const std::map<UnitType, float> attackSpeedByType =
+    {
+        {Archer, 1},
+        {Barbarian, 1},
+        {Giant, 2},
+        {Goblin, 1},
+        {Wallbreaker, 1},
+    };
     
-    float getHitPoints()
+    float getFullHitPoints()
     {
         return hitpointsByType.at(type);
     }
     
     void pushTobuildingAttackRange(Vec2 coord);
     void testAdd(__String fileName, Vec2 pos);
-    void updateNode();
+    void updateMotionNode();
+    void updateLifeGage();
 };
 
 #endif // __UNIT_H__

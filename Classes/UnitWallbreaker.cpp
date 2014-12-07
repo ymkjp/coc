@@ -4,13 +4,16 @@ USING_NS_CC;
 
 void UnitWallbreaker::startAttacking()
 {
-    this->action = Attacking;
-    this->updateNode();
-    
-    // 攻撃
-    this->targetBuilding->attacked(damagePerAttack);
-    
-    // 攻撃したらすぐ死ぬ
-    status = Died;
-    this->die();
+    if (status == Alive && this->targetBuilding->status == Building::Alive) {
+        this->action = Attacking;
+        this->updateMotionNode();
+        
+        // 攻撃
+        this->targetBuilding->attacked(damagePerAttack);
+        
+        
+        // 攻撃したらすぐ死ぬ
+        status = Died;
+        this->die();
+    }
 }
