@@ -60,7 +60,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Text_1" ActionTag="32" FrameEvent="" Tag="30" ObjectIndex="1" FontSize="22" LabelText="x99&#xA;" ctype="TextObjectData">
+                  <NodeObjectData Name="Text_UnitCounter_Barbarian" ActionTag="32" FrameEvent="" Tag="30" ObjectIndex="1" FontSize="22" LabelText="x99&#xA;" ctype="TextObjectData">
                     <Position X="38.0000" Y="96.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -128,7 +128,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Text_1_Copy" ActionTag="33" FrameEvent="" Tag="31" ObjectIndex="2" FontSize="22" LabelText="x10" ctype="TextObjectData">
+                  <NodeObjectData Name="Text_UnitCounter_Archer" ActionTag="33" FrameEvent="" Tag="31" ObjectIndex="2" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="96.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -196,7 +196,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Text_1_Copy_Copy" ActionTag="34" FrameEvent="" Tag="32" ObjectIndex="3" FontSize="22" LabelText="x10" ctype="TextObjectData">
+                  <NodeObjectData Name="Text_UnitCounter_Goblin" ActionTag="34" FrameEvent="" Tag="32" ObjectIndex="3" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="96.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -264,7 +264,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Text_1_Copy_Copy_Copy" ActionTag="35" FrameEvent="" Tag="33" ObjectIndex="4" FontSize="22" LabelText="x10" ctype="TextObjectData">
+                  <NodeObjectData Name="Text_UnitCounter_Giant" ActionTag="35" FrameEvent="" Tag="33" ObjectIndex="4" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="41.0000" Y="96.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -332,7 +332,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/ui/unit_frame.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Text_1_Copy_Copy_Copy_Copy" ActionTag="37" FrameEvent="" Tag="35" ObjectIndex="6" FontSize="22" LabelText="x10" ctype="TextObjectData">
+                  <NodeObjectData Name="Text_UnitCounter_Wallbreaker" ActionTag="37" FrameEvent="" Tag="35" ObjectIndex="6" FontSize="22" LabelText="x10" ctype="TextObjectData">
                     <Position X="40.0000" Y="95.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

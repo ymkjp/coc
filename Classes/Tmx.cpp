@@ -8,7 +8,13 @@ bool Tmx::init(Stages stage)
     
     ui = UI::create();
     this->addChild(ui);
+    ui->showBattleController();
 
+    for (auto initUnitNumber: unitInitNumberByType) {
+        unitRemainedCounterByType[initUnitNumber.first] = initUnitNumber.second;
+        ui->updateUnitCounter(initUnitNumber.first, initUnitNumber.second);
+    }
+    
     return true;
 }
 
@@ -80,12 +86,25 @@ void Tmx::showBattleResult()
     ui->showBattleResult();
 }
 
-void Tmx::showBattleController()
-{
-    ui->showBattleController();
-}
 
 UnitType Tmx::getSelectedUnit()
 {
     return ui->selectedUnit;
 }
+
+void Tmx::decrementUnitCounter()
+{
+    auto unitType = getSelectedUnit();
+    int remainCount = unitRemainedCounterByType.at(unitType) - 1;
+    
+    if (0 <= remainCount) {
+        unitRemainedCounterByType[unitType] = remainCount;
+        ui->updateUnitCounter(unitType, remainCount);
+    }
+}
+
+bool Tmx::isRemainedUnitSelected()
+{
+    return 0 < unitRemainedCounterByType.at(getSelectedUnit());
+}
+

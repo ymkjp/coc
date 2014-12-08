@@ -40,8 +40,6 @@ bool BattleScene::init(Stages stage)
     nodeFactory->updateAttackRangeGrid();
     
     this->addEventDispacher(); // ディスパッチャー外すの忘れそう
-    
-    tmx->showBattleController();
 
     return true;
 }
@@ -62,7 +60,14 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
         return;
     }
     Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
-    if (isInMapRange(tileCoord) && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
+    if (tmx->getSelectedUnit() == NoUnitType) {
+        CCLOG("@todo Select the unit plz");
+    } else if (tmx->isRemainedUnitSelected()
+        && isInMapRange(tileCoord)
+        && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
+        
+        // ユニット残数をデクリメントしてユニット生成
+        tmx->decrementUnitCounter();
         auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
         unit->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
         tmx->units.pushBack(unit);

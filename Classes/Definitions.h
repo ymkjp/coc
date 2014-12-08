@@ -107,6 +107,7 @@ const std::map<UnitType, std::string> unitNameByType =
 typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
 typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;
 typedef std::array<std::array<std::vector<BuildingDefense*>, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingAttackRangeGrid;
+typedef std::map<UnitType,int> UnitCountByType;
 
 // For Building
 typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;

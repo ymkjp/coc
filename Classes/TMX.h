@@ -28,7 +28,7 @@ public:
         CC_SAFE_DELETE(p);
         return nullptr;
     }
-
+    
     TMXTiledMap* tiledMap;
     TMXLayer *domainTMXLayer;
     
@@ -47,19 +47,31 @@ public:
     Vector<Unit*> units;
     Vector<Building*> buildings;
     
-    void showBattleController();
     void showBattleResult();
     
     UnitType getSelectedUnit();
     
-
+    bool isRemainedUnitSelected();
+    void decrementUnitCounter();
+    
 protected:
     UI* ui;
-    const std::map<Stages,std::string> tmxFileNameByStages = {
+    UnitCountByType unitRemainedCounterByType;
+
+    const std::map<Stages,std::string> tmxFileNameByStage = {
         {Amigo,"map_01.tmx"},
         {Benito,"map_02.tmx"},
         {Carmen,"map_03.tmx"},
     };
+    
+    const UnitCountByType unitInitNumberByType = {
+        {Barbarian,99},
+        {Archer,99},
+        {Giant,10},
+        {Goblin,10},
+        {Wallbreaker,10},
+    };
+    
 };
 
 #endif // __TMX_H__

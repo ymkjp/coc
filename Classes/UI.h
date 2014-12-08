@@ -21,6 +21,8 @@ public:
     void showBattleResult();
     
     UnitType selectedUnit = NoUnitType;
+    void updateUnitCounter(UnitType unitType, int count);
+    
     
 protected:
     Size visibleSize;

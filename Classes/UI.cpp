@@ -20,6 +20,7 @@ void UI::showBattleController()
     this->addChild(ui,1,BattleControllerUI);
     
     
+    // ユニット選択ボタン
     // UnitSelectorPanel -> Panel_Barbarian -> Button_Barbarian
     auto selector = ui->getChildByName("UnitSelectorPanel");
     
@@ -41,6 +42,7 @@ void UI::showBattleController()
                                    });
     }
     
+    // 「バトル終了」ボタン
     // EndBattleButtonPanel -> Button_EndButtle
     auto btn = dynamic_cast<cocos2d::ui::Button*>(ui
                                                   ->getChildByName("EndBattleButtonPanel")
@@ -51,6 +53,22 @@ void UI::showBattleController()
                                        this->showBattleResult();
                                    }
                                });
+}
+
+void UI::updateUnitCounter(UnitType unitType, int count)
+{
+    // UnitSelectorPanel -> Panel_Barbarian -> Text_UnitCounter_Barbarian
+    auto unitName = unitNameByType.at(unitType);
+    auto selector = ui->getChildByName("UnitSelectorPanel");
+    __String panelName = "Panel_";
+    __String labelName = "Text_UnitCounter_";
+    panelName.append(unitName);
+    labelName.append(unitName);
+    auto labelText = StringUtils::format("x%d", count);
+    auto label = dynamic_cast<cocos2d::ui::Text*>(selector
+                                                  ->getChildByName(panelName.getCString())
+                                                  ->getChildByName(labelName.getCString()));
+    label->setString(labelText.c_str());
 }
 
 inline void UI::changeFrameVisibility()
