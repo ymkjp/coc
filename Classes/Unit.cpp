@@ -64,6 +64,11 @@ void Unit::play(float frame)
         path = mapNavigator->navigate(startCoord, goalPoint);
     }
     
+    // 初回の場合は施設上にターゲットマークを描写
+    if (!alreadyMarked) {
+        this->putTargetMark();
+    }
+    
     Vec2 nextCoord;
     Vec2 prevCoord = startCoord;
     Vec2 directionPoint;
@@ -426,8 +431,21 @@ const std::map<Vec2, Compass> Unit::compassByCoords =
     {Vec2(-1,0),  NorthWest},
 };
 
+void Unit::putTargetMark()
+{
+    // マーク済みのフラグを立てる
+    alreadyMarked = true;
+    auto node = CSLoader::createNode("res/TargetMarkerNode.csb");
+    auto action = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
+    node->setPositionY(5);
+    node->runAction(action);
+    action->gotoFrameAndPlay(0,false);
+    targetBuilding->addChild(node);
+}
+
 void Unit::testAdd(__String fileName, Vec2 pos)
 {
+    // 動作確認用
     auto node = CSLoader::createNode(fileName.getCString());
     auto anim = actionTimelineCache->createAction(fileName.getCString());
     node->runAction(anim);
@@ -439,4 +457,5 @@ void Unit::testAdd(__String fileName, Vec2 pos)
 
 void Unit::update( float frame )
 {
+    // nothing by frame
 }

@@ -55,6 +55,7 @@ protected:
     timeline::ActionTimeline* motionAction;
     
     enum NodeTag {
+        BuildingTag,
         MotionTag,
         LifeGageTag,
     };

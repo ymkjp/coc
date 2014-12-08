@@ -131,7 +131,6 @@ void Building::attacked(float damage)
     CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
 }
 
-
 inline void Building::updateLifeGage()
 {
     int percentage = hitpoints / getFullHitPoints() * 100;

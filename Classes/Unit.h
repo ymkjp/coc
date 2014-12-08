@@ -138,6 +138,9 @@ protected:
     {
         lifeGageNode->setVisible(false);
     };
+    
+    bool alreadyMarked = false;
+    void putTargetMark();
 };
 
 #endif // __UNIT_H__
