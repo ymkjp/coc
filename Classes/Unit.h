@@ -133,6 +133,11 @@ protected:
     void testAdd(__String fileName, Vec2 pos);
     void updateMotionNode();
     void updateLifeGage();
+    
+    void hideLifeGage(float frame)
+    {
+        lifeGageNode->setVisible(false);
+    };
 };
 
 #endif // __UNIT_H__

@@ -46,6 +46,19 @@ public:
 protected:
     float hitpoints = 400;
     Tmx* tmx;
+    timeline::ActionTimelineCache* actionTimelineCache;
+    
+    Node* lifeGageNode;
+    timeline::ActionTimeline* lifeGageAction;
+    
+    Node* motionNode;
+    timeline::ActionTimeline* motionAction;
+    
+    enum NodeTag {
+        MotionTag,
+        LifeGageTag,
+    };
+    
     const BuildingSpaceByType typeSpace = {
         {TownHall,     Large},
         {ElixerTank,   Regular},
@@ -63,7 +76,30 @@ protected:
 
     // 子クラスで再定義されてもいいメソッド
     virtual bool virtualInit() {return true;};
+    virtual void updateLifeGage();
 
+    
+    const std::map<BuildingType, float> hitpointsByType =
+    {
+        {TownHall, 2100},
+        {ElixerTank, 800},
+        {GoldBank, 800},
+        {Canon, 400},
+        {TrenchMortar, 500},
+        {ArcherTower, 500},
+        {Wall,700},
+    };
+    
+    float getFullHitPoints()
+    {
+        return hitpointsByType.at(type);
+    }
+    
+    void hideLifeGage(float frame)
+    {
+        this->lifeGageNode->setVisible(false);
+    }
+    
 };
 
 #endif // __BUILDING_H__

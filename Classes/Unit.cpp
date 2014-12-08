@@ -34,6 +34,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     lifeGageNode->runAction(lifeGageAction);
     lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
+    lifeGageNode->setVisible(false);
     this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
     this->play(1);
     return true;
@@ -110,14 +111,16 @@ void Unit::pushTobuildingAttackRange(Vec2 coord)
 
 void Unit::attacked(float damage)
 {
-    CCLOG(">> Unit::attacked[%i]::hitpoints%f,damage:%f",type,this->hitpoints,damage);
     if (status == Died) {
         return;
     }
-    this->hitpoints -= damage;
-    this->updateLifeGage();
-    if (hitpoints < 0) {
+    if (hitpoints < damage) {
+        hitpoints = 0;
         this->die();
+    } else {
+        this->hitpoints -= damage;
+        this->updateLifeGage();
+//        CCLOG(">> Unit::attacked[%i]::hitpoints%f,damage:%f",type,this->hitpoints,damage);
     }
 }
 
@@ -176,8 +179,10 @@ inline void Unit::updateLifeGage()
 {
     int percentage = hitpoints / getFullHitPoints() * 100;
     if (0 <= percentage) {
-        CCLOG("percentage%i",percentage);
+//        CCLOG("percentage%i",percentage);
+        lifeGageNode->setVisible(true);
         lifeGageAction->gotoFrameAndPause(percentage);
+        this->scheduleOnce(schedule_selector(Unit::hideLifeGage), 3.0);
     }
 }
 

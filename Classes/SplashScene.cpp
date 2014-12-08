@@ -30,9 +30,7 @@ bool SplashScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto backgroundSprite = Sprite::create("SplashScreen.png");
-//    backgroundSprite->setContentSize(visibleSize);
-    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
+    auto backgroundSprite = Sprite::create("SplashScreen.png");    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
     backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     
     this->addChild(backgroundSprite);

@@ -34,15 +34,15 @@ protected:
     const std::map<BuildingType, float> damagePerShotByType =
     {
         {Canon, 7.2},
-        {TrenchMortar, 11},
-        {ArcherTower, 11},
+        {TrenchMortar, 30},
+        {ArcherTower, 19},
     };
     
     const std::map<BuildingType, float> attackSpeedByType =
     {
         {Canon, 0.8},
-        {TrenchMortar, 1},
-        {ArcherTower, 5},
+        {TrenchMortar, 5},
+        {ArcherTower, 1},
     };
     
     float getDamagePerShot()

@@ -179,7 +179,7 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildings.pushBack(building);
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
-    building->buildingNode->setPosition(pos);
+    building->setPosition(pos);
     tiledMapLayer->addChild(building);
 }
 

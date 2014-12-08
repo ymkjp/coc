@@ -3,7 +3,7 @@ USING_NS_CC;
 
 bool Tmx::init(Stages stage)
 {
-    tiledMap = TMXTiledMap::create(tmxFileNameByStages.at(stage).c_str());
+    tiledMap = TMXTiledMap::create(tmxFileNameByStage.at(stage).c_str());
     domainTMXLayer = tiledMap->getLayer("Domain");
     
     ui = UI::create();

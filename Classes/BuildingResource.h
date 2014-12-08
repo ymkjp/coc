@@ -9,6 +9,8 @@ USING_NS_CC;
 class BuildingResource : public Building
 {
 public:
+    
+protected:
 };
 
 #endif // __BUILDING_RESOURCE_H__
