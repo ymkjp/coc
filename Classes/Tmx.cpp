@@ -8,6 +8,7 @@ bool Tmx::init(Stages stage)
     
     ui = UI::create();
     this->addChild(ui);
+    ui->selectedUnit = Barbarian;
     ui->showBattleController();
 
     for (auto initUnitNumber: unitInitNumberByType) {
@@ -96,9 +97,11 @@ void Tmx::decrementUnitCounter()
 {
     auto unitType = getSelectedUnit();
     int remainCount = unitRemainedCounterByType.at(unitType) - 1;
-    
+
     if (0 <= remainCount) {
         unitRemainedCounterByType[unitType] = remainCount;
+        
+        // @todo 長押しでつまることがあるので1秒に1回までに留める
         ui->updateUnitCounter(unitType, remainCount);
     }
 }

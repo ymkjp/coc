@@ -17,10 +17,10 @@ using namespace cocostudio;
 
 #include "Definitions.h"
 #include "Tmx.h"
-#include "Unit.h" // setPosition あたり直したら読み込み不要
+#include "Unit.h" // @todo setPosition あたり直したので読み込み不要
 #include "NodeFactory.h"
 
-class BattleScene : public cocos2d::Layer, public ScrollViewDelegate
+class BattleScene : public Layer, public ScrollViewDelegate
 {
 public:
     struct ScrollStatus {
@@ -76,6 +76,11 @@ private:
     
     SpriteBatchNode* spriteBatch;
     bool isTargetLayer(std::string name, Vec2 coord);
+    
+    // 長押し Touch 判定
+    cocos2d::Touch* targetTouch;
+    void deployUnitIfKeptTouching(float frame);
+    void deployUnit();
 };
 
 #endif // __BATTLE_SCENE_H__

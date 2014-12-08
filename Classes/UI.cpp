@@ -17,6 +17,7 @@ void UI::showBattleController()
     this->removeAllChildren();
     ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/BattleController.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
+    this->changeFrameVisibility();
     this->addChild(ui,1,BattleControllerUI);
     
     

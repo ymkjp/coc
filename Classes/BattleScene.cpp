@@ -29,7 +29,6 @@ bool BattleScene::init(Stages stage)
     // 画像関連のキャッシュ
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
-//    spriteBatch = SpriteBatchNode::create("assets.png");
     
     // 各 Building, Unit をつくってくれるNodeFactoryクラス
     nodeFactory = NodeFactory::create(tmx);
@@ -44,13 +43,39 @@ bool BattleScene::init(Stages stage)
     return true;
 }
 
+void  BattleScene::deployUnit()
+{
+    Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());
+    if (tmx->isRemainedUnitSelected()
+        && isInMapRange(tileCoord)
+        && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
+        
+        // ユニット残数をデクリメントしてユニット生成
+        tmx->decrementUnitCounter();
+        auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
+        unit->setPosition(tmx->domainTMXLayer->convertToNodeSpace(targetTouch->getLocation()));
+        tmx->units.pushBack(unit);
+        tiledMapLayer->addChild(unit);
+    }
+}
+
+void BattleScene::deployUnitIfKeptTouching(float frame)
+{
+    deployUnit();
+}
+
+
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+    // 長押ししてたらデプロイし続ける
+    targetTouch = touch;
+    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.16);
     return true;
 }
 
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+    this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
     backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta());
 }
 
@@ -59,20 +84,9 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
     if (scrollStatus.scrollingDelay) {
         return;
     }
-    Vec2 tileCoord = tmx->convertToCoord(touch->getLocation());
-    if (tmx->getSelectedUnit() == NoUnitType) {
-        CCLOG("@todo Select the unit plz");
-    } else if (tmx->isRemainedUnitSelected()
-        && isInMapRange(tileCoord)
-        && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
-        
-        // ユニット残数をデクリメントしてユニット生成
-        tmx->decrementUnitCounter();
-        auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
-        unit->setPosition(tmx->domainTMXLayer->convertToNodeSpace(touch->getLocation()));
-        tmx->units.pushBack(unit);
-        tiledMapLayer->addChild(unit);
-    }
+    this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
+    targetTouch = touch;
+    this->deployUnit();
     return;
 }
 
@@ -92,7 +106,10 @@ void BattleScene::addBattleStage()
     spriteRight->setPosition(Vec2(origin.x + spriteRight->getContentSize().width * 0.5 * 3, origin.y + spriteRight->getContentSize().height * 0.5));
     backgroundLayer->addChild(spriteRight);
     backgroundLayer->addChild(spriteLeft);
-    backgroundLayer->setPosition(origin);
+    
+    // スクロールビューの中身を真ん中に持っていく
+    backgroundLayer->setPositionX(origin.x - spriteRight->getContentSize().width * 0.1);
+    backgroundLayer->setPositionY(origin.y - spriteRight->getContentSize().height * 0.1);
     backgroundLayer->setScale(DEFAULT_ZOOM_RATE);
     
     // Adjust tiledMap to the background
