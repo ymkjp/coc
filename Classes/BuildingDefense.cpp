@@ -19,43 +19,32 @@ void BuildingDefense::scan(float frame)
         return;
     }
     
+    float bestDistance = -1;
+    float distanceSq;
     for (auto unit: targetUnits) {
-        
-        if (unit == nullptr) {
-            continue;
+        if (!inAttackRange(unit) || unit->status == Unit::Died)
+        {
+            targetUnits.eraseObject(unit);;
         }
-        
-        // Unitが攻撃レンジ内にいればユニットを攻撃を開始して、いなければターゲットコンテナから抜く
-        if (inAttackRange(unit)) {
-            // @todo 最短のユニットを攻撃するらしい
-            this->attack(unit);
-            // 1体でも攻撃すればこのメソッドを終了
-            return;
-        } else {
-            CCLOG("BuildingDefense::outOfRange");
-            targetUnits.eraseObject(unit);
+        distanceSq = fabsf(unit->coord.getDistanceSq(this->coord));
+        if (bestDistance == -1 || distanceSq < bestDistance) {
+            bestDistance = distanceSq;
+            targetUnit = unit;
         }
+    }
+    if (targetUnit) {
+        this->attack();
     }
 }
 
 inline bool BuildingDefense::inAttackRange(Unit* unit)
 {
     return true;
-    // @fixme
+    
     auto distance = unit->coord.getDistanceSq(this->coord);
-    CCLOG("BuildingDefense::inAttackRange(%f)",distance);
+    CCLOG("BuildingDefense::inAttackRange(%f),getMaxRange(%f),getMinRange(%f),",distance,getMaxRange(),getMinRange());
+    // @fixme
     return (getMinRange() <= distance && distance <= getMaxRange());
-}
-
-void BuildingDefense::attack(Unit* unit)
-{
-    if (unit->status == Unit::Alive) {
-    unit->attacked(getDamagePerShot());
-    }
-
-    if (unit->status == Unit::Died) {
-        targetUnits.eraseObject(unit);
-    }
 }
 
 void BuildingDefense::updateAttackRangeGrid(Tmx* tmx)

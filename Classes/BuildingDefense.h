@@ -20,13 +20,18 @@ public:
     virtual float getMinRange() {return 0;};
     virtual float getMaxRange() {return 0;};
     
+    Unit* targetUnit = {};
     Vector<Unit*> targetUnits = {};
+    
+    // 子クラスでのオーバーライド
+    virtual void attack() {};
+    virtual void shoot() {};
+    
     
 protected:
     float damagePerShot;
     float attackSpeed;
     void scan(float frame);
-    void attack(Unit* unit);
     bool inAttackRange(Unit* unit);
     
     static float normalize(float number);

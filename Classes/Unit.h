@@ -63,6 +63,10 @@ public:
     
     void attacked(float damage);
     
+    enum NodeTag {
+        MotionTag,
+        LifeGageTag,
+    };
     
 protected:
     float hitpoints;
@@ -84,10 +88,6 @@ protected:
     
     void die();
     
-    enum NodeTag {
-        MotionTag,
-        LifeGageTag,
-    };
     
 // Z値が大きければ上に表示される
     enum LocalZOrder {

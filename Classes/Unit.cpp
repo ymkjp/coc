@@ -78,7 +78,7 @@ void Unit::play(float frame)
     // 道のりがあれば移動 (なければ攻撃開始)
     while (!path.empty()) {
         nextCoord = path.top();
-        directionPoint = this->tmx->convertToTile(nextCoord);
+        directionPoint = tmx->convertToRealPos(nextCoord);
         moveAction = MoveTo::create(0.5, directionPoint);
         
         // 向き先に応じてアニメーションを切り替え

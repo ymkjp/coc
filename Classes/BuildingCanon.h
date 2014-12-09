@@ -32,6 +32,13 @@ public:
     {
         return maxRange;
     }
+    
+    // Defense を上書き
+    void attack();
+    void expandAndShrink();
+    void shoot();
+    
+    Node* bullet;
 };
 
 #endif // __BUILDING_CANON_H__

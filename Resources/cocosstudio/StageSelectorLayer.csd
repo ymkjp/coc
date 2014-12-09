@@ -29,7 +29,7 @@
                 <Size X="257.0000" Y="30.0000" />
                 <PrePosition X="0.0000" Y="0.0000" />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/map/8.2.png" Plist="assets.plist" />
+                <FileData Type="PlistSubImage" Path="stage/map/matching_03.png" Plist="assets.plist" />
               </NodeObjectData>
               <NodeObjectData Name="stage_map_8.0" ActionTag="-538560163" FrameEvent="" Tag="49" ObjectIndex="1" ctype="SpriteObjectData">
                 <Position X="-0.0033" Y="189.1934" />
@@ -39,7 +39,7 @@
                 <Size X="257.0000" Y="320.0000" />
                 <PrePosition X="0.0000" Y="0.4940" />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/map/8.0.png" Plist="assets.plist" />
+                <FileData Type="PlistSubImage" Path="stage/map/matching_02.png" Plist="assets.plist" />
               </NodeObjectData>
               <NodeObjectData Name="stage_map_8.1" ActionTag="-1781284367" FrameEvent="" Tag="50" ObjectIndex="2" ctype="SpriteObjectData">
                 <Position X="0.0000" Y="365.0000" />
@@ -49,7 +49,7 @@
                 <Size X="257.0000" Y="33.0000" />
                 <PrePosition X="0.0000" Y="0.9530" />
                 <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/map/8.1.png" Plist="assets.plist" />
+                <FileData Type="PlistSubImage" Path="stage/map/matching_01.png" Plist="assets.plist" />
               </NodeObjectData>
             </Children>
             <SingleColor A="255" R="150" G="200" B="255" />
@@ -84,9 +84,9 @@
                     <PrePosition X="0.0000" Y="0.0000" />
                     <PreSize X="1.0000" Y="1.0000" />
                     <Children>
-                      <NodeObjectData Name="stage_map_0.0" CanEdit="False" ActionTag="-1464966836" FrameEvent="" Tag="64" ObjectIndex="8" ctype="SpriteObjectData">
+                      <NodeObjectData Name="stage_map_0.0" ActionTag="-1464966836" FrameEvent="" Tag="64" ObjectIndex="8" ctype="SpriteObjectData">
                         <Position X="0.0000" Y="0.0000" />
-                        <Scale ScaleX="5.7000" ScaleY="19.0000" />
+                        <Scale ScaleX="5.7000" ScaleY="66.8000" />
                         <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="84.0000" Y="42.0000" />
@@ -115,42 +115,42 @@
                         <FileData Type="PlistSubImage" Path="stage/map/1.153.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.170" CanEdit="False" ActionTag="842151168" FrameEvent="" Tag="67" ObjectIndex="11" ctype="SpriteObjectData">
-                        <Position X="134.6395" Y="142.9999" />
+                        <Position X="114.1260" Y="2022.9991" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="217.0000" Y="110.0000" />
-                        <PrePosition X="0.2805" Y="0.1787" />
+                        <PrePosition X="0.2378" Y="2.5287" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.170.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.213" CanEdit="False" ActionTag="-1800331899" FrameEvent="" Tag="68" ObjectIndex="12" ctype="SpriteObjectData">
-                        <Position X="407.5436" Y="65.6672" />
+                        <Position X="387.0264" Y="1945.6637" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="130.0000" Y="111.0000" />
-                        <PrePosition X="0.8490" Y="0.0821" />
+                        <PrePosition X="0.8063" Y="2.4321" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.213.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.217" CanEdit="False" ActionTag="-292252792" FrameEvent="" Tag="69" ObjectIndex="13" ctype="SpriteObjectData">
-                        <Position X="383.3925" Y="639.0004" />
+                        <Position X="362.8643" Y="2518.9980" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="184.0000" Y="119.0000" />
-                        <PrePosition X="0.7987" Y="0.7988" />
+                        <PrePosition X="0.7560" Y="3.1487" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.217.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.58" CanEdit="False" ActionTag="-774967005" FrameEvent="" Tag="70" ObjectIndex="14" ctype="SpriteObjectData">
-                        <Position X="374.9436" Y="324.3334" />
+                        <Position X="354.4160" Y="2204.3296" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="43.0000" Y="20.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
+                        <PrePosition X="0.7384" Y="2.7554" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.58.png" Plist="assets.plist" />
                       </NodeObjectData>
@@ -164,43 +164,43 @@
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.59.png" Plist="assets.plist" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_1.60" CanEdit="False" ActionTag="-1377983039" FrameEvent="" Tag="72" ObjectIndex="16" ctype="SpriteObjectData">
-                        <Position X="374.9436" Y="324.3334" />
+                      <NodeObjectData Name="stage_map_1.60" ActionTag="-1377983039" FrameEvent="" Tag="72" ObjectIndex="16" ctype="SpriteObjectData">
+                        <Position X="383.1450" Y="1444.3319" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="60.0000" Y="44.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
+                        <PrePosition X="0.7982" Y="1.8054" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.60.png" Plist="assets.plist" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_1.61" CanEdit="False" ActionTag="560616685" FrameEvent="" Tag="73" ObjectIndex="17" ctype="SpriteObjectData">
-                        <Position X="374.9436" Y="324.3334" />
+                      <NodeObjectData Name="stage_map_1.61" ActionTag="560616685" FrameEvent="" Tag="73" ObjectIndex="17" ctype="SpriteObjectData">
+                        <Position X="383.1450" Y="1444.3319" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="98.0000" Y="85.0000" />
-                        <PrePosition X="0.0000" Y="0.0000" />
+                        <PrePosition X="0.7982" Y="1.8054" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.61.png" Plist="assets.plist" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_1.62" CanEdit="False" ActionTag="-1407068026" FrameEvent="" Tag="74" ObjectIndex="18" ctype="SpriteObjectData">
-                        <Position X="256.5864" Y="80.3333" />
+                      <NodeObjectData Name="stage_map_1.62" ActionTag="-1407068026" FrameEvent="" Tag="74" ObjectIndex="18" ctype="SpriteObjectData">
+                        <Position X="264.7876" Y="1200.3304" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="144.0000" Y="74.0000" />
-                        <PrePosition X="0.5346" Y="0.1004" />
+                        <PrePosition X="0.5516" Y="1.5004" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.62.png" Plist="assets.plist" />
                       </NodeObjectData>
-                      <NodeObjectData Name="stage_map_1.67" CanEdit="False" ActionTag="615448394" FrameEvent="" Tag="75" ObjectIndex="19" ctype="SpriteObjectData">
-                        <Position X="77.8791" Y="540.3334" />
+                      <NodeObjectData Name="stage_map_1.67" ActionTag="615448394" FrameEvent="" Tag="75" ObjectIndex="19" ctype="SpriteObjectData">
+                        <Position X="86.0796" Y="1660.3317" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="142.0000" Y="84.0000" />
-                        <PrePosition X="0.1622" Y="0.6754" />
+                        <PrePosition X="0.1793" Y="2.0754" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.67.png" Plist="assets.plist" />
                       </NodeObjectData>
@@ -245,32 +245,32 @@
                         <FileData Type="PlistSubImage" Path="stage/map/1.78.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.81" CanEdit="False" ActionTag="1832720848" FrameEvent="" Tag="81" ObjectIndex="25" ctype="SpriteObjectData">
-                        <Position X="349.5786" Y="452.3335" />
+                        <Position X="349.5752" Y="1695.3319" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="168.0000" Y="84.0000" />
-                        <PrePosition X="0.7283" Y="0.5654" />
+                        <PrePosition X="0.7283" Y="2.1192" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.81.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.85" CanEdit="False" ActionTag="2064927085" FrameEvent="" Tag="82" ObjectIndex="26" ctype="SpriteObjectData">
-                        <Position X="251.7731" Y="429.6667" />
+                        <Position X="251.7729" Y="1672.6659" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="28.0000" Y="25.0000" />
-                        <PrePosition X="0.5245" Y="0.5371" />
+                        <PrePosition X="0.5245" Y="2.0908" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.85.png" Plist="assets.plist" />
                       </NodeObjectData>
                       <NodeObjectData Name="stage_map_1.97" CanEdit="False" ActionTag="-622082977" FrameEvent="" Tag="83" ObjectIndex="27" ctype="SpriteObjectData">
-                        <Position X="399.0887" Y="555.0001" />
+                        <Position X="399.0884" Y="1797.9991" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="35.0000" Y="25.0000" />
-                        <PrePosition X="0.8314" Y="0.6938" />
+                        <PrePosition X="0.8314" Y="2.2475" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FileData Type="PlistSubImage" Path="stage/map/1.97.png" Plist="assets.plist" />
                       </NodeObjectData>
@@ -351,41 +351,41 @@
                     <ColorVector ScaleY="1.0000" />
                   </NodeObjectData>
                   <NodeObjectData Name="Panel_Amigo" ActionTag="-674041117" FrameEvent="" Tag="88" ObjectIndex="7" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
-                    <Position X="150.9339" Y="654.6666" />
+                    <Position X="60.3716" Y="2589.6646" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint />
                     <CColor A="255" R="255" G="255" B="255" />
                     <Size X="100.0000" Y="100.0000" />
-                    <PrePosition X="0.3144" Y="0.8183" />
+                    <PrePosition X="0.1258" Y="0.9249" />
                     <PreSize X="0.2083" Y="0.1250" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow" ActionTag="1035288043" FrameEvent="" Tag="92" ObjectIndex="4" FontSize="22" LabelText="Amigo&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow" ActionTag="1035288043" FrameEvent="" Tag="92" ObjectIndex="4" FontSize="36" LabelText="Amigo&#xA;" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="94.0000" Y="24.0000" />
+                        <Size X="155.0000" Y="40.0000" />
                         <PrePosition X="0.5283" Y="0.7667" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title" ActionTag="-931721457" FrameEvent="" Tag="90" ObjectIndex="3" FontSize="22" LabelText="Amigo" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title" ActionTag="-931721457" FrameEvent="" Tag="90" ObjectIndex="3" FontSize="36" LabelText="Amigo" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="94.0000" Y="24.0000" />
+                        <Size X="155.0000" Y="40.0000" />
                         <PrePosition X="0.5102" Y="0.7867" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
                       <NodeObjectData Name="Button_Amigo" ActionTag="1435659690" FrameEvent="" Tag="94" ObjectIndex="2" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
-                        <Position X="28.9804" Y="15.0004" />
-                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <Position X="9.0576" Y="-35.0000" />
+                        <Scale ScaleX="2.0000" ScaleY="2.0000" />
                         <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.2898" Y="0.1500" />
+                        <PrePosition X="0.0906" Y="-0.3500" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
@@ -404,36 +404,36 @@
                     <AnchorPoint />
                     <CColor A="255" R="255" G="255" B="255" />
                     <Size X="100.0000" Y="100.0000" />
-                    <PrePosition X="0.0616" Y="0.4292" />
+                    <PrePosition X="0.0616" Y="0.1226" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow_Copy" ActionTag="992981008" FrameEvent="" Tag="96" ObjectIndex="5" FontSize="22" LabelText="Benito&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow_Copy" ActionTag="992981008" FrameEvent="" Tag="96" ObjectIndex="5" FontSize="36" LabelText="Benito&#xA;" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="109.0000" Y="24.0000" />
+                        <Size X="176.0000" Y="40.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title_Copy" ActionTag="733282375" FrameEvent="" Tag="97" ObjectIndex="6" FontSize="22" LabelText="Benito&#xA;" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Copy" ActionTag="733282375" FrameEvent="" Tag="97" ObjectIndex="6" FontSize="36" LabelText="Benito&#xA;" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="109.0000" Y="24.0000" />
+                        <Size X="176.0000" Y="40.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
                       <NodeObjectData Name="Button_Benito" ActionTag="1254619647" FrameEvent="" Tag="142" ObjectIndex="6" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
-                        <Position X="28.9803" Y="18.0000" />
-                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <Position X="28.9803" Y="-60.0000" />
+                        <Scale ScaleX="2.0000" ScaleY="2.0000" />
                         <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.2898" Y="0.1800" />
+                        <PrePosition X="0.2898" Y="-0.6000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
@@ -447,41 +447,41 @@
                     <ColorVector ScaleY="1.0000" />
                   </NodeObjectData>
                   <NodeObjectData Name="Panel_Carmen" ActionTag="-122718333" FrameEvent="" Tag="100" ObjectIndex="9" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
-                    <Position X="259.6042" Y="96.0000" />
+                    <Position X="259.6042" Y="2096.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint />
                     <CColor A="255" R="255" G="255" B="255" />
                     <Size X="100.0000" Y="100.0000" />
-                    <PrePosition X="0.5408" Y="0.1200" />
+                    <PrePosition X="0.5408" Y="0.7486" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <Children>
-                      <NodeObjectData Name="Text_Title_Shadow_Copy_Copy" ActionTag="-1331449526" FrameEvent="" Tag="101" ObjectIndex="7" FontSize="22" LabelText="Carmen" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Shadow_Copy_Copy" ActionTag="-1331449526" FrameEvent="" Tag="101" ObjectIndex="7" FontSize="36" LabelText="Carmen" ctype="TextObjectData">
                         <Position X="52.8278" Y="76.6672" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="16" G="16" B="16" />
-                        <Size X="119.0000" Y="24.0000" />
+                        <Size X="194.0000" Y="40.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
-                      <NodeObjectData Name="Text_Title_Copy_Copy" ActionTag="-664536767" FrameEvent="" Tag="102" ObjectIndex="8" FontSize="22" LabelText="Carmen" ctype="TextObjectData">
+                      <NodeObjectData Name="Text_Title_Copy_Copy" ActionTag="-664536767" FrameEvent="" Tag="102" ObjectIndex="8" FontSize="36" LabelText="Carmen" ctype="TextObjectData">
                         <Position X="51.0170" Y="78.6671" />
                         <Scale ScaleX="1.0000" ScaleY="1.0000" />
                         <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                         <CColor A="255" R="255" G="255" B="255" />
-                        <Size X="119.0000" Y="24.0000" />
+                        <Size X="194.0000" Y="40.0000" />
                         <PrePosition X="0.0000" Y="0.0000" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                       </NodeObjectData>
                       <NodeObjectData Name="Button_Carmen" ActionTag="-590078685" FrameEvent="" Tag="143" ObjectIndex="7" TouchEnable="True" FontSize="14" ButtonText="" Scale9Width="44" Scale9Height="44" ctype="ButtonObjectData">
-                        <Position X="29.8860" Y="18.0000" />
-                        <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                        <Position X="9.0569" Y="-36.0000" />
+                        <Scale ScaleX="2.0000" ScaleY="2.0000" />
                         <AnchorPoint />
                         <CColor A="255" R="255" G="255" B="255" />
                         <Size X="44.0000" Y="44.0000" />
-                        <PrePosition X="0.2989" Y="0.1800" />
+                        <PrePosition X="0.0906" Y="-0.3600" />
                         <PreSize X="0.0000" Y="0.0000" />
                         <TextColor A="255" R="65" G="65" B="70" />
                         <DisabledFileData Type="Default" Path="Default/Button_Disable.png" />
@@ -499,7 +499,7 @@
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
-                <InnerNodeSize Width="480" Height="800" />
+                <InnerNodeSize Width="480" Height="2800" />
               </NodeObjectData>
               <NodeObjectData Name="Panel_ExitButton" CanEdit="False" ActionTag="1664656166" FrameEvent="" Tag="55" ObjectIndex="4" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="405.7321" Y="571.9998" />

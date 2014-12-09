@@ -31,7 +31,7 @@ Vec2 Tmx::convertToCoord(Vec2 pos)
     return Vec2(tileX, tileY);
 }
 
-Vec2 Tmx::convertToTile(Vec2 pos)
+Vec2 Tmx::convertToRealPos(Vec2 pos)
 {
     return tiledMap->getLayer("Domain")->getPositionAt(pos) + tiledMap->getTileSize() * 0.5;
 }

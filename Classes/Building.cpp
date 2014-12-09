@@ -75,10 +75,10 @@ void Building::initNode()
         case TrenchMortar:
         {
             buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
-            auto action = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
-            buildingNode->runAction(action);
-            action->setTimeSpeed(0.1);
-            action->gotoFrameAndPlay(0, true);
+            motionAction = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
+            buildingNode->runAction(motionAction);
+            motionAction->setTimeSpeed(0.1);
+            motionAction->gotoFrameAndPlay(0, true);
             break;
         }
         case TownHall:
@@ -89,10 +89,10 @@ void Building::initNode()
         case Canon:
         {
             buildingNode = CSLoader::createNode("res/Canon.csb");
-            auto action = timeline::ActionTimelineCache::createAction("res/Canon.csb");
-            action->setTimeSpeed(0.01);
-            buildingNode->runAction(action);
-            action->gotoFrameAndPlay(0, true);
+            motionAction = timeline::ActionTimelineCache::createAction("res/Canon.csb");
+            buildingNode->runAction(motionAction);
+            ////            motionAction->setTimeSpeed(0.01);
+            //            motionAction->gotoFrameAndPlay(0, true);
             break;
         }
         case GoldBank:

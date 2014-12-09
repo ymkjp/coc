@@ -33,7 +33,7 @@ public:
     TMXLayer *domainTMXLayer;
     
     Vec2 convertToCoord(Vec2 pos);
-    Vec2 convertToTile(Vec2 pos);
+    Vec2 convertToRealPos(Vec2 pos);
     Vec2 convertToIso(Vec2 pos);
     
     void eraseBuilding(Building* building);
@@ -53,6 +53,18 @@ public:
     
     bool isRemainedUnitSelected();
     void decrementUnitCounter();
+    
+    static float calcCompassDegree(Vec2 startPos, Vec2 goalPos)
+    {
+        auto diffPos = goalPos - startPos;
+        auto radian = atan2(diffPos.y, diffPos.x);
+        auto degree = radian * 180 / PI + 90;
+        if (degree < 0) {
+            degree += 360;
+        }
+//        CCLOG("goalPos(%f,%f):radian(%f),degree(%f)",goalPos.x,goalPos.y,radian,degree);
+        return degree;
+    }
     
 protected:
     UI* ui;

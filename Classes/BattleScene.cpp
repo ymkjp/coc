@@ -68,8 +68,8 @@ void BattleScene::deployUnitIfKeptTouching(float frame)
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     // 長押ししてたらデプロイし続ける
-    targetTouch = touch;
-    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.16);
+//    targetTouch = touch;
+//    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.16);
     return true;
 }
 
@@ -146,7 +146,7 @@ void BattleScene::initBuildings()
         for (int y = 0; y < WORLD_MAP_HEIGHT; ++y) {
             
             auto coord = Vec2(x,y);
-            auto coordPos = tmx->convertToTile(coord);
+            auto coordPos = tmx->convertToRealPos(coord);
             
             auto eastCoord = coord + Vec2(1,0);
             auto westCoord = coord + Vec2(-1,0);
