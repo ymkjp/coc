@@ -39,6 +39,12 @@ public:
     {
         return maxRange;
     }
+    
+    void attack();
+    void expandAndShrink();
+    void shoot();
+    
+    Node* bullet;
 };
 
 #endif // __BUILDING_TRENCHMORTAR_H__

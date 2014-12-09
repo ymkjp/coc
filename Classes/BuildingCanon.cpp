@@ -2,7 +2,6 @@
 
 USING_NS_CC;
 
-
 void BuildingCanon::attack()
 {
     // 向き先に応じてアニメーションを切り替え
