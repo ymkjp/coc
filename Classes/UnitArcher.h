@@ -25,6 +25,10 @@ public:
     // 親クラスで virtual 規定された任意で上書きできるメソッド
     std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     
+    // Unit を上書き
+    void shoot();
+    
+    Node* arrow;
 };
 
 #endif // __UNIT_ARCHER_H__

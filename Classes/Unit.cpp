@@ -154,7 +154,7 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
     if (status == Alive && this->targetBuilding->status == Building::Alive) {
-        this->targetBuilding->attacked(damagePerAttack);
+        this->shoot();
     }
     if (this->targetBuilding->status == Building::Died) {
         CCLOG("Unit::attack target died!");
@@ -163,6 +163,11 @@ void Unit::attack(float frame)
         this->scheduleOnce(schedule_selector(Unit::play), 0);
         this->unschedule(schedule_selector(Unit::attack));
     }
+}
+
+void Unit::shoot()
+{
+    this->targetBuilding->attacked(damagePerAttack);
 }
 
 inline void Unit::updateMotionNode()
@@ -282,7 +287,6 @@ Vec2 Unit::findPointToGo()
             
             // 攻撃地点に建物が建っていればこの攻撃地点はスキップ
             // @todo 判定を Wall に変更すべき
-            // @todo はみ出していないかのチェック
             if (!isInMapRange(goalCoord) || !mapNavigator->isTravelable(goalCoord.x,goalCoord.y)) {
 //                CCLOG("There are some buildings at goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
                 continue;

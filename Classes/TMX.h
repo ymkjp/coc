@@ -56,13 +56,18 @@ public:
     
     static float calcCompassDegree(Vec2 startPos, Vec2 goalPos)
     {
-        auto diffPos = goalPos - startPos;
-        auto radian = atan2(diffPos.y, diffPos.x);
-        auto degree = radian * 180 / PI + 90;
+        auto degree = calcDegree(startPos, goalPos);
         if (degree < 0) {
             degree += 360;
         }
-//        CCLOG("goalPos(%f,%f):radian(%f),degree(%f)",goalPos.x,goalPos.y,radian,degree);
+        return degree;
+    }
+    
+    static float calcDegree(Vec2 startPos, Vec2 goalPos)
+    {
+        auto diffPos = goalPos - startPos;
+        auto radian = atan2(diffPos.y, diffPos.x);
+        auto degree = radian * 180 / PI + 90;
         return degree;
     }
     

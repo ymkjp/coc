@@ -52,6 +52,7 @@ public:
     virtual Node* getActingNode();
     virtual timeline::ActionTimeline* getActionTimeline();
     virtual __String createFilename();
+    virtual void shoot();
     
     UnitType type;
     __STATUS status;
