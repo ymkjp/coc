@@ -72,7 +72,7 @@ public:
     }
     
     Vector<Sprite*> domainCells = {};
-    
+    Vector<Sprite*> grassCells = {};
     
 protected:
     UI* ui;

@@ -59,12 +59,20 @@ public:
     virtual void initBuildings();
 
     void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);
+    void addGrass(Vec2 coord);
 
 private:
     // Z値が大きければ上に表示される
     enum localZOrder {
         TmxOrder = 1000, // ゲーム結果画面の表示のときにUIを表示する
     };
+    enum tiledMapOrder {
+        GrassOrder = 1,
+        DomainOrder,
+        BuildingOrder,
+        UnitOrder,
+    };
+    
     Size visibleSize;
     Vec2 origin;
     ScrollView *scrollView;
