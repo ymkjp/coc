@@ -53,7 +53,6 @@ public:
     virtual timeline::ActionTimeline* getActionTimeline();
     virtual __String createFilename();
     
-    
     UnitType type;
     __STATUS status;
     __ACTION action;

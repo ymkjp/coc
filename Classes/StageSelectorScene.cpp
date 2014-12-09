@@ -30,20 +30,18 @@ bool StageSelectorScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     // バイナリ版 (.csb) だとフォントが反映されないため、XML版 (.csd) を使って描画している
-    auto ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/StageSelectorLayer.csd");
+    auto ui = CSLoader::getInstance()->createNodeFromXML("cocosstudio/StageSelectionLayer.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
+    ui->setPosition(origin);
     this->addChild(ui);
     
-    // Panel_RightPart -> ScrollView_1 -> Panel_Amigo -> Button_Amigo
-    auto scrollView = ui->getChildByName("Panel_RightPart")->getChildByName("ScrollView_1");
+    // ScrollView_1 -> Button_Amigo
+    auto scrollView = ui->getChildByName("ScrollView_1");
     
     for (auto stage: stageNameByStages) {
-        __String panelName = "Panel_";
         __String buttonName = "Button_";
-        panelName.append(stage.second);
         buttonName.append(stage.second);
         auto btn = dynamic_cast<cocos2d::ui::Button*>(scrollView
-                                                      ->getChildByName(panelName.getCString())
                                                       ->getChildByName(buttonName.getCString()));
         btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
         {
