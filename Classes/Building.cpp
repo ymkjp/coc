@@ -103,12 +103,16 @@ void Building::initNode()
         case GoldBank:
         {
             buildingNode = CSLoader::createNode("res/GoldBank.csb");
+            motionAction = timeline::ActionTimelineCache::createAction("res/GoldBank.csb");
+            buildingNode->runAction(motionAction);
             buildingNode->setScale(0.75);
             break;
         }
         case ElixerTank:
         {
             buildingNode = CSLoader::createNode("res/ElixerTank.csb");
+            motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
+            buildingNode->runAction(motionAction);
             buildingNode->setScale(0.75);
             break;
         }

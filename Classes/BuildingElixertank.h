@@ -25,6 +25,9 @@ public:
     {
         return ElixerTank;
     };
+    
+    
+    void damagedEffect();
 };
 
 #endif // __BUILDING_ELIXERTANK_H__

@@ -25,6 +25,8 @@ public:
     {
         return TownHall;
     }
+    
+    void damagedEffect();
 };
 
 #endif // __BUILDING_TOWNHALL_H__

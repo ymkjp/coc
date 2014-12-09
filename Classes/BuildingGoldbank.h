@@ -25,6 +25,9 @@ public:
     {
         return GoldBank;
     };
+    
+    
+    void damagedEffect();
 };
 
 #endif // __BUILDING_GOLDBANK_H__
