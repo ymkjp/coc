@@ -48,7 +48,7 @@ void  BattleScene::deployUnit()
     Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());
     if (tmx->isRemainedUnitSelected()
         && isInMapRange(tileCoord)
-        && 0 == tmx->tiledMap->getLayer("Wall")->getTileGIDAt(tileCoord) /** @fixme to teritory not only wall **/) {
+        && 0 == tmx->tiledMap->getLayer("Domain")->getTileGIDAt(tileCoord)) {
         
         // ユニット残数をデクリメントしてユニット生成
         tmx->decrementUnitCounter();
@@ -114,7 +114,6 @@ void BattleScene::addBattleStage()
     
     // Adjust tiledMap to the background
     auto tiledMapPosition = Vec2(origin.x + spriteRight->getContentSize().width * 0.05, origin.y + spriteRight->getContentSize().height * 0.1);
-    tmx->tiledMap->setVisible(TILEDMAP_VISIBLE_ON);
     tiledMapLayer->addChild(tmx->tiledMap);
 //    tiledMapLayer->addChild(spriteBatch);
     tiledMapLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
@@ -158,6 +157,14 @@ void BattleScene::initBuildings()
             auto eessCoord = coord + Vec2(2, 2);
             auto ssCoord = coord + Vec2(0, 2);
             
+            if (this->isTargetLayer("Domain", coord)) {
+                auto domainSprite = CCSprite::createWithSpriteFrameName("stage/field/14.png");
+                tmx->domainCells.pushBack(domainSprite);
+                domainSprite->setPosition(coordPos);
+                domainSprite->setOpacity(40);
+                domainSprite->setScale(0.96);
+                tiledMapLayer->addChild(domainSprite);
+            }
             if (this->isTargetLayer("Wall", coord)) {
                 this->addBuilding(Wall, coord, coordPos);
             } else if (this->isTargetLayer("ArcherTower", coord)

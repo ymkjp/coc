@@ -60,7 +60,6 @@ void Building::initNode()
             } else if (this->isTargetLayer("Wall", westCoord)) {
                 // "\"
                 buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1029.0.png");
-                buildingNode->setPositionX(buildingNode->getPosition().x - buildingNode->getContentSize().width * 0.2);
             } else if (this->isTargetLayer("Wall", northCoord)) {
                 // "/"
                 buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1028.0.png");

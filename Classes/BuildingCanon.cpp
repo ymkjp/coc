@@ -8,7 +8,10 @@ void BuildingCanon::attack()
     FiniteTimeAction* turn = CallFunc::create([=]() {
         // @todo 180度未満の場合は10度づつ順回転、180度以上の場合は逆回転
         if (targetUnit->status == Unit::Alive) {
-            float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord);
+            float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord) + 45;
+            if (360 < comassDegreeGoal) {
+                comassDegreeGoal -= 360;
+            }
             float flameGoal = ceil(comassDegreeGoal * 0.1);
             motionAction->gotoFrameAndPause(flameGoal);
         }

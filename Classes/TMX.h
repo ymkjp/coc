@@ -71,6 +71,9 @@ public:
         return degree;
     }
     
+    Vector<Sprite*> domainCells = {};
+    
+    
 protected:
     UI* ui;
     UnitCountByType unitRemainedCounterByType;

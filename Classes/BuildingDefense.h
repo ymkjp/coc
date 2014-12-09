@@ -26,7 +26,7 @@ public:
     // 子クラスでのオーバーライド
     virtual void attack() {};
     virtual void shoot() {};
-    
+    virtual void idle() {};
     
 protected:
     float damagePerShot;
