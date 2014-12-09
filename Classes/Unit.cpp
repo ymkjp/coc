@@ -19,6 +19,13 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
+    // ユニットの影
+    auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
+    this->addChild(shadowSprite,ShadowOrder,ShadowTag);
+    shadowSprite->setPositionY(-18);
+    shadowSprite->setOpacity(80);
+    shadowSprite->setScale(2.8);
+    
     // 歩きのアクション
     motionNode = this->getActingNode();
     motionAction = this->getActionTimeline();

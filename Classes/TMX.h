@@ -72,6 +72,7 @@ public:
     }
     
     Vector<Sprite*> domainCells = {};
+    Vector<Sprite*> buildingShadowCells = {};
     Vector<Sprite*> grassCells = {};
     
 protected:

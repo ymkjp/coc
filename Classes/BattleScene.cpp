@@ -172,36 +172,42 @@ void BattleScene::initBuildings()
                        && isTargetLayer("ArcherTower", southCoord)
                        && isTargetLayer("ArcherTower", esCoord)) {
                 addGrass(coord);
+                addBuildingShadow(ArcherTower, coord);
                 addBuilding(ArcherTower, coord, coordPos);
             } else if (isTargetLayer("TrenchMortar", coord)
                        && isTargetLayer("TrenchMortar", eastCoord)
                        && isTargetLayer("TrenchMortar", southCoord)
                        && isTargetLayer("TrenchMortar", esCoord)) {
                 addGrass(coord);
+                addBuildingShadow(TrenchMortar, coord);
                 addBuilding(TrenchMortar, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
             } else if (isTargetLayer("TownHall", coord)
                        && isTargetLayer("TownHall", eeCoord)
                        && isTargetLayer("TownHall", eessCoord)
                        && isTargetLayer("TownHall", ssCoord)) {
                 addGrass(coord);
+                addBuildingShadow(TownHall, coord);
                 addBuilding(TownHall, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 1.5));
             } else if (isTargetLayer("Canon", coord)
                        && isTargetLayer("Canon", eastCoord)
                        && isTargetLayer("Canon", southCoord)
                        && isTargetLayer("Canon", esCoord)) {
                 addGrass(coord);
+                addBuildingShadow(Canon, coord);
                 addBuilding(Canon, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
             } else if (isTargetLayer("GoldBank", coord)
                        && isTargetLayer("GoldBank", eastCoord)
                        && isTargetLayer("GoldBank", southCoord)
                        && isTargetLayer("GoldBank", esCoord)) {
                 addGrass(coord);
+                addBuildingShadow(GoldBank, coord);
                 addBuilding(GoldBank, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
             } else if (isTargetLayer("ElixerTank", coord)
                        && isTargetLayer("ElixerTank", eastCoord)
                        && isTargetLayer("ElixerTank", southCoord)
                        && isTargetLayer("ElixerTank", esCoord)) {
                 addGrass(coord);
+                addBuildingShadow(ElixerTank, coord);
                 addBuilding(ElixerTank, coord, coordPos);
             }
         }
@@ -216,6 +222,15 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildingCoords[type].push_back(coord);
     building->setPosition(pos);
     tiledMapLayer->addChild(building,BuildingOrder);
+}
+
+inline void BattleScene::addBuildingShadow(BuildingType type, Vec2 coord)
+{
+    auto shadowSprite = CCSprite::createWithSpriteFrameName("stage/battle_effect/building_shadow.png");
+    tmx->buildingShadowCells.pushBack(shadowSprite);
+    shadowSprite->setPosition(tmx->convertToRealPos(coord));
+    shadowSprite->setScale(1.6);
+    tiledMapLayer->addChild(shadowSprite,BuildingShadowOrder);
 }
 
 inline void BattleScene::addGrass(Vec2 coord)

@@ -59,6 +59,7 @@ public:
     virtual void initBuildings();
 
     void addBuilding(BuildingType type, Vec2 coord, Vec2 Pos);
+    void addBuildingShadow(BuildingType type, Vec2 coord);
     void addGrass(Vec2 coord);
 
 private:
@@ -67,8 +68,9 @@ private:
         TmxOrder = 1000, // ゲーム結果画面の表示のときにUIを表示する
     };
     enum tiledMapOrder {
-        GrassOrder = 1,
-        DomainOrder,
+        DomainOrder = 1,
+        GrassOrder,
+        BuildingShadowOrder,
         BuildingOrder,
         UnitOrder,
     };
