@@ -25,9 +25,6 @@ public:
     // 親クラスで virtual 規定された任意で上書きできるメソッド
     std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     
-    
-protected:
-    
 };
 
 #endif // __UNIT_ARCHER_H__
