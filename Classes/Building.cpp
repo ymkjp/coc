@@ -54,17 +54,22 @@ void Building::initNode()
         {
             auto westCoord = coord + Vec2(-1,0);
             auto northCoord = coord + Vec2(0,-1);
-            auto* filename = String::create("stage/wall/");
             if (this->isTargetLayer("Wall", westCoord) && this->isTargetLayer("Wall", northCoord)) {
-                filename->append("1027.0.png");
+                // "\/"
+                buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1027.0.png");
             } else if (this->isTargetLayer("Wall", westCoord)) {
-                filename->append("1029.0.png");
+                // "\"
+                buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1029.0.png");
+                buildingNode->setPositionX(buildingNode->getPosition().x - buildingNode->getContentSize().width * 0.2);
             } else if (this->isTargetLayer("Wall", northCoord)) {
-                filename->append("1028.0.png");
+                // "/"
+                buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1028.0.png");
+                buildingNode->setPositionX(buildingNode->getPosition().x + buildingNode->getContentSize().width * 0.2);
             } else {
-                filename->append("1030.0.png");
+                // "."
+                buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1030.0.png");
+                buildingNode->setPositionX(buildingNode->getPosition().x + buildingNode->getContentSize().width * 0.2);
             }
-            buildingNode = CCSprite::createWithSpriteFrameName(filename->getCString());
             break;
         }
         case ArcherTower:
@@ -126,6 +131,7 @@ void Building::attacked(float damage)
         this->broken();
     } else {
         hitpoints -= damage;
+        this->damagedEffect();
         this->updateLifeGage();
     }
     CCLOG("Building[%i]::hitpoints %f",type,hitpoints);

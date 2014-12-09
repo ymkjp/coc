@@ -78,7 +78,7 @@ protected:
     // 子クラスで再定義されてもいいメソッド
     virtual bool virtualInit() {return true;};
     virtual void updateLifeGage();
-
+    virtual void damagedEffect() {};
     
     const std::map<BuildingType, float> hitpointsByType =
     {
