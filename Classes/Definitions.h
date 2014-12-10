@@ -23,6 +23,8 @@ USING_NS_CC;
 
 #define TILEDMAP_VISIBLE_ON false
 
+#define DOWNLOAD_FILE "download"
+
 class Tmx;
 class Unit;
 class Building;

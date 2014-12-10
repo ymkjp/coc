@@ -2,10 +2,15 @@
 #define __SPLASH_SCENE_H__
 
 #include "cocos2d.h"
+#include "extensions/cocos-ext.h"
+
+USING_NS_CC;
+USING_NS_CC_EXT;
+
 #include "Definitions.h"
 #include "AudioManager.h"
 
-class SplashScene : public cocos2d::Layer
+class SplashScene : public Layer, public AssetsManagerDelegateProtocol
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
@@ -17,7 +22,19 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(SplashScene);
     
+    // For AssetsManagerDelegateProtocol
+    void upgrade(Ref* pSender);
+    void reset(Ref* pSender);
+    virtual void onError(AssetsManager::ErrorCode errorCode);
+    virtual void onProgress(int percent);
+    virtual void onSuccess();
+    
 private:
+    AssetsManager* getAssetManager();
+    void initDownloadDir();
+    std::string _pathToSave = "";
+    Label *_showDownloadInfo = {};
+    
     AudioManager* audioManager;
     void preloadAllSoundEffects();
     void GoToStageSelectorScene(float dt);

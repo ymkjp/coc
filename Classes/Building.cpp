@@ -134,14 +134,14 @@ void Building::attacked(float damage)
         this->damagedEffect();
         this->updateLifeGage();
     }
-    CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
+//    CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
 }
 
 inline void Building::updateLifeGage()
 {
     int percentage = hitpoints / getFullHitPoints() * 100;
     if (0 <= percentage) {
-        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
+//        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
         lifeGageNode->setVisible(true);
         // @fixme init の時点で pos セットされてない
         // @fixme 建物の高さに応じた lifeGage pos セット
