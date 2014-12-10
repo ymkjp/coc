@@ -130,7 +130,6 @@ void Building::attacked(float damage)
     }
     if (hitpoints < damage) {
         hitpoints = 0;
-        tmx->eraseBuilding(this);
         this->broken();
     } else {
         hitpoints -= damage;
@@ -157,15 +156,49 @@ inline void Building::updateLifeGage()
 void Building::broken()
 {
     status = Died;
+    
+    // @todo tmx のキャッシュを再構築
+    tmx->eraseBuilding(this);
+    
     this->unscheduleAllCallbacks();
     this->removeChildByTag(LifeGageTag);
     
-    // @todo tmx のキャッシュを再構築
+    this->addWrack();
+    this->removeChildByTag(BuildingTag);
+}
+
+void Building::addWrack()
+{
+    if (type == Wall) {
+        return;
+    }
+    
+    Node* wrackNode;
+    switch (type) {
+        case TownHall:
+        {
+            wrackNode = CCSprite::createWithSpriteFrameName("stage/town_hall/broken.png");
+            break;
+        }
+        case GoldBank:
+        {
+            wrackNode = CCSprite::createWithSpriteFrameName("stage/gold_bank/broken.png");
+            break;
+        }
+        case ElixerTank:
+        {
+            auto glass = CCSprite::createWithSpriteFrameName("stage/elixer_tank/broken_glass.png");
+            wrackNode = CCSprite::createWithSpriteFrameName("stage/elixer_tank/broken_base.png");
+            wrackNode->addChild(glass);
+            break;
+        }
+        default:
+            wrackNode = CCSprite::createWithSpriteFrameName("stage/battle_effect/defense_broken.png");
+            break;
+    }
     auto prevPos = buildingNode->getPosition();
-    buildingNode->removeFromParentAndCleanup(true);
-    buildingNode = CCSprite::createWithSpriteFrameName("stage/field/271.0.png");
-    buildingNode->setPosition(prevPos);
-    this->addChild(buildingNode);
+    wrackNode->setPosition(prevPos);
+    this->addChild(wrackNode);
 }
 
 BuildingSpace Building::getSpace()

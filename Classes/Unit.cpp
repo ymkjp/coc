@@ -146,7 +146,7 @@ void Unit::die()
     auto prevNode = this->getChildByTag(MotionTag);
     auto ghostNode = CSLoader::createNode("res/Ghost.csb");
     auto ghostAction = actionTimelineCache->createAction("res/Ghost.csb");
-    ghostNode->setScale(1.6);
+    ghostNode->setScale(1.4);
     ghostNode->setPosition(prevNode->getPosition());
     ghostNode->runAction(ghostAction);
     ghostAction->gotoFrameAndPlay(0, false);

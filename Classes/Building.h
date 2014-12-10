@@ -42,6 +42,7 @@ public:
     bool isTargetLayer(std::string name, Vec2 coord);
     void attacked(float damage);
     void broken();
+    void addWrack();
 
 protected:
     float hitpoints = 400;
