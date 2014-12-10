@@ -73,8 +73,6 @@
 		5C062A4D1A0A496C00FA2D45 /* SplashScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A461A0A496C00FA2D45 /* SplashScene.cpp */; };
 		5C062A511A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
 		5C062A521A0A4BE700FA2D45 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */; };
-		5C2408761A11D503004A785F /* image in Resources */ = {isa = PBXBuildFile; fileRef = 5C2408731A11D503004A785F /* image */; };
-		5C2408771A11D503004A785F /* image in Resources */ = {isa = PBXBuildFile; fileRef = 5C2408731A11D503004A785F /* image */; };
 		5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24087E1A11FA9C004A785F /* BackgroundStage1.png */; };
 		5C2408801A11FA9C004A785F /* BackgroundStage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24087E1A11FA9C004A785F /* BackgroundStage1.png */; };
 		5C24088F1A12EF26004A785F /* assets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088D1A12EF26004A785F /* assets.plist */; };
@@ -225,7 +223,6 @@
 		5C062A461A0A496C00FA2D45 /* SplashScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplashScene.cpp; sourceTree = "<group>"; };
 		5C062A471A0A496C00FA2D45 /* SplashScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScene.h; sourceTree = "<group>"; };
 		5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AppDelegate.cpp; sourceTree = "<group>"; };
-		5C2408731A11D503004A785F /* image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = image; sourceTree = "<group>"; };
 		5C24087E1A11FA9C004A785F /* BackgroundStage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackgroundStage1.png; sourceTree = "<group>"; };
 		5C24088D1A12EF26004A785F /* assets.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = assets.plist; sourceTree = "<group>"; };
 		5C24088E1A12EF26004A785F /* assets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets.png; sourceTree = "<group>"; };
@@ -380,7 +377,6 @@
 				5C24088D1A12EF26004A785F /* assets.plist */,
 				5C24088E1A12EF26004A785F /* assets.png */,
 				5C24087E1A11FA9C004A785F /* BackgroundStage1.png */,
-				5C2408731A11D503004A785F /* image */,
 				5C4E28C31A0BAF39001864CC /* SplashScreen.png */,
 				5C02A0A71A3013C80067B758 /* RedBarMid.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
@@ -642,7 +638,6 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */,
 				5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */,
-				5C2408761A11D503004A785F /* image in Resources */,
 				5CEA4CC71A385AB40044AD7E /* sfx in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */,
@@ -666,7 +661,6 @@
 				5C2408901A12EF26004A785F /* assets.plist in Resources */,
 				5C2408801A11FA9C004A785F /* BackgroundStage1.png in Resources */,
 				5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */,
-				5C2408771A11D503004A785F /* image in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
