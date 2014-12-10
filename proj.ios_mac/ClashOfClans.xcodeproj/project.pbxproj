@@ -92,6 +92,7 @@
 		5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9D1A30C10C0045BB87 /* map_02.tmx */; };
 		5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9E1A30C10C0045BB87 /* map_03.tmx */; };
 		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
+		5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */; };
 		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8E6BB1A265C8200D50450 /* Tmx.cpp */; };
@@ -234,6 +235,8 @@
 		5CD19A9D1A30C10C0045BB87 /* map_02.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_02.tmx; sourceTree = "<group>"; };
 		5CD19A9E1A30C10C0045BB87 /* map_03.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_03.tmx; sourceTree = "<group>"; };
 		5CD19A9F1A30C10C0045BB87 /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
+		5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grave.cpp; sourceTree = "<group>"; };
+		5CEA4CBB1A37DBD50044AD7E /* Grave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grave.h; sourceTree = "<group>"; };
 		5CF695201A198DC0000939B2 /* MapNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapNavigator.cpp; sourceTree = "<group>"; };
 		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
 		5CF8E6BB1A265C8200D50450 /* Tmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tmx.cpp; sourceTree = "<group>"; };
@@ -449,6 +452,8 @@
 		5CD19AA31A31707B0045BB87 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */,
+				5CEA4CBB1A37DBD50044AD7E /* Grave.h */,
 				5C2408971A14542B004A785F /* Unit.cpp */,
 				5C2408981A14542B004A785F /* Unit.h */,
 				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
@@ -664,6 +669,7 @@
 				5C02A0881A2EF2180067B758 /* BuildingElixertank.cpp in Sources */,
 				5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */,
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
+				5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */,
 				5C2408991A14542B004A785F /* Unit.cpp in Sources */,
 				5C02A0821A2EF08E0067B758 /* BuildingCanon.cpp in Sources */,
 				5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */,

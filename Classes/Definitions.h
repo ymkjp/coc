@@ -27,6 +27,7 @@ class Tmx;
 class Unit;
 class Building;
 class BuildingDefense;
+class Grave;
 
 inline static bool isInMapRange(Vec2 targetPoint)
 {
@@ -107,6 +108,7 @@ typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
 typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;
 typedef std::array<std::array<std::vector<BuildingDefense*>, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingAttackRangeGrid;
 typedef std::map<UnitType,int> UnitCountByType;
+typedef std::array<std::array<Grave*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> GraveGrid;
 
 // For Building
 typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;

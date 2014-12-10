@@ -43,6 +43,7 @@ public:
     BuildingCoordsByType buildingCoords;
     BuildingGrid buildingGrid = {{}};
     BuildingAttackRangeGrid buildingAttackRangeGrid = {{}};
+    GraveGrid graveGrid = {{}};
     
     Vector<Unit*> units;
     Vector<Building*> buildings;

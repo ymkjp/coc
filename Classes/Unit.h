@@ -88,12 +88,14 @@ protected:
     virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
     
     void die();
+    void addGrave();
     
     
 // Z値が大きければ上に表示される
     enum LocalZOrder {
         ShadowOrder = 1,
         GraveOrder,
+        GhostOrder,
         MotionOrder,
     };
     

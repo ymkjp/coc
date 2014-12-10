@@ -1,5 +1,6 @@
 #include "Unit.h"
 #include "BuildingDefense.h"
+#include "Grave.h"
 
 USING_NS_CC;
 
@@ -143,11 +144,31 @@ void Unit::die()
     this->stopAllActions();
     
     auto prevNode = this->getChildByTag(MotionTag);
-    auto grave = CCSprite::createWithSpriteFrameName("stage/field/13.png");
-    grave->setPosition(prevNode->getPosition());
+    auto ghostNode = CSLoader::createNode("res/Ghost.csb");
+    auto ghostAction = actionTimelineCache->createAction("res/Ghost.csb");
+    ghostNode->setScale(1.6);
+    ghostNode->setPosition(prevNode->getPosition());
+    ghostNode->runAction(ghostAction);
+    ghostAction->gotoFrameAndPlay(0, false);
     this->removeChildByTag(LifeGageTag);
+    this->removeChildByTag(ShadowTag);
     this->removeChild(prevNode);
-    this->addChild(grave, GraveOrder);
+    this->addChild(ghostNode, GhostOrder);
+    this->addGrave();
+}
+
+void Unit::addGrave()
+{
+    // GraveGrid ですでにお墓が建っていないかチェック
+    // @todo 建設可能coordか
+    if (!tmx->graveGrid[coord.x][coord.y])
+    {
+        auto grave = Grave::create(tmx, coord);
+        grave->setPosition(tmx->convertToRealPos(coord));
+        this->getParent()->addChild(grave);
+        tmx->graveGrid[coord.x][coord.y] = grave;
+    }
+    
 }
 
 void Unit::startAttacking()
