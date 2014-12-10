@@ -473,7 +473,9 @@ void Unit::putTargetMark()
     node->setPositionY(5);
     node->runAction(action);
     action->gotoFrameAndPlay(0,false);
-    targetBuilding->addChild(node);
+    if (targetBuilding) {
+        targetBuilding->addChild(node, Building::TargetMarkOrder);
+    }
 }
 
 void Unit::testAdd(__String fileName, Vec2 pos)

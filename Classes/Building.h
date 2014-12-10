@@ -20,6 +20,14 @@ public:
         Died = 0,
         Alive,
     };
+    
+    // Zオーダーが大きければ上に表示される
+    enum LocalZOrder {
+        BuildingOrder = 1,
+        ArcherOnTowerOrder,
+        TargetMarkOrder,
+    };
+    
     Vec2 coord;
     Node* buildingNode;
     BuildingType type;
@@ -58,8 +66,10 @@ protected:
     enum NodeTag {
         BuildingTag,
         MotionTag,
+        ArcherOnTowerTag,
         LifeGageTag,
     };
+    
     
     const BuildingSpaceByType typeSpace = {
         {TownHall,     Large},
@@ -80,6 +90,7 @@ protected:
     virtual bool virtualInit() {return true;};
     virtual void updateLifeGage();
     virtual void damagedEffect() {};
+    virtual void initArchersOnTower() {};
     
     const std::map<BuildingType, float> hitpointsByType =
     {

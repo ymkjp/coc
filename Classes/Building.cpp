@@ -9,7 +9,6 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     status = Alive;
     type = this->getType();
     coord = _coord;
-
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
  
     this->virtualInit();
@@ -74,6 +73,7 @@ void Building::initNode()
         case ArcherTower:
         {
             buildingNode = CCSprite::createWithSpriteFrameName("stage/archer_tower/1036.0.png");
+            this->initArchersOnTower();
             break;
         }
         case TrenchMortar:
@@ -81,8 +81,6 @@ void Building::initNode()
             buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
             motionAction = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
             buildingNode->runAction(motionAction);
-            motionAction->setTimeSpeed(0.1);
-            motionAction->gotoFrameAndPlay(0, true);
             break;
         }
         case TownHall:
@@ -95,8 +93,6 @@ void Building::initNode()
             buildingNode = CSLoader::createNode("res/Canon.csb");
             motionAction = timeline::ActionTimelineCache::createAction("res/Canon.csb");
             buildingNode->runAction(motionAction);
-            ////            motionAction->setTimeSpeed(0.01);
-            //            motionAction->gotoFrameAndPlay(0, true);
             break;
         }
         case GoldBank:
@@ -104,7 +100,7 @@ void Building::initNode()
             buildingNode = CSLoader::createNode("res/GoldBank.csb");
             motionAction = timeline::ActionTimelineCache::createAction("res/GoldBank.csb");
             buildingNode->runAction(motionAction);
-            buildingNode->setScale(0.75);
+            buildingNode->setScale(0.7);
             break;
         }
         case ElixerTank:
@@ -112,7 +108,8 @@ void Building::initNode()
             buildingNode = CSLoader::createNode("res/ElixerTank.csb");
             motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
             buildingNode->runAction(motionAction);
-            buildingNode->setScale(0.75);
+            buildingNode->setScale(0.7);
+            motionAction->gotoFrameAndPause(6);
             break;
         }
         default:
@@ -120,7 +117,7 @@ void Building::initNode()
             buildingNode = Node::create();
             break;
     }
-    this->addChild(buildingNode);
+    this->addChild(buildingNode,BuildingOrder,BuildingTag);
 }
 
 void Building::attacked(float damage)
@@ -161,10 +158,10 @@ void Building::broken()
     tmx->eraseBuilding(this);
     
     this->unscheduleAllCallbacks();
-    this->removeChildByTag(LifeGageTag);
-    
+    this->removeAllChildrenWithCleanup(true);
+//    this->removeChildByTag(LifeGageTag);
+    //    this->removeChildByTag(BuildingTag);
     this->addWrack();
-    this->removeChildByTag(BuildingTag);
 }
 
 void Building::addWrack()
@@ -196,8 +193,8 @@ void Building::addWrack()
             wrackNode = CCSprite::createWithSpriteFrameName("stage/battle_effect/defense_broken.png");
             break;
     }
-    auto prevPos = buildingNode->getPosition();
-    wrackNode->setPosition(prevPos);
+//    auto prevPos = buildingNode->getPosition();
+//    wrackNode->setPosition(prevPos);
     this->addChild(wrackNode);
 }
 

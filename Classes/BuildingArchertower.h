@@ -6,6 +6,7 @@ USING_NS_CC;
 
 #include "Definitions.h"
 #include "BuildingDefense.h"
+#include "ArcherOnTower.h"
 
 class BuildingArchertower : public BuildingDefense
 {
@@ -33,7 +34,25 @@ public:
     {
         return maxRange;
     }
+    
+    void broken();
 
+protected:
+    const int numberOfArchersOnTower = 3;
+    void initArchersOnTower();
+    Vector<ArcherOnTower*> archersOnTower = {};
+    int attackingArcherIndex = 0;
+    void updateAttacingArcherIndex();
+    
+    // Defense を上書き
+    void attack();
+    void shoot();
+
+    void updateArchersDirection();
+    
+    Node* bullet;
+    Compass direction;
+    void setDirection(float degree);
 };
 
 #endif // __BUILDING_ARCHERTOWER_H__

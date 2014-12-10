@@ -26,6 +26,14 @@ public:
         Damaged,
     };
     
+    // Z値が大きければ上に表示される
+    enum LocalZOrder {
+        ShadowOrder = 1,
+        GraveOrder,
+        GhostOrder,
+        MotionOrder,
+    };
+    
     virtual bool init(Tmx* tmx, Vec2 coord);
     const static std::map<Vec2, Compass> compassByCoords;
 
@@ -89,15 +97,6 @@ protected:
     
     void die();
     void addGrave();
-    
-    
-// Z値が大きければ上に表示される
-    enum LocalZOrder {
-        ShadowOrder = 1,
-        GraveOrder,
-        GhostOrder,
-        MotionOrder,
-    };
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
     
