@@ -103,6 +103,15 @@ const std::map<UnitType, std::string> unitNameByType =
     {Wallbreaker, "Wallbreaker"},
 };
 
+const std::map<UnitType, std::string> unitSmallCaseNameByType =
+{
+    {Archer, "archer"},
+    {Barbarian, "barbarian"},
+    {Giant, "giant"},
+    {Goblin, "goblin"},
+    {Wallbreaker, "wallbreaker"},
+};
+
 // For Tmx
 typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
 typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;

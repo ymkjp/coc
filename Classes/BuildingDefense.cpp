@@ -34,9 +34,10 @@ void BuildingDefense::scan(float frame)
     }
     if (targetUnit) {
         this->attack();
-        // @todo 適当なアニメーションをしながら待つ
-        this->idle();
     }
+    
+    // 何もせずに待つ
+    this->idle();
 }
 
 inline bool BuildingDefense::inAttackRange(Unit* unit)

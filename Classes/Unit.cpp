@@ -14,6 +14,10 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     action = Walking;
     compass = East;
     
+    audioManager = AudioManager::create();
+   
+    audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_deploy");
+    
     hitpoints = this->getFullHitPoints();
     
     attackSpeed = attackSpeedByType.at(type);
@@ -34,7 +38,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     motionAction->gotoFrameAndPlay(0, true);
     this->addChild(motionNode, MotionOrder, MotionTag);
     
-    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
+//    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
 
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
     lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
@@ -44,6 +48,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     lifeGageNode->setPositionY(40);
     lifeGageNode->setVisible(false);
     this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
+    
     this->play(1);
     return true;
 }
@@ -143,6 +148,8 @@ void Unit::die()
     this->unscheduleAllCallbacks();
     this->stopAllActions();
     
+    this->playDeathVoice();
+    
     auto prevNode = this->getChildByTag(MotionTag);
     auto ghostNode = CSLoader::createNode("res/Ghost.csb");
     auto ghostAction = actionTimelineCache->createAction("res/Ghost.csb");
@@ -173,8 +180,7 @@ void Unit::addGrave()
 
 void Unit::startAttacking()
 {
-    this->action = Attacking;
-    this->updateMotionNode();
+    Unit::attack(1);
     this->schedule(schedule_selector(Unit::attack), attackSpeed);
 }
 
@@ -182,10 +188,23 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
     if (status == Alive && this->targetBuilding->status == Building::Alive) {
+        this->action = Attacking;
+        this->playStartAttackingVoice();
+        
+        // 攻撃動作アニメーション
+        // @todo delay
+        auto prevMotionNode = this->getChildByTag(MotionTag);
+        auto nextMotionNode = this->getActingNode();
+        auto action = this->getActionTimeline();
+        nextMotionNode->runAction(action);
+        action->gotoFrameAndPlay(0, false);
+        this->removeChild(prevMotionNode);
+        this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        
         this->shoot();
     }
     if (this->targetBuilding->status == Building::Died) {
-        CCLOG("Unit::attack target died!");
+//        CCLOG("Unit::attack target died!");
         action = Walking;
         this->updateMotionNode();
         this->scheduleOnce(schedule_selector(Unit::play), 0);

@@ -10,6 +10,8 @@ void BuildingElixertank::damagedEffect()
         motionAction->gotoFrameAndPause(percentageFrame);
     }
     
+    audioManager->playSE("elixir_steal");
+    
     auto node = CSLoader::createNode("res/ElixerBubble.csb");
     auto action = actionTimelineCache->createAction("res/ElixerBubble.csb");
     node->setPositionY(5);

@@ -1,6 +1,5 @@
 #include "SplashScene.h"
 #include "StageSelectorScene.h"
-#include "Definitions.h"
 
 USING_NS_CC;
 
@@ -27,6 +26,10 @@ bool SplashScene::init()
         return false;
     }
     
+    audioManager = AudioManager::create();
+    preloadAllSoundEffects();
+    audioManager->playSE("loading_screen_jingle");
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
@@ -43,4 +46,11 @@ void SplashScene::GoToStageSelectorScene(float dt)
 {
     auto scene = StageSelectorScene::createScene();
     Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+}
+
+void SplashScene::preloadAllSoundEffects()
+{
+    for (auto file: audioList) {
+        audioManager->preloadSE(file);
+    }
 }

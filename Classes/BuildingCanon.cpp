@@ -13,7 +13,9 @@ void BuildingCanon::attack()
                 comassDegreeGoal -= 360;
             }
             float flameGoal = ceil(comassDegreeGoal * 0.1);
-            motionAction->gotoFrameAndPause(flameGoal);
+            if (motionAction) {
+                motionAction->gotoFrameAndPause(flameGoal);
+            }
         }
     });
     
@@ -38,6 +40,7 @@ void BuildingCanon::expandAndShrink()
 void BuildingCanon::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
+        audioManager->playSE("cannon_attack");
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         // @向いている方向で銃口の見え方は違う
         bullet->setPosition(this->getPosition());

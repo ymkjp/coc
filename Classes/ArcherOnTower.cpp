@@ -11,6 +11,7 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
     action = Idle;
     direction = East;
     
+    audioManager = AudioManager::create();
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
     auto motionNode = CCSprite::createWithSpriteFrameName("unit/archer/idle/south.png");
@@ -26,9 +27,13 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
 
 void ArcherOnTower::shoot()
 {
+    auto baseParent = getParent();
+    if (!baseParent) {
+        return;
+    }
     if (targetUnit->status == Unit::Alive) {
         arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
-        arrow->setPosition(getParent()->getPosition() + getPosition());
+        arrow->setPosition(baseParent->getPosition() + getPosition());
         arrow->setScale(2);
         
         // 矢を施設方向に向けて回転
@@ -37,6 +42,7 @@ void ArcherOnTower::shoot()
         
         // シークエンス
         FiniteTimeAction* shootMotion = CallFunc::create([=]() {
+            audioManager->playSE("arrow_shoot_by_archer_tower");
             this->action = Attacking;
             this->updateMotionNode();
             this->motionAction->gotoFrameAndPlay(0, false);
@@ -44,6 +50,10 @@ void ArcherOnTower::shoot()
         auto shot = JumpTo::create(0.6, targetUnit->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
             targetUnit->attacked(damagePerShot);
+            auto baseParent = getParent();
+            if (!baseParent) {
+                return;
+            }
             auto base = getParent()->getParent();
             if (base) {
                 base->removeChild(arrow);
@@ -52,7 +62,11 @@ void ArcherOnTower::shoot()
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(shootMotion, shot, hit, disappear, NULL);
         arrow->runAction(sequence);
-        getParent()->getParent()->addChild(arrow);
+        
+        auto base = baseParent->getParent();
+        if (base) {
+            base->addChild(arrow);
+        }
     }
 }
 

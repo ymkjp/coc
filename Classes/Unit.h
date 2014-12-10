@@ -8,6 +8,7 @@ USING_NS_CC;
 using namespace cocostudio;
 
 #include "Definitions.h"
+#include "AudioManager.h"
 #include "Tmx.h"
 #include "Building.h"
 #include "MapNavigator.h"
@@ -82,11 +83,14 @@ protected:
     float damagePerAttack;
     float attackSpeed;
     
+    
     Node* motionNode;
     timeline::ActionTimeline* motionAction;
     
     Node* lifeGageNode;
     timeline::ActionTimeline* lifeGageAction;
+    
+    AudioManager* audioManager;
     
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
@@ -97,6 +101,17 @@ protected:
     
     void die();
     void addGrave();
+    
+    virtual void playDeathVoice()
+    {
+        audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_death");
+    };
+    
+    virtual void playStartAttackingVoice()
+    {
+        audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_attack_hit");
+    };
+    
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);
     
@@ -144,6 +159,8 @@ protected:
     
     bool alreadyMarked = false;
     void putTargetMark();
+    
+    
 };
 
 #endif // __UNIT_H__

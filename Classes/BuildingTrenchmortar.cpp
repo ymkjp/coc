@@ -34,11 +34,13 @@ void BuildingTrenchmortar::expandAndShrink()
 void BuildingTrenchmortar::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
+        audioManager->playSE("mortar_shoot");
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         bullet->setPosition(this->getPosition());
         auto shot = JumpTo::create(1, targetUnit->getPosition(), 200, 1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
+            audioManager->playSE("mortar_hit");
             targetUnit->attacked(getDamagePerShot());
             getParent()->removeChild(bullet);
         });

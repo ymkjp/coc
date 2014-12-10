@@ -24,8 +24,8 @@ bool MapNavigator::isTravelable(float posX, float posY)
  */
 PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
 {
-    CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
-    startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
+//    CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
+//    startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
     
     // スタート地点とゴール地点が同じ場合は empty path を返す
     if (startPoint == goalPoint) {
@@ -82,7 +82,7 @@ PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         while (isFound == false) {
             ++steps;
             if (PATH_FINDING_MAX_THRESHOLD < steps) {
-                CCLOG("PATH_FINDING_MAX_THRESHOLD");
+//                CCLOG("PATH_FINDING_MAX_THRESHOLD");
                 this->isOverSteps = true;
                 break;
             }

@@ -11,6 +11,7 @@ USING_NS_CC;
 using namespace cocostudio;
 
 #include "Definitions.h"
+#include "AudioManager.h"
 #include "Tmx.h"
 
 class Building : public Node
@@ -56,6 +57,7 @@ protected:
     float hitpoints = 400;
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
+    AudioManager* audioManager;
     
     Node* lifeGageNode;
     timeline::ActionTimeline* lifeGageAction;
@@ -69,7 +71,6 @@ protected:
         ArcherOnTowerTag,
         LifeGageTag,
     };
-    
     
     const BuildingSpaceByType typeSpace = {
         {TownHall,     Large},

@@ -11,7 +11,6 @@ void UnitWallbreaker::startAttacking()
         // 攻撃
         this->targetBuilding->attacked(damagePerAttack);
         
-        
         // 攻撃したらすぐ死ぬ
         status = Died;
         this->die();

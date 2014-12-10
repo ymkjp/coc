@@ -23,6 +23,7 @@ std::vector<Vec2> UnitArcher::getSurroundedCoords(Vec2 targetCoord)
 void UnitArcher::shoot()
 {
     if (targetBuilding->status == Building::Alive) {
+        
         arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
         arrow->setPosition(this->getPosition());
         arrow->setScale(2);
@@ -33,6 +34,7 @@ void UnitArcher::shoot()
         
         auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
+            audioManager->playSE("arrow_hit");
             targetBuilding->attacked(damagePerAttack);
             getParent()->removeChild(arrow);
         });

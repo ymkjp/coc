@@ -94,6 +94,8 @@
 		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
 		5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */; };
 		5CEA4CC21A37FDEB0044AD7E /* ArcherOnTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */; };
+		5CEA4CC51A384AED0044AD7E /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */; };
+		5CEA4CC71A385AB40044AD7E /* sfx in Resources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC61A385AB40044AD7E /* sfx */; };
 		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8E6BB1A265C8200D50450 /* Tmx.cpp */; };
@@ -240,6 +242,9 @@
 		5CEA4CBB1A37DBD50044AD7E /* Grave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grave.h; sourceTree = "<group>"; };
 		5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcherOnTower.cpp; sourceTree = "<group>"; };
 		5CEA4CC11A37FDEB0044AD7E /* ArcherOnTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcherOnTower.h; sourceTree = "<group>"; };
+		5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AudioManager.cpp; sourceTree = "<group>"; };
+		5CEA4CC41A384AED0044AD7E /* AudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioManager.h; sourceTree = "<group>"; };
+		5CEA4CC61A385AB40044AD7E /* sfx */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sfx; sourceTree = "<group>"; };
 		5CF695201A198DC0000939B2 /* MapNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapNavigator.cpp; sourceTree = "<group>"; };
 		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
 		5CF8E6BB1A265C8200D50450 /* Tmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tmx.cpp; sourceTree = "<group>"; };
@@ -365,6 +370,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CEA4CC61A385AB40044AD7E /* sfx */,
 				5CD19A9D1A30C10C0045BB87 /* map_02.tmx */,
 				5CD19A9E1A30C10C0045BB87 /* map_03.tmx */,
 				5CD19A9F1A30C10C0045BB87 /* tileset.png */,
@@ -393,6 +399,8 @@
 				5C02A09F1A2FF4A10067B758 /* UI.h */,
 				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
 				5C02A0781A2ED8DB0067B758 /* NodeFactory.h */,
+				5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */,
+				5CEA4CC41A384AED0044AD7E /* AudioManager.h */,
 				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
 				5CF695211A198DC0000939B2 /* MapNavigator.h */,
 				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
@@ -635,6 +643,7 @@
 				5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */,
 				5C24087F1A11FA9C004A785F /* BackgroundStage1.png in Resources */,
 				5C2408761A11D503004A785F /* image in Resources */,
+				5CEA4CC71A385AB40044AD7E /* sfx in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
@@ -677,6 +686,7 @@
 				5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */,
 				5C2408991A14542B004A785F /* Unit.cpp in Sources */,
 				5C02A0821A2EF08E0067B758 /* BuildingCanon.cpp in Sources */,
+				5CEA4CC51A384AED0044AD7E /* AudioManager.cpp in Sources */,
 				5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */,
 				5C02A0941A2F0E980067B758 /* UnitBarbarian.cpp in Sources */,
 				5C062A4A1A0A496C00FA2D45 /* BattleScene.cpp in Sources */,

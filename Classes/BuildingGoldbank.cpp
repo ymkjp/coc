@@ -11,6 +11,8 @@ void BuildingGoldbank::damagedEffect()
         motionAction->gotoFrameAndPause(percentageFrame);
     }
     
+    audioManager->playSE("coin_steal");
+    
     auto node = CSLoader::createNode("res/CoinBubble.csb");
     auto action = actionTimelineCache->createAction("res/CoinBubble.csb");
     node->setPositionY(5);

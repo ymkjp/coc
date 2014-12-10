@@ -27,6 +27,12 @@ public:
         return this->findNearestWallGoalPoint();
     }
     
+    void playDeathVoice()
+    {
+        // deployのときと同じ音
+        audioManager->playSE("unit_wallbreaker_deploy");
+    };
+    
     void startAttacking();
     
     

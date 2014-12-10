@@ -2,22 +2,52 @@
 #define __SPLASH_SCENE_H__
 
 #include "cocos2d.h"
+#include "Definitions.h"
+#include "AudioManager.h"
 
 class SplashScene : public cocos2d::Layer
 {
 public:
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
-
+    
     // Here's a difference. Method 'init' in cocos2d-x returns bool, instead of returning 'id' in cocos2d-iphone
-    virtual bool init();  
+    virtual bool init();
     
     // implement the "static create()" method manually
     CREATE_FUNC(SplashScene);
     
 private:
-    
+    AudioManager* audioManager;
+    void preloadAllSoundEffects();
     void GoToStageSelectorScene(float dt);
+    
+    const std::vector<std::string> audioList = {
+        "arrow_hit",
+        "arrow_shoot",
+        "button_click",
+        "cannon_attack",
+        "coin_steal",
+        "elixir_steal",
+        "explosion",
+        "loading_screen_jingle",
+        "mortar_hit",
+        "mortar_shoot",
+        "unit_archer_death",
+        "unit_archer_deploy",
+        "unit_barbarian_attack_hit",
+        "unit_barbarian_death",
+        "unit_barbarian_deploy",
+        "unit_giant_attack_hit",
+        "unit_giant_attack_start",
+        "unit_giant_death",
+        "unit_giant_deploy",
+        "unit_goblin_attack_hit",
+        "unit_goblin_death",
+        "unit_goblin_deploy",
+        "unit_wallbreaker_attack",
+        "unit_wallbreaker_deploy",
+    };
 };
 
 #endif // __SPLASH_SCENE_H__

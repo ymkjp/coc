@@ -2,6 +2,7 @@
 #define __ARCHER_ON_TOWER_H__
 
 #include "Definitions.h"
+#include "AudioManager.h"
 #include "Tmx.h"
 
 class ArcherOnTower : public Node
@@ -32,6 +33,7 @@ public:
     
 protected:
     Tmx* tmx;
+    AudioManager* audioManager;
     Vec2 coord;
     Compass direction;
     timeline::ActionTimelineCache* actionTimelineCache;

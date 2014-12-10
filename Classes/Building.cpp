@@ -10,7 +10,8 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     type = this->getType();
     coord = _coord;
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
- 
+    audioManager = AudioManager::create();
+
     this->virtualInit();
     this->initNode();
     
@@ -167,6 +168,8 @@ void Building::broken()
 void Building::addWrack()
 {
     if (type == Wall) {
+        // 残骸の代わりに音だけ表示
+        audioManager->playSE("explosion");
         return;
     }
     
