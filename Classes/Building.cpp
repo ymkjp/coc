@@ -15,21 +15,6 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     this->virtualInit();
     this->initNode();
     
-    // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
-    lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
-    lifeGageAction = actionTimelineCache->createAction("res/LifeGageBuilding.csb");
-    lifeGageNode->runAction(lifeGageAction);
-    lifeGageNode->setVisible(false);
-    this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
-    
-    // ターゲットマークの初期化
-    // @todo globalZOrder
-    targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
-    targetMarkAction = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
-    targetMarkNode->setPositionY(5);
-    targetMarkNode->runAction(targetMarkAction);
-    this->addChild(targetMarkNode,TargetMarkOrder,TargetMarkTag);
-    
     // 子で各々行う初期化
     this->initOwn();
     
@@ -125,6 +110,7 @@ void Building::initNode()
             motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
             buildingNode->runAction(motionAction);
             buildingNode->setScale(0.7);
+            buildingNode->setPositionY(10);
             motionAction->gotoFrameAndPause(6);
             break;
         }
@@ -158,12 +144,21 @@ void Building::attacked(float damage)
 
 inline void Building::updateLifeGage()
 {
-    if (0 <= hitpointPercentage) {
+    auto parent = getParent();
+    if (parent && !lifeGageNode) {
+        // ライフゲージ初期化
+        // 0〜100フレームまであって徐々に減らしていくことで操作できる
+        lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
+        lifeGageAction = actionTimelineCache->createAction("res/LifeGageBuilding.csb");
+        lifeGageNode->runAction(lifeGageAction);
+        getParent()->addChild(lifeGageNode,LifeGageZOrder);
+    }
+    if (parent && 0 <= hitpointPercentage) {
 //        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
-        lifeGageNode->setVisible(true);
         // @fixme init の時点で pos セットされてない
         // @fixme 建物の高さに応じた lifeGage pos セット
-        lifeGageNode->setPositionY(buildingNode->getPosition().y + 60);
+        lifeGageNode->setVisible(true);
+        lifeGageNode->setPosition(getPosition().x, getPosition().y + 60);
         lifeGageAction->gotoFrameAndPause((int)hitpointPercentage);
         this->scheduleOnce(schedule_selector(Building::hideLifeGage), 3.0);
     }
@@ -179,13 +174,34 @@ void Building::broken()
     this->stopAllActions();
     this->unscheduleAllCallbacks();
     this->removeAllChildrenWithCleanup(true);
-//    this->removeChildByTag(LifeGageTag);
-    //    this->removeChildByTag(BuildingTag);
+    
+    auto parent = getParent();
+    if (parent && lifeGageNode) {
+        parent->removeChild(lifeGageNode);
+    }
+    if (parent && targetMarkNode) {
+        parent->removeChild(targetMarkNode);
+    }
+
+    this->brokenEffect();
     this->addWrack();
     
     if (type != Wall) {
         tmx->decrementBuildingCount();
     }
+}
+
+void Building::brokenEffect()
+{
+    auto node = CSLoader::createNode("res/Broken.csb");
+    auto children = node->getChildren();
+    for (auto shard: children) {
+        //時間, 移動距離, ジャンプの最高点, ジャンプの回数
+        auto jump = JumpTo::create(1, Vec2(rand() % 180 - 90, rand() % 180 - 90), rand() % 100, 2);
+        auto disapear = FadeOut::create(2.5);
+        shard->runAction(Spawn::create(jump,disapear, NULL));
+    }
+    this->addChild(node,BuildingExplosionShardsOrder);
 }
 
 void Building::addWrack()
@@ -206,6 +222,7 @@ void Building::addWrack()
         case GoldBank:
         {
             wrackNode = CCSprite::createWithSpriteFrameName("stage/gold_bank/broken.png");
+            wrackNode->setRotation(-90);
             break;
         }
         case ElixerTank:
@@ -213,6 +230,7 @@ void Building::addWrack()
             auto glass = CCSprite::createWithSpriteFrameName("stage/elixer_tank/broken_glass.png");
             wrackNode = CCSprite::createWithSpriteFrameName("stage/elixer_tank/broken_base.png");
             wrackNode->addChild(glass);
+            wrackNode->setPosition(wrackNode->getPosition().x +18, wrackNode->getPosition().y +18);
             break;
         }
         default:
@@ -231,6 +249,18 @@ BuildingSpace Building::getSpace()
 
 void Building::putTargetMark()
 {
+    auto parent = getParent();
+    if (!parent) {
+        return;
+    }
+    if (!targetMarkAction) {
+        // ターゲットマークの初期化
+        targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
+        targetMarkAction = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
+        targetMarkNode->setPosition(getPosition().x,getPosition().y + 5);
+        targetMarkNode->runAction(targetMarkAction);
+        getParent()->addChild(targetMarkNode,TargetMarkerZOrder);
+    }
     targetMarkAction->gotoFrameAndPlay(0,false);
 }
 

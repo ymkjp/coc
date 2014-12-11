@@ -13,12 +13,12 @@
         <PreSize X="0.0000" Y="0.0000" />
         <Children>
           <NodeObjectData Name="UnitSelectorPanel" ActionTag="6" FrameEvent="" Tag="4" ObjectIndex="1" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="10.0000" Y="17.0000" />
+            <Position X="10.0000" Y="10.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
             <Size X="940.0000" Y="140.0000" />
-            <PrePosition X="0.0104" Y="0.0266" />
+            <PrePosition X="0.0104" Y="0.0156" />
             <PreSize X="0.9792" Y="0.2188" />
             <Children>
               <NodeObjectData Name="Panel_Barbarian" ActionTag="7" FrameEvent="" Tag="5" ObjectIndex="2" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">

@@ -41,7 +41,6 @@ void BuildingCanon::attack()
 
 void BuildingCanon::expandAndShrink()
 {
-    // @todo 火花・煙
     auto expandAction = ScaleTo::create(0.02, 1.02);
     auto delay = DelayTime::create(0.1);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {
@@ -83,6 +82,10 @@ void BuildingCanon::shoot()
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
         bullet->runAction(sequence);
-        getParent()->addChild(bullet);
+        auto base = getParent();
+        if (base) {
+            base->addChild(bullet,BulletZOrder);
+        }
+        
     }
 }

@@ -30,7 +30,6 @@ public:
     // Z値が大きければ上に表示される
     enum LocalZOrder {
         ShadowOrder = 1,
-        GraveOrder,
         GhostOrder,
         MotionOrder,
     };

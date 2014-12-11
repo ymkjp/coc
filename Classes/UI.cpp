@@ -177,7 +177,7 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     
     // Panel_MainResult -> Panel_TotalDamage -> Text_Percentage{_Shadow}
     auto text = StringUtils::format("%d", (int)percentage);
-    text.append(" %");
+    text.append("%");
     auto panel = mainResultPanel->getChildByName("Panel_TotalDamage");
     auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage"));
     auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage_Shadow"));

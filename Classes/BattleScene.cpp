@@ -71,7 +71,7 @@ void  BattleScene::deployUnit()
         auto unit = nodeFactory->createUnit(tmx->getSelectedUnit(), tileCoord);
         unit->setPosition(tmx->domainTMXLayer->convertToNodeSpace(targetTouch->getLocation()));
         tmx->units.pushBack(unit);
-        tiledMapLayer->addChild(unit,UnitOrder);
+        tiledMapLayer->addChild(unit,tileCoord.x + tileCoord.y);
     }
 }
 
@@ -189,35 +189,35 @@ void BattleScene::initBuildings()
                        && isTargetLayer("ArcherTower", esCoord)) {
                 addGrass(coord);
                 addBuildingShadow(ArcherTower, coord);
-                addBuilding(ArcherTower, coord, coordPos);
+                addBuilding(ArcherTower, coord, Vec2(coordPos.x,coordPos.y + 14));
             } else if (isTargetLayer("TrenchMortar", coord)
                        && isTargetLayer("TrenchMortar", eastCoord)
                        && isTargetLayer("TrenchMortar", southCoord)
                        && isTargetLayer("TrenchMortar", esCoord)) {
                 addGrass(coord);
                 addBuildingShadow(TrenchMortar, coord);
-                addBuilding(TrenchMortar, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
+                addBuilding(TrenchMortar, coord, coordPos);
             } else if (isTargetLayer("TownHall", coord)
                        && isTargetLayer("TownHall", eeCoord)
                        && isTargetLayer("TownHall", eessCoord)
                        && isTargetLayer("TownHall", ssCoord)) {
                 addGrass(coord);
                 addBuildingShadow(TownHall, coord);
-                addBuilding(TownHall, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 1.5));
+                addBuilding(TownHall, coord, Vec2(coordPos.x,coordPos.y - 10));
             } else if (isTargetLayer("Canon", coord)
                        && isTargetLayer("Canon", eastCoord)
                        && isTargetLayer("Canon", southCoord)
                        && isTargetLayer("Canon", esCoord)) {
                 addGrass(coord);
                 addBuildingShadow(Canon, coord);
-                addBuilding(Canon, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
+                addBuilding(Canon, coord, coordPos);
             } else if (isTargetLayer("GoldBank", coord)
                        && isTargetLayer("GoldBank", eastCoord)
                        && isTargetLayer("GoldBank", southCoord)
                        && isTargetLayer("GoldBank", esCoord)) {
                 addGrass(coord);
                 addBuildingShadow(GoldBank, coord);
-                addBuilding(GoldBank, coord, Vec2(coordPos.x, coordPos.y - tmx->tiledMap->getTileSize().height * 0.5));
+                addBuilding(GoldBank, coord, coordPos);
             } else if (isTargetLayer("ElixerTank", coord)
                        && isTargetLayer("ElixerTank", eastCoord)
                        && isTargetLayer("ElixerTank", southCoord)
@@ -237,8 +237,7 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
     building->setPosition(pos);
-    building->setGlobalZOrder(calcGrobalZOrder(coord));
-    tiledMapLayer->addChild(building,BuildingOrder);
+    tiledMapLayer->addChild(building,coord.x + coord.y);
 }
 
 inline void BattleScene::addBuildingShadow(BuildingType type, Vec2 coord)
@@ -252,10 +251,13 @@ inline void BattleScene::addBuildingShadow(BuildingType type, Vec2 coord)
 
 inline void BattleScene::addGrass(Vec2 coord)
 {
-    auto grassSprite = CCSprite::createWithSpriteFrameName("stage/field/256.0.png");
+    // 芝生
+    auto pos = tmx->convertToRealPos(coord);
+    auto grassSprite = CCSprite::createWithSpriteFrameName("stage/field/265.0.png");
+    grassSprite->setRotation(-45);
     tmx->grassCells.pushBack(grassSprite);
-    grassSprite->setPosition(tmx->convertToRealPos(coord));
-    grassSprite->setScale(1.6);
+    grassSprite->setPosition(Vec2(pos.x + 2, pos.y -4));
+//    grassSprite->setScale(2);
     tiledMapLayer->addChild(grassSprite,GrassOrder);
 }
 

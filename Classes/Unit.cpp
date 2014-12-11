@@ -47,7 +47,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
     lifeGageNode->setVisible(false);
-    this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
+    this->addChild(lifeGageNode,1,LifeGageTag); // ZOrderが割り当てられる
     
     this->play(1);
     return true;
@@ -98,6 +98,7 @@ void Unit::play(float frame)
         FiniteTimeAction* func = CallFunc::create([=]() {
             //            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
             if (status == Alive) {
+                this->setLocalZOrder(nextCoord.x + nextCoord.y);
                 this->setCompass(prevCoord, nextCoord);
                 this->updateMotionNode();
                 this->pushTobuildingAttackRange(nextCoord);
@@ -168,14 +169,14 @@ void Unit::addGrave()
 {
     // GraveGrid ですでにお墓が建っていないかチェック
     // @todo 建設可能coordか
-    if (!tmx->graveGrid[coord.x][coord.y])
+    auto parent = getParent();
+    if (parent && !tmx->graveGrid[coord.x][coord.y])
     {
         auto grave = Grave::create(tmx, coord);
         grave->setPosition(tmx->convertToRealPos(coord));
-        this->getParent()->addChild(grave);
+        parent->addChild(grave,coord.x + coord.y);
         tmx->graveGrid[coord.x][coord.y] = grave;
     }
-    
 }
 
 void Unit::startAttacking()

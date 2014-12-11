@@ -24,11 +24,12 @@ public:
     
     // Zオーダーが大きければ上に表示される
     enum LocalZOrder {
-        BuildingOrder = 1,
+        DefaultOrder = 1,
+        BuildingOrder,
+        BuildingExplosionShardsOrder,
         CanonSmokeOrder,
         LuminousCirclebOrder, 
         ArcherOnTowerOrder,
-        TargetMarkOrder,
     };
     
     Vec2 coord;
@@ -55,6 +56,7 @@ public:
     void broken();
     void addWrack();
     void putTargetMark();
+    void brokenEffect();
     
 protected:
     float hitpoints = 400;
@@ -77,7 +79,7 @@ protected:
         BuildingTag,
         MotionTag,
         ArcherOnTowerTag,
-        TargetMarkTag,
+//        TargetMarkTag,
         LifeGageTag,
         CanonSmokeNodeTag,
         CanonSmokeActionTag,

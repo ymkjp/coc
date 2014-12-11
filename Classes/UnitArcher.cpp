@@ -32,15 +32,21 @@ void UnitArcher::shoot()
         float degree = tmx->calcDegree(coord, targetBuilding->coord);
         arrow->setRotation(225 + degree);
         
+        auto parent = getParent();
         auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
             audioManager->playSE("arrow_hit");
             targetBuilding->attacked(damagePerAttack);
-            getParent()->removeChild(arrow);
+            if (parent) {
+                parent->removeChild(arrow);
+            }
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(shot, hit, disappear, NULL);
         arrow->runAction(sequence);
-        getParent()->addChild(arrow);
+
+        if (parent) {
+            parent->addChild(arrow,ArrowZOrder);
+        }
     }
 }

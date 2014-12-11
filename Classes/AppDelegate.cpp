@@ -33,6 +33,16 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // run
     director->runWithScene(scene);
 
+    // Add file load pathes
+    auto fileUtils = FileUtils::getInstance();
+    
+    // add res fold resource
+    std::vector<std::string> resDirOrders;
+    resDirOrders.push_back(fileUtils->getWritablePath());
+    CCLOG("%s", fileUtils->getWritablePath().c_str());
+    resDirOrders.push_back(fileUtils->getWritablePath() + "loading");
+    fileUtils->setSearchPaths(resDirOrders);
+    
     return true;
 }
 

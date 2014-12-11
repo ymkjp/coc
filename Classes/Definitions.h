@@ -34,14 +34,21 @@ inline static bool isInMapRange(Vec2 targetPoint)
             && targetPoint.y < WORLD_MAP_HEIGHT);
 };
 
-enum GlobalZOrderType {
-    TargetMarkerGZO = 1000,
-    LifeGageGZO = 2000,
-};
-
-inline static float calcGrobalZOrder(Vec2 coord)
-{
-    return coord.x + coord.y;
+// 地面の上の施設 44*2 より大きくするとバトルマップで上に表示される
+enum ZOrder {
+    // 地面の上の影
+    BulletShadowZOrder = 400,
+    
+    // 地面の上の効果
+    MortalImpactZOrder = 450,
+    
+    // 飛行しているもの
+    BulletZOrder = 500,
+    ArrowZOrder = 500,
+    
+    // UI要素
+    TargetMarkerZOrder = 1000,
+    LifeGageZOrder = 2000,
 };
 
 enum Stages {

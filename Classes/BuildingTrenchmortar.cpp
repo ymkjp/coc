@@ -59,7 +59,7 @@ void BuildingTrenchmortar::shoot()
         auto parentNode = getParent();
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
-            if (luminousAction && smokeAction) {
+            if (status == Alive && luminousAction && smokeAction) {
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }
@@ -73,13 +73,14 @@ void BuildingTrenchmortar::shoot()
                 impactNode = CSLoader::createNode("res/MortarImpact.csb");
                 impactAction = timeline::ActionTimelineCache::createAction("res/MortarImpact.csb");
                 impactNode->runAction(impactAction);
-                parentNode->addChild(impactNode);
+                parentNode->addChild(impactNode,MortalImpactZOrder);
                 impactNode->setPosition(spot);
                 impactAction->gotoFrameAndPlay(0, false);
+
+                targetUnit->attacked(getDamagePerShot());
+                parentNode->removeChild(bullet);
+                parentNode->removeChild(bulletShadow);
             }
-            targetUnit->attacked(getDamagePerShot());
-            getParent()->removeChild(bullet);
-            getParent()->removeChild(bulletShadow);
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
@@ -90,7 +91,9 @@ void BuildingTrenchmortar::shoot()
         auto shadowSequence = Sequence::create(shadowMoving,disappear, NULL);
         bulletShadow->runAction(shadowSequence);
         
-        getParent()->addChild(bullet);
-        getParent()->addChild(bulletShadow);
+        if (parentNode) {
+            parentNode->addChild(bullet,BulletZOrder);;
+            parentNode->addChild(bulletShadow,BulletShadowZOrder);
+        }
     }
 }

@@ -65,7 +65,7 @@ void ArcherOnTower::shoot()
         
         auto base = baseParent->getParent();
         if (base) {
-            base->addChild(arrow);
+            base->addChild(arrow,ArrowZOrder);
         }
     }
 }
