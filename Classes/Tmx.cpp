@@ -136,7 +136,7 @@ void Tmx::decrementUnitCounter()
     auto unitType = getSelectedUnit();
     int remainCount = unitRemainedCounterByType.at(unitType) - 1;
 
-    if (0 <= remainCount) {
+    if (0 <= remainCount && battleStatus == Playing) {
         unitRemainedCounterByType[unitType] = remainCount;
         
         // @todo 長押しでつまることがあるので1秒に1回までに留める
@@ -151,7 +151,7 @@ bool Tmx::isRemainedUnitSelected()
 
 void Tmx::increaseBattleScore(ScoreType type, float amount)
 {
-    if (0 < amount) {
+    if (0 < amount && battleStatus == Playing) {
         earnedBattleScoreByType[type] += amount;
         ui->updateBattleScore(type, earnedBattleScoreByType.at(type));
         
@@ -185,7 +185,9 @@ void Tmx::decrementBuildingCount()
     float ratio = 100 - (float)currentBuildingCount / (float)fullBuildingCount * 100;
     earnedBattleScoreByType[DestructionRatioScore] = ratio;
 //    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
-    ui->updateDestructionRatio(ratio);
+    if (battleStatus == Playing) {
+        ui->updateDestructionRatio(ratio);
+    }
 }
 
 void Tmx::initBattleControllerCounters()

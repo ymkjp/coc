@@ -35,7 +35,6 @@ void BuildingTrenchmortar::attack()
 
 void BuildingTrenchmortar::expandAndShrink()
 {
-    // @todo 火花・煙
     auto expandAction = ScaleTo::create(0.02, 1.06);
     auto delay = DelayTime::create(0.1);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {
@@ -53,6 +52,9 @@ void BuildingTrenchmortar::shoot()
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         bullet->setPosition(this->getPosition());
         
+        bulletShadow = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet_shadow.png");
+        bulletShadow->setPosition(this->getPosition());
+        
         auto spot = targetUnit->getPosition();
         auto parentNode = getParent();
         
@@ -63,6 +65,7 @@ void BuildingTrenchmortar::shoot()
             }
         });
         auto shot = JumpTo::create(1, targetUnit->getPosition(), 200, 1);
+
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
             audioManager->playSE("mortar_hit");
@@ -76,10 +79,18 @@ void BuildingTrenchmortar::shoot()
             }
             targetUnit->attacked(getDamagePerShot());
             getParent()->removeChild(bullet);
+            getParent()->removeChild(bulletShadow);
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
         bullet->runAction(sequence);
+        
+        // 影も移動
+        auto shadowMoving = MoveTo::create(1, targetUnit->getPosition());
+        auto shadowSequence = Sequence::create(shadowMoving,disappear, NULL);
+        bulletShadow->runAction(shadowSequence);
+        
         getParent()->addChild(bullet);
+        getParent()->addChild(bulletShadow);
     }
 }

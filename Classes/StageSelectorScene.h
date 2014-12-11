@@ -26,7 +26,6 @@ private:
         {Benito, "Benito"},
         {Carmen, "Carmen"},
     };
-    void goToBattleScene(float dt);
 };
 
 #endif // __STAGE_SELECTOR_SCENE_H__

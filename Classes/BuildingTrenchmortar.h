@@ -57,6 +57,7 @@ public:
     void initOwn();
     
     Node* bullet;
+    Node* bulletShadow;
 };
 
 #endif // __BUILDING_TRENCHMORTAR_H__

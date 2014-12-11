@@ -86,6 +86,8 @@ private:
     SpriteBatchNode* spriteBatch;
     bool isTargetLayer(std::string name, Vec2 coord);
     
+    void showCloud();
+    
     // 長押し Touch 判定
     cocos2d::Touch* targetTouch;
     void deployUnitIfKeptTouching(float frame);

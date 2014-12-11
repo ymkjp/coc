@@ -39,7 +39,19 @@ bool BattleScene::init(Stages stage)
     // 施設を建て終わったあとでカウントをUIに反映
     tmx->initBattleControllerCounters();
     
+    this->showCloud();
+    
     return true;
+}
+
+void BattleScene::showCloud()
+{
+    // 画面切り替え時の雲を表示
+    auto cloudLayer = CSLoader::createNode("res/CloudSecondLayer.csb");
+    auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudSecondLayer.csb");
+    cloudLayer->runAction(cloudAction);
+    cloudAction->gotoFrameAndPlay(0, false);
+    this->addChild(cloudLayer);
 }
 
 void  BattleScene::deployUnit()
@@ -72,8 +84,8 @@ void BattleScene::deployUnitIfKeptTouching(float frame)
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     // 長押ししてたらデプロイし続ける
-    targetTouch = touch;
-    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.18);
+//    targetTouch = touch;
+//    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.18);
     return true;
 }
 

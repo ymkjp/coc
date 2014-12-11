@@ -48,24 +48,28 @@ bool StageSelectorScene::init()
             if (type == ui::Widget::TouchEventType::ENDED) {
                 selectedStage = stage.first;
                 
-                // 画面切り替え時の雲を表示
-                auto cloudLayer = CSLoader::createNode("res/CloudFirstLayer.csb");
-                auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudFirstLayer.csb");
-                cloudLayer->runAction(cloudAction);
-                cloudAction->gotoFrameAndPlay(0, false);
-//                cloudAction->setFrameEventCallFunc(StageSelectorScene::goToBattleScene)));
-                this->addChild(cloudLayer,1000);
+                auto delay = DelayTime::create(1);
+                
+                FiniteTimeAction* shootCloud = CallFunc::create([=]() {
+                    // 画面切り替え時の雲を表示
+                    auto cloudLayer = CSLoader::createNode("res/CloudFirstLayer.csb");
+                    auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudFirstLayer.csb");
+                    cloudLayer->runAction(cloudAction);
+                    cloudAction->gotoFrameAndPlay(0, false);
+                    this->addChild(cloudLayer);
+                    
+                });
+                
+                FiniteTimeAction* goToBattleScene = CallFunc::create([=]() {
+                    auto scene = BattleScene::createScene(selectedStage);
+                    Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
+                });
 
-                this->scheduleOnce(schedule_selector(StageSelectorScene::goToBattleScene), DISPLAY_TIME_SPLASH_SCENE);
+                auto sequence = Sequence::create(shootCloud, delay, goToBattleScene, NULL);
+                this->runAction(sequence);
             }
         });
     }
     
     return true;
-}
-
-void StageSelectorScene::goToBattleScene(float dt)
-{
-    auto scene = BattleScene::createScene(selectedStage);
-    Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
