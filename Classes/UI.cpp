@@ -167,7 +167,7 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     percentage = (percentage > 100) ? 100 : percentage;
     
     // Panel_MainResult -> Panel_Ribbon -> Text_Victory{_Shadow}
-    auto winningText = (50 < percentage) ? "Victory" : "Defeat";
+    auto winningText = (50 < percentage) ? "Victory" : "Defeated";
     auto ribbonPanel = mainResultPanel->getChildByName("Panel_Ribbon");
     auto winningLabel = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory"));
     auto winningLabelShadow = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory_Shadow"));
