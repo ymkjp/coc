@@ -29,6 +29,10 @@ bool SplashScene::init()
         return false;
     }
     
+    // 画像関連のキャッシュ
+    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    cache->addSpriteFramesWithFile("assets.plist");
+    
     // オーディオマネジャの初期化
     audioManager = AudioManager::create();
     preloadAllSoundEffects();
@@ -38,12 +42,13 @@ bool SplashScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto ui = CSLoader::createNode("loading/LoadingLayer.csb");
+//      auto ui = CSLoader::createNode("loading/LoadingLayer.csb");
+  auto ui = CSLoader::getInstance()->createNodeFromXML("LoadingLayer.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
-//    ui->setPosition(origin);
+////    ui->setPosition(origin);
     this->addChild(ui,UIOrder,UITag);
   
-    updateProgressBar(10);
+//    updateProgressBar(10);
     
 //    auto backgroundSprite = Sprite::create("SplashScreen.png");
 //    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);

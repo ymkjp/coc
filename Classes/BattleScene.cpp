@@ -26,10 +26,6 @@ bool BattleScene::init(Stages stage)
     tmx = Tmx::create(stage);
     this->addChild(tmx,TmxOrder);
     
-    // 画像関連のキャッシュ
-    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-    cache->addSpriteFramesWithFile("assets.plist");
-    
     // 各 Building, Unit をつくってくれるNodeFactoryクラス
     nodeFactory = NodeFactory::create(tmx);
     nodeFactory->retain();
@@ -229,7 +225,7 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
     building->setPosition(pos);
-    tiledMapLayer->addChild(building,BuildingOrder);
+    tiledMapLayer->addChild(building,BuildingOrder + coord.x + coord.y);
 }
 
 inline void BattleScene::addBuildingShadow(BuildingType type, Vec2 coord)

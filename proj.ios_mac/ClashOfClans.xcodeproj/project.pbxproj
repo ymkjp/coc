@@ -81,8 +81,6 @@
 		5C2408921A12EF26004A785F /* assets.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C24088E1A12EF26004A785F /* assets.png */; };
 		5C2408991A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
 		5C24089A1A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
-		5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
-		5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C4E28C31A0BAF39001864CC /* SplashScreen.png */; };
 		5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
@@ -99,6 +97,7 @@
 		5CF695221A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF695231A198DC0000939B2 /* MapNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF695201A198DC0000939B2 /* MapNavigator.cpp */; };
 		5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8E6BB1A265C8200D50450 /* Tmx.cpp */; };
+		5CFB9B861A39CA5D00F63148 /* LoadingLayer.csd in Resources */ = {isa = PBXBuildFile; fileRef = 5CFB9B851A39CA5D00F63148 /* LoadingLayer.csd */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -230,7 +229,6 @@
 		5C24088E1A12EF26004A785F /* assets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = assets.png; sourceTree = "<group>"; };
 		5C2408971A14542B004A785F /* Unit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unit.cpp; sourceTree = "<group>"; };
 		5C2408981A14542B004A785F /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
-		5C4E28C31A0BAF39001864CC /* SplashScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashScreen.png; sourceTree = "<group>"; };
 		5CA2120B1A1E20E10053BAED /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
 		5CA2120C1A1E20E10053BAED /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
@@ -250,6 +248,7 @@
 		5CF695211A198DC0000939B2 /* MapNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigator.h; sourceTree = "<group>"; };
 		5CF8E6BB1A265C8200D50450 /* Tmx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tmx.cpp; sourceTree = "<group>"; };
 		5CF8E6BC1A265C8200D50450 /* Tmx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tmx.h; sourceTree = "<group>"; };
+		5CFB9B851A39CA5D00F63148 /* LoadingLayer.csd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LoadingLayer.csd; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -371,6 +370,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CFB9B851A39CA5D00F63148 /* LoadingLayer.csd */,
 				5CF0C7801A39760D00D1F8E4 /* loading */,
 				5CF0C77E1A39682300D1F8E4 /* wall_peg.png */,
 				5CEA4CC61A385AB40044AD7E /* sfx */,
@@ -383,7 +383,6 @@
 				5C24088D1A12EF26004A785F /* assets.plist */,
 				5C24088E1A12EF26004A785F /* assets.png */,
 				5C24087E1A11FA9C004A785F /* BackgroundStage1.png */,
-				5C4E28C31A0BAF39001864CC /* SplashScreen.png */,
 				5C02A0A71A3013C80067B758 /* RedBarMid.png */,
 				521A8EA819F11F5000D177D7 /* fonts */,
 			);
@@ -630,13 +629,13 @@
 				5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5C02A0A61A3013420067B758 /* cocosstudio in Resources */,
-				5C4E28C41A0BAF39001864CC /* SplashScreen.png in Resources */,
 				5C24088F1A12EF26004A785F /* assets.plist in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5CF0C77F1A39682300D1F8E4 /* wall_peg.png in Resources */,
+				5CFB9B861A39CA5D00F63148 /* LoadingLayer.csd in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */,
 				5C2408911A12EF26004A785F /* assets.png in Resources */,
@@ -670,7 +669,6 @@
 				5C2408801A11FA9C004A785F /* BackgroundStage1.png in Resources */,
 				5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
-				5C4E28C51A0BAF39001864CC /* SplashScreen.png in Resources */,
 				521A8EAA19F11F5000D177D7 /* fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

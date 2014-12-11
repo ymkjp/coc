@@ -47,6 +47,15 @@ bool StageSelectorScene::init()
         {
             if (type == ui::Widget::TouchEventType::ENDED) {
                 selectedStage = stage.first;
+                
+                // 画面切り替え時の雲を表示
+                auto cloudLayer = CSLoader::createNode("res/CloudFirstLayer.csb");
+                auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudFirstLayer.csb");
+                cloudLayer->runAction(cloudAction);
+                cloudAction->gotoFrameAndPlay(0, false);
+//                cloudAction->setFrameEventCallFunc(StageSelectorScene::goToBattleScene)));
+                this->addChild(cloudLayer,1000);
+
                 this->scheduleOnce(schedule_selector(StageSelectorScene::goToBattleScene), DISPLAY_TIME_SPLASH_SCENE);
             }
         });
