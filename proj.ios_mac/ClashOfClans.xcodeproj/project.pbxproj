@@ -465,8 +465,6 @@
 		5CD19AA31A31707B0045BB87 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
-				5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */,
-				5CEA4CBB1A37DBD50044AD7E /* Grave.h */,
 				5C2408971A14542B004A785F /* Unit.cpp */,
 				5C2408981A14542B004A785F /* Unit.h */,
 				5C02A05C1A2CCD9A0067B758 /* UnitArcher.cpp */,
@@ -479,6 +477,8 @@
 				5C02A0981A2F0F7B0067B758 /* UnitGoblin.h */,
 				5C02A0991A2F0F7B0067B758 /* UnitWallbreaker.cpp */,
 				5C02A09A1A2F0F7B0067B758 /* UnitWallbreaker.h */,
+				5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */,
+				5CEA4CBB1A37DBD50044AD7E /* Grave.h */,
 			);
 			name = Unit;
 			sourceTree = "<group>";

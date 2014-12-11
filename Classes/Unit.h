@@ -142,6 +142,16 @@ protected:
         {Wallbreaker, 1},
     };
     
+    const std::map<UnitType, float> movementSpeedByType =
+    {
+        {Archer, 0.4},    // 24
+        {Barbarian, 0.5}, // 16
+        {Giant, 0.7},     // 12
+        {Goblin, 0.3},     // 32
+        {Wallbreaker, 0.4}, // 24
+    };
+    
+    
     float getFullHitPoints()
     {
         return hitpointsByType.at(type);

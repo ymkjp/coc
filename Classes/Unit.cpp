@@ -92,7 +92,7 @@ void Unit::play(float frame)
     while (!path.empty()) {
         nextCoord = path.top();
         directionPoint = tmx->convertToRealPos(nextCoord);
-        moveAction = MoveTo::create(0.5, directionPoint);
+        moveAction = MoveTo::create(movementSpeedByType.at(type), directionPoint);
         
         // 向き先に応じてアニメーションを切り替え
         FiniteTimeAction* func = CallFunc::create([=]() {
