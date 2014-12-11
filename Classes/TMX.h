@@ -125,8 +125,8 @@ protected:
     };
     
     BattleScoreByType earnedBattleScoreByType = {
-        {ElixerScore,100},
-        {CoinScore,2200},
+        {ElixerScore,0},
+        {CoinScore,0},
         {DestructionRatioScore,0},
         {StarCountScore,0},
     };

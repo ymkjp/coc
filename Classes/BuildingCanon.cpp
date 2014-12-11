@@ -34,7 +34,11 @@ void BuildingCanon::expandAndShrink()
     });
     auto shrinkAction = ScaleTo::create(0.02, 1);
     auto sequence = Sequence::create(expandAction, delay, shootBullet, shrinkAction, NULL);
-    buildingNode->runAction(sequence);
+    
+    // @todo buildingNode 解放ハンドリング
+    if (buildingNode) {
+        buildingNode->runAction(sequence);
+    }
 }
 
 void BuildingCanon::shoot()

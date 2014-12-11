@@ -9,16 +9,25 @@ using namespace cocostudio;
 #include "cocosGUI.h"
 
 #include "Definitions.h"
+#include "Tmx.h"
 
 class UI : public Node
 {
 public:
-    virtual bool init();
-    CREATE_FUNC(UI);
+    virtual bool init(Tmx* tmx);
+    static UI* create(Tmx* tmx) {
+        auto p = new UI();
+        if (p->init(tmx)) {
+            p->autorelease();
+            return p;
+        }
+        CC_SAFE_DELETE(p);
+        return nullptr;
+    }
     
     // UI画面はバイナリ版 (.csb) だとフォントが反映されないため、XML版 (.csd) を使って描画している
     void showBattleController();
-    void showBattleResult();
+    void showBattleResult(BattleScoreByType score);
     
     UnitType selectedUnit = NoUnitType;
     void updateUnitCounter(UnitType unitType, int count);
@@ -28,6 +37,7 @@ public:
     void updateRemainingAssetScore(ScoreType type, float remainingScore);
     
 protected:
+    Tmx* tmx;
     Size visibleSize;
     Vec2 origin;
     Node* ui;

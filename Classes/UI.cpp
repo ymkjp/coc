@@ -3,8 +3,9 @@
 
 USING_NS_CC;
 
-bool UI::init()
+bool UI::init(Tmx* _tmx)
 {
+    tmx = _tmx;
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     
@@ -50,7 +51,7 @@ void UI::showBattleController()
     btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
                                {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
-                                       this->showBattleResult();
+                                       tmx->showBattleResult();
                                    }
                                });
 }
@@ -142,7 +143,7 @@ inline void UI::changeFrameVisibility()
     }
 }
 
-void UI::showBattleResult()
+void UI::showBattleResult(BattleScoreByType battleScoreByType)
 {
     this->removeAllChildren();
     
@@ -159,6 +160,28 @@ void UI::showBattleResult()
                                        this->goToStageSelectorScene();
                                    }
                                });
+    
+    auto mainResultPanel = ui->getChildByName("Panel_MainResult");
+    float percentage = battleScoreByType.at(DestructionRatioScore);
+    
+    // Panel_MainResult -> Panel_Ribbon -> Text_Victory{_Shadow}
+    auto winningText = (50 < percentage) ? "Victory" : "Defeat";
+    auto ribbonPanel = mainResultPanel->getChildByName("Panel_Ribbon");
+    auto winningLabel = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory"));
+    auto winningLabelShadow = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory_Shadow"));
+    
+    winningLabel->setString(winningText);
+    winningLabelShadow->setString(winningText);
+    
+    // Panel_MainResult -> Panel_TotalDamage -> Text_Percentage{_Shadow}
+    auto text = StringUtils::format("%d", (int)percentage);
+    text.append(" %");
+    auto panel = mainResultPanel->getChildByName("Panel_TotalDamage");
+    auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage"));
+    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage_Shadow"));
+    
+    label->setString(text.c_str());
+    labelShadow->setString(text.c_str());
 }
 
 void UI::goToStageSelectorScene()

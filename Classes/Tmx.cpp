@@ -8,7 +8,7 @@ bool Tmx::init(Stages stage)
     tiledMap->setVisible(TILEDMAP_VISIBLE_ON);
 
     // UI表示
-    ui = UI::create();
+    ui = UI::create(this);
     this->addChild(ui);
     
     // デフォルト選択はバーバリアン
@@ -121,7 +121,8 @@ void Tmx::eraseBuilding(Building* building)
 
 void Tmx::showBattleResult()
 {
-    ui->showBattleResult();
+    battleStatus = Finished;
+    ui->showBattleResult(earnedBattleScoreByType);
 }
 
 
@@ -181,8 +182,9 @@ void Tmx::decrementBuildingCount()
 {
     --currentBuildingCount;
 
-    float ratio = currentBuildingCount / fullBuildingCount * 100;
+    float ratio = 100 - (float)currentBuildingCount / (float)fullBuildingCount * 100;
     earnedBattleScoreByType[DestructionRatioScore] = ratio;
+//    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
     ui->updateDestructionRatio(ratio);
 }
 

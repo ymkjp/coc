@@ -20,6 +20,7 @@ USING_NS_CC;
 #define TILEDMAP_VISIBLE_ON false
 
 class Tmx;
+class UI;
 class Unit;
 class Building;
 class BuildingDefense;
