@@ -34,9 +34,8 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(SplashScene);
     
-    // For AssetsManagerDelegateProtocol
-    void upgrade(Ref* pSender);
-    void reset(Ref* pSender);
+    // アセットマネジャ
+    void reset();
     virtual void onError(AssetsManager::ErrorCode errorCode);
     virtual void onProgress(int percent);
     virtual void onSuccess();
@@ -57,12 +56,12 @@ private:
     const std::vector<std::string> audioList = {
         "arrow_hit",
         "arrow_shoot",
+        "arrow_shoot_by_archer_tower",
         "button_click",
         "cannon_attack",
         "coin_steal",
         "elixir_steal",
         "explosion",
-        "loading_screen_jingle",
         "mortar_hit",
         "mortar_shoot",
         "unit_archer_death",
@@ -77,7 +76,7 @@ private:
         "unit_goblin_attack_hit",
         "unit_goblin_death",
         "unit_goblin_deploy",
-        "unit_wallbreaker_attack",
+        "unit_wallbreaker_attack_hit",
         "unit_wallbreaker_deploy",
     };
 };

@@ -29,54 +29,27 @@ bool SplashScene::init()
         return false;
     }
     
-    // 画像関連のキャッシュ
-    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
-    cache->addSpriteFramesWithFile("assets.plist");
-    
-    // オーディオマネジャの初期化
-    audioManager = AudioManager::create();
-    preloadAllSoundEffects();
-    audioManager->playLoadingSE("loading_screen_jingle");
-    
     // スプラッシュスクリーンの表示
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-//      auto ui = CSLoader::createNode("loading/LoadingLayer.csb");
-  auto ui = CSLoader::getInstance()->createNodeFromXML("LoadingLayer.csd");
+    auto ui = CSLoader::getInstance()->createNodeFromXML("LoadingLayer.csd");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
-////    ui->setPosition(origin);
     this->addChild(ui,UIOrder,UITag);
-  
-//    updateProgressBar(10);
     
-//    auto backgroundSprite = Sprite::create("SplashScreen.png");
-//    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
-//    backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-//    this->addChild(backgroundSprite);
     
-//    // アセットマネジャの初期化
-//    initDownloadDir();
-//    _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
-//    this->addChild(_showDownloadInfo);
-//    _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
-//
-//    auto itemLabel1 = MenuItemLabel::create(
-//                                            Label::createWithSystemFont("Reset", "Arail", 20), CC_CALLBACK_1(SplashScene::reset, this));
-//    auto itemLabel2 = MenuItemLabel::create(
-//                                            Label::createWithSystemFont("Upgrade", "Arail", 20), CC_CALLBACK_1(SplashScene::upgrade, this));
-//    
-//    auto menu = Menu::create(itemLabel1, itemLabel2, NULL);
-//    this->addChild(menu);
-//    
-//    itemLabel1->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 + 20));
-//    itemLabel2->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 ));
-//    
-//    menu->setPosition(Vec2::ZERO);
-  
+    // オーディオマネジャの初期化とジングル
+    audioManager = AudioManager::create();
+    audioManager->playLoadingSE("loading_screen_jingle");
     
-    // 数秒後、ステージ選択画面に遷移
-    this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
+    // アセットマネジャの初期化
+    initDownloadDir();
+    _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
+    this->addChild(_showDownloadInfo);
+    _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
+    
+    // アセットをダウンロード
+    getAssetManager()->update();
     
     return true;
 }
@@ -95,7 +68,7 @@ void SplashScene::onError(AssetsManager::ErrorCode errorCode)
 {
     if (errorCode == AssetsManager::ErrorCode::NO_NEW_VERSION)
     {
-        _showDownloadInfo->setString("no new version");
+        this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     }
     else if (errorCode == AssetsManager::ErrorCode::NETWORK)
     {
@@ -109,21 +82,18 @@ void SplashScene::onError(AssetsManager::ErrorCode errorCode)
 
 void SplashScene::onProgress(int percent)
 {
-    if (percent < 0)
+    if (percent < 0) {
         return;
-    char progress[20];
-    snprintf(progress, 20, "download %d%%", percent);
-    _showDownloadInfo->setString(progress);
+    }
+    CCLOG("download::onProgress(%i)",percent);
+    updateProgressBar(percent);
 }
 
 void SplashScene::onSuccess()
 {
     CCLOG("download success");
-    _showDownloadInfo->setString("download success");
-    std::string path = FileUtils::getInstance()->getWritablePath();
-    //FileUtils::getInstance()->addSearchPath(path, true);
     
-    // 数秒後、ステージ選択画面に遷移
+    // ダウンロード成功後、ステージ選択画面に遷移
     this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
 }
 
@@ -136,7 +106,7 @@ AssetsManager* SplashScene::getAssetManager()
                                          "http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/version.txt",
                                          _pathToSave.c_str());
         assetManager->setDelegate(this);
-        assetManager->setConnectionTimeout(3);
+        assetManager->setConnectionTimeout(6);
     }
     return assetManager;
 }
@@ -146,7 +116,7 @@ void SplashScene::initDownloadDir()
     CCLOG("initDownloadDir");
     _pathToSave = CCFileUtils::getInstance()->getWritablePath();
     
-    CCLOG("Path: %s", _pathToSave.c_str());
+    CCLOG("[initDownloadDir]Path: %s", _pathToSave.c_str());
     
 //#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
 //    DIR *pDir = NULL;
@@ -165,8 +135,9 @@ void SplashScene::initDownloadDir()
     CCLOG("initDownloadDir end");
 }
 
-void SplashScene::reset(Ref* pSender)
+void SplashScene::reset()
 {
+    // 動作確認用リセット
     _showDownloadInfo->setString("");
     // Remove downloaded files
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
@@ -184,15 +155,15 @@ void SplashScene::reset(Ref* pSender)
     initDownloadDir();
 }
 
-void SplashScene::upgrade(Ref* pSender)
-{
-    _showDownloadInfo->setString("");
-    getAssetManager()->update();
-}
-
 
 void SplashScene::GoToStageSelectorScene(float dt)
 {
+    // 画像関連のキャッシュ
+    SpriteFrameCache* cache = SpriteFrameCache::getInstance();
+    cache->addSpriteFramesWithFile("assets.plist");
+    
+    preloadAllSoundEffects();
+    
     auto scene = StageSelectorScene::createScene();
     Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }

@@ -35,7 +35,7 @@ void BuildingTrenchmortar::attack()
 
 void BuildingTrenchmortar::expandAndShrink()
 {
-    auto expandAction = ScaleTo::create(0.02, 1.06);
+    auto expandAction = ScaleTo::create(0.02, 1.02);
     auto delay = DelayTime::create(0.1);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {
         this->shoot();
@@ -64,7 +64,7 @@ void BuildingTrenchmortar::shoot()
                 smokeAction->gotoFrameAndPlay(0, false);
             }
         });
-        auto shot = JumpTo::create(1, targetUnit->getPosition(), 200, 1);
+        auto shot = JumpTo::create(2, targetUnit->getPosition(), 200, 1);
 
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
