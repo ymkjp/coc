@@ -3,7 +3,6 @@
 
 USING_NS_CC;
 
-
 bool UI::init()
 {
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -54,6 +53,61 @@ void UI::showBattleController()
                                        this->showBattleResult();
                                    }
                                });
+}
+
+
+// @todo どの画面を表示しているか管理できたほうがよい
+void UI::updateTimer(int currentBattleSecound)
+{
+    // BattleRemainLabelPanel->Text_Timer{_Shadow}
+    int minutes = currentBattleSecound / 60;
+    int secounds = currentBattleSecound % 60;
+    auto text = StringUtils::format("%d m %d s", minutes, secounds);
+    auto panel = ui->getChildByName("BattleRemainLabelPanel");
+    auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Timer"));
+    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Timer_Shadow"));
+    
+    label->setString(text.c_str());
+    labelShadow->setString(text.c_str());
+}
+
+void UI::updateBattleScore(ScoreType type, float earnedScore)
+{
+    // PlayersAssetPanel->Text_Players{Coin|Elixer}
+    auto name = scoreNameByType.at(type);
+    
+    auto labelText = StringUtils::format("%d", (int) earnedScore);
+    auto label = dynamic_cast<cocos2d::ui::Text*>(ui
+                                                  ->getChildByName("PlayersAssetPanel")
+                                                  ->getChildByName("Text_Players" + name));
+    label->setString(labelText.c_str());
+}
+
+void UI::updateRemainingAssetScore(ScoreType type, float remainingScore)
+{
+    // AvailableLootPanel -> Text_{Coin|Elixer}_Shadow
+    auto name = scoreNameByType.at(type);
+    
+    auto labelText = StringUtils::format("%d", (int) remainingScore);
+    auto panel = ui->getChildByName("AvailableLootPanel");
+    auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_" + name));
+    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_" + name + "_Shadow"));
+    
+    label->setString(labelText.c_str());
+    labelShadow->setString(labelText.c_str());
+}
+
+void UI::updateDestructionRatio(float percentage)
+{
+    // OverallDamagePanel -> Text_DamagePercent{_Shadow}
+    auto text = StringUtils::format("%d", (int)percentage);
+    text.append(" %");
+    auto panel = ui->getChildByName("OverallDamagePanel");
+    auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent"));
+    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent_Shadow"));
+    
+    label->setString(text.c_str());
+    labelShadow->setString(text.c_str());
 }
 
 void UI::updateUnitCounter(UnitType unitType, int count)

@@ -26,8 +26,8 @@ public:
         return ElixerTank;
     };
     
-    
-    void damagedEffect();
+protected:
+    void adjustScale();
 };
 
 #endif // __BUILDING_ELIXERTANK_H__

@@ -39,12 +39,20 @@ bool BattleScene::init(Stages stage)
     nodeFactory->updateAttackRangeGrid();
     
     this->addEventDispacher(); // ディスパッチャー外すの忘れそう
-
+    
+    // 施設を建て終わったあとでカウントをUIに反映
+    tmx->initBattleControllerCounters();
+    
     return true;
 }
 
 void  BattleScene::deployUnit()
 {
+    if (tmx->battleStatus == Tmx::WaitingForStart)
+    {
+        tmx->startBattle();
+    }
+    
     Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());
     if (tmx->isRemainedUnitSelected()
         && isInMapRange(tileCoord)

@@ -54,9 +54,10 @@ public:
     void addWrack();
     void putTargetMark();
     
-    
 protected:
     float hitpoints = 400;
+    float hitpointPercentage = 100;
+    
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
     AudioManager* audioManager;
@@ -98,12 +99,14 @@ protected:
     virtual void updateLifeGage();
     virtual void damagedEffect() {};
     virtual void initArchersOnTower() {};
+    virtual void increaseResourceScore(float damage) {};
+    virtual void initDamagedEffectNode() {};
     
     const std::map<BuildingType, float> hitpointsByType =
     {
         {TownHall, 2100},
-        {ElixerTank, 800},
-        {GoldBank, 800},
+        {ElixerTank, 1200},
+        {GoldBank, 1200},
         {Canon, 400},
         {TrenchMortar, 500},
         {ArcherTower, 500},

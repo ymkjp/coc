@@ -7,9 +7,14 @@ bool Tmx::init(Stages stage)
     domainTMXLayer = tiledMap->getLayer("Domain");
     tiledMap->setVisible(TILEDMAP_VISIBLE_ON);
 
+    // UI表示
     ui = UI::create();
     this->addChild(ui);
+    
+    // デフォルト選択はバーバリアン
     ui->selectedUnit = Barbarian;
+    
+    // バトルコントローラー表示
     ui->showBattleController();
 
     for (auto initUnitNumber: unitInitNumberByType) {
@@ -17,7 +22,38 @@ bool Tmx::init(Stages stage)
         ui->updateUnitCounter(initUnitNumber.first, initUnitNumber.second);
     }
     
+    // タイマー初期化
+    battleStatus = WaitingForStart;
+    currentBattleSecound = fullBattleSecond;
+    ui->updateTimer(currentBattleSecound);
+    
+    // 所持コイン・エリクサ
+    ui->updateBattleScore(ElixerScore, earnedBattleScoreByType.at(ElixerScore));
+    ui->updateBattleScore(CoinScore, earnedBattleScoreByType.at(CoinScore));
+    
+    // 施設破壊率
+    ui->updateDestructionRatio(0);
+    
     return true;
+}
+
+void Tmx::startBattle()
+{
+    battleStatus = Playing;
+    schedule(schedule_selector(Tmx::decreaseTimerCount), 1.0f);
+}
+
+void Tmx::decreaseTimerCount(float frame)
+{
+    if (battleStatus == Playing) {
+        --currentBattleSecound;
+        ui->updateTimer(currentBattleSecound);
+    }
+    
+    if (currentBattleSecound < 0) {
+        battleStatus = Finished;
+        showBattleResult();
+    }
 }
 
 Vec2 Tmx::convertToCoord(Vec2 pos)
@@ -110,5 +146,51 @@ void Tmx::decrementUnitCounter()
 bool Tmx::isRemainedUnitSelected()
 {
     return 0 < unitRemainedCounterByType.at(getSelectedUnit());
+}
+
+void Tmx::increaseBattleScore(ScoreType type, float amount)
+{
+    if (0 < amount) {
+        earnedBattleScoreByType[type] += amount;
+        ui->updateBattleScore(type, earnedBattleScoreByType.at(type));
+        
+        remainingScoreByType[type] -= amount;
+        ui->updateRemainingAssetScore(type, remainingScoreByType.at(type));
+    }
+}
+
+BattleScoreByType* Tmx::getBattleScoreResult()
+{
+    return &earnedBattleScoreByType;
+}
+
+
+void Tmx::countUpRemainingScore(ScoreType type, float amount)
+{
+    if (0 < amount) {
+        remainingScoreByType[type] += amount;
+    }
+}
+
+void Tmx::incrementBuildingCount()
+{
+    ++fullBuildingCount;
+}
+
+void Tmx::decrementBuildingCount()
+{
+    --currentBuildingCount;
+
+    float ratio = currentBuildingCount / fullBuildingCount * 100;
+    earnedBattleScoreByType[DestructionRatioScore] = ratio;
+    ui->updateDestructionRatio(ratio);
+}
+
+void Tmx::initBattleControllerCounters()
+{
+    ui->updateRemainingAssetScore(ElixerScore, remainingScoreByType.at(ElixerScore));
+    ui->updateRemainingAssetScore(CoinScore, remainingScoreByType.at(CoinScore));
+    
+    currentBuildingCount = fullBuildingCount;
 }
 

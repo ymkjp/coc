@@ -22,7 +22,10 @@ public:
     
     UnitType selectedUnit = NoUnitType;
     void updateUnitCounter(UnitType unitType, int count);
-    
+    void updateTimer(int currentBattleSecound);
+    void updateDestructionRatio(float percentage);
+    void updateBattleScore(ScoreType type, float earnedScore);
+    void updateRemainingAssetScore(ScoreType type, float remainingScore);
     
 protected:
     Size visibleSize;

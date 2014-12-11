@@ -18,6 +18,13 @@ USING_NS_CC_EXT;
 class Tmx : public Node
 {
 public:
+    enum __BATTLE_STATUS  {
+        WaitingForStart,
+        Playing,
+        Paused,
+        Finished,
+    } battleStatus;
+    
     virtual bool init(Stages stage);
     static Tmx* create(Stages stage) {
         auto p = new Tmx();
@@ -36,6 +43,7 @@ public:
     Vec2 convertToRealPos(Vec2 pos);
     Vec2 convertToIso(Vec2 pos);
     
+    void startBattle();
     void eraseBuilding(Building* building);
     bool noBuildings();
     
@@ -76,10 +84,25 @@ public:
     Vector<Sprite*> buildingShadowCells = {};
     Vector<Sprite*> grassCells = {};
     
+    void increaseBattleScore(ScoreType type, float amount);
+    BattleScoreByType* getBattleScoreResult();
+    
+    void initBattleControllerCounters();
+    void countUpRemainingScore(ScoreType type, float amount);
+    void incrementBuildingCount();
+    void decrementBuildingCount();
+    
 protected:
+    int fullBattleSecond = 180;
+    int currentBattleSecound = 0;
+    int fullBuildingCount = 0;
+    int currentBuildingCount = 0;
+    
     UI* ui;
     UnitCountByType unitRemainedCounterByType;
 
+    void decreaseTimerCount(float frame);
+    
     const std::map<Stages,std::string> tmxFileNameByStage = {
         {Amigo,"map_01.tmx"},
         {Benito,"map_02.tmx"},
@@ -94,6 +117,19 @@ protected:
         {Wallbreaker,10},
     };
     
+    BattleScoreByType remainingScoreByType = {
+        {ElixerScore,0},
+        {CoinScore,0},
+        {DestructionRatioScore,0},
+        {StarCountScore,0},
+    };
+    
+    BattleScoreByType earnedBattleScoreByType = {
+        {ElixerScore,100},
+        {CoinScore,2200},
+        {DestructionRatioScore,0},
+        {StarCountScore,0},
+    };
 };
 
 #endif // __TMX_H__

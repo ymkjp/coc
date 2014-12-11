@@ -494,7 +494,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/ui/elixer.png" Plist="assets.plist" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_Coin_Shade" ActionTag="-1136972161" FrameEvent="" Tag="47" ObjectIndex="26" FontSize="20" LabelText="10 000" ctype="TextObjectData">
+              <NodeObjectData Name="Text_Coin_Shadow" ActionTag="-1136972161" FrameEvent="" Tag="47" ObjectIndex="26" FontSize="20" LabelText="10 000" ctype="TextObjectData">
                 <Position X="84.0000" Y="50.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -595,16 +595,16 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="BattleRemainTIle" ActionTag="48" FrameEvent="" Tag="46" ObjectIndex="10" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="BattleRemainLabelPanel" ActionTag="48" FrameEvent="" Tag="46" ObjectIndex="10" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="377.5000" Y="601.5000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
-            <Size X="120.0000" Y="28.0000" />
+            <Size X="160.0000" Y="28.0000" />
             <PrePosition X="0.3932" Y="0.9398" />
-            <PreSize X="0.1250" Y="0.0437" />
+            <PreSize X="0.1667" Y="0.0437" />
             <Children>
-              <NodeObjectData Name="Text_Timer_Shadow" ActionTag="-1335267161" FrameEvent="" Tag="49" ObjectIndex="28" FontSize="22" LabelText="2 m 32 s" ctype="TextObjectData">
+              <NodeObjectData Name="Text_Timer_Shadow" ActionTag="-1335267161" FrameEvent="" Tag="49" ObjectIndex="28" FontSize="22" LabelText="2 m 32 s" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
                 <Position X="3.0000" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -614,7 +614,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_Timer" ActionTag="49" FrameEvent="" Tag="47" ObjectIndex="12" FontSize="22" LabelText="2 m 32 s" ctype="TextObjectData">
+              <NodeObjectData Name="Text_Timer" ActionTag="49" FrameEvent="" Tag="47" ObjectIndex="12" FontSize="22" LabelText="2 m 32 s" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
                 <Position X="0.0000" Y="2.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -630,7 +630,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="MyAssetsPanel" ActionTag="50" FrameEvent="" Tag="48" ObjectIndex="11" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="PlayersAssetPanel" ActionTag="50" FrameEvent="" Tag="48" ObjectIndex="11" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="792.5000" Y="512.5000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
@@ -659,7 +659,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/ui/elixer.png" Plist="assets.plist" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_8_Copy" ActionTag="53" FrameEvent="" Tag="51" ObjectIndex="13" FontSize="16" LabelText="10 000" ctype="TextObjectData">
+              <NodeObjectData Name="Text_PlayersCoin" ActionTag="53" FrameEvent="" Tag="51" ObjectIndex="13" FontSize="16" LabelText="10 000" ctype="TextObjectData">
                 <Position X="117.0000" Y="88.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -669,7 +669,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_8_Copy_Copy" ActionTag="54" FrameEvent="" Tag="52" ObjectIndex="14" FontSize="16" LabelText="10 000" ctype="TextObjectData">
+              <NodeObjectData Name="Text_PlayersElixer" ActionTag="54" FrameEvent="" Tag="52" ObjectIndex="14" FontSize="16" LabelText="10 000" ctype="TextObjectData">
                 <Position X="114.0000" Y="32.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -705,32 +705,32 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="OverallDamage" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="771.6237" Y="172.1256" />
+          <NodeObjectData Name="OverallDamagePanel" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Position X="761.6237" Y="169.1256" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
             <Size X="180.0000" Y="110.0000" />
-            <PrePosition X="0.8038" Y="0.2689" />
+            <PrePosition X="0.7934" Y="0.2643" />
             <PreSize X="0.1875" Y="0.1719" />
             <Children>
-              <NodeObjectData Name="Text_DamagePercent_Shadow" ActionTag="1454007507" FrameEvent="" Tag="51" ObjectIndex="30" FontSize="22" LabelText="0%" ctype="TextObjectData">
-                <Position X="83.0000" Y="15.0000" />
+              <NodeObjectData Name="Text_DamagePercent_Shadow" ActionTag="1454007507" FrameEvent="" Tag="51" ObjectIndex="30" FontSize="22" LabelText="0&#xA;" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+                <Position X="85.5000" Y="17.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="25" G="25" B="25" />
-                <Size X="43.0000" Y="24.0000" />
-                <PrePosition X="0.5188" Y="0.1875" />
+                <Size X="21.0000" Y="24.0000" />
+                <PrePosition X="0.4750" Y="0.1545" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
-              <NodeObjectData Name="Text_DamagePercent" ActionTag="67" FrameEvent="" Tag="65" ObjectIndex="21" FontSize="22" LabelText="0%" ctype="TextObjectData">
-                <Position X="80.0000" Y="18.0000" />
+              <NodeObjectData Name="Text_DamagePercent" ActionTag="67" FrameEvent="" Tag="65" ObjectIndex="21" FontSize="22" LabelText="0&#xA;" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+                <Position X="82.5000" Y="20.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <Size X="43.0000" Y="24.0000" />
-                <PrePosition X="0.5000" Y="0.2250" />
+                <Size X="21.0000" Y="24.0000" />
+                <PrePosition X="0.4583" Y="0.1818" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
@@ -754,9 +754,29 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
+              <NodeObjectData Name="Text_DamagePercent_Shadow_Copy" ActionTag="-615573896" FrameEvent="" Tag="108" ObjectIndex="39" FontSize="22" LabelText="%" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+                <Position X="108.0000" Y="17.7500" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="25" G="25" B="25" />
+                <Size X="22.0000" Y="24.0000" />
+                <PrePosition X="0.6000" Y="0.1614" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+              <NodeObjectData Name="Text_DamagePercent_Copy" ActionTag="-821992832" FrameEvent="" Tag="107" ObjectIndex="38" FontSize="22" LabelText="%" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+                <Position X="105.7501" Y="19.7500" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="22.0000" Y="24.0000" />
+                <PrePosition X="0.5875" Y="0.1795" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
             </Children>
-            <SingleColor A="255" R="37" G="37" B="37" />
-            <FirstColor A="255" R="37" G="37" B="37" />
+            <SingleColor A="255" R="45" G="45" B="45" />
+            <FirstColor A="255" R="45" G="45" B="45" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>

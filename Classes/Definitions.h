@@ -39,6 +39,13 @@ enum Stages {
     Carmen,
 };
 
+enum ScoreType {
+    ElixerScore,
+    CoinScore,
+    DestructionRatioScore,
+    StarCountScore,
+};
+
 enum BuildingType {
     NoBuidlingType = 0,
     TownHall,
@@ -108,12 +115,26 @@ const std::map<UnitType, std::string> unitSmallCaseNameByType =
     {Wallbreaker, "wallbreaker"},
 };
 
+
+/**
+ ElixerScore,
+ CoinScore,
+ DestructionRatioScore,
+ StarCountScore,
+ */
+const std::map<ScoreType, std::string> scoreNameByType =
+{
+    {ElixerScore, "Elixer"},
+    {CoinScore, "Coin"},
+};
+
 // For Tmx
 typedef std::map<BuildingType, std::vector<Vec2>> BuildingCoordsByType;
 typedef std::array<std::array<Building*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingGrid;
 typedef std::array<std::array<std::vector<BuildingDefense*>, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> BuildingAttackRangeGrid;
 typedef std::map<UnitType,int> UnitCountByType;
 typedef std::array<std::array<Grave*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> GraveGrid;
+typedef std::map<ScoreType,float> BattleScoreByType;
 
 // For Building
 typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;

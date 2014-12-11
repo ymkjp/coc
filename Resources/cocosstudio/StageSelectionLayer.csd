@@ -108,12 +108,12 @@
             <InnerNodeSize Width="520" Height="840" />
           </NodeObjectData>
           <NodeObjectData Name="stage_map_multi_play" ActionTag="-1368688549" FrameEvent="" Tag="11" ObjectIndex="1" ctype="SpriteObjectData">
-            <Position X="0.0000" Y="0.0000" />
+            <Position X="0.0000" Y="-2.0002" />
             <Scale ScaleX="1.3600" ScaleY="1.3600" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
             <Size X="322.0000" Y="479.0000" />
-            <PrePosition X="0.0000" Y="0.0000" />
+            <PrePosition X="0.0000" Y="-0.0031" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="PlistSubImage" Path="stage/map/multi_play.png" Plist="assets.plist" />
           </NodeObjectData>

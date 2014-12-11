@@ -30,6 +30,11 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     targetMarkNode->runAction(targetMarkAction);
     this->addChild(targetMarkNode,TargetMarkOrder,TargetMarkTag);
     
+    // ダメージを受けたときのモーションの初期化
+    this->initDamagedEffectNode();
+    
+    tmx->incrementBuildingCount();
+    
     return true;
 }
 
@@ -134,27 +139,30 @@ void Building::attacked(float damage)
     if (status == Died) {
         return;
     }
-    if (hitpoints < damage) {
+
+    hitpoints -= damage;
+    hitpointPercentage = hitpoints / getFullHitPoints() * 100;
+    
+    this->damagedEffect();
+    this->updateLifeGage();
+    this->increaseResourceScore(damage);
+    
+    if (hitpoints <= 0) {
         hitpoints = 0;
         this->broken();
-    } else {
-        hitpoints -= damage;
-        this->damagedEffect();
-        this->updateLifeGage();
     }
 //    CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
 }
 
 inline void Building::updateLifeGage()
 {
-    int percentage = hitpoints / getFullHitPoints() * 100;
-    if (0 <= percentage) {
+    if (0 <= hitpointPercentage) {
 //        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
         lifeGageNode->setVisible(true);
         // @fixme init の時点で pos セットされてない
         // @fixme 建物の高さに応じた lifeGage pos セット
         lifeGageNode->setPositionY(buildingNode->getPosition().y + 60);
-        lifeGageAction->gotoFrameAndPause(percentage);
+        lifeGageAction->gotoFrameAndPause((int)hitpointPercentage);
         this->scheduleOnce(schedule_selector(Building::hideLifeGage), 3.0);
     }
 }
@@ -171,6 +179,7 @@ void Building::broken()
 //    this->removeChildByTag(LifeGageTag);
     //    this->removeChildByTag(BuildingTag);
     this->addWrack();
+    tmx->decrementBuildingCount();
 }
 
 void Building::addWrack()
