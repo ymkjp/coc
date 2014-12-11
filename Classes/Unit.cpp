@@ -487,13 +487,8 @@ void Unit::putTargetMark()
 {
     // マーク済みのフラグを立てる
     alreadyMarked = true;
-    auto node = CSLoader::createNode("res/TargetMarkerNode.csb");
-    auto action = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
-    node->setPositionY(5);
-    node->runAction(action);
-    action->gotoFrameAndPlay(0,false);
     if (targetBuilding) {
-        targetBuilding->addChild(node, Building::TargetMarkOrder);
+        targetBuilding->putTargetMark();
     }
 }
 

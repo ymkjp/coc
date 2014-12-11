@@ -6,7 +6,7 @@ void BuildingTrenchmortar::attack()
 {
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
-        if (targetUnit->status == Unit::Alive) {
+        if (motionAction && targetUnit->status == Unit::Alive) {
             float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord);
             float flameGoal = ceil(comassDegreeGoal / 60);
             motionAction->gotoFrameAndPause(flameGoal);

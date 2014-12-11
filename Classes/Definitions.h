@@ -9,21 +9,15 @@ USING_NS_CC;
 #define TRANSITION_TIME 0.1
 
 //#define DEFAULT_ZOOM_RATE 0.521094 // For debug 全画面表示
-#define DEFAULT_ZOOM_RATE 0.55
+#define DEFAULT_ZOOM_RATE 0.53
 #define MAX_ZOOM_RATE 3.5 // MIN: 0.521094
 
 #define WORLD_MAP_WIDTH 44
 #define WORLD_MAP_HEIGHT 44
 
-#define DISTANCE_WEIGHT_VS_PF 2.0
-
-#define BLOCK_LAYERS_NUM 7
-
 #define PATH_FINDING_MAX_THRESHOLD 200
 
 #define TILEDMAP_VISIBLE_ON false
-
-#define DOWNLOAD_FILE "download"
 
 class Tmx;
 class Unit;

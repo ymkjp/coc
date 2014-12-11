@@ -38,7 +38,8 @@ bool SplashScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto backgroundSprite = Sprite::create("SplashScreen.png");    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
+    auto backgroundSprite = Sprite::create("SplashScreen.png");
+    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
     backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
     this->addChild(backgroundSprite);
     
@@ -97,7 +98,7 @@ void SplashScene::onSuccess()
 {
     CCLOG("download success");
     _showDownloadInfo->setString("download success");
-    std::string path = FileUtils::getInstance()->getWritablePath(); // + DOWNLOAD_FILE;
+    std::string path = FileUtils::getInstance()->getWritablePath();
     //FileUtils::getInstance()->addSearchPath(path, true);
     
     // 数秒後、ステージ選択画面に遷移
@@ -122,7 +123,7 @@ void SplashScene::initDownloadDir()
 {
     CCLOG("initDownloadDir");
     _pathToSave = CCFileUtils::getInstance()->getWritablePath();
-//    _pathToSave += DOWNLOAD_FILE;
+    
     CCLOG("Path: %s", _pathToSave.c_str());
     
 //#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)

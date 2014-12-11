@@ -52,7 +52,9 @@ public:
     void attacked(float damage);
     void broken();
     void addWrack();
-
+    void putTargetMark();
+    
+    
 protected:
     float hitpoints = 400;
     Tmx* tmx;
@@ -65,10 +67,14 @@ protected:
     Node* motionNode;
     timeline::ActionTimeline* motionAction;
     
+    Node* targetMarkNode;
+    timeline::ActionTimeline* targetMarkAction;
+    
     enum NodeTag {
         BuildingTag,
         MotionTag,
         ArcherOnTowerTag,
+        TargetMarkTag,
         LifeGageTag,
     };
     

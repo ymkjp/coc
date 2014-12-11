@@ -22,6 +22,14 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     lifeGageNode->setVisible(false);
     this->addChild(lifeGageNode,1,LifeGageTag); // GrobalZOrderが割り当てられる
     
+    // ターゲットマークの初期化
+    // @todo globalZOrder
+    targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
+    targetMarkAction = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
+    targetMarkNode->setPositionY(5);
+    targetMarkNode->runAction(targetMarkAction);
+    this->addChild(targetMarkNode,TargetMarkOrder,TargetMarkTag);
+    
     return true;
 }
 
@@ -205,6 +213,12 @@ BuildingSpace Building::getSpace()
 {
     return typeSpace.at(type);
 }
+
+void Building::putTargetMark()
+{
+    targetMarkAction->gotoFrameAndPlay(0,false);
+}
+
 
 const BuildingTypesByCategory Building::typesByCategory =
 {
