@@ -12,7 +12,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     damagePerAttack = damagePerAttackByType.at(type);
     status = Alive;
     action = Walking;
-    compass = East;
+    compass = NorthEast;
     
     audioManager = AudioManager::create();
    
@@ -187,7 +187,7 @@ void Unit::startAttacking()
 
 void Unit::attack(float frame)
 {
-    if (status == Alive && this->targetBuilding->status == Building::Alive) {
+    if (status == Alive && this->targetBuilding && this->targetBuilding->status == Building::Alive) {
         this->action = Attacking;
         this->playStartAttackingVoice();
         

@@ -63,7 +63,7 @@ void BuildingCanon::shoot()
         bullet->setPosition(this->getPosition());
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
-            if (luminousAction && smokeAction) {
+            if (luminousAction && smokeAction && status == Alive) {
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }
@@ -72,8 +72,13 @@ void BuildingCanon::shoot()
         
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo ターゲットユニットがまだ射程距離にいるか
-            targetUnit->attacked(getDamagePerShot());
-            getParent()->removeChild(bullet);
+            if (targetUnit) {
+                targetUnit->attacked(getDamagePerShot());
+            }
+            auto parent = getParent();
+            if (parent) {
+                parent->removeChild(bullet);
+            }
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);

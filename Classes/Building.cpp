@@ -33,7 +33,9 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     // 子で各々行う初期化
     this->initOwn();
     
-    tmx->incrementBuildingCount();
+    if (type != Wall) {
+        tmx->incrementBuildingCount();
+    }
     
     return true;
 }
@@ -180,7 +182,10 @@ void Building::broken()
 //    this->removeChildByTag(LifeGageTag);
     //    this->removeChildByTag(BuildingTag);
     this->addWrack();
-    tmx->decrementBuildingCount();
+    
+    if (type != Wall) {
+        tmx->decrementBuildingCount();
+    }
 }
 
 void Building::addWrack()

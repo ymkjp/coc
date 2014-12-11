@@ -53,6 +53,10 @@ public:
     BuildingAttackRangeGrid buildingAttackRangeGrid = {{}};
     GraveGrid graveGrid = {{}};
     
+    // 経路のキャッシュ
+    std::map<std::array<Vec2,2>, std::stack<Vec2>> pathCache;
+    void cachePath(std::array<Vec2,2> cacheKey, std::stack<Vec2> path);
+    
     Vector<Unit*> units;
     Vector<Building*> buildings;
     
@@ -63,6 +67,7 @@ public:
     bool isRemainedUnitSelected();
     void decrementUnitCounter();
     
+    int count = 0;
     static float calcCompassDegree(Vec2 startPos, Vec2 goalPos)
     {
         auto degree = calcDegree(startPos, goalPos);

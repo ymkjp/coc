@@ -101,6 +101,7 @@ void UI::updateRemainingAssetScore(ScoreType type, float remainingScore)
 void UI::updateDestructionRatio(float percentage)
 {
     // OverallDamagePanel -> Text_DamagePercent{_Shadow}
+    percentage = (percentage > 100) ? 100 : percentage;
     auto text = StringUtils::format("%d", (int)percentage);
     text.append(" %");
     auto panel = ui->getChildByName("OverallDamagePanel");
@@ -163,6 +164,7 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     
     auto mainResultPanel = ui->getChildByName("Panel_MainResult");
     float percentage = battleScoreByType.at(DestructionRatioScore);
+    percentage = (percentage > 100) ? 100 : percentage;
     
     // Panel_MainResult -> Panel_Ribbon -> Text_Victory{_Shadow}
     auto winningText = (50 < percentage) ? "Victory" : "Defeat";

@@ -34,6 +34,16 @@ inline static bool isInMapRange(Vec2 targetPoint)
             && targetPoint.y < WORLD_MAP_HEIGHT);
 };
 
+enum GlobalZOrderType {
+    TargetMarkerGZO = 1000,
+    LifeGageGZO = 2000,
+};
+
+inline static float calcGrobalZOrder(Vec2 coord)
+{
+    return coord.x + coord.y;
+};
+
 enum Stages {
     Amigo,
     Benito,

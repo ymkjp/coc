@@ -237,7 +237,8 @@ inline void BattleScene::addBuilding(BuildingType type, Vec2 coord, Vec2 pos)
     tmx->buildingGrid[coord.x][coord.y] = building;
     tmx->buildingCoords[type].push_back(coord);
     building->setPosition(pos);
-    tiledMapLayer->addChild(building,BuildingOrder + coord.x + coord.y);
+    building->setGlobalZOrder(calcGrobalZOrder(coord));
+    tiledMapLayer->addChild(building,BuildingOrder);
 }
 
 inline void BattleScene::addBuildingShadow(BuildingType type, Vec2 coord)

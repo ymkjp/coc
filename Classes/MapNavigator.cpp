@@ -33,6 +33,15 @@ PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         return pathToGoal;
     }
     
+//    // キャッシュヒットすればそれを返す
+    std::array<Vec2,2> cacheKey = {startPoint, goalPoint};
+    auto key = tmx->pathCache.find(cacheKey);
+    if (key != tmx->pathCache.end() && tmx->pathCache.at(cacheKey).size() > 1) {
+        CCLOG("cache found");
+        // キャッシュが見つかったのでそれを返す
+        return tmx->pathCache.at(cacheKey);
+    }
+    
     auto result = std::async(std::launch::async, [this, startPoint, goalPoint] {
         for (int x = 0; x < sizeof(worldGrid) / sizeof(worldGrid[0]); ++x) {
             for (int y = 0; y < sizeof(worldGrid[x]) / sizeof(worldGrid[x][0]); ++y) {
@@ -143,5 +152,10 @@ PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         pathToGoal.push(path->pos);
         path = path->parent;
     }
+    
+    // キャッシュに追加
+    tmx->cachePath(cacheKey, pathToGoal);
+    this->retain();
+    
     return pathToGoal;
 }

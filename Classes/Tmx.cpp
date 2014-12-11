@@ -116,7 +116,14 @@ void Tmx::eraseBuilding(Building* building)
     buildingGrid[building->coord.x][building->coord.y] = nullptr;
     
     buildings.eraseObject(building);
-    CCLOG("Tmx.buildings.size(%lu)",buildings.size());
+//    CCLOG("Tmx.buildings.size(%lu)",buildings.size());
+    
+    pathCache.clear();
+}
+
+void Tmx::cachePath(std::array<Vec2,2> cacheKey, std::stack<Vec2> path)
+{
+    pathCache[cacheKey] = path;
 }
 
 void Tmx::showBattleResult()
@@ -182,9 +189,9 @@ void Tmx::decrementBuildingCount()
 {
     --currentBuildingCount;
 
-    float ratio = 100 - (float)currentBuildingCount / (float)fullBuildingCount * 100;
+    float ratio = 100 - ((float)currentBuildingCount / (float)fullBuildingCount * 100);
     earnedBattleScoreByType[DestructionRatioScore] = ratio;
-//    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
+    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
     if (battleStatus == Playing) {
         ui->updateDestructionRatio(ratio);
     }
