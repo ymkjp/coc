@@ -416,7 +416,7 @@
             <PrePosition X="0.0131" Y="0.2425" />
             <PreSize X="0.1542" Y="0.0625" />
             <Children>
-              <NodeObjectData Name="Image_RedButton" ActionTag="-1772562742" FrameEvent="" Tag="63" ObjectIndex="2" LeftEage="12" RightEage="12" Scale9OriginX="12" Scale9Width="3" Scale9Height="38" ctype="ImageViewObjectData">
+              <NodeObjectData Name="Image_RedButton" ActionTag="-1772562742" FrameEvent="" Tag="63" ObjectIndex="2" LeftEage="12" RightEage="12" Scale9OriginX="12" Scale9Width="128" Scale9Height="38" ctype="ImageViewObjectData">
                 <Position X="0.0000" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />

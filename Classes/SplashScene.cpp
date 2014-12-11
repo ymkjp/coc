@@ -32,16 +32,23 @@ bool SplashScene::init()
     // オーディオマネジャの初期化
     audioManager = AudioManager::create();
     preloadAllSoundEffects();
-    audioManager->playSE("loading_screen_jingle");
+    audioManager->playLoadingSE("loading_screen_jingle");
     
     // スプラッシュスクリーンの表示
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto backgroundSprite = Sprite::create("SplashScreen.png");
-    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
-    backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
-    this->addChild(backgroundSprite);
+    auto ui = CSLoader::getInstance()->createNodeFromXML("loading/LoadingLayer.csd");
+    ui->setScale(visibleSize.width / ui->getContentSize().width);
+//    ui->setPosition(origin);
+    this->addChild(ui,UIOrder,UITag);
+  
+    updateProgressBar(10);
+    
+//    auto backgroundSprite = Sprite::create("SplashScreen.png");
+//    backgroundSprite->setScale(visibleSize.width / backgroundSprite->getContentSize().width);
+//    backgroundSprite->setPosition(Point(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+//    this->addChild(backgroundSprite);
     
 //    // アセットマネジャの初期化
 //    initDownloadDir();
@@ -68,6 +75,16 @@ bool SplashScene::init()
     
     return true;
 }
+
+void SplashScene::updateProgressBar(int percent)
+{
+    // LoadingBar_1
+    auto progressBarNode = getChildByTag(UITag)->getChildByName("LoadingBar_1");
+    
+    auto timer = dynamic_cast<LoadingBar*>(progressBarNode);
+    timer->setPercent(percent);
+}
+
 
 void SplashScene::onError(AssetsManager::ErrorCode errorCode)
 {

@@ -22,9 +22,22 @@ unsigned int AudioManager::playSE(const std::string &id)
     return SimpleAudioEngine::getInstance()->playEffect(getFileName(id), false, 1.0f, 0.0f, 1.0f);
 }
 
+unsigned int AudioManager::playLoadingSE(const std::string &id)
+{
+    return SimpleAudioEngine::getInstance()->playEffect(getFileNameForLoading(id), false, 1.0f, 0.0f, 1.0f);
+}
+
 const char* AudioManager::getFileName(const std::string &id)
 {
     std::string tmp = "sfx/";
+    tmp += id;
+    tmp += ".mp3";
+    return tmp.data();
+}
+
+const char* AudioManager::getFileNameForLoading(const std::string &id)
+{
+    std::string tmp = "loading/";
     tmp += id;
     tmp += ".mp3";
     return tmp.data();

@@ -7,12 +7,24 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+#include "cocostudio/CocoStudio.h"
+using namespace cocostudio;
+#include "cocosGUI.h"
+using namespace cocos2d::ui;
+
 #include "Definitions.h"
 #include "AudioManager.h"
 
 class SplashScene : public Layer, public AssetsManagerDelegateProtocol
 {
 public:
+    enum LocalZOrder {
+        UIOrder = 1,
+    };
+    enum NodeTag {
+        UITag,
+    };
+    
     // there's no 'id' in cpp, so we recommend returning the class instance pointer
     static cocos2d::Scene* createScene();
     
@@ -28,6 +40,7 @@ public:
     virtual void onError(AssetsManager::ErrorCode errorCode);
     virtual void onProgress(int percent);
     virtual void onSuccess();
+
     
 private:
     AssetsManager* getAssetManager();
@@ -38,6 +51,8 @@ private:
     AudioManager* audioManager;
     void preloadAllSoundEffects();
     void GoToStageSelectorScene(float dt);
+    
+    void updateProgressBar(int percent);
     
     const std::vector<std::string> audioList = {
         "arrow_hit",
