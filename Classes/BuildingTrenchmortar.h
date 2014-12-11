@@ -10,6 +10,16 @@ USING_NS_CC;
 class BuildingTrenchmortar : public BuildingDefense
 {
 public:
+    
+    Node* smokeNode;
+    timeline::ActionTimeline* smokeAction;
+    
+    Node* luminousNode;
+    timeline::ActionTimeline* luminousAction;
+    
+    Node* impactNode;
+    timeline::ActionTimeline* impactAction;
+    
     float minRange = 4;
     float maxRange = 11;
     
@@ -40,9 +50,11 @@ public:
         return maxRange;
     }
     
+    // Building 上書き
     void attack();
     void expandAndShrink();
     void shoot();
+    void initOwn();
     
     Node* bullet;
 };

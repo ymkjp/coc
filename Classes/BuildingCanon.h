@@ -12,6 +12,15 @@ class BuildingCanon : public BuildingDefense
 public:
     float maxRange = 9;
     
+    Node* bullet;
+    
+    Node* smokeNode;
+    timeline::ActionTimeline* smokeAction;
+    
+    Node* luminousNode;
+    timeline::ActionTimeline* luminousAction;
+    
+    
     static BuildingCanon* create(Tmx* tmx, Vec2 coord) {
         auto p = new BuildingCanon();
         if (p->init(tmx, coord)) {
@@ -37,8 +46,8 @@ public:
     void attack();
     void expandAndShrink();
     void shoot();
+    void initOwn();
     
-    Node* bullet;
 };
 
 #endif // __BUILDING_CANON_H__

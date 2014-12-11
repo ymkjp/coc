@@ -30,8 +30,8 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     targetMarkNode->runAction(targetMarkAction);
     this->addChild(targetMarkNode,TargetMarkOrder,TargetMarkTag);
     
-    // ダメージを受けたときのモーションの初期化
-    this->initDamagedEffectNode();
+    // 子で各々行う初期化
+    this->initOwn();
     
     tmx->incrementBuildingCount();
     
@@ -174,6 +174,7 @@ void Building::broken()
     // @todo tmx のキャッシュを再構築
     tmx->eraseBuilding(this);
     
+    this->stopAllActions();
     this->unscheduleAllCallbacks();
     this->removeAllChildrenWithCleanup(true);
 //    this->removeChildByTag(LifeGageTag);

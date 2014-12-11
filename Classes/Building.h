@@ -25,6 +25,8 @@ public:
     // Zオーダーが大きければ上に表示される
     enum LocalZOrder {
         BuildingOrder = 1,
+        CanonSmokeOrder,
+        LuminousCirclebOrder, 
         ArcherOnTowerOrder,
         TargetMarkOrder,
     };
@@ -77,6 +79,9 @@ protected:
         ArcherOnTowerTag,
         TargetMarkTag,
         LifeGageTag,
+        CanonSmokeNodeTag,
+        CanonSmokeActionTag,
+        LuminousCircleNodeTag,
     };
     
     const BuildingSpaceByType typeSpace = {
@@ -100,7 +105,7 @@ protected:
     virtual void damagedEffect() {};
     virtual void initArchersOnTower() {};
     virtual void increaseResourceScore(float damage) {};
-    virtual void initDamagedEffectNode() {};
+    virtual void initOwn() {};
     
     const std::map<BuildingType, float> hitpointsByType =
     {

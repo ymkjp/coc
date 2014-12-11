@@ -19,7 +19,7 @@ protected:
     float remainingStorageAmmount;
 
     // Buildingのメソッドを上書き
-    void initDamagedEffectNode();
+    void initOwn();
     void damagedEffect();
     void increaseResourceScore(float damage);
     

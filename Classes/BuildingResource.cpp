@@ -2,13 +2,14 @@
 
 USING_NS_CC;
 
-void BuildingResource::initDamagedEffectNode()
+void BuildingResource::initOwn()
 {
     damagedEffectNode = CSLoader::createNode(motionNameByType.at(type));
     damagedEffectAction = actionTimelineCache->createAction(motionNameByType.at(type));
     damagedEffectNode->setPositionY(5);
     adjustScale();
     damagedEffectNode->runAction(damagedEffectAction);
+    damagedEffectAction->gotoFrameAndPause(60);
     buildingNode->addChild(damagedEffectNode);
     
     // remainingStorageAmmount も初期化

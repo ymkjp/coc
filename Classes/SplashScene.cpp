@@ -38,7 +38,7 @@ bool SplashScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto ui = CSLoader::getInstance()->createNodeFromXML("loading/LoadingLayer.csd");
+    auto ui = CSLoader::createNode("loading/LoadingLayer.csb");
     ui->setScale(visibleSize.width / ui->getContentSize().width);
 //    ui->setPosition(origin);
     this->addChild(ui,UIOrder,UITag);
