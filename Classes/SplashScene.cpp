@@ -37,7 +37,6 @@ bool SplashScene::init()
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,UIOrder,UITag);
     
-    
     // オーディオマネジャの初期化とジングル
     audioManager = AudioManager::create();
     audioManager->playLoadingSE("loading_screen_jingle");
@@ -49,7 +48,7 @@ bool SplashScene::init()
     _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
     
     // 前回ダウンロードしたものを削除
-//    reset();
+    reset();
     
     // アセットをダウンロード
     getAssetManager()->update();

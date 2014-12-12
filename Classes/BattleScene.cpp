@@ -84,8 +84,8 @@ void BattleScene::deployUnitIfKeptTouching(float frame)
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     // 長押ししてたらデプロイし続ける
-//    targetTouch = touch;
-//    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.18);
+    targetTouch = touch;
+    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.18);
     return true;
 }
 
