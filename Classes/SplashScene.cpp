@@ -41,17 +41,20 @@ bool SplashScene::init()
     audioManager = AudioManager::create();
     audioManager->playLoadingSE("loading_screen_jingle");
     
-    // アセットマネジャの初期化
-    initDownloadDir();
-    _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
-    this->addChild(_showDownloadInfo);
-    _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
+//    // アセットマネジャの初期化
+//    initDownloadDir();
+//    _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
+//    this->addChild(_showDownloadInfo);
+//    _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
+//    
+//    // 前回ダウンロードしたものを削除
+//    reset();
+//    
+//    // アセットをダウンロード
+//    getAssetManager()->update();
     
-    // 前回ダウンロードしたものを削除
-    reset();
-    
-    // アセットをダウンロード
-    getAssetManager()->update();
+    // デバッグ
+    this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     
     return true;
 }

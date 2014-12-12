@@ -27,9 +27,9 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     // ユニットの影
     auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
     this->addChild(shadowSprite,ShadowOrder,ShadowTag);
-    shadowSprite->setPositionY(-18);
-    shadowSprite->setOpacity(80);
-    shadowSprite->setScale(2.8);
+    // @todo ゴブリンとジャイアントは位置調整
+    shadowSprite->setPositionY(-14);
+    shadowSprite->setScale(1.8);
     
     // 歩きのアクション
     motionNode = this->getActingNode();

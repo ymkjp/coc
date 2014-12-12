@@ -92,7 +92,7 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
-    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta());
+    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta() * 0.5);
 }
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
