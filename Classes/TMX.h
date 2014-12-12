@@ -107,6 +107,7 @@ protected:
     UnitCountByType unitRemainedCounterByType;
 
     void decreaseTimerCount(float frame);
+    void detectUnitAnnihilation(float frame);
     
     const std::map<Stages,std::string> tmxFileNameByStage = {
         {Amigo,"map_01.tmx"},
@@ -115,9 +116,9 @@ protected:
     };
     
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,99},
-        {Archer,99},
-        {Giant,10},
+        {Barbarian,10},
+        {Archer,15},
+        {Giant,15},
         {Goblin,10},
         {Wallbreaker,10},
     };

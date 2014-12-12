@@ -48,6 +48,9 @@ bool SplashScene::init()
     this->addChild(_showDownloadInfo);
     _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
     
+    // 前回ダウンロードしたものを削除
+//    reset();
+    
     // アセットをダウンロード
     getAssetManager()->update();
     
@@ -106,7 +109,7 @@ AssetsManager* SplashScene::getAssetManager()
                                          "http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/version.txt",
                                          _pathToSave.c_str());
         assetManager->setDelegate(this);
-        assetManager->setConnectionTimeout(6);
+        assetManager->setConnectionTimeout(30);
     }
     return assetManager;
 }

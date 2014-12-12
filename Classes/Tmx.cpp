@@ -41,6 +41,7 @@ void Tmx::startBattle()
 {
     battleStatus = Playing;
     schedule(schedule_selector(Tmx::decreaseTimerCount), 1.0f);
+    schedule(schedule_selector(Tmx::detectUnitAnnihilation), 2.0f);
 }
 
 void Tmx::decreaseTimerCount(float frame)
@@ -52,6 +53,35 @@ void Tmx::decreaseTimerCount(float frame)
     
     if (currentBattleSecound < 0) {
         battleStatus = Finished;
+        showBattleResult();
+    }
+}
+
+void Tmx::detectUnitAnnihilation(float frame)
+{
+    int remainTypeCount = 0;
+    for (auto remained: unitRemainedCounterByType) {
+        if (remained.second != 0) {
+            ++remainTypeCount;
+        }
+    }
+    if (0 < remainTypeCount) {
+        return;
+    }
+    
+    int aliveCount = 0;
+    for (auto unit: units) {
+        if (unit->status == Unit::Alive)
+        {
+            ++aliveCount;
+        }
+    }
+    if (0 < aliveCount) {
+        return;
+    }
+
+    if (remainTypeCount <= 0 && aliveCount <= 0) {
+        // CCLOG("[units]size(%lu),alive(%i),remainTypeCount(%i)",units.size(),aliveCount,remainTypeCount);
         showBattleResult();
     }
 }
@@ -191,7 +221,7 @@ void Tmx::decrementBuildingCount()
 
     float ratio = 100 - ((float)currentBuildingCount / (float)fullBuildingCount * 100);
     earnedBattleScoreByType[DestructionRatioScore] = ratio;
-    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
+//    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
     if (battleStatus == Playing) {
         ui->updateDestructionRatio(ratio);
     }

@@ -47,7 +47,9 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
     lifeGageNode->setVisible(false);
-    this->addChild(lifeGageNode,1,LifeGageTag); // ZOrderが割り当てられる
+    this->addChild(lifeGageNode,1,LifeGageTag);
+    
+    this->pushTobuildingAttackRange(coord);
     
     this->play(1);
     return true;
