@@ -50,7 +50,8 @@ void BuildingTrenchmortar::shoot()
     if (targetUnit->status == Unit::Alive) {
         audioManager->playSE("mortar_shoot");
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
-        bullet->setPosition(this->getPosition());
+        auto shootingPos = this->getPosition() + Vec2(0,60);
+        bullet->setPosition(shootingPos);
         
         bulletShadow = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet_shadow.png");
         bulletShadow->setPosition(this->getPosition());
@@ -59,7 +60,8 @@ void BuildingTrenchmortar::shoot()
         auto parentNode = getParent();
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
-            if (status == Alive && luminousAction && smokeAction) {
+            if (status == Alive && luminousAction && smokeAction && luminousNode && smokeNode) {
+                smokeNode->setPositionY(18);
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }

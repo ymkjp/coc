@@ -20,6 +20,7 @@ public:
     Node* luminousNode;
     timeline::ActionTimeline* luminousAction;
     
+    Vec2 adjustedBulletPos = Vec2::ZERO;
     
     static BuildingCanon* create(Tmx* tmx, Vec2 coord) {
         auto p = new BuildingCanon();

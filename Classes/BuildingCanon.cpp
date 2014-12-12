@@ -27,10 +27,31 @@ void BuildingCanon::attack()
             if (360 < comassDegreeGoal) {
                 comassDegreeGoal -= 360;
             }
-            float flameGoal = ceil(comassDegreeGoal * 0.1);
+            float goalFrame = ceil(comassDegreeGoal * 0.1);
+            CCLOG("goalFrame(%f),comassDegreeGoal(%f)",goalFrame,comassDegreeGoal);
             if (motionAction) {
-                motionAction->gotoFrameAndPause(flameGoal);
+                motionAction->gotoFrameAndPause(goalFrame);
             }
+            
+            // 発火位置調整
+            if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
+                adjustedBulletPos = Vec2(40,80);
+            } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {
+                adjustedBulletPos = Vec2(80,40);
+            } else if (90 < comassDegreeGoal && comassDegreeGoal <= 135) {
+                adjustedBulletPos = Vec2(80,-40);
+            } else if (135 < comassDegreeGoal && comassDegreeGoal <= 180) {
+                adjustedBulletPos = Vec2(40,-80);
+            } else if (180 < comassDegreeGoal && comassDegreeGoal <= 225) {
+                adjustedBulletPos = Vec2(-40,-80);
+            } else if (225 < comassDegreeGoal && comassDegreeGoal <= 270) {
+                adjustedBulletPos = Vec2(-80,-40);
+            } else if (270 < comassDegreeGoal && comassDegreeGoal <= 315) {
+                adjustedBulletPos = Vec2(-80,40);
+            } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
+                adjustedBulletPos = Vec2(-40,80);
+            }
+            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
         }
     });
     
@@ -57,12 +78,15 @@ void BuildingCanon::expandAndShrink()
 void BuildingCanon::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
-        audioManager->playSE("cannon_attack");
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
-        bullet->setPosition(this->getPosition());
+        auto shootingPos = this->getPosition() + adjustedBulletPos;
+        bullet->setPosition(shootingPos);
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
-            if (luminousAction && smokeAction && status == Alive) {
+            if (luminousNode && smokeNode && luminousAction && smokeAction && status == Alive) {
+                // 発火・煙のエフェクト
+                audioManager->playSE("cannon_attack");
+                smokeNode->setPosition(adjustedBulletPos * 0.4);
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }
