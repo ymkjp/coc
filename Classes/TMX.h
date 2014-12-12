@@ -116,9 +116,9 @@ protected:
     };
     
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,10},
+        {Barbarian,15},
         {Archer,15},
-        {Giant,15},
+        {Giant,10},
         {Goblin,10},
         {Wallbreaker,10},
     };
