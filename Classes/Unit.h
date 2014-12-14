@@ -10,8 +10,8 @@ using namespace cocostudio;
 #include "Definitions.h"
 #include "AudioManager.h"
 #include "Tmx.h"
-#include "Building.h"
 #include "MapNavigator.h"
+#include "Building.h"
 
 class Unit : public Node
 {

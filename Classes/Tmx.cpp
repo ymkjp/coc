@@ -1,4 +1,5 @@
 #include "Tmx.h"
+
 USING_NS_CC;
 
 bool Tmx::init(Stages stage)
@@ -34,12 +35,18 @@ bool Tmx::init(Stages stage)
     // 施設破壊率
     ui->updateDestructionRatio(0);
     
+    
+    // 経路探索マップナビゲータの初期化
+    mapNavigator = MapNavigator::create();
+    mapNavigator->retain();
+    
     return true;
 }
 
 void Tmx::startBattle()
 {
     battleStatus = Playing;
+    
     schedule(schedule_selector(Tmx::decreaseTimerCount), 1.0f);
     schedule(schedule_selector(Tmx::detectUnitAnnihilation), 2.0f);
 }
@@ -129,6 +136,7 @@ bool Tmx::noBuildings()
 
 void Tmx::eraseBuilding(Building* building)
 {
+    // 施設タイプごとにキャッシュしているものを破棄
     auto coords = &buildingCoords.at(building->type);
 //    CCLOG("[Tmx::eraseBuilding] type:%i, building->coord(%f,%f)",building->type,building->coord.x,building->coord.y);
     
@@ -143,17 +151,47 @@ void Tmx::eraseBuilding(Building* building)
 //        CCLOG("[Tmx::eraseBuilding] remain coord(%f,%f)",coords->at(i).x,coords->at(i).y);
 //    }
     
+    // 施設が建っているcoordを管理しているキャッシュを破棄
     buildingGrid[building->coord.x][building->coord.y] = nullptr;
     
+    // 経路のグラフに入っている建物を抜く
+    worldGrid.at(static_cast<int>(building->coord.x)).at(static_cast<int>(building->coord.y)) = {};
+    
+    // 経路のキャッシュをすべて破棄
+    mapNavigator->pathCache.clear();
+    
+    // 施設のメモリ確保している Vector から削除
     buildings.eraseObject(building);
 //    CCLOG("Tmx.buildings.size(%lu)",buildings.size());
-    
-    pathCache.clear();
 }
 
-void Tmx::cachePath(std::array<Vec2,2> cacheKey, std::stack<Vec2> path)
+bool Tmx::isTravelable(float posX, float posY)
 {
-    pathCache[cacheKey] = path;
+    // @todo 建物の上でも歩けるはず
+    Building* building = buildingGrid.at(posX).at(posY);
+    return building == nullptr;
+}
+
+PathToGoal Tmx::navigate(Vec2 startCoord, Vec2 goalCoord)
+{
+    if (worldGrid.empty())
+    {
+        // 建物の初期化後にグリッドを生成する必要があるためここでイニシャライズしている
+        initWorldGrid();
+    }
+    return mapNavigator->navigate(&worldGrid, startCoord, goalCoord);
+}
+
+void Tmx::initWorldGrid()
+{
+    for (int x = 0; x < worldGrid.size(); ++x) {
+        for (int y = 0; y < worldGrid[x].size(); ++y) {
+            AStar plainNode = {};
+            plainNode.status = (this->isTravelable(x,y)) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
+            plainNode.pos = Vec2(x,y);
+            worldGrid[x][y] = plainNode;
+        }
+    }
 }
 
 void Tmx::showBattleResult()

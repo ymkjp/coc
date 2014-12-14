@@ -49,6 +49,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     lifeGageNode->setVisible(false);
     this->addChild(lifeGageNode,1,LifeGageTag);
     
+    // デプロイされた場所で建物の射程距離
     this->pushTobuildingAttackRange(coord);
     
     this->play(1);
@@ -58,7 +59,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
 void Unit::play(float frame)
 {
     CCLOG("Unit::play frame[%f]",frame);
-    if (this->tmx->noBuildings()) {
+    if (tmx->noBuildings()) {
         // Finish battle
         this->unscheduleAllCallbacks();
         tmx->showBattleResult();
@@ -69,14 +70,19 @@ void Unit::play(float frame)
     }
     auto startCoord = this->coord;
     auto goalPoint = this->findPointToGo();
-    auto mapNavigator = MapNavigator::create(this->tmx);
-    auto path = mapNavigator->navigate(startCoord, goalPoint);
+    auto path = tmx->navigate(startCoord, goalPoint);
     //    CCLOG("Over steps?:%i",mapNavigator->isOverSteps);
-    if (mapNavigator->isOverSteps) {
-        // 経路を閾値内で見つけられなかった場合、最寄りの壁を攻撃する
+    
+    // 経路を閾値内で見つけられなかった場合
+    if (!path.empty() && path.top() == Vec2(-1,-1)) {
+        // 最寄りの壁を攻撃する
+        // @todo 最寄りじゃなくて建物の近くの壁
         goalPoint = findNearestWallGoalPoint();
         //        CCLOG("[Wall]goalPoint(%f,%f)",goalPoint.x,goalPoint.y);
-        path = mapNavigator->navigate(startCoord, goalPoint);
+        path = tmx->navigate(startCoord, goalPoint);
+    }
+    if (!path.empty() && path.top() == Vec2(-1,-1)) {
+        CCLOG("NOT FOUND");
     }
     
     // 初回の場合は施設上にターゲットマークを描写
@@ -318,7 +324,7 @@ Vec2 Unit::findPointToGo()
         targetCoords = this->getTargetCoords(Melee);
     }
     
-    auto mapNavigator = MapNavigator::create(tmx);
+//    auto mapNavigator = MapNavigator::create(tmx);
     
     float bestScore = -1;
     float distanceSq;
@@ -337,7 +343,7 @@ Vec2 Unit::findPointToGo()
             
             // 攻撃地点に建物が建っていればこの攻撃地点はスキップ
             // @todo 判定を Wall に変更すべき
-            if (!isInMapRange(goalCoord) || !mapNavigator->isTravelable(goalCoord.x,goalCoord.y)) {
+            if (!isInMapRange(goalCoord) || !tmx->isTravelable(goalCoord.x,goalCoord.y)) {
 //                CCLOG("There are some buildings at goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
                 continue;
             }

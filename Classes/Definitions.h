@@ -20,6 +20,7 @@ USING_NS_CC;
 #define TILEDMAP_VISIBLE_ON false
 
 class Tmx;
+class MapNavigator;
 class UI;
 class Unit;
 class Building;
@@ -99,6 +100,27 @@ enum UnitType {
     Wallbreaker,
 };
 
+
+struct AStar
+{
+    enum __STATUS
+    {
+        NONE,
+        OPEN,
+        CLOSE,
+        UNABLE,
+    };
+    __STATUS status;
+    float cost;
+    float distance;
+    AStar *parent;
+    Vec2 pos;
+    float GetScore()
+    {
+        return cost + distance;
+    }
+};
+
 enum Compass {
     North,
     NorthEast,
@@ -153,6 +175,7 @@ typedef std::array<std::array<std::vector<BuildingDefense*>, WORLD_MAP_WIDTH>, W
 typedef std::map<UnitType,int> UnitCountByType;
 typedef std::array<std::array<Grave*, WORLD_MAP_WIDTH>, WORLD_MAP_HEIGHT> GraveGrid;
 typedef std::map<ScoreType,float> BattleScoreByType;
+typedef std::array<std::array<AStar,WORLD_MAP_WIDTH>,WORLD_MAP_HEIGHT> WorldGrid;
 
 // For Building
 typedef std::map<BuildingCategory, std::vector<BuildingType>> BuildingTypesByCategory;

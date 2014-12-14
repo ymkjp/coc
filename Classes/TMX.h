@@ -14,6 +14,7 @@ USING_NS_CC_EXT;
 #include "Building.h"
 #include "Unit.h"
 #include "UI.h"
+#include "MapNavigator.h"
 
 class Tmx : public Node
 {
@@ -39,6 +40,9 @@ public:
     TMXTiledMap* tiledMap;
     TMXLayer *domainTMXLayer;
     
+    UI* ui;
+    MapNavigator* mapNavigator;
+    
     Vec2 convertToCoord(Vec2 pos);
     Vec2 convertToRealPos(Vec2 pos);
     Vec2 convertToIso(Vec2 pos);
@@ -52,10 +56,6 @@ public:
     BuildingGrid buildingGrid = {{}};
     BuildingAttackRangeGrid buildingAttackRangeGrid = {{}};
     GraveGrid graveGrid = {{}};
-    
-    // 経路のキャッシュ
-    std::map<std::array<Vec2,2>, std::stack<Vec2>> pathCache;
-    void cachePath(std::array<Vec2,2> cacheKey, std::stack<Vec2> path);
     
     Vector<Unit*> units;
     Vector<Building*> buildings;
@@ -97,15 +97,21 @@ public:
     void incrementBuildingCount();
     void decrementBuildingCount();
     
+    // MapNavigator関連
+    bool isTravelable(float posX, float posY);
+    PathToGoal navigate(Vec2 startCoord, Vec2 goalCoord);
+    void initWorldGrid();
+    WorldGrid worldGrid = {};
+    
 protected:
     int fullBattleSecond = 180;
     int currentBattleSecound = 0;
     int fullBuildingCount = 0;
     int currentBuildingCount = 0;
     
-    UI* ui;
     UnitCountByType unitRemainedCounterByType;
 
+    
     void decreaseTimerCount(float frame);
     void detectUnitAnnihilation(float frame);
     
@@ -116,11 +122,11 @@ protected:
     };
     
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,15},
-        {Archer,15},
-        {Giant,10},
-        {Goblin,10},
-        {Wallbreaker,10},
+        {Barbarian,99},
+        {Archer,99},
+        {Giant,99},
+        {Goblin,99},
+        {Wallbreaker,99},
     };
     
     BattleScoreByType remainingScoreByType = {

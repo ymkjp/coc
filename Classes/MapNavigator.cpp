@@ -5,51 +5,43 @@ using namespace std;
 
 USING_NS_CC;
 
-bool MapNavigator::init(Tmx* _tmx)
+bool MapNavigator::init()
 {
-    tmx = _tmx;
     return true;
 }
 
-bool MapNavigator::isTravelable(float posX, float posY)
-{
-    // @todo 建物の上でも歩けるはず
-    Building* building = tmx->buildingGrid.at(posX).at(posY);
-    return building == nullptr;
-}
-
 /**
+ @note 上限値を超えると Vec2(-1,-1) を返す
  @param Vec2 goalPoint should be __STATUS::NONE
  @link http://2dgames.jp/2012/05/22/a-starar/
  */
-PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
+PathToGoal MapNavigator::navigate(const WorldGrid* _worldGrid, Vec2 startPoint, Vec2 goalPoint)
 {
 //    CCLOG("start(%f,%f),goal(%f,%f);openSet.size(%lu)",
 //    startPoint.x,startPoint.y,goalPoint.x,goalPoint.y,openSet.size());
     
     // スタート地点とゴール地点が同じ場合は empty path を返す
+    PathToGoal pathToGoal = {};
     if (startPoint == goalPoint) {
-        pathToGoal = {};
         return pathToGoal;
     }
     
-//    // キャッシュヒットすればそれを返す
-//    std::array<Vec2,2> cacheKey = {startPoint, goalPoint};
-//    auto key = tmx->pathCache.find(cacheKey);
-//    if (key != tmx->pathCache.end() && tmx->pathCache.at(cacheKey).size() > 1) {
-//        CCLOG("cache found");
-//        // キャッシュが見つかったのでそれを返す
-//        return tmx->pathCache.at(cacheKey);
-//    }
+    // キャッシュヒットすればそれを返す
+    std::array<Vec2,2> cacheKey = {startPoint, goalPoint};
+    auto key = pathCache.find(cacheKey);
+    if (key != pathCache.end() && pathCache.at(cacheKey).size() > 1) {
+        CCLOG("cache found");
+        // キャッシュが見つかったのでそれを返す
+        return pathCache.at(cacheKey);
+    }
     
-    auto result = std::async(std::launch::async, [this, startPoint, goalPoint] {
-        for (int x = 0; x < sizeof(worldGrid) / sizeof(worldGrid[0]); ++x) {
-            for (int y = 0; y < sizeof(worldGrid[x]) / sizeof(worldGrid[x][0]); ++y) {
-                plainNode.status = (this->isTravelable(x,y)) ? AStar::__STATUS::NONE : AStar::__STATUS::UNABLE;
-                plainNode.pos = Vec2(x,y);
-                worldGrid[x][y] = plainNode;
-            }
-        }
+    auto result = std::async(std::launch::async, [=]
+    {
+        // 生成済みの
+        WorldGrid worldGrid = *_worldGrid;
+        Vec2Set openSet;
+        AStar startNode = {};
+        AStar* bestNode = nullptr;
         
         startNode.status = AStar::__STATUS::OPEN;
         startNode.cost = 0;
@@ -83,16 +75,16 @@ PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
         
         // Find goal from openSet
         bool isFound = false;
-        this->isOverSteps = false;
+        bool isOverSteps = false;
         int steps = 0;
         Vec2 bestPoint;
         Vec2 nextPoint;
-        openedNode = {};
+        AStar* openedNode = nullptr;
         while (isFound == false) {
             ++steps;
             if (PATH_FINDING_MAX_THRESHOLD < steps) {
 //                CCLOG("PATH_FINDING_MAX_THRESHOLD");
-                this->isOverSteps = true;
+                isOverSteps = true;
                 break;
             }
             for (Vec2Set::iterator openedPoint = openSet.begin(); openedPoint != openSet.end(); ++openedPoint)
@@ -141,21 +133,32 @@ PathToGoal MapNavigator::navigate(Vec2 startPoint, Vec2 goalPoint)
             bestNode = {};
         }
         openSet.clear();
-        return openedNode;
+        
+        // 探索終了
+        // openedNode に path が入っている
+        
+        // 結果を用意する
+        PathToGoal pathToGoal = {};
+        
+        if (isOverSteps) {
+            pathToGoal.push(Vec2(-1,-1));
+            return pathToGoal;
+        }
+        
+        while (openedNode->parent != nullptr) {
+            //        ++count; CCLOG("[%i]pathPos(%f,%f)",count,path->pos.x,path->pos.y);
+            pathToGoal.push(openedNode->pos);
+            openedNode = openedNode->parent;
+        }
+        
+        return pathToGoal;
     });
-    path = result.get();
     
-    pathToGoal = {};
-//    int count = 0;
-    while (path->parent != nullptr) {
-//        ++count; CCLOG("[%i]pathPos(%f,%f)",count,path->pos.x,path->pos.y);
-        pathToGoal.push(path->pos);
-        path = path->parent;
-    }
+    pathToGoal = result.get();
     
-//    // キャッシュに追加
-//    tmx->cachePath(cacheKey, pathToGoal);
-//    this->retain();
+    
+    // キャッシュに追加
+    pathCache[cacheKey] = pathToGoal;
     
     return pathToGoal;
 }

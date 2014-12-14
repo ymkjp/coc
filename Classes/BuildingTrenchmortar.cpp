@@ -90,8 +90,8 @@ void BuildingTrenchmortar::shoot()
                 auto prevPos = backgroundLayer->getPosition();
                 Vector<FiniteTimeAction*> arrayOfactions;
                 for (int count = 0; count < 5; ++count) {
-                    auto shakeLeft = MoveBy::create(0.1, Vec2(- 2, 0));
-                    auto shakeRight = MoveBy::create(0.1, Vec2(+ 2, 0));
+                    auto shakeLeft = MoveBy::create(0.1, Vec2(- 6, 4));
+                    auto shakeRight = MoveBy::create(0.1, Vec2(+ 6, -4));
                     arrayOfactions.pushBack(shakeLeft);
                     arrayOfactions.pushBack(shakeRight);
                 }
