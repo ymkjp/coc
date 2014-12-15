@@ -24,7 +24,7 @@ public:
     
     // Unit クラスを上書き
     Vec2 findPointToGo() {
-        return this->findNearestWallGoalPoint();
+        return this->findNearestWallGoalCoord();
     }
     
     void playDeathVoice()

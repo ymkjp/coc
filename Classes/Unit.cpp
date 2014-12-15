@@ -69,17 +69,17 @@ void Unit::play(float frame)
         return;
     }
     auto startCoord = this->coord;
-    auto goalPoint = this->findPointToGo();
-    auto path = tmx->navigate(startCoord, goalPoint);
+    auto goalCoord = this->findPointToGo();
+    auto path = tmx->navigate(startCoord, goalCoord);
     //    CCLOG("Over steps?:%i",mapNavigator->isOverSteps);
     
     // 経路を閾値内で見つけられなかった場合
     if (!path.empty() && path.top() == Vec2(-1,-1)) {
         // 最寄りの壁を攻撃する
         // @todo 最寄りじゃなくて建物の近くの壁
-        goalPoint = findNearestWallGoalPoint();
-        //        CCLOG("[Wall]goalPoint(%f,%f)",goalPoint.x,goalPoint.y);
-        path = tmx->navigate(startCoord, goalPoint);
+        goalCoord = findNearestWallGoalCoord();
+        //        CCLOG("[Wall]goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
+        path = tmx->navigate(startCoord, goalCoord);
     }
     if (!path.empty() && path.top() == Vec2(-1,-1)) {
         CCLOG("NOT FOUND");
@@ -106,10 +106,26 @@ void Unit::play(float frame)
         FiniteTimeAction* func = CallFunc::create([=]() {
             //            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
             if (status == Alive) {
+                
+                // 移動中に目標の建物が壊れていたら探しなおす
+                if (targetBuilding->status == Building::Died)
+                {
+                    this->stopActionByTag(PlayingSequence);
+                    this->play(1);
+                    return;
+                }
+                
+                // Zオーダーの更新
                 this->setLocalZOrder(nextCoord.x + nextCoord.y);
+                
+                // 向きをセットしてモーションを更新
                 this->setCompass(prevCoord, nextCoord);
                 this->updateMotionNode();
+                
+                // 防衛施設の射程に入ったことを通知
                 this->pushTobuildingAttackRange(nextCoord);
+                
+                // 自身のcoordを更新
                 this->coord = nextCoord;
             }
         });
@@ -122,6 +138,7 @@ void Unit::play(float frame)
     FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(Unit::startAttacking, this));
     arrayOfactions.pushBack(attack);
     auto seq = Sequence::create(arrayOfactions);
+    seq->setTag(PlayingSequence);
     
     this->runAction(seq);
 }
@@ -362,8 +379,9 @@ Vec2 Unit::findPointToGo()
     return bestCoord;
 }
 
-Vec2 Unit::findNearestWallGoalPoint()
+Vec2 Unit::findNearestWallGoalCoord()
 {
+    // @fixme 「直近の壁」になっているが「直近の建物との間にある壁」になるべき
     float bestScore = -1;
     float distanceSq;
     Vec2 nearestWallCoord;
@@ -375,7 +393,7 @@ Vec2 Unit::findNearestWallGoalPoint()
     
     // 壁を走査して単純距離が最も近い壁を探す
     for (auto targetCoord: targetCoords) {
-        building = this->tmx->buildingGrid[targetCoord.x][targetCoord.y];
+        building = tmx->buildingGrid[targetCoord.x][targetCoord.y];
         wallCoord = building->coord;
         distanceSq = fabs(startCoord.getDistanceSq(wallCoord));
         if (bestScore == -1 || distanceSq < bestScore) {
@@ -385,7 +403,7 @@ Vec2 Unit::findNearestWallGoalPoint()
         }
     }
     
-    // 最も近い壁の周囲マスから最も近い場所をgoalPointとする
+    // 最も近い壁の周囲マスから最も近い場所をgoalCoordとする
     Vec2 goalCoord;
     Vec2 goalCandidate;
     float bestGoalScore = -1;

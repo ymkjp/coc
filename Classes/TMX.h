@@ -101,7 +101,8 @@ public:
     bool isTravelable(float posX, float posY);
     PathToGoal navigate(Vec2 startCoord, Vec2 goalCoord);
     void initWorldGrid();
-    WorldGrid worldGrid = {};
+    WorldGrid worldGrid;
+    bool worldGridInitialized = false;
     
 protected:
     int fullBattleSecond = 180;

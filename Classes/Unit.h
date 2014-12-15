@@ -55,7 +55,7 @@ public:
     
     // 必要に応じて子クラスで定義させる
     virtual Vec2 findPointToGo();
-    virtual Vec2 findNearestWallGoalPoint();
+    virtual Vec2 findNearestWallGoalCoord();
     virtual std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     virtual Node* getActingNode();
     virtual timeline::ActionTimeline* getActionTimeline();
@@ -75,6 +75,10 @@ public:
         ShadowTag = 1,
         MotionTag,
         LifeGageTag,
+    };
+    
+    enum ActionTag {
+        PlayingSequence = 1,
     };
     
 protected:

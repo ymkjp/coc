@@ -167,17 +167,18 @@ void Tmx::eraseBuilding(Building* building)
 
 bool Tmx::isTravelable(float posX, float posY)
 {
-    // @todo 建物の上でも歩けるはず
     Building* building = buildingGrid.at(posX).at(posY);
-    return building == nullptr;
+    return building == nullptr || building->type != Wall;
 }
 
 PathToGoal Tmx::navigate(Vec2 startCoord, Vec2 goalCoord)
 {
-    if (worldGrid.empty())
+    if (!worldGridInitialized)
     {
         // 建物の初期化後にグリッドを生成する必要があるためここでイニシャライズしている
+        CCLOG("initWorldGrid");
         initWorldGrid();
+        worldGridInitialized = true;
     }
     return mapNavigator->navigate(&worldGrid, startCoord, goalCoord);
 }
