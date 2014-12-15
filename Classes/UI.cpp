@@ -55,6 +55,7 @@ void UI::showBattleController()
     btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
                                {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
+                                       CCLOG("Button_EndButtle");
                                        tmx->showBattleResult();
                                    }
                                });

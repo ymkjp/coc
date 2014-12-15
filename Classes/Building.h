@@ -32,7 +32,7 @@ public:
     };
     
     enum Tag {
-        BuildingNodeTag,
+        BuildingNodeTag = 1,
         BuildingActionTag,
         ArcherOnTowerTag,
         SmokeNodeTag,
@@ -40,6 +40,7 @@ public:
         LuminousNodeTag,
         LuminousActionTag,
         BulletNodeTag,
+        BulletShadowNodeTag,
         DamagedEffectNodeTag,
         DamagedEffectActionTag,
     };
@@ -74,7 +75,6 @@ protected:
     float hitpointPercentage = 100;
     
     Tmx* tmx;
-    timeline::ActionTimelineCache* actionTimelineCache;
     
     // 親ゲージのタグの管理が難しいためポインタでハンドルする
     Node* lifeGageNode;

@@ -20,8 +20,6 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     
     attackSpeed = attackSpeedByType.at(type);
     
-    actionTimelineCache = timeline::ActionTimelineCache::getInstance();
-    
     // ユニットの影
     auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
     this->addChild(shadowSprite,ShadowOrder,ShadowTag);
@@ -40,7 +38,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
 
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
     auto lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
-    auto lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
+    auto lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageUnit.csb");
     lifeGageNode->runAction(lifeGageAction);
     lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
@@ -175,7 +173,7 @@ void Unit::die()
     
     auto prevNode = this->getChildByTag(MotionTag);
     auto ghostNode = CSLoader::createNode("res/Ghost.csb");
-    auto ghostAction = actionTimelineCache->createAction("res/Ghost.csb");
+    auto ghostAction = tmx->actionTimelineCache->createAction("res/Ghost.csb");
     ghostNode->setScale(1.4);
     ghostNode->setPosition(prevNode->getPosition());
     ghostNode->runAction(ghostAction);
@@ -203,7 +201,7 @@ void Unit::finished()
     this->stopAllActions();
     
     auto elixerNode = CSLoader::createNode("res/ElixerBubble.csb");
-    auto elixerAction = actionTimelineCache->createAction("res/ElixerBubble.csb");
+    auto elixerAction = tmx->actionTimelineCache->createAction("res/ElixerBubble.csb");
 //    elixerNode->setPositionY(10);
     elixerNode->runAction(elixerAction);
     elixerAction->gotoFrameAndPlay(0,false);
@@ -481,7 +479,7 @@ Node* Unit::getActingNode()
 
 timeline::ActionTimeline* Unit::getActionTimeline()
 {
-    return actionTimelineCache->createAction(this->createFilename().getCString());
+    return tmx->actionTimelineCache->createAction(this->createFilename().getCString());
 }
 
 /**
@@ -565,7 +563,7 @@ void Unit::testAdd(__String fileName, Vec2 pos)
 {
     // 動作確認用
     auto node = CSLoader::createNode(fileName.getCString());
-    auto anim = actionTimelineCache->createAction(fileName.getCString());
+    auto anim = tmx->actionTimelineCache->createAction(fileName.getCString());
     node->runAction(anim);
     anim->gotoFrameAndPlay(0, true);
     node->setScale(5);

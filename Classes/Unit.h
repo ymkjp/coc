@@ -88,7 +88,6 @@ protected:
     float attackSpeed;
     
     Tmx* tmx;
-    timeline::ActionTimelineCache* actionTimelineCache;
     
     Building* targetBuilding;
     virtual bool isNextCoord(float num);

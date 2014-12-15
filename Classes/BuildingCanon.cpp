@@ -5,22 +5,24 @@ USING_NS_CC;
 void BuildingCanon::initOwn()
 {
     auto smokeNode = CSLoader::createNode("res/CanonSmoke.csb");
-    auto smokeAction = timeline::ActionTimelineCache::createAction("res/CanonSmoke.csb");
+    auto smokeAction = tmx->actionTimelineCache->createAction("res/CanonSmoke.csb");
+    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
-    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     
     auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
-    auto luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    auto luminousAction = tmx->actionTimelineCache->createAction("res/LuminousCircle.csb");
+    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
     luminousAction->setTag(LuminousActionTag);
     luminousNode->runAction(luminousAction);
     luminousAction->gotoFrameAndPause(60);
-    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
 }
 
 void BuildingCanon::attack()
 {
+    auto node = this->getChildByTag(BuildingNodeTag);
+    auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingNodeTag));
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
         // @todo 180度未満の場合は10度づつ順回転、180度以上の場合は逆回転
@@ -31,8 +33,6 @@ void BuildingCanon::attack()
             }
             float goalFrame = ceil(comassDegreeGoal * 0.1);
 //            CCLOG("goalFrame(%f),comassDegreeGoal(%f)",goalFrame,comassDegreeGoal);
-            auto node = this->getChildByTag(BuildingNodeTag);
-            auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingActionTag));
             if (node && action) {
                 action->gotoFrameAndPause(goalFrame);
             }
@@ -85,14 +85,15 @@ void BuildingCanon::shoot()
         auto smokeNode = this->getChildByTag(SmokeNodeTag);
         auto luminousNode = this->getChildByTag(LuminousNodeTag);
         if (!smokeNode || !luminousNode) {
+            CCLOG("NONE! (!smokeNode || !luminousNode!)");
             return;
         }
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         auto shootingPos = this->getPosition() + adjustedBulletPos;
         bullet->setPosition(shootingPos);
         
-        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeActionTag));
-        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(LuminousActionTag));
+        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeNodeTag));
+        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(luminousNode->getActionByTag(LuminousNodeTag));
         FiniteTimeAction* fire = CallFunc::create([=]() {
             if (luminousNode && smokeNode && luminousAction && smokeAction && status == Alive) {
                 // 発火・煙のエフェクト
@@ -110,9 +111,6 @@ void BuildingCanon::shoot()
             if (targetUnit) {
                 targetUnit->attacked(getDamagePerShot());
             }
-//            if (parent) {
-//                parent->removeChildByTag(BulletNodeTag);
-//            }
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);

@@ -59,8 +59,6 @@ bool SplashScene::init()
         // アセットをダウンロード
         getAssetManager()->update();
     }
-
- 
     
     return true;
 }
@@ -84,10 +82,12 @@ void SplashScene::onError(AssetsManager::ErrorCode errorCode)
     else if (errorCode == AssetsManager::ErrorCode::NETWORK)
     {
         _showDownloadInfo->setString("network error");
+        CCLOG("Retry because of network error");
         getAssetManager()->update();
     }
     else if (errorCode == AssetsManager::ErrorCode::CREATE_FILE)
     {
+        CCLOG("Create file error");
         _showDownloadInfo->setString("create file error");
     }
 }

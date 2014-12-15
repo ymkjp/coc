@@ -49,7 +49,7 @@ void BattleScene::showCloud()
 {
     // 画面切り替え時の雲を表示
     auto cloudLayer = CSLoader::createNode("res/CloudSecondLayer.csb");
-    auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudSecondLayer.csb");
+    auto cloudAction = tmx->actionTimelineCache->createAction("res/CloudSecondLayer.csb");
     cloudLayer->runAction(cloudAction);
     cloudAction->gotoFrameAndPlay(0, false);
     this->addChild(cloudLayer);

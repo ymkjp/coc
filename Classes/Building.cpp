@@ -9,7 +9,6 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     status = Alive;
     type = this->getType();
     coord = _coord;
-    actionTimelineCache = timeline::ActionTimelineCache::getInstance();
 
     this->virtualInit();
     this->initNode();
@@ -48,11 +47,10 @@ inline bool Building::isTargetLayer(std::string name, Vec2 coord)
 
 void Building::initNode()
 {
-    Node* buildingNode;
-    
     switch (type) {
         case Wall:
         {
+            Node* buildingNode;
             auto westCoord = coord + Vec2(-1,0);
             auto northCoord = coord + Vec2(0,-1);
             if (this->isTargetLayer("Wall", westCoord) && this->isTargetLayer("Wall", northCoord)) {
@@ -70,48 +68,58 @@ void Building::initNode()
                 buildingNode = CCSprite::createWithSpriteFrameName("stage/wall/1030.0.png");
                 buildingNode->setPositionX(buildingNode->getPosition().x + buildingNode->getContentSize().width * 0.2);
             }
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             break;
         }
         case ArcherTower:
         {
-            buildingNode = CCSprite::createWithSpriteFrameName("stage/archer_tower/1036.0.png");
+            auto buildingNode = CCSprite::createWithSpriteFrameName("stage/archer_tower/1036.0.png");
             this->initArchersOnTower();
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             break;
         }
         case TrenchMortar:
         {
-            buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
-            auto motionAction = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
+            auto buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
+            auto motionAction = tmx->actionTimelineCache->createAction("res/TrenchMortar.csb");
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
+            motionAction->gotoFrameAndPause(1);
             break;
         }
         case TownHall:
         {
-            buildingNode = CSLoader::createNode("res/TownHall.csb");
+            auto buildingNode = CSLoader::createNode("res/TownHall.csb");
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             break;
         }
         case Canon:
         {
-            buildingNode = CSLoader::createNode("res/Canon.csb");
-            auto motionAction = timeline::ActionTimelineCache::createAction("res/Canon.csb");
+            auto buildingNode = CSLoader::createNode("res/Canon.csb");
+            auto motionAction = tmx->actionTimelineCache->createAction("res/Canon.csb");
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
+            motionAction->retain();
             break;
         }
         case GoldBank:
         {
-            buildingNode = CSLoader::createNode("res/GoldBank.csb");
-            auto motionAction = timeline::ActionTimelineCache::createAction("res/GoldBank.csb");
+            auto buildingNode = CSLoader::createNode("res/GoldBank.csb");
+            auto motionAction = tmx->actionTimelineCache->createAction("res/GoldBank.csb");
             motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
+            motionAction->gotoFrameAndPause(6);
             buildingNode->setScale(0.7);
             break;
         }
         case ElixerTank:
         {
-            buildingNode = CSLoader::createNode("res/ElixerTank.csb");
-            auto motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
+            auto buildingNode = CSLoader::createNode("res/ElixerTank.csb");
+            auto motionAction = tmx->actionTimelineCache->createAction("res/ElixerTank.csb");
+            this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
             buildingNode->setScale(0.7);
@@ -121,10 +129,8 @@ void Building::initNode()
         }
         default:
             CCLOG("UNKNOWN buildingNode type");
-            buildingNode = Node::create();
             break;
     }
-    this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
 }
 
 void Building::attacked(float damage)
@@ -154,7 +160,7 @@ inline void Building::updateLifeGage()
         // ライフゲージ初期化
         // 0〜100フレームまであって徐々に減らしていくことで操作できる
         lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
-        lifeGageAction = actionTimelineCache->createAction("res/LifeGageBuilding.csb");
+        lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageBuilding.csb");
         lifeGageNode->runAction(lifeGageAction);
         parent->addChild(lifeGageNode,LifeGageZOrder);
     }
@@ -266,7 +272,7 @@ void Building::putTargetMark()
     if (!targetMarkNode) {
         // ターゲットマークの初期化
         targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
-        targetMarkAction = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
+        targetMarkAction = tmx->actionTimelineCache->createAction("res/TargetMarkerNode.csb");
         targetMarkNode->setPosition(getPosition().x,getPosition().y + 5);
         targetMarkNode->runAction(targetMarkAction);
         parent->addChild(targetMarkNode,TargetMarkerZOrder);

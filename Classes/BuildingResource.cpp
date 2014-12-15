@@ -5,19 +5,13 @@ USING_NS_CC;
 void BuildingResource::initOwn()
 {
     // ダメージエフェクトの初期化
-    auto buildingNode = this->getChildByTag(BuildingNodeTag);
     auto node = CSLoader::createNode(motionNameByType.at(type));
-    auto action = actionTimelineCache->createAction(motionNameByType.at(type));
+    auto action = tmx->actionTimelineCache->createAction(motionNameByType.at(type));
+    this->addChild(node,1,DamagedEffectNodeTag);
     action->setTag(DamagedEffectActionTag);
     node->setPositionY(5);
     node->runAction(action);
     action->gotoFrameAndPause(60);
-    if (type == ElixerTank) {
-        node->setScale(1.6);
-    }
-    if (buildingNode) {
-        buildingNode->addChild(node,1,DamagedEffectNodeTag);
-    }
     
     // remainingStorageAmmount の初期化
     remainingStorageAmmount = storageCapacityByType.at(type);
@@ -51,7 +45,7 @@ void BuildingResource::damagedEffect()
     if (!damagedNode) {
         return;
     }
-    auto damagedEffectAction = dynamic_cast<timeline::ActionTimeline*>(damagedNode->getActionByTag(DamagedEffectActionTag));
+    auto damagedEffectAction = dynamic_cast<timeline::ActionTimeline*>(damagedNode->getActionByTag(DamagedEffectNodeTag));
     if (damagedEffectAction) {
         damagedEffectAction->gotoFrameAndPlay(0,false);
     }

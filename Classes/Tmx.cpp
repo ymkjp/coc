@@ -39,6 +39,8 @@ bool Tmx::init(Stages stage)
     mapNavigator = MapNavigator::create();
     mapNavigator->retain();
     
+    actionTimelineCache = timeline::ActionTimelineCache::getInstance();
+    
     audioManager = AudioManager::create();
     audioManager->retain();
     audioManager->playBgm("planning_music", true);

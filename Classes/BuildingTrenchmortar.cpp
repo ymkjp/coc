@@ -5,18 +5,18 @@ USING_NS_CC;
 void BuildingTrenchmortar::initOwn()
 {
     auto smokeNode = CSLoader::createNode("res/MortarSmoke.csb");
-    auto smokeAction = timeline::ActionTimelineCache::createAction("res/MortarSmoke.csb");
-    smokeAction->setTag(LuminousActionTag);
+    auto smokeAction = tmx->actionTimelineCache->createAction("res/MortarSmoke.csb");
+    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
+    smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
-    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     
     auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
-    auto luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    auto luminousAction = tmx->actionTimelineCache->createAction("res/LuminousCircle.csb");
+    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
     luminousAction->setTag(LuminousActionTag);
     luminousNode->runAction(luminousAction);
     luminousAction->gotoFrameAndPause(60);
-    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
 }
 
 void BuildingTrenchmortar::attack()
@@ -66,8 +66,8 @@ void BuildingTrenchmortar::shoot()
         if (!smokeNode || !luminousNode) {
             return;
         }
-        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeActionTag));
-        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(LuminousActionTag));
+        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeNodeTag));
+        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(luminousNode->getActionByTag(LuminousNodeTag));
         
         tmx->playSE("mortar_shoot");
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
@@ -94,7 +94,7 @@ void BuildingTrenchmortar::shoot()
             tmx->playSE("mortar_hit");
             if (parentNode) {
                 auto impactNode = CSLoader::createNode("res/MortarImpact.csb");
-                auto impactAction = timeline::ActionTimelineCache::createAction("res/MortarImpact.csb");
+                auto impactAction = tmx->actionTimelineCache->createAction("res/MortarImpact.csb");
                 impactNode->runAction(impactAction);
                 parentNode->addChild(impactNode,MortalImpactZOrder);
                 impactNode->setPosition(spot);

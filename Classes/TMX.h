@@ -44,6 +44,9 @@ public:
     UI* ui;
     MapNavigator* mapNavigator;
     
+    
+    timeline::ActionTimelineCache* actionTimelineCache;
+    
     Vec2 convertToCoord(Vec2 pos);
     Vec2 convertToRealPos(Vec2 pos);
     Vec2 convertToIso(Vec2 pos);

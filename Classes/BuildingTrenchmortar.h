@@ -10,25 +10,6 @@ USING_NS_CC;
 class BuildingTrenchmortar : public BuildingDefense
 {
 public:
-    
-//    Node* smokeNode;
-//    timeline::ActionTimeline* smokeAction;
-//    
-//    Node* luminousNode;
-//    timeline::ActionTimeline* luminousAction;
-//    
-//    Node* impactNode;
-//    timeline::ActionTimeline* impactAction;
-    
-    enum Tag {
-        SmokeNodeTag,
-        SmokeActionTag,
-        LuminousNodeTag,
-        LuminousActionTag,
-        BulletNodeTag,
-        BulletShadowNodeTag,
-    };
-    
     float minRange = 4;
     float maxRange = 11;
     

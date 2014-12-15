@@ -11,8 +11,6 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
     action = Idle;
     direction = East;
     
-    actionTimelineCache = timeline::ActionTimelineCache::getInstance();
-    
     auto motionNode = CCSprite::createWithSpriteFrameName("unit/archer/idle/south.png");
     this->addChild(motionNode,MotionOrder,MotionTag);
     
@@ -180,7 +178,7 @@ void ArcherOnTower::updateMotionNode()
             filename.append(".csb");
             
             auto motionNode = CSLoader::createNode(filename.getCString());
-            motionAction = timeline::ActionTimelineCache::createAction(filename.getCString());
+            motionAction = tmx->actionTimelineCache->createAction(filename.getCString());
             motionNode->runAction(motionAction);
             
             this->addChild(motionNode,MotionOrder,MotionTag);

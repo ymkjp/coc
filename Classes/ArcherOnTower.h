@@ -35,7 +35,6 @@ protected:
     Tmx* tmx;
     Vec2 coord;
     Compass direction;
-    timeline::ActionTimelineCache* actionTimelineCache;
     timeline::ActionTimeline* motionAction;
     
     enum NodeTag {
