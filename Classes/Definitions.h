@@ -9,7 +9,7 @@ USING_NS_CC;
 #define TRANSITION_TIME 0.1
 
 //#define DEFAULT_ZOOM_RATE 0.521094 // For debug 全画面表示
-#define DEFAULT_ZOOM_RATE 0.53
+#define DEFAULT_ZOOM_RATE 0.54
 #define MAX_ZOOM_RATE 3.5 // MIN: 0.521094
 
 #define WORLD_MAP_WIDTH 44

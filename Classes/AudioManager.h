@@ -4,8 +4,6 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-#include "Definitions.h"
-
 class AudioManager : public Ref
 {
 public:
@@ -13,11 +11,12 @@ public:
     CREATE_FUNC(AudioManager);
     void preloadSE(const std::string &id);
     unsigned int playSE(const std::string &id);
-    unsigned int playLoadingSE(const std::string &id);
+    void preloadBgm(const std::string &id);
+    void playBgm(const std::string &id, bool bLoop);
+    void stopBgm();
     
 protected:
     const char* getFileName(const std::string &id);
-    const char* getFileNameForLoading(const std::string &id);
 };
 
 #endif // __AUDIO_MANAGER_H__

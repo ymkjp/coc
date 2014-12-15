@@ -85,7 +85,7 @@ void BuildingCanon::shoot()
         FiniteTimeAction* fire = CallFunc::create([=]() {
             if (luminousNode && smokeNode && luminousAction && smokeAction && status == Alive) {
                 // 発火・煙のエフェクト
-                audioManager->playSE("cannon_attack");
+                tmx->playSE("cannon_attack");
                 smokeNode->setPosition(adjustedBulletPos * 0.4);
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);

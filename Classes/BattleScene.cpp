@@ -56,15 +56,16 @@ void BattleScene::showCloud()
 
 void  BattleScene::deployUnit()
 {
-    if (tmx->battleStatus == Tmx::WaitingForStart)
-    {
-        tmx->startBattle();
-    }
-    
     Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());
     if (tmx->isRemainedUnitSelected()
         && isInMapRange(tileCoord)
         && 0 == tmx->tiledMap->getLayer("Domain")->getTileGIDAt(tileCoord)) {
+        
+        // 初回デプロイの場合はバトルスタート
+        if (tmx->battleStatus == Tmx::WaitingForStart)
+        {
+            tmx->startBattle();
+        }
         
         // ユニット残数をデクリメントしてユニット生成
         tmx->decrementUnitCounter();

@@ -27,10 +27,7 @@ public:
     
     // Unit を上書き
     void shoot();
-    virtual void playStartAttackingVoice()
-    {
-        audioManager->playSE("arrow_shoot");
-    };
+    void playStartAttackingVoice();
     
     Node* arrow;
 };

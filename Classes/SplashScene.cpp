@@ -39,7 +39,9 @@ bool SplashScene::init()
     
     // オーディオマネジャの初期化とジングル
     audioManager = AudioManager::create();
-    audioManager->playLoadingSE("loading_screen_jingle");
+    audioManager->retain();
+    audioManager->preloadSE("loading/jingle");
+    audioManager->playSE("loading/jingle");
     
 //    // アセットマネジャの初期化
 //    initDownloadDir();
@@ -167,15 +169,18 @@ void SplashScene::GoToStageSelectorScene(float dt)
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
     
-    preloadAllSoundEffects();
+    preloadAudioResources();
     
     auto scene = StageSelectorScene::createScene();
     Director::getInstance()->replaceScene(TransitionFade::create(TRANSITION_TIME, scene));
 }
 
-void SplashScene::preloadAllSoundEffects()
+void SplashScene::preloadAudioResources()
 {
-    for (auto file: audioList) {
+    for (auto file: sfxList) {
         audioManager->preloadSE(file);
+    }
+    for (auto file: bgmList) {
+        audioManager->preloadBgm(file);
     }
 }

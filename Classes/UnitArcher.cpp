@@ -35,7 +35,7 @@ void UnitArcher::shoot()
         auto parent = getParent();
         auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
-            audioManager->playSE("arrow_hit");
+            tmx->playSE("arrow_hit");
             targetBuilding->attacked(damagePerAttack);
             if (parent) {
                 parent->removeChild(arrow);
@@ -50,3 +50,8 @@ void UnitArcher::shoot()
         }
     }
 }
+
+void UnitArcher::playStartAttackingVoice()
+{
+    tmx->playSE("arrow_shoot");
+};

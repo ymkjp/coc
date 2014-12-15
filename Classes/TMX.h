@@ -11,6 +11,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 #include "Definitions.h"
+#include "AudioManager.h"
 #include "Building.h"
 #include "Unit.h"
 #include "UI.h"
@@ -104,14 +105,21 @@ public:
     WorldGrid worldGrid;
     bool worldGridInitialized = false;
     
+    // AudioManager
+    void playSE(const std::string &id)
+    {
+        audioManager->playSE(id);
+    }
+    
 protected:
+    AudioManager* audioManager;
+    
     int fullBattleSecond = 180;
     int currentBattleSecound = 0;
     int fullBuildingCount = 0;
     int currentBuildingCount = 0;
     
     UnitCountByType unitRemainedCounterByType;
-
     
     void decreaseTimerCount(float frame);
     void detectUnitAnnihilation(float frame);

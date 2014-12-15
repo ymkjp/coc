@@ -22,10 +22,7 @@ public:
         return Giant;
     }
     
-    void playStartAttackingVoice()
-    {
-        audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_attack_start");
-    };
+    void playStartAttackingVoice();
 
 protected:
 

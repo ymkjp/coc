@@ -11,7 +11,6 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
     action = Idle;
     direction = East;
     
-    audioManager = AudioManager::create();
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
     
     auto motionNode = CCSprite::createWithSpriteFrameName("unit/archer/idle/south.png");
@@ -42,7 +41,7 @@ void ArcherOnTower::shoot()
         
         // シークエンス
         FiniteTimeAction* shootMotion = CallFunc::create([=]() {
-            audioManager->playSE("arrow_shoot_by_archer_tower");
+            tmx->playSE("archer_tower_shoot");
             this->action = Attacking;
             this->updateMotionNode();
             this->motionAction->gotoFrameAndPlay(0, false);

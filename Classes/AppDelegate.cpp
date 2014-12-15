@@ -39,10 +39,22 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // add res fold resource
     std::vector<std::string> resDirOrders;
     resDirOrders.push_back(fileUtils->getWritablePath());
-    CCLOG("%s", fileUtils->getWritablePath().c_str());
     resDirOrders.push_back(fileUtils->getWritablePath() + "loading");
+    resDirOrders.push_back(fileUtils->getWritablePath() + "cocosstudio");
+    resDirOrders.push_back(fileUtils->getWritablePath() + "res");
+    resDirOrders.push_back(fileUtils->getWritablePath() + "bgm");
+    resDirOrders.push_back(fileUtils->getWritablePath() + "sfx");
+
+    // デバッグ用に "Resources/*" 以下も読み込む
+    resDirOrders.push_back("");
+    resDirOrders.push_back("loading");
+    resDirOrders.push_back("cocosstudio");
+    resDirOrders.push_back("res");
+    resDirOrders.push_back("bgm");
+    resDirOrders.push_back("sfx");
+
     fileUtils->setSearchPaths(resDirOrders);
-    
+
     return true;
 }
 

@@ -22,3 +22,9 @@ void UnitWallbreaker::startAttacking()
         this->unschedule(schedule_selector(Unit::attack));
     }
 }
+
+void UnitWallbreaker::playDeathVoice()
+{
+    // deployのときと同じ音
+    tmx->playSE("wallbreaker_deploy");
+};

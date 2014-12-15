@@ -93,8 +93,6 @@ protected:
     Node* lifeGageNode;
     timeline::ActionTimeline* lifeGageAction;
     
-    AudioManager* audioManager;
-    
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
     
@@ -105,15 +103,9 @@ protected:
     void die();
     void addGrave();
     
-    virtual void playDeathVoice()
-    {
-        audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_death");
-    };
+    virtual void playDeathVoice();
     
-    virtual void playStartAttackingVoice()
-    {
-        audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_attack_hit");
-    };
+    virtual void playStartAttackingVoice();
     
     
     std::vector<Vec2> getTargetCoords(BuildingCategory category);

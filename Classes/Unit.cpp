@@ -14,9 +14,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     action = Walking;
     compass = NorthEast;
     
-    audioManager = AudioManager::create();
-   
-    audioManager->playSE("unit_" + unitSmallCaseNameByType.at(type) + "_deploy");
+    tmx->playSE(unitSmallCaseNameByType.at(type) + "_deploy");
     
     hitpoints = this->getFullHitPoints();
     
@@ -199,7 +197,7 @@ void Unit::addGrave()
     {
         auto grave = Grave::create(tmx, coord);
         grave->setPosition(tmx->convertToRealPos(coord));
-        parent->addChild(grave,coord.x + coord.y);
+        parent->addChild(grave,coord.x + coord.y - 1); // Unit より後ろにするために -1
         tmx->graveGrid[coord.x][coord.y] = grave;
     }
 }
@@ -214,6 +212,9 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
     if (status == Alive && targetBuilding && targetBuilding->status == Building::Alive) {
+        if (targetBuilding->type == Wall) {
+            // @todo 他の壁が壊されて通れるようになってないかのハンドリング
+        }
         this->action = Attacking;
         this->playStartAttackingVoice();
         
@@ -517,6 +518,16 @@ void Unit::putTargetMark()
     if (targetBuilding) {
         targetBuilding->putTargetMark();
     }
+}
+
+void Unit::playDeathVoice()
+{
+    tmx->playSE(unitSmallCaseNameByType.at(type) + "_death");
+};
+
+void Unit::playStartAttackingVoice()
+{
+    tmx->playSE(unitSmallCaseNameByType.at(type) + "_attack_hit");
 }
 
 void Unit::testAdd(__String fileName, Vec2 pos)

@@ -35,18 +35,23 @@ bool Tmx::init(Stages stage)
     // 施設破壊率
     ui->updateDestructionRatio(0);
     
-    
     // 経路探索マップナビゲータの初期化
     mapNavigator = MapNavigator::create();
     mapNavigator->retain();
     
+    audioManager = AudioManager::create();
+    audioManager->retain();
+    audioManager->playBgm("planning_music", true);
+
     return true;
 }
 
 void Tmx::startBattle()
 {
     battleStatus = Playing;
-    
+    audioManager->stopBgm();
+    audioManager->playBgm("combat_music", true);
+
     schedule(schedule_selector(Tmx::decreaseTimerCount), 1.0f);
     schedule(schedule_selector(Tmx::detectUnitAnnihilation), 2.0f);
 }
@@ -176,7 +181,6 @@ PathToGoal Tmx::navigate(Vec2 startCoord, Vec2 goalCoord)
     if (!worldGridInitialized)
     {
         // 建物の初期化後にグリッドを生成する必要があるためここでイニシャライズしている
-        CCLOG("initWorldGrid");
         initWorldGrid();
         worldGridInitialized = true;
     }
@@ -197,7 +201,14 @@ void Tmx::initWorldGrid()
 
 void Tmx::showBattleResult()
 {
+    if (battleStatus == Finished) {
+        return;
+    }
     battleStatus = Finished;
+    
+    float percentage = earnedBattleScoreByType.at(DestructionRatioScore);
+    bool isWon = (50 <= percentage);
+    audioManager->playBgm(isWon ? "winwinwin" : "battle_lost_02", false);
     ui->showBattleResult(earnedBattleScoreByType);
 }
 

@@ -31,7 +31,7 @@ void BuildingResource::damagedEffect()
         motionAction->gotoFrameAndPause(percentageFrame);
     }
     
-    audioManager->playSE(soundNameByType.at(type));
+    tmx->playSE(soundNameByType.at(type));
     
     // コイン・エリクサーが飛び散る
     damagedEffectAction->gotoFrameAndPlay(0,false);

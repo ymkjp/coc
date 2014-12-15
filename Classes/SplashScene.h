@@ -48,12 +48,12 @@ private:
     Label *_showDownloadInfo = {};
     
     AudioManager* audioManager;
-    void preloadAllSoundEffects();
+    void preloadAudioResources();
     void GoToStageSelectorScene(float dt);
     
     void updateProgressBar(int percent);
     
-    const std::vector<std::string> audioList = {
+    const std::vector<std::string> sfxList = {
         "arrow_hit",
         "arrow_shoot",
         "arrow_shoot_by_archer_tower",
@@ -64,21 +64,29 @@ private:
         "explosion",
         "mortar_hit",
         "mortar_shoot",
-        "unit_archer_death",
-        "unit_archer_deploy",
-        "unit_barbarian_attack_hit",
-        "unit_barbarian_death",
-        "unit_barbarian_deploy",
-        "unit_giant_attack_hit",
-        "unit_giant_attack_start",
-        "unit_giant_death",
-        "unit_giant_deploy",
-        "unit_goblin_attack_hit",
-        "unit_goblin_death",
-        "unit_goblin_deploy",
-        "unit_wallbreaker_attack_hit",
-        "unit_wallbreaker_deploy",
+        "archer_death",
+        "archer_deploy",
+        "barbarian_attack_hit",
+        "barbarian_death",
+        "barbarian_deploy",
+        "giant_attack_hit",
+        "giant_attack_start",
+        "giant_death",
+        "giant_deploy",
+        "goblin_attack_hit",
+        "goblin_death",
+        "goblin_deploy",
+        "wallbreaker_attack_hit",
+        "wallbreaker_deploy",
     };
+    
+    const std::vector<std::string> bgmList = {
+        "battle_lost_02",
+        "combat_music",
+        "planning_music",
+        "winwinwin",
+    };
+
 };
 
 #endif // __SPLASH_SCENE_H__

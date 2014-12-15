@@ -48,7 +48,7 @@ void BuildingTrenchmortar::expandAndShrink()
 void BuildingTrenchmortar::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
-        audioManager->playSE("mortar_shoot");
+        tmx->playSE("mortar_shoot");
         bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         auto shootingPos = this->getPosition() + Vec2(0,60);
         bullet->setPosition(shootingPos);
@@ -70,7 +70,7 @@ void BuildingTrenchmortar::shoot()
 
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
-            audioManager->playSE("mortar_hit");
+            tmx->playSE("mortar_hit");
             if (parentNode) {
                 impactNode = CSLoader::createNode("res/MortarImpact.csb");
                 impactAction = timeline::ActionTimelineCache::createAction("res/MortarImpact.csb");

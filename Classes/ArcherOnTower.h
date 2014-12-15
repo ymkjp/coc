@@ -33,7 +33,6 @@ public:
     
 protected:
     Tmx* tmx;
-    AudioManager* audioManager;
     Vec2 coord;
     Compass direction;
     timeline::ActionTimelineCache* actionTimelineCache;

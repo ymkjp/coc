@@ -165,12 +165,15 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     auto mainResultPanel = ui->getChildByName("Panel_MainResult");
     float percentage = battleScoreByType.at(DestructionRatioScore);
     percentage = (percentage > 100) ? 100 : percentage;
+
+    bool isWon = (50 <= percentage);
     
     // Panel_MainResult -> Panel_Ribbon -> Text_Victory{_Shadow}
-    auto winningText = (50 < percentage) ? "Victory" : "Defeated";
+    auto winningText = isWon ? "Victory" : "Defeated";
     auto ribbonPanel = mainResultPanel->getChildByName("Panel_Ribbon");
     auto winningLabel = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory"));
     auto winningLabelShadow = dynamic_cast<cocos2d::ui::Text*>(ribbonPanel->getChildByName("Text_Victory_Shadow"));
+    winningLabel->setTextColor(isWon ? Color4B::YELLOW : Color4B::RED);
     
     winningLabel->setString(winningText);
     winningLabelShadow->setString(winningText);
