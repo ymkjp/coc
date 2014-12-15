@@ -42,21 +42,25 @@ bool SplashScene::init()
     audioManager->retain();
     audioManager->preloadSE("loading/jingle");
     audioManager->playSE("loading/jingle");
-    
-//    // アセットマネジャの初期化
-//    initDownloadDir();
-//    _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
-//    this->addChild(_showDownloadInfo);
-//    _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
-//    
-//    // 前回ダウンロードしたものを削除
-//    reset();
-//    
-//    // アセットをダウンロード
-//    getAssetManager()->update();
-    
-    // デバッグ
-    this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
+
+    if (QUICK_DEBUG_MODE) {
+        // デバッグ用に遷移する！
+        this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
+    } else {
+        // アセットマネジャの初期化
+        initDownloadDir();
+        _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
+        this->addChild(_showDownloadInfo);
+        _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
+        
+        // 前回ダウンロードしたものを削除
+        reset();
+        
+        // アセットをダウンロード
+        getAssetManager()->update();
+    }
+
+ 
     
     return true;
 }
@@ -80,6 +84,7 @@ void SplashScene::onError(AssetsManager::ErrorCode errorCode)
     else if (errorCode == AssetsManager::ErrorCode::NETWORK)
     {
         _showDownloadInfo->setString("network error");
+        getAssetManager()->update();
     }
     else if (errorCode == AssetsManager::ErrorCode::CREATE_FILE)
     {
@@ -92,7 +97,7 @@ void SplashScene::onProgress(int percent)
     if (percent < 0) {
         return;
     }
-    CCLOG("download::onProgress(%i)",percent);
+//    CCLOG("download::onProgress(%i)",percent);
     updateProgressBar(percent);
 }
 
@@ -113,7 +118,7 @@ AssetsManager* SplashScene::getAssetManager()
                                          "http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/version.txt",
                                          _pathToSave.c_str());
         assetManager->setDelegate(this);
-        assetManager->setConnectionTimeout(30);
+        assetManager->setConnectionTimeout(120);
     }
     return assetManager;
 }
@@ -183,4 +188,9 @@ void SplashScene::preloadAudioResources()
     for (auto file: bgmList) {
         audioManager->preloadBgm(file);
     }
+}
+
+void SplashScene::onEnterTransitionDidFinish()
+{
+    CC_SAFE_RELEASE(audioManager);
 }

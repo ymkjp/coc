@@ -108,7 +108,6 @@ void BuildingTrenchmortar::shoot()
             // 画面を揺らす
             auto backgroundLayer = parentNode->getParent();
             if (backgroundLayer) {
-                auto prevPos = backgroundLayer->getPosition();
                 Vector<FiniteTimeAction*> arrayOfactions;
                 for (int count = 0; count < 5; ++count) {
                     auto shakeLeft = MoveBy::create(0.1, Vec2(- 6, 4));
@@ -116,8 +115,6 @@ void BuildingTrenchmortar::shoot()
                     arrayOfactions.pushBack(shakeLeft);
                     arrayOfactions.pushBack(shakeRight);
                 }
-                arrayOfactions.pushBack(MoveTo::create(0.1, prevPos));
-//                CCLOG("prevPos(%f,%f)",prevPos.x,prevPos.y);
                 backgroundLayer->runAction(Sequence::create(arrayOfactions));
             }
         });

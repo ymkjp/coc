@@ -36,6 +36,9 @@ public:
     void updateBattleScore(ScoreType type, float earnedScore);
     void updateRemainingAssetScore(ScoreType type, float remainingScore);
     
+    void showWarning(std::string message);
+    void hideMessage();
+    
 protected:
     Tmx* tmx;
     Size visibleSize;

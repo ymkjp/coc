@@ -98,6 +98,9 @@ public:
     void incrementBuildingCount();
     void decrementBuildingCount();
     
+    // UIメッセージ表示
+    void showWarning(std::string warningMessage);
+    
     // MapNavigator関連
     bool isTravelable(float posX, float posY);
     PathToGoal navigate(Vec2 startCoord, Vec2 goalCoord);
@@ -124,6 +127,10 @@ protected:
     void decreaseTimerCount(float frame);
     void detectUnitAnnihilation(float frame);
     
+    void hideMessage(float frame);
+    
+    void killAllUnits(float frame);
+    
     const std::map<Stages,std::string> tmxFileNameByStage = {
         {Amigo,"map_01.tmx"},
         {Benito,"map_02.tmx"},
@@ -131,8 +138,8 @@ protected:
     };
     
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,100},
-        {Archer,100},
+        {Barbarian,50},
+        {Archer,50},
         {Giant,50},
         {Goblin,50},
         {Wallbreaker,50},

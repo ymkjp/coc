@@ -80,6 +80,7 @@ public:
     Vec2 posDiff;
     
     void attacked(float damage);
+    void finished();
     
 protected:
     float hitpoints;
@@ -94,6 +95,7 @@ protected:
     virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
     
     void die();
+    void finishBattle();
     void addGrave();
     
     virtual void playDeathVoice();

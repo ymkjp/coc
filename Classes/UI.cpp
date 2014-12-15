@@ -43,6 +43,10 @@ void UI::showBattleController()
                                    });
     }
     
+    // 赤いメッセージ
+    auto warnPanel = ui->getChildByName("Panel_Warn");
+    warnPanel->setVisible(false);
+    
     // 「バトル終了」ボタン
     // EndBattleButtonPanel -> Button_EndButtle
     auto btn = dynamic_cast<cocos2d::ui::Button*>(ui
@@ -142,6 +146,43 @@ inline void UI::changeFrameVisibility()
         ->getChildByName(frameName.getCString())
         ->setVisible(_unitNameByType.first == selectedUnit);
     }
+}
+
+void UI::showWarning(std::string message)
+{
+    // Panel_Warn -> Text_Warn{_Shadow}
+    auto panel = ui->getChildByName("Panel_Warn");
+//    CCLOG("1.getOpacity(%i)",panel->getOpacity());;
+    panel->setVisible(true);
+    panel->setOpacity(255);
+//    CCLOG("2.getOpacity(%i)",panel->getOpacity());
+    auto text = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Warn"));
+    auto textShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Warn_Shadow"));
+    text->setString(message);
+    textShadow->setString(message);
+    
+    auto disappear = FadeOut::create(2);
+    FiniteTimeAction* invisible = CallFunc::create([=]() {
+        panel->setVisible(false);
+//        CCLOG("3.getOpacity(%i)",panel->getOpacity());;
+    });
+    auto sequence = Sequence::create(disappear, invisible, NULL);
+    
+    panel->runAction(sequence);
+}
+
+void UI::hideMessage()
+{
+    // Panel_Message
+    auto panel = ui->getChildByName("Panel_Message");
+    auto disappear = FadeOut::create(0.2);
+    FiniteTimeAction* invisible = CallFunc::create([=]() {
+        panel->setVisible(false);
+    });
+    auto sequence = Sequence::create(disappear, invisible, NULL);
+    
+    panel->runAction(sequence);
+
 }
 
 void UI::showBattleResult(BattleScoreByType battleScoreByType)

@@ -35,7 +35,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="LoadingBar_1" ActionTag="-1529998110" FrameEvent="" Tag="111" ObjectIndex="1" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <NodeObjectData Name="LoadingBar_1" ActionTag="-1529998110" FrameEvent="" Tag="111" ObjectIndex="1" ProgressInfo="1" ctype="LoadingBarObjectData">
             <Position X="477.2800" Y="78.0002" />
             <Scale ScaleX="12.0000" ScaleY="12.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

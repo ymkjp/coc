@@ -21,6 +21,7 @@ bool BattleScene::init(Stages stage)
     scrollView = ScrollView::create(visibleSize);
     backgroundLayer = Layer::create();
     tiledMapLayer = Layer::create();
+    deployAreaLayer = Layer::create();
     
     // ステージ関連のTmxクラス
     tmx = Tmx::create(stage);
@@ -56,9 +57,14 @@ void BattleScene::showCloud()
 
 void  BattleScene::deployUnit()
 {
+    if (!tmx->isRemainedUnitSelected()) {
+        // 選択中のユニットが残り0
+        tmx->showWarning("Select different Unit!");
+    }
+    
     Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());
-    if (tmx->isRemainedUnitSelected()
-        && isInMapRange(tileCoord)
+
+    if (isInMapRange(tileCoord)
         && 0 == tmx->tiledMap->getLayer("Domain")->getTileGIDAt(tileCoord)) {
         
         // 初回デプロイの場合はバトルスタート
@@ -73,6 +79,21 @@ void  BattleScene::deployUnit()
         unit->setPosition(tmx->domainTMXLayer->convertToNodeSpace(targetTouch->getLocation()));
         tmx->units.pushBack(unit);
         tiledMapLayer->addChild(unit,tileCoord.x + tileCoord.y);
+    } else {
+        // deploy不可エリア
+        tmx->showWarning("You cannot deploy troops on the red area!");
+
+        CCLOG("deployAreaLayer(%i),getOpacity(%i)",deployAreaLayer->isVisible(),deployAreaLayer->getOpacity());
+        deployAreaLayer->setVisible(true);
+        deployAreaLayer->setOpacity(255);
+        auto disappear = FadeOut::create(2);
+        FiniteTimeAction* invisible = CallFunc::create([=]() {
+            deployAreaLayer->setVisible(false);
+        });
+        auto sequence = Sequence::create(disappear, invisible, NULL);
+        
+        deployAreaLayer->runAction(sequence);
+
     }
 }
 
@@ -86,7 +107,7 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 {
     // 長押ししてたらデプロイし続ける
     targetTouch = touch;
-    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.18);
+    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.2);
     return true;
 }
 
@@ -98,10 +119,10 @@ void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
+    this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
     if (scrollStatus.scrollingDelay) {
         return;
     }
-    this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
     targetTouch = touch;
     this->deployUnit();
     return;
@@ -109,7 +130,7 @@ void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 
 void BattleScene::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
-    CCLOG("4. cancelled");
+    onTouchEnded(touch, unused_event);
 }
 
 void BattleScene::addBattleStage()
@@ -136,6 +157,11 @@ void BattleScene::addBattleStage()
     tiledMapLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
     tiledMapLayer->setPosition(tiledMapPosition);
     backgroundLayer->addChild(tiledMapLayer);
+    
+    deployAreaLayer->setContentSize(tmx->domainTMXLayer->getContentSize());
+    deployAreaLayer->setVisible(false);
+    deployAreaLayer->setTouchEnabled(false);
+    tiledMapLayer->addChild(deployAreaLayer,DomainOrder);
     
     scrollView->setPosition(origin);
     scrollView->setContainer(backgroundLayer);
@@ -177,9 +203,9 @@ void BattleScene::initBuildings()
                 auto domainSprite = CCSprite::createWithSpriteFrameName("stage/field/14.png");
                 tmx->domainCells.pushBack(domainSprite);
                 domainSprite->setPosition(coordPos);
-                domainSprite->setOpacity(20);
+                domainSprite->setOpacity(80);
                 domainSprite->setScale(0.96);
-                tiledMapLayer->addChild(domainSprite,DomainOrder);
+                deployAreaLayer->addChild(domainSprite);
             }
             
             if (isTargetLayer("Wall", coord)) {
@@ -258,7 +284,6 @@ inline void BattleScene::addGrass(Vec2 coord)
     grassSprite->setRotation(-45);
     tmx->grassCells.pushBack(grassSprite);
     grassSprite->setPosition(Vec2(pos.x + 2, pos.y -4));
-//    grassSprite->setScale(2);
     tiledMapLayer->addChild(grassSprite,GrassOrder);
 }
 
@@ -269,7 +294,13 @@ void BattleScene::addEventDispacher()
         return true;
     };
     scrollViewListner->onTouchEnded = [this](Touch* touch, Event* event) -> void {
-        this->runAction(Sequence::create(DelayTime::create(0.001),CallFunc::create([this](){
+        this->runAction(Sequence::create(DelayTime::create(0.01),CallFunc::create([this](){
+            this->scrollStatus.scrollingDelay = false;
+        }), nullptr));
+        return;
+    };
+    scrollViewListner->onTouchCancelled = [this](Touch* touch, Event* event) -> void {
+        this->runAction(Sequence::create(DelayTime::create(0.01),CallFunc::create([this](){
             this->scrollStatus.scrollingDelay = false;
         }), nullptr));
         return;

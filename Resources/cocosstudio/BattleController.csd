@@ -760,6 +760,76 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
+          <NodeObjectData Name="Panel_Message" ActionTag="-753520007" FrameEvent="" Tag="75" ObjectIndex="14" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Position X="173.0000" Y="159.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="580.0000" Y="120.0000" />
+            <PrePosition X="0.1802" Y="0.2484" />
+            <PreSize X="0.6042" Y="0.1875" />
+            <Children>
+              <NodeObjectData Name="Text_Message_Shadow" ActionTag="-1787832605" FrameEvent="" Tag="74" ObjectIndex="33" FontSize="24" LabelText="Tap or press and hold to deploy&#xA;troops&#xA;" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="290.0000" Y="76.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="16" G="16" B="16" />
+                <Size X="569.0000" Y="52.0000" />
+                <PrePosition X="0.5000" Y="0.6333" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+              <NodeObjectData Name="Text_Message" ActionTag="759226594" FrameEvent="" Tag="73" ObjectIndex="32" FontSize="24" LabelText="Tap or press and hold to deploy&#xA;troops&#xA;" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="287.0000" Y="78.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="569.0000" Y="52.0000" />
+                <PrePosition X="0.4948" Y="0.6500" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+            </Children>
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </NodeObjectData>
+          <NodeObjectData Name="Panel_Warn" ActionTag="-732399591" FrameEvent="" Tag="76" ObjectIndex="15" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+            <Position X="174.0000" Y="392.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="580.0000" Y="120.0000" />
+            <PrePosition X="0.1813" Y="0.6125" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <Children>
+              <NodeObjectData Name="Text_Warn_Shadow" ActionTag="-1692190485" FrameEvent="" Tag="77" ObjectIndex="34" FontSize="20" LabelText="You cannot deploy troops on the red area!" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="290.0000" Y="80.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="16" G="16" B="16" />
+                <Size X="634.0000" Y="22.0000" />
+                <PrePosition X="0.5000" Y="0.6667" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+              <NodeObjectData Name="Text_Warn" ActionTag="2056265525" FrameEvent="" Tag="78" ObjectIndex="35" FontSize="20" LabelText="You cannot deploy troops on the red area!" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+                <Position X="287.0000" Y="82.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="185" G="0" B="0" />
+                <Size X="634.0000" Y="22.0000" />
+                <PrePosition X="0.4948" Y="0.6833" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+            </Children>
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </NodeObjectData>
         </Children>
         <SingleColor A="255" R="0" G="0" B="0" />
         <FirstColor A="255" R="0" G="0" B="0" />

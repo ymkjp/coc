@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <map>
+#include <time.h>
 
 #include "cocos2d.h"
 USING_NS_CC;
@@ -72,6 +73,7 @@ private:
     ScrollView *scrollView;
     Layer *backgroundLayer;
     Layer *tiledMapLayer;
+    Layer *deployAreaLayer;
 
     Tmx* tmx;
     NodeFactory* nodeFactory;

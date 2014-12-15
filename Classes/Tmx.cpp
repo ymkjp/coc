@@ -52,8 +52,20 @@ void Tmx::startBattle()
     audioManager->stopBgm();
     audioManager->playBgm("combat_music", true);
 
+    scheduleOnce(schedule_selector(Tmx::hideMessage), 1.0);
     schedule(schedule_selector(Tmx::decreaseTimerCount), 1.0f);
     schedule(schedule_selector(Tmx::detectUnitAnnihilation), 2.0f);
+}
+
+// "You cannot deploy troops on the red area!" とか
+void Tmx::showWarning(std::string warningMessage)
+{
+    ui->showWarning(warningMessage);
+}
+
+void Tmx::hideMessage(float frame)
+{
+    ui->hideMessage();
 }
 
 void Tmx::decreaseTimerCount(float frame)
@@ -68,6 +80,7 @@ void Tmx::decreaseTimerCount(float frame)
         showBattleResult();
     }
 }
+
 
 void Tmx::detectUnitAnnihilation(float frame)
 {
@@ -205,11 +218,21 @@ void Tmx::showBattleResult()
         return;
     }
     battleStatus = Finished;
+    scheduleOnce(schedule_selector(Tmx::killAllUnits), 1.0);
     
     float percentage = earnedBattleScoreByType.at(DestructionRatioScore);
     bool isWon = (50 <= percentage);
     audioManager->playBgm(isWon ? "winwinwin" : "battle_lost_02", false);
     ui->showBattleResult(earnedBattleScoreByType);
+}
+
+void Tmx::killAllUnits(float frame)
+{
+    for (auto unit: units) {
+        if (unit) {
+            unit->finished();
+        }
+    }
 }
 
 

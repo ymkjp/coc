@@ -42,6 +42,8 @@ public:
 
     
 private:
+    // トランジションの場合 onExit は呼べない
+    void onEnterTransitionDidFinish();
     AssetsManager* getAssetManager();
     void initDownloadDir();
     std::string _pathToSave = "";
@@ -56,7 +58,7 @@ private:
     const std::vector<std::string> sfxList = {
         "arrow_hit",
         "arrow_shoot",
-        "arrow_shoot_by_archer_tower",
+        "archer_tower_shoot",
         "button_click",
         "cannon_attack",
         "coin_steal",

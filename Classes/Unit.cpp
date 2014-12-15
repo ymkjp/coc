@@ -59,9 +59,7 @@ void Unit::play(float frame)
 {
     CCLOG("Unit::play frame[%f]",frame);
     if (tmx->noBuildings()) {
-        // Finish battle
-        this->unscheduleAllCallbacks();
-        tmx->showBattleResult();
+        this->finishBattle();
         return;
     }
     if (status == Died) {
@@ -187,6 +185,34 @@ void Unit::die()
     this->removeChild(prevNode);
     this->addChild(ghostNode, GhostOrder);
     this->addGrave();
+}
+
+void Unit::finishBattle()
+{
+    finished();
+    tmx->showBattleResult();
+}
+
+void Unit::finished()
+{
+    if (status == Died) {
+        return;
+    }
+    status = Died;
+    this->unscheduleAllCallbacks();
+    this->stopAllActions();
+    
+    auto elixerNode = CSLoader::createNode("res/ElixerBubble.csb");
+    auto elixerAction = actionTimelineCache->createAction("res/ElixerBubble.csb");
+//    elixerNode->setPositionY(10);
+    elixerNode->runAction(elixerAction);
+    elixerAction->gotoFrameAndPlay(0,false);
+    
+    auto prevNode = this->getChildByTag(MotionTag);
+    this->removeChildByTag(LifeGageTag);
+    this->removeChildByTag(ShadowTag);
+    this->removeChild(prevNode);
+    this->addChild(elixerNode, GhostOrder);
 }
 
 void Unit::addGrave()

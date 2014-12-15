@@ -62,8 +62,7 @@ void BuildingResource::increaseResourceScore(float damage)
 //    CCLOG("damage(%f),remainingStorageAmmount(%f)",damage,remainingStorageAmmount);
     
     if (0 <= remainingStorageAmmount) {
-        float earningScoreRatio = damage / getFullHitPoints();
-        float earningScore = earningScoreRatio * storageCapacityByType.at(type);
+        float earningScore = damage * storageCapacityByType.at(type) / getFullHitPoints();
         remainingStorageAmmount -= earningScore;
 //        CCLOG("[BuildingGoldbank::increaseScore]earningScoreRatio(%f),earningScore(%f),remainingStorageAmmount(%f)",
 //              earningScoreRatio,
