@@ -213,7 +213,7 @@ void Unit::startAttacking()
 
 void Unit::attack(float frame)
 {
-    if (status == Alive && this->targetBuilding && this->targetBuilding->status == Building::Alive) {
+    if (status == Alive && targetBuilding && targetBuilding->status == Building::Alive) {
         this->action = Attacking;
         this->playStartAttackingVoice();
         
@@ -229,7 +229,7 @@ void Unit::attack(float frame)
         
         this->shoot();
     }
-    if (this->targetBuilding->status == Building::Died) {
+    if (targetBuilding->status == Building::Died) {
 //        CCLOG("Unit::attack target died!");
         action = Walking;
         this->updateMotionNode();
@@ -240,7 +240,7 @@ void Unit::attack(float frame)
 
 void Unit::shoot()
 {
-    this->targetBuilding->attacked(damagePerAttack);
+    targetBuilding->attacked(damagePerAttack);
 }
 
 inline void Unit::updateMotionNode()

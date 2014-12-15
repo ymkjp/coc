@@ -64,11 +64,11 @@ void BuildingCanon::expandAndShrink()
 {
     auto expandAction = ScaleTo::create(0.02, 1.02);
     auto delay = DelayTime::create(0.1);
+    auto shrinkAction = ScaleTo::create(0.02, 1);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {
         this->shoot();
     });
-    auto shrinkAction = ScaleTo::create(0.02, 1);
-    auto sequence = Sequence::create(expandAction, delay, shootBullet, shrinkAction, NULL);
+    auto sequence = Sequence::create(expandAction, shrinkAction, delay, shootBullet, NULL);
     // @todo buildingNode 解放ハンドリング
     if (buildingNode) {
         buildingNode->runAction(sequence);

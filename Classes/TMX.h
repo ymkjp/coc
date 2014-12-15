@@ -123,11 +123,11 @@ protected:
     };
     
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,99},
-        {Archer,99},
-        {Giant,99},
-        {Goblin,99},
-        {Wallbreaker,99},
+        {Barbarian,100},
+        {Archer,100},
+        {Giant,50},
+        {Goblin,50},
+        {Wallbreaker,50},
     };
     
     BattleScoreByType remainingScoreByType = {

@@ -22,7 +22,7 @@ void BuildingArchertower::attack()
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
         // @todo 180度未満の場合は10度づつ順回転、180度以上の場合は逆回転
-        if (targetUnit->status == Unit::Alive) {
+        if (targetUnit->status == Unit::Alive && status == Alive) {
             float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord) + 45;
             if (360 < comassDegreeGoal) {
                 comassDegreeGoal -= 360;
@@ -69,7 +69,7 @@ void BuildingArchertower::updateArchersDirection()
 
 void BuildingArchertower::shoot()
 {
-    if (targetUnit->status == Unit::Alive) {
+    if (targetUnit->status == Unit::Alive && status == Alive) {
         updateAttacingArcherIndex();
         auto archer = archersOnTower.at(attackingArcherIndex);
         archer->targetUnit = targetUnit;

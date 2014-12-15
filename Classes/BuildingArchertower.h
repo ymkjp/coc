@@ -35,7 +35,6 @@ public:
         return maxRange;
     }
     
-//    void broken();
 
 protected:
     const int numberOfArchersOnTower = 3;
