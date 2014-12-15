@@ -66,13 +66,6 @@ private:
     enum localZOrder {
         TmxOrder = 1000, // ゲーム結果画面の表示のときにUIを表示する
     };
-    enum tiledMapOrder {
-        DomainOrder = 1,
-        GrassOrder,
-        BuildingShadowOrder,
-        BuildingOrder,
-        UnitOrder,
-    };
     
     Size visibleSize;
     Vec2 origin;

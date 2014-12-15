@@ -30,8 +30,8 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     shadowSprite->setScale(1.8);
     
     // 歩きのアクション
-    motionNode = this->getActingNode();
-    motionAction = this->getActionTimeline();
+    auto motionNode = this->getActingNode();
+    auto motionAction = this->getActionTimeline();
     motionNode->runAction(motionAction);
     motionAction->gotoFrameAndPlay(0, true);
     this->addChild(motionNode, MotionOrder, MotionTag);
@@ -39,13 +39,14 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
 //    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
 
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
-    lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
-    lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
+    auto lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
+    auto lifeGageAction = actionTimelineCache->createAction("res/LifeGageUnit.csb");
     lifeGageNode->runAction(lifeGageAction);
     lifeGageAction->gotoFrameAndPause(100);
     lifeGageNode->setPositionY(40);
     lifeGageNode->setVisible(false);
-    this->addChild(lifeGageNode,1,LifeGageTag);
+    this->addChild(lifeGageNode,LifeGageOrder,LifeGageTag);
+    lifeGageAction->setTag(LifeGageActionTag);
     
     // デプロイされた場所で建物の射程距離
     this->pushTobuildingAttackRange(coord);
@@ -255,17 +256,21 @@ inline void Unit::updateMotionNode()
         this->removeChild(prevMotionNode);
         this->addChild(nextMotionNode, MotionOrder, MotionTag);
         
-        motionAction = action;
+//        motionAction = action;
     }
 }
 
 inline void Unit::updateLifeGage()
 {
+    auto node = this->getChildByTag(LifeGageTag);
+    if (!node) {return;}
+    auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(LifeGageActionTag));
+    
     int percentage = hitpoints / getFullHitPoints() * 100;
-    if (0 <= percentage) {
+    if (0 <= percentage && action) {
 //        CCLOG("percentage%i",percentage);
-        lifeGageNode->setVisible(true);
-        lifeGageAction->gotoFrameAndPause(percentage);
+        node->setVisible(true);
+        action->gotoFrameAndPause(percentage);
         this->scheduleOnce(schedule_selector(Unit::hideLifeGage), 3.0);
     }
 }

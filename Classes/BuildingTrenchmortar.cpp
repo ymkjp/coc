@@ -4,21 +4,29 @@ USING_NS_CC;
 
 void BuildingTrenchmortar::initOwn()
 {
-    smokeNode = CSLoader::createNode("res/MortarSmoke.csb");
-    smokeAction = timeline::ActionTimelineCache::createAction("res/MortarSmoke.csb");
+    auto smokeNode = CSLoader::createNode("res/MortarSmoke.csb");
+    auto smokeAction = timeline::ActionTimelineCache::createAction("res/MortarSmoke.csb");
+    smokeAction->setTag(LuminousActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
-    this->addChild(smokeNode,CanonSmokeOrder,CanonSmokeNodeTag);
+    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     
-    luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
-    luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
+    auto luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    luminousAction->setTag(LuminousActionTag);
     luminousNode->runAction(luminousAction);
     luminousAction->gotoFrameAndPause(60);
-    this->addChild(luminousNode,LuminousCirclebOrder, LuminousCircleNodeTag);
+    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
 }
 
 void BuildingTrenchmortar::attack()
 {
+    auto buildingNode = this->getChildByTag(BuildingNodeTag);
+    if (!buildingNode) {
+        return;
+    }
+    auto motionAction = dynamic_cast<timeline::ActionTimeline*>(buildingNode->getActionByTag(BuildingActionTag));
+
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
         if (motionAction && targetUnit->status == Unit::Alive) {
@@ -35,6 +43,11 @@ void BuildingTrenchmortar::attack()
 
 void BuildingTrenchmortar::expandAndShrink()
 {
+    auto buildingNode = this->getChildByTag(BuildingNodeTag);
+    if (!buildingNode) {
+        return;
+    }
+    
     auto expandAction = ScaleTo::create(0.02, 1.02);
     auto shrinkAction = ScaleTo::create(0.02, 1);
     auto delay = DelayTime::create(0.1);
@@ -48,12 +61,20 @@ void BuildingTrenchmortar::expandAndShrink()
 void BuildingTrenchmortar::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
+        auto smokeNode = this->getChildByTag(SmokeNodeTag);
+        auto luminousNode = this->getChildByTag(LuminousNodeTag);
+        if (!smokeNode || !luminousNode) {
+            return;
+        }
+        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeActionTag));
+        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(LuminousActionTag));
+        
         tmx->playSE("mortar_shoot");
-        bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
+        auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         auto shootingPos = this->getPosition() + Vec2(0,60);
         bullet->setPosition(shootingPos);
         
-        bulletShadow = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet_shadow.png");
+        auto bulletShadow = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet_shadow.png");
         bulletShadow->setPosition(this->getPosition());
         
         auto spot = targetUnit->getPosition();
@@ -72,16 +93,16 @@ void BuildingTrenchmortar::shoot()
             // @todo 射程距離にいるユニットにダメージ
             tmx->playSE("mortar_hit");
             if (parentNode) {
-                impactNode = CSLoader::createNode("res/MortarImpact.csb");
-                impactAction = timeline::ActionTimelineCache::createAction("res/MortarImpact.csb");
+                auto impactNode = CSLoader::createNode("res/MortarImpact.csb");
+                auto impactAction = timeline::ActionTimelineCache::createAction("res/MortarImpact.csb");
                 impactNode->runAction(impactAction);
                 parentNode->addChild(impactNode,MortalImpactZOrder);
                 impactNode->setPosition(spot);
                 impactAction->gotoFrameAndPlay(0, false);
 
                 targetUnit->attacked(getDamagePerShot());
-                parentNode->removeChild(bullet);
-                parentNode->removeChild(bulletShadow);
+//                parentNode->removeChildByTag(BulletNodeTag);
+//                parentNode->removeChildByTag(BulletShadowNodeTag);
             }
             
             // 画面を揺らす
@@ -110,8 +131,8 @@ void BuildingTrenchmortar::shoot()
         bulletShadow->runAction(shadowSequence);
         
         if (parentNode) {
-            parentNode->addChild(bullet,BulletZOrder);;
-            parentNode->addChild(bulletShadow,BulletShadowZOrder);
+            parentNode->addChild(bullet,BulletZOrder,BulletNodeTag);
+            parentNode->addChild(bulletShadow,BulletShadowZOrder,BulletShadowNodeTag);
         }
     }
 }

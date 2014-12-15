@@ -5,6 +5,8 @@ USING_NS_CC;
 
 void BuildingTownhall::damagedEffect()
 {
+    auto node = this->getChildByTag(BuildingNodeTag);
+    
     // res/ElixerBubble.csb
     auto elixerNode = CSLoader::createNode("res/ElixerBubble.csb");
     auto elixerAction = actionTimelineCache->createAction("res/ElixerBubble.csb");
@@ -12,7 +14,9 @@ void BuildingTownhall::damagedEffect()
     elixerNode->setScale(2);
     elixerNode->runAction(elixerAction);
     elixerAction->gotoFrameAndPlay(0,false);
-    buildingNode->addChild(elixerNode);
+    if (node) {
+        node->addChild(elixerNode);
+    }
     
     // res/CoinBubble.csb
     auto coinNode = CSLoader::createNode("res/CoinBubble.csb");
@@ -20,5 +24,8 @@ void BuildingTownhall::damagedEffect()
     coinNode->setPositionY(10);
     coinNode->runAction(coinAction);
     coinAction->gotoFrameAndPlay(0,false);
-    buildingNode->addChild(coinNode);
+    if (node) {
+        node->addChild(coinNode);
+    }
+
 }

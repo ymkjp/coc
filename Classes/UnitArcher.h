@@ -29,7 +29,6 @@ public:
     void shoot();
     void playStartAttackingVoice();
     
-    Node* arrow;
 };
 
 #endif // __UNIT_ARCHER_H__

@@ -11,14 +11,23 @@ class BuildingTrenchmortar : public BuildingDefense
 {
 public:
     
-    Node* smokeNode;
-    timeline::ActionTimeline* smokeAction;
+//    Node* smokeNode;
+//    timeline::ActionTimeline* smokeAction;
+//    
+//    Node* luminousNode;
+//    timeline::ActionTimeline* luminousAction;
+//    
+//    Node* impactNode;
+//    timeline::ActionTimeline* impactAction;
     
-    Node* luminousNode;
-    timeline::ActionTimeline* luminousAction;
-    
-    Node* impactNode;
-    timeline::ActionTimeline* impactAction;
+    enum Tag {
+        SmokeNodeTag,
+        SmokeActionTag,
+        LuminousNodeTag,
+        LuminousActionTag,
+        BulletNodeTag,
+        BulletShadowNodeTag,
+    };
     
     float minRange = 4;
     float maxRange = 11;
@@ -56,8 +65,8 @@ public:
     void shoot();
     void initOwn();
     
-    Node* bullet;
-    Node* bulletShadow;
+//    Node* bullet;
+//    Node* bulletShadow;
 };
 
 #endif // __BUILDING_TRENCHMORTAR_H__

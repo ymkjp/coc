@@ -36,7 +36,7 @@ inline static bool isInMapRange(Vec2 targetPoint)
 };
 
 // 地面の上の施設 44*2 より大きくするとバトルマップで上に表示される
-enum ZOrder {
+enum BattleSceneZOrder {
     // 地面の上の影
     BulletShadowZOrder = 400,
     
@@ -50,6 +50,14 @@ enum ZOrder {
     // UI要素
     TargetMarkerZOrder = 1000,
     LifeGageZOrder = 2000,
+};
+
+enum TiledMapOrder {
+    DomainOrder = 1,
+    GrassOrder,
+    BuildingShadowOrder,
+    BuildingOrder,
+    UnitOrder,
 };
 
 enum Stages {
@@ -185,5 +193,6 @@ typedef std::map<BuildingType, BuildingSpace> BuildingSpaceByType;
 // For MapNavigator
 typedef std::set<Vec2> Vec2Set;
 typedef std::stack<Vec2> PathToGoal;
+
 
 #endif // __DEFINITIONS_H__

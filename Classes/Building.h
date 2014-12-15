@@ -31,8 +31,20 @@ public:
         ArcherOnTowerOrder,
     };
     
+    enum Tag {
+        BuildingNodeTag,
+        BuildingActionTag,
+        ArcherOnTowerTag,
+        SmokeNodeTag,
+        SmokeActionTag,
+        LuminousNodeTag,
+        LuminousActionTag,
+        BulletNodeTag,
+        DamagedEffectNodeTag,
+        DamagedEffectActionTag,
+    };
+    
     Vec2 coord;
-    Node* buildingNode;
     BuildingType type;
     __STATUS status;
     
@@ -64,25 +76,12 @@ protected:
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
     
+    // 親ゲージのタグの管理が難しいためポインタでハンドルする
     Node* lifeGageNode;
     timeline::ActionTimeline* lifeGageAction;
     
-    Node* motionNode;
-    timeline::ActionTimeline* motionAction;
-    
     Node* targetMarkNode;
     timeline::ActionTimeline* targetMarkAction;
-    
-    enum NodeTag {
-        BuildingTag,
-        MotionTag,
-        ArcherOnTowerTag,
-//        TargetMarkTag,
-        LifeGageTag,
-        CanonSmokeNodeTag,
-        CanonSmokeActionTag,
-        LuminousCircleNodeTag,
-    };
     
     const BuildingSpaceByType typeSpace = {
         {TownHall,     Large},
@@ -125,7 +124,10 @@ protected:
     
     void hideLifeGage(float frame)
     {
-        this->lifeGageNode->setVisible(false);
+        if (lifeGageNode) {
+            lifeGageNode->setVisible(false);
+            return;
+        }
     }
     
 };

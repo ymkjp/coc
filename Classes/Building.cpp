@@ -48,6 +48,8 @@ inline bool Building::isTargetLayer(std::string name, Vec2 coord)
 
 void Building::initNode()
 {
+    Node* buildingNode;
+    
     switch (type) {
         case Wall:
         {
@@ -79,7 +81,8 @@ void Building::initNode()
         case TrenchMortar:
         {
             buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
-            motionAction = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
+            auto motionAction = timeline::ActionTimelineCache::createAction("res/TrenchMortar.csb");
+            motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
             break;
         }
@@ -91,14 +94,16 @@ void Building::initNode()
         case Canon:
         {
             buildingNode = CSLoader::createNode("res/Canon.csb");
-            motionAction = timeline::ActionTimelineCache::createAction("res/Canon.csb");
+            auto motionAction = timeline::ActionTimelineCache::createAction("res/Canon.csb");
+            motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
             break;
         }
         case GoldBank:
         {
             buildingNode = CSLoader::createNode("res/GoldBank.csb");
-            motionAction = timeline::ActionTimelineCache::createAction("res/GoldBank.csb");
+            auto motionAction = timeline::ActionTimelineCache::createAction("res/GoldBank.csb");
+            motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
             buildingNode->setScale(0.7);
             break;
@@ -106,7 +111,8 @@ void Building::initNode()
         case ElixerTank:
         {
             buildingNode = CSLoader::createNode("res/ElixerTank.csb");
-            motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
+            auto motionAction = timeline::ActionTimelineCache::createAction("res/ElixerTank.csb");
+            motionAction->setTag(BuildingActionTag);
             buildingNode->runAction(motionAction);
             buildingNode->setScale(0.7);
             buildingNode->setPositionY(10);
@@ -118,7 +124,7 @@ void Building::initNode()
             buildingNode = Node::create();
             break;
     }
-    this->addChild(buildingNode,BuildingOrder,BuildingTag);
+    this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
 }
 
 void Building::attacked(float damage)
@@ -150,15 +156,17 @@ inline void Building::updateLifeGage()
         lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
         lifeGageAction = actionTimelineCache->createAction("res/LifeGageBuilding.csb");
         lifeGageNode->runAction(lifeGageAction);
-        getParent()->addChild(lifeGageNode,LifeGageZOrder);
+        parent->addChild(lifeGageNode,LifeGageZOrder);
     }
-    if (parent && 0 <= hitpointPercentage) {
+    if (parent && lifeGageNode && 0 <= hitpointPercentage && hitpointPercentage <= 100) {
 //        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
-        // @fixme init の時点で pos セットされてない
         // @fixme 建物の高さに応じた lifeGage pos セット
         lifeGageNode->setVisible(true);
         lifeGageNode->setPosition(getPosition().x, getPosition().y + 60);
-        lifeGageAction->gotoFrameAndPause((int)hitpointPercentage);
+        
+        if (lifeGageAction) {
+            lifeGageAction->gotoFrameAndPause((int)hitpointPercentage);
+        }
         this->scheduleOnce(schedule_selector(Building::hideLifeGage), 3.0);
     }
 }
@@ -175,13 +183,16 @@ void Building::broken()
     this->removeAllChildrenWithCleanup(true);
     
     auto parent = getParent();
-    if (parent && lifeGageNode) {
+    if (!parent) {
+        return;
+    }
+    if (lifeGageNode) {
         parent->removeChild(lifeGageNode);
     }
-    if (parent && targetMarkNode) {
+    if (targetMarkNode) {
         parent->removeChild(targetMarkNode);
     }
-
+    
     this->brokenEffect();
     this->addWrack();
     
@@ -252,15 +263,17 @@ void Building::putTargetMark()
     if (!parent) {
         return;
     }
-    if (!targetMarkAction) {
+    if (!targetMarkNode) {
         // ターゲットマークの初期化
         targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
         targetMarkAction = actionTimelineCache->createAction("res/TargetMarkerNode.csb");
         targetMarkNode->setPosition(getPosition().x,getPosition().y + 5);
         targetMarkNode->runAction(targetMarkAction);
-        getParent()->addChild(targetMarkNode,TargetMarkerZOrder);
+        parent->addChild(targetMarkNode,TargetMarkerZOrder);
     }
-    targetMarkAction->gotoFrameAndPlay(0,false);
+    if (targetMarkAction) {
+        targetMarkAction->gotoFrameAndPlay(0,false);
+    }
 }
 
 

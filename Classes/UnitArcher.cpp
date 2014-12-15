@@ -24,7 +24,7 @@ void UnitArcher::shoot()
 {
     if (targetBuilding->status == Building::Alive) {
         
-        arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
+        auto arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
         arrow->setPosition(this->getPosition());
         arrow->setScale(2);
 
@@ -46,7 +46,7 @@ void UnitArcher::shoot()
         arrow->runAction(sequence);
 
         if (parent) {
-            parent->addChild(arrow,ArrowZOrder);
+            parent->addChild(arrow,ArrowZOrder,ArrowTag);
         }
     }
 }

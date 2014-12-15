@@ -24,7 +24,6 @@ public:
         NoActing = 0,
         Walking,
         Attacking,
-        Damaged,
     };
     
     // Z値が大きければ上に表示される
@@ -32,6 +31,17 @@ public:
         ShadowOrder = 1,
         GhostOrder,
         MotionOrder,
+        LifeGageOrder,
+    };
+    
+    enum Tag {
+        PlayingSequence = 1,
+        ShadowTag,
+        MotionTag,
+        MotionActionTag,
+        LifeGageTag,
+        LifeGageActionTag,
+        ArrowTag,
     };
     
     virtual bool init(Tmx* tmx, Vec2 coord);
@@ -71,27 +81,10 @@ public:
     
     void attacked(float damage);
     
-    enum NodeTag {
-        ShadowTag = 1,
-        MotionTag,
-        LifeGageTag,
-    };
-    
-    enum ActionTag {
-        PlayingSequence = 1,
-    };
-    
 protected:
     float hitpoints;
     float damagePerAttack;
     float attackSpeed;
-    
-    
-    Node* motionNode;
-    timeline::ActionTimeline* motionAction;
-    
-    Node* lifeGageNode;
-    timeline::ActionTimeline* lifeGageAction;
     
     Tmx* tmx;
     timeline::ActionTimelineCache* actionTimelineCache;
@@ -159,7 +152,10 @@ protected:
     
     void hideLifeGage(float frame)
     {
-        lifeGageNode->setVisible(false);
+        auto node = this->getChildByTag(LifeGageTag);
+        if (node) {
+            node->setVisible(false);
+        }
     };
     
     bool alreadyMarked = false;

@@ -12,9 +12,6 @@ public:
     float getStorageCapacity();
 
 protected:
-    Node* damagedEffectNode;
-    timeline::ActionTimeline* damagedEffectAction;
-    
     ScoreType scoreType;
     float remainingStorageAmmount;
 

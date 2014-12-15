@@ -12,14 +12,6 @@ class BuildingCanon : public BuildingDefense
 public:
     float maxRange = 9;
     
-    Node* bullet;
-    
-    Node* smokeNode;
-    timeline::ActionTimeline* smokeAction;
-    
-    Node* luminousNode;
-    timeline::ActionTimeline* luminousAction;
-    
     Vec2 adjustedBulletPos = Vec2::ZERO;
     
     static BuildingCanon* create(Tmx* tmx, Vec2 coord) {

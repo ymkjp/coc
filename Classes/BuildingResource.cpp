@@ -4,15 +4,22 @@ USING_NS_CC;
 
 void BuildingResource::initOwn()
 {
-    damagedEffectNode = CSLoader::createNode(motionNameByType.at(type));
-    damagedEffectAction = actionTimelineCache->createAction(motionNameByType.at(type));
-    damagedEffectNode->setPositionY(5);
-    adjustScale();
-    damagedEffectNode->runAction(damagedEffectAction);
-    damagedEffectAction->gotoFrameAndPause(60);
-    buildingNode->addChild(damagedEffectNode);
+    // ダメージエフェクトの初期化
+    auto buildingNode = this->getChildByTag(BuildingNodeTag);
+    auto node = CSLoader::createNode(motionNameByType.at(type));
+    auto action = actionTimelineCache->createAction(motionNameByType.at(type));
+    action->setTag(DamagedEffectActionTag);
+    node->setPositionY(5);
+    node->runAction(action);
+    action->gotoFrameAndPause(60);
+    if (type == ElixerTank) {
+        node->setScale(1.6);
+    }
+    if (buildingNode) {
+        buildingNode->addChild(node,1,DamagedEffectNodeTag);
+    }
     
-    // remainingStorageAmmount も初期化
+    // remainingStorageAmmount の初期化
     remainingStorageAmmount = storageCapacityByType.at(type);
     
     // 総アセットスコアに加算
@@ -26,15 +33,28 @@ float BuildingResource::getStorageCapacity()
 
 void BuildingResource::damagedEffect()
 {
+    auto node = this->getChildByTag(BuildingNodeTag);
+    if (!node) {
+        return;
+    }
+    // コイン・エリクサーが減っていく
     int percentageFrame = hitpoints / getFullHitPoints() * 5;
-    if (motionAction && 0 <= percentageFrame && percentageFrame <= 5) {
-        motionAction->gotoFrameAndPause(percentageFrame);
+    auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingNodeTag));
+    if (action && 0 <= percentageFrame && percentageFrame <= 5) {
+        action->gotoFrameAndPause(percentageFrame);
     }
     
     tmx->playSE(soundNameByType.at(type));
     
     // コイン・エリクサーが飛び散る
-    damagedEffectAction->gotoFrameAndPlay(0,false);
+    auto damagedNode = this->getChildByTag(DamagedEffectNodeTag);
+    if (!damagedNode) {
+        return;
+    }
+    auto damagedEffectAction = dynamic_cast<timeline::ActionTimeline*>(damagedNode->getActionByTag(DamagedEffectActionTag));
+    if (damagedEffectAction) {
+        damagedEffectAction->gotoFrameAndPlay(0,false);
+    }
 }
 
 void BuildingResource::increaseResourceScore(float damage)

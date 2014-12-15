@@ -4,17 +4,19 @@ USING_NS_CC;
 
 void BuildingCanon::initOwn()
 {
-    smokeNode = CSLoader::createNode("res/CanonSmoke.csb");
-    smokeAction = timeline::ActionTimelineCache::createAction("res/CanonSmoke.csb");
+    auto smokeNode = CSLoader::createNode("res/CanonSmoke.csb");
+    auto smokeAction = timeline::ActionTimelineCache::createAction("res/CanonSmoke.csb");
+    smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
-    this->addChild(smokeNode,CanonSmokeOrder,CanonSmokeNodeTag);
+    this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     
-    luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
-    luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
+    auto luminousAction = timeline::ActionTimelineCache::createAction("res/LuminousCircle.csb");
+    luminousAction->setTag(LuminousActionTag);
     luminousNode->runAction(luminousAction);
     luminousAction->gotoFrameAndPause(60);
-    this->addChild(luminousNode,LuminousCirclebOrder, LuminousCircleNodeTag);
+    this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
 }
 
 void BuildingCanon::attack()
@@ -28,9 +30,11 @@ void BuildingCanon::attack()
                 comassDegreeGoal -= 360;
             }
             float goalFrame = ceil(comassDegreeGoal * 0.1);
-            CCLOG("goalFrame(%f),comassDegreeGoal(%f)",goalFrame,comassDegreeGoal);
-            if (motionAction) {
-                motionAction->gotoFrameAndPause(goalFrame);
+//            CCLOG("goalFrame(%f),comassDegreeGoal(%f)",goalFrame,comassDegreeGoal);
+            auto node = this->getChildByTag(BuildingNodeTag);
+            auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingActionTag));
+            if (node && action) {
+                action->gotoFrameAndPause(goalFrame);
             }
             
             // 発火位置調整
@@ -51,7 +55,7 @@ void BuildingCanon::attack()
             } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
                 adjustedBulletPos = Vec2(-40,80);
             }
-            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
+//            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
         }
     });
     
@@ -69,19 +73,26 @@ void BuildingCanon::expandAndShrink()
         this->shoot();
     });
     auto sequence = Sequence::create(expandAction, shrinkAction, delay, shootBullet, NULL);
-    // @todo buildingNode 解放ハンドリング
-    if (buildingNode) {
-        buildingNode->runAction(sequence);
+    auto node = this->getChildByTag(BuildingNodeTag);
+    if (node) {
+        node->runAction(sequence);
     }
 }
 
 void BuildingCanon::shoot()
 {
     if (targetUnit->status == Unit::Alive) {
-        bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
+        auto smokeNode = this->getChildByTag(SmokeNodeTag);
+        auto luminousNode = this->getChildByTag(LuminousNodeTag);
+        if (!smokeNode || !luminousNode) {
+            return;
+        }
+        auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         auto shootingPos = this->getPosition() + adjustedBulletPos;
         bullet->setPosition(shootingPos);
         
+        auto smokeAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(SmokeActionTag));
+        auto luminousAction = dynamic_cast<timeline::ActionTimeline*>(smokeNode->getActionByTag(LuminousActionTag));
         FiniteTimeAction* fire = CallFunc::create([=]() {
             if (luminousNode && smokeNode && luminousAction && smokeAction && status == Alive) {
                 // 発火・煙のエフェクト
@@ -92,23 +103,23 @@ void BuildingCanon::shoot()
             }
         });
         auto shot = MoveTo::create(0.6, targetUnit->getPosition());
+        auto parent = getParent();
         
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo ターゲットユニットがまだ射程距離にいるか
             if (targetUnit) {
                 targetUnit->attacked(getDamagePerShot());
             }
-            auto parent = getParent();
-            if (parent) {
-                parent->removeChild(bullet);
-            }
+//            if (parent) {
+//                parent->removeChildByTag(BulletNodeTag);
+//            }
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
         bullet->runAction(sequence);
-        auto base = getParent();
-        if (base) {
-            base->addChild(bullet,BulletZOrder);
+        
+        if (parent) {
+            parent->addChild(bullet,BulletZOrder,BulletNodeTag);
         }
         
     }
