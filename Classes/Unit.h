@@ -132,6 +132,15 @@ protected:
         {Wallbreaker, 1},
     };
     
+    const std::map<UnitType, float> shadowPosYByType =
+    {
+        {Archer, -14},
+        {Barbarian, -14},
+        {Giant, -16},
+        {Goblin, -8},
+        {Wallbreaker, -8},
+    };
+    
     const std::map<UnitType, float> movementSpeedByType =
     {
         {Archer, 0.4},    // 24
