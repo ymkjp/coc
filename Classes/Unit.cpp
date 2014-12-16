@@ -67,7 +67,10 @@ void Unit::play(float frame)
     auto startCoord = this->coord;
     auto goalCoord = this->findPointToGo();
     auto path = tmx->navigate(startCoord, goalCoord);
-    //    CCLOG("Over steps?:%i",mapNavigator->isOverSteps);
+//    CCLOG("startCoord(%f,%f),goalCoord(%f,%f),path.size(%lu)",
+//          startCoord.x,startCoord.y,
+//          goalCoord.x,goalCoord.y,
+//          path.size());
     
     // 経路を閾値内で見つけられなかった場合
     if (!path.empty() && path.top() == ERROR_COORD) {
@@ -77,14 +80,15 @@ void Unit::play(float frame)
         if (goalCoord == ERROR_COORD) {
             // エラーケース
             CCLOG("[ERROR_COORD] Wall not found!");
-            this->scheduleOnce(schedule_selector(Unit::play), 1);
+            this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
         }
-        //        CCLOG("[Wall]goalCoord(%f,%f)",goalCoord.x,goalCoord.y);
         path = tmx->navigate(startCoord, goalCoord);
+        
+//        CCLOG("[Wall]goalCoord(%f,%f),path.size(%lu)",goalCoord.x,goalCoord.y,path.size());
     }
     if (!path.empty() && path.top() == ERROR_COORD) {
         CCLOG("NOT FOUND");
-        this->scheduleOnce(schedule_selector(Unit::play), 1);
+        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
     }
     
     // 初回の場合は施設上にターゲットマークを描写
@@ -106,7 +110,7 @@ void Unit::play(float frame)
         
         // 向き先に応じてアニメーションを切り替え
         FiniteTimeAction* func = CallFunc::create([=]() {
-            //            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
+//            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
             if (status == Alive) {
                 
                 // 移動中に目標の建物が壊れていたら探しなおす
@@ -238,6 +242,7 @@ void Unit::addGrave()
 
 void Unit::startAttacking()
 {
+    CCLOG("startAttacking!");
     Unit::attack(1);
     this->schedule(schedule_selector(Unit::attack), attackSpeed);
 }
@@ -245,6 +250,7 @@ void Unit::startAttacking()
 
 void Unit::attack(float frame)
 {
+    CCLOG("attack");
     if (status == Alive && targetBuilding && targetBuilding->status == Building::Alive) {
         this->action = Attacking;
         this->playStartAttackingVoice();
@@ -254,24 +260,32 @@ void Unit::attack(float frame)
         auto prevMotionNode = this->getChildByTag(MotionTag);
         auto nextMotionNode = this->getActingNode();
         auto action = this->getActionTimeline();
-        nextMotionNode->runAction(action);
-        action->gotoFrameAndPlay(0, false);
-        this->removeChild(prevMotionNode);
-        this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        if (nextMotionNode) {
+            nextMotionNode->runAction(action);
+        }
+        if (action) {
+            action->gotoFrameAndPlay(0, false);
+        }
+        if (prevMotionNode) {
+            this->removeChild(prevMotionNode);
+        }
+        if (nextMotionNode) {
+            this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        }
         
         this->shoot();
-        if (targetBuilding->type == Wall) {
-            this->unschedule(schedule_selector(Unit::attack));
-            this->scheduleOnce(schedule_selector(Unit::play), 0.1);
-            return;
-        }
     }
     if (targetBuilding->status == Building::Died) {
 //        CCLOG("Unit::attack target died!");
         action = Walking;
         this->updateMotionNode();
-        this->scheduleOnce(schedule_selector(Unit::play), 0.1);
         this->unschedule(schedule_selector(Unit::attack));
+        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+        return;
+    } else if (targetBuilding->type == Wall) {
+        this->unschedule(schedule_selector(Unit::attack));
+        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+        return;
     }
 }
 
@@ -286,10 +300,18 @@ inline void Unit::updateMotionNode()
         auto prevMotionNode = this->getChildByTag(MotionTag);
         auto nextMotionNode = this->getActingNode();
         auto action = this->getActionTimeline();
-        nextMotionNode->runAction(action);
-        action->gotoFrameAndPlay(0, true);
-        this->removeChild(prevMotionNode);
-        this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        if (nextMotionNode) {
+            nextMotionNode->runAction(action);
+        }
+        if (action) {
+            action->gotoFrameAndPlay(0, true);
+        }
+        if (prevMotionNode) {
+            this->removeChild(prevMotionNode);
+        }
+        if (nextMotionNode) {
+            this->addChild(nextMotionNode, MotionOrder, MotionTag);
+        }
     }
 }
 

@@ -103,12 +103,18 @@ void BuildingCanon::shoot()
                 smokeAction->gotoFrameAndPlay(0, false);
             }
         });
-        auto shot = MoveTo::create(0.6, targetUnit->getPosition());
+        
+        auto prevCoord = targetUnit->coord;
+        float distance = targetUnit->coord.getDistanceSq(coord);
+        float sec = distance * 0.006;
+        CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
+        sec = (sec < 0.2) ? 0.2 : sec;
+        
+        auto shot = MoveTo::create(sec, targetUnit->getPosition());
         auto parent = getParent();
         
         FiniteTimeAction* hit = CallFunc::create([=]() {
-            // @todo ターゲットユニットがまだ射程距離にいるか
-            if (targetUnit) {
+            if (targetUnit && targetUnit->coord == prevCoord) {
                 targetUnit->attacked(getDamagePerShot());
             }
         });

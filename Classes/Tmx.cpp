@@ -192,7 +192,7 @@ void Tmx::eraseBuilding(Building* building)
 bool Tmx::isTravelable(float posX, float posY)
 {
     Building* building = buildingGrid.at(posX).at(posY);
-    return building == nullptr || building->type != Wall;
+    return building == nullptr;
 }
 
 PathToGoal Tmx::navigate(Vec2 startCoord, Vec2 goalCoord)

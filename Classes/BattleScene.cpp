@@ -60,6 +60,7 @@ void  BattleScene::deployUnit()
     if (!tmx->isRemainedUnitSelected()) {
         // 選択中のユニットが残り0
         tmx->showWarning("Select different Unit!");
+        return;
     }
     
     Vec2 tileCoord = tmx->convertToCoord(targetTouch->getLocation());

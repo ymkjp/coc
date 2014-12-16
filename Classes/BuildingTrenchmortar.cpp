@@ -66,7 +66,7 @@ void BuildingTrenchmortar::expandAndShrink()
 
 void BuildingTrenchmortar::shoot()
 {
-    if (targetUnit->status == Unit::Alive) {
+    if (status == Alive && targetUnit->status == Unit::Alive) {
         auto smokeNode = this->getChildByTag(SmokeNodeTag);
         auto luminousNode = this->getChildByTag(LuminousNodeTag);
         if (!smokeNode || !luminousNode) {
@@ -77,6 +77,7 @@ void BuildingTrenchmortar::shoot()
         
         tmx->playSE("mortar_shoot");
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
+        bullet->setColor(Color3B::GRAY);
         auto shootingPos = this->getPosition() + Vec2(0,60);
         bullet->setPosition(shootingPos);
         
@@ -93,8 +94,16 @@ void BuildingTrenchmortar::shoot()
                 smokeAction->gotoFrameAndPlay(0, false);
             }
         });
-        auto shot = JumpTo::create(2, targetUnit->getPosition(), 200, 1);
-
+        
+        float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord);
+        float distance = targetUnit->coord.getDistanceSq(coord);
+//        CCLOG("targetUnit->coord.getDistanceSq(%f)",distance);
+        float sec = distance * 0.02;
+        sec = (sec < 1.5) ? 1.5 : sec;
+        auto jump = JumpTo::create(sec, targetUnit->getPosition(), distance * 2, 1);
+        auto rotate = RotateBy::create(sec, (180 < comassDegreeGoal) ? - 360 * 8 : 360 * 8);
+        auto jumpRotate = Spawn::create(jump, rotate, NULL);
+        
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
             tmx->playSE("mortar_hit");
@@ -124,16 +133,16 @@ void BuildingTrenchmortar::shoot()
                 }
                 backgroundLayer->runAction(Sequence::create(arrayOfactions));
             }
+            if (bullet) {
+                bullet->setVisible(false);
+            }
         });
-        auto disappear = FadeOut::create(0.1);
-        auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
-        if (bullet) {
-            bullet->runAction(sequence);
-        }
+        auto sequence = Sequence::create(fire, jumpRotate, hit, NULL);
+        bullet->runAction(sequence);
         
         // 影も移動
-        auto shadowMoving = MoveTo::create(1, targetUnit->getPosition());
-        auto shadowSequence = Sequence::create(shadowMoving,disappear, NULL);
+        auto shadowMoving = MoveTo::create(sec, targetUnit->getPosition());
+        auto shadowSequence = Sequence::create(shadowMoving,FadeOut::create(0.1), NULL);
         if (bulletShadow) {
             bulletShadow->runAction(shadowSequence);
         }
