@@ -24,6 +24,7 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
 
 void ArcherOnTower::shoot()
 {
+    CCLOG("archer_tower_shoot");
     auto baseParent = getParent();
     if (!baseParent) {
         return;
@@ -38,30 +39,25 @@ void ArcherOnTower::shoot()
         
         // シークエンス
         FiniteTimeAction* shootMotion = CallFunc::create([=]() {
-            tmx->playSE("archer_tower_shoot");
-            this->action = Attacking;
-            this->updateMotionNode();
-            this->motionAction->gotoFrameAndPlay(0, false);
+            if (baseParent) {
+                tmx->playSE("archer_tower_shoot");
+                this->action = Attacking;
+                this->updateMotionNode();
+                this->motionAction->gotoFrameAndPlay(0, false);
+            }
         });
         auto shot = JumpTo::create(0.6, targetUnit->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
+            CCLOG("ArcherOnTower::Hit");
             targetUnit->attacked(damagePerShot);
-            auto baseParent = getParent();
-            if (!baseParent) {
-                return;
-            }
-            auto base = getParent()->getParent();
-            if (base) {
-                base->removeChild(arrow);
-            }
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(shootMotion, shot, hit, disappear, NULL);
         arrow->runAction(sequence);
         
-        auto base = baseParent->getParent();
-        if (base) {
-            base->addChild(arrow,ArrowZOrder);
+        auto mapLayer = baseParent->getParent();
+        if (mapLayer) {
+            mapLayer->addChild(arrow,ArrowZOrder);
         }
     }
 }

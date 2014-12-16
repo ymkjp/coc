@@ -25,11 +25,11 @@ void BuildingTrenchmortar::attack()
     if (!buildingNode) {
         return;
     }
-    auto motionAction = dynamic_cast<timeline::ActionTimeline*>(buildingNode->getActionByTag(BuildingActionTag));
+    auto motionAction = dynamic_cast<timeline::ActionTimeline*>(buildingNode->getActionByTag(BuildingNodeTag));
 
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
-        if (motionAction && targetUnit->status == Unit::Alive) {
+        if (motionAction && status == Alive && targetUnit->status == Unit::Alive) {
             float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord);
             float flameGoal = ceil(comassDegreeGoal / 60);
             motionAction->gotoFrameAndPause(flameGoal);
@@ -38,7 +38,9 @@ void BuildingTrenchmortar::attack()
     
     FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BuildingTrenchmortar::expandAndShrink, this));
     auto seq = Sequence::create(turn, attack, nullptr);
-    this->runAction(seq);
+    if (status == Alive) {
+        this->runAction(seq);
+    }
 }
 
 void BuildingTrenchmortar::expandAndShrink()
@@ -52,10 +54,14 @@ void BuildingTrenchmortar::expandAndShrink()
     auto shrinkAction = ScaleTo::create(0.02, 1);
     auto delay = DelayTime::create(0.1);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {
-        this->shoot();
+        if (status == Alive && buildingNode) {
+            this->shoot();
+        }
     });
     auto sequence = Sequence::create(expandAction, shrinkAction, delay, shootBullet, NULL);
-    buildingNode->runAction(sequence);
+    if (status == Alive && buildingNode) {
+        buildingNode->runAction(sequence);
+    }
 }
 
 void BuildingTrenchmortar::shoot()
@@ -92,6 +98,7 @@ void BuildingTrenchmortar::shoot()
         FiniteTimeAction* hit = CallFunc::create([=]() {
             // @todo 射程距離にいるユニットにダメージ
             tmx->playSE("mortar_hit");
+            CCLOG("mortar_hit");
             if (parentNode) {
                 auto impactNode = CSLoader::createNode("res/MortarImpact.csb");
                 auto impactAction = tmx->actionTimelineCache->createAction("res/MortarImpact.csb");
@@ -120,14 +127,18 @@ void BuildingTrenchmortar::shoot()
         });
         auto disappear = FadeOut::create(0.1);
         auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
-        bullet->runAction(sequence);
+        if (bullet) {
+            bullet->runAction(sequence);
+        }
         
         // 影も移動
         auto shadowMoving = MoveTo::create(1, targetUnit->getPosition());
         auto shadowSequence = Sequence::create(shadowMoving,disappear, NULL);
-        bulletShadow->runAction(shadowSequence);
+        if (bulletShadow) {
+            bulletShadow->runAction(shadowSequence);
+        }
         
-        if (parentNode) {
+        if (status == Alive && parentNode) {
             parentNode->addChild(bullet,BulletZOrder,BulletNodeTag);
             parentNode->addChild(bulletShadow,BulletShadowZOrder,BulletShadowNodeTag);
         }

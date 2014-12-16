@@ -85,6 +85,7 @@ void Unit::play(float frame)
     }
     if (!path.empty() && path.top() == ERROR_COORD) {
         CCLOG("NOT FOUND");
+        this->scheduleOnce(schedule_selector(Unit::play), 1);
     }
     
     // 初回の場合は施設上にターゲットマークを描写
@@ -212,7 +213,6 @@ void Unit::finished()
     
     auto elixerNode = CSLoader::createNode("res/ElixerBubble.csb");
     auto elixerAction = tmx->actionTimelineCache->createAction("res/ElixerBubble.csb");
-//    elixerNode->setPositionY(10);
     elixerNode->runAction(elixerAction);
     elixerAction->gotoFrameAndPlay(0,false);
     
@@ -247,9 +247,6 @@ void Unit::startAttacking()
 void Unit::attack(float frame)
 {
     if (status == Alive && targetBuilding && targetBuilding->status == Building::Alive) {
-        if (targetBuilding->type == Wall) {
-            // @todo 他の壁が壊されて通れるようになってないかのハンドリング
-        }
         this->action = Attacking;
         this->playStartAttackingVoice();
         
@@ -264,6 +261,11 @@ void Unit::attack(float frame)
         this->addChild(nextMotionNode, MotionOrder, MotionTag);
         
         this->shoot();
+        if (targetBuilding->type == Wall) {
+            this->unschedule(schedule_selector(Unit::attack));
+            this->scheduleOnce(schedule_selector(Unit::play), 0.1);
+            return;
+        }
     }
     if (targetBuilding->status == Building::Died) {
 //        CCLOG("Unit::attack target died!");

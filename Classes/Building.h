@@ -114,7 +114,7 @@ protected:
         {Canon, 400},
         {TrenchMortar, 500},
         {ArcherTower, 500},
-        {Wall,700},
+        {Wall,1400},
     };
     
     float getFullHitPoints()

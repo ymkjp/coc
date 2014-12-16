@@ -187,7 +187,12 @@ void Building::broken()
     
     this->stopAllActions();
     this->unscheduleAllCallbacks();
-    this->removeAllChildrenWithCleanup(true);
+//    this->removeAllChildrenWithCleanup(true);
+    
+    for (auto child: this->getChildren()) {
+        child->stopAllActions();
+        child->setVisible(false);
+    }
     
     auto parent = getParent();
     if (!parent) {
