@@ -1,22 +1,21 @@
 #include "AudioManager.h"
-#include "SimpleAudioEngine.h"
-
-using namespace CocosDenshion;
 
 USING_NS_CC;
 
-bool AudioManager::init()
-{
-    SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);
-    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8);
+AudioManager* AudioManager::audioManagerInstance = NULL;
 
-//    int count = 0;
-//    for (auto filePath: FileUtils::getInstance()->getSearchPaths()) {
-//        CCLOG("[getSearchPaths%i]%s",count,filePath.c_str());
-//        ++count;
-//    }
-    
-    return true;
+AudioManager::AudioManager(){}
+
+AudioManager* AudioManager::getInstance()
+{
+    if (NULL == audioManagerInstance) {
+        audioManagerInstance = new AudioManager();
+        
+        // 設定の初期化
+        SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);
+        SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8);
+    }
+    return audioManagerInstance;
 }
 
 void AudioManager::preloadSE(const std::string &id)
@@ -49,7 +48,9 @@ const char* AudioManager::getFileName(const std::string &id)
     std::string fileName;
     fileName += id;
     fileName += ".mp3";
-    std::string filePath = FileUtils::getInstance()->fullPathForFilename(fileName);
-//    CCLOG("[filePath]%s",filePath.c_str());
-    return filePath.data();
+    return fileName.data();
+//    std::string filePath = FileUtils::getInstance()->fullPathForFilename(fileName);
+//    CCLOG("[filePath]%s",filePath.data());
+//    return filePath.data();
 }
+

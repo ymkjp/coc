@@ -97,7 +97,7 @@ PathToGoal MapNavigator::navigate(const WorldGrid* _worldGrid, Vec2 startPoint, 
                 } else if (bestNode ==  nullptr || openedNode->GetScore() < bestNode->GetScore() ) {
                     bestPoint = *openedPoint;
                     bestNode = openedNode;
-                } else if (openedNode->GetScore() == bestNode->GetScore() && arc4random_uniform(2) == 1) { /** @fixme **/
+                } else if (openedNode->GetScore() == bestNode->GetScore() && rand() % 2 == 1) {
                     bestPoint = *openedPoint;
                     bestNode = openedNode;
                 }

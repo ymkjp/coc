@@ -1,5 +1,6 @@
 #include "StageSelectorScene.h"
 #include "BattleScene.h"
+#include "AudioManager.h"
 
 USING_NS_CC;
 
@@ -46,6 +47,7 @@ bool StageSelectorScene::init()
         btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type)
         {
             if (type == ui::Widget::TouchEventType::ENDED) {
+                AudioManager::getInstance()->playSE("button_click");
                 selectedStage = stage.first;
                 
                 auto delay = DelayTime::create(1);

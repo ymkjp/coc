@@ -40,10 +40,16 @@ bool Tmx::init(Stages stage)
     mapNavigator->retain();
     
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
+
+//    SimpleAudioEngine::getInstance()->playEffect("planning.mp3", false, 1.0f, 0.0f, 1.0f);
     
-    audioManager = AudioManager::create();
-    audioManager->retain();
-    audioManager->playBgm("planning_music", true);
+    SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);
+    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8);
+//    SimpleAudioEngine::getInstance()->preloadBackgroundMusic("planning.mp3");
+//    SimpleAudioEngine::getInstance()->playBackgroundMusic("planning.mp3",true);
+//
+    audioManager = AudioManager::getInstance();
+    audioManager->playBgm("planning",true);
 
     return true;
 }
@@ -51,7 +57,6 @@ bool Tmx::init(Stages stage)
 void Tmx::startBattle()
 {
     battleStatus = Playing;
-    audioManager->stopBgm();
     audioManager->playBgm("combat_music", true);
 
     scheduleOnce(schedule_selector(Tmx::hideMessage), 1.0);
@@ -78,7 +83,6 @@ void Tmx::decreaseTimerCount(float frame)
     }
     
     if (currentBattleSecound < 0) {
-        battleStatus = Finished;
         showBattleResult();
     }
 }

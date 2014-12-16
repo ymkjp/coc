@@ -38,8 +38,7 @@ bool SplashScene::init()
     this->addChild(ui,UIOrder,UITag);
     
     // オーディオマネジャの初期化とジングル
-    audioManager = AudioManager::create();
-    audioManager->retain();
+    audioManager = AudioManager::getInstance();
     audioManager->preloadSE("loading/jingle");
     audioManager->playSE("loading/jingle");
 
@@ -188,9 +187,4 @@ void SplashScene::preloadAudioResources()
     for (auto file: bgmList) {
         audioManager->preloadBgm(file);
     }
-}
-
-void SplashScene::onEnterTransitionDidFinish()
-{
-    CC_SAFE_RELEASE(audioManager);
 }

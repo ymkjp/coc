@@ -56,6 +56,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
 void Unit::play(float frame)
 {
     CCLOG("Unit::play frame[%f]",frame);
+    action = Walking;
     if (tmx->noBuildings()) {
         this->finishBattle();
         return;

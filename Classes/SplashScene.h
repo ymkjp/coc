@@ -42,8 +42,6 @@ public:
 
     
 private:
-    // トランジションの場合 onExit は呼べない
-    void onEnterTransitionDidFinish();
     AssetsManager* getAssetManager();
     void initDownloadDir();
     std::string _pathToSave = "";
@@ -85,7 +83,7 @@ private:
     const std::vector<std::string> bgmList = {
         "battle_lost_02",
         "combat_music",
-        "planning_music",
+        "planning",
         "winwinwin",
     };
 

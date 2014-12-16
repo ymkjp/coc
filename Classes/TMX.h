@@ -17,6 +17,9 @@ USING_NS_CC_EXT;
 #include "UI.h"
 #include "MapNavigator.h"
 
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
+
 class Tmx : public Node
 {
 public:

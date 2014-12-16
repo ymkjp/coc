@@ -83,12 +83,12 @@
 		5C24089A1A14542B004A785F /* Unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5C2408971A14542B004A785F /* Unit.cpp */; };
 		5CA2120D1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
 		5CA2120E1A1E20E10053BAED /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CA2120B1A1E20E10053BAED /* Building.cpp */; };
-		5CB324F01A3AC3610019E659 /* bgm in Resources */ = {isa = PBXBuildFile; fileRef = 5CB324EF1A3AC3610019E659 /* bgm */; };
 		5CB8218D1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
 		5CB8218E1A1600D400BC505A /* map_01.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CB8218C1A1600D400BC505A /* map_01.tmx */; };
 		5CD19AA01A30C10C0045BB87 /* map_02.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9D1A30C10C0045BB87 /* map_02.tmx */; };
 		5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9E1A30C10C0045BB87 /* map_03.tmx */; };
 		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
+		5CEA24011A3FCD34007C4E00 /* bgm in Resources */ = {isa = PBXBuildFile; fileRef = 5CEA24001A3FCD34007C4E00 /* bgm */; };
 		5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */; };
 		5CEA4CC21A37FDEB0044AD7E /* ArcherOnTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */; };
 		5CEA4CC51A384AED0044AD7E /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */; };
@@ -232,11 +232,11 @@
 		5C2408981A14542B004A785F /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		5CA2120B1A1E20E10053BAED /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Building.cpp; sourceTree = "<group>"; };
 		5CA2120C1A1E20E10053BAED /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
-		5CB324EF1A3AC3610019E659 /* bgm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bgm; sourceTree = "<group>"; };
 		5CB8218C1A1600D400BC505A /* map_01.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_01.tmx; sourceTree = "<group>"; };
 		5CD19A9D1A30C10C0045BB87 /* map_02.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_02.tmx; sourceTree = "<group>"; };
 		5CD19A9E1A30C10C0045BB87 /* map_03.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_03.tmx; sourceTree = "<group>"; };
 		5CD19A9F1A30C10C0045BB87 /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
+		5CEA24001A3FCD34007C4E00 /* bgm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bgm; sourceTree = "<group>"; };
 		5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grave.cpp; sourceTree = "<group>"; };
 		5CEA4CBB1A37DBD50044AD7E /* Grave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grave.h; sourceTree = "<group>"; };
 		5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcherOnTower.cpp; sourceTree = "<group>"; };
@@ -372,7 +372,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5CB324EF1A3AC3610019E659 /* bgm */,
+				5CEA24001A3FCD34007C4E00 /* bgm */,
 				5CFB9B851A39CA5D00F63148 /* LoadingLayer.csd */,
 				5CF0C7801A39760D00D1F8E4 /* loading */,
 				5CF0C77E1A39682300D1F8E4 /* wall_peg.png */,
@@ -644,7 +644,7 @@
 				5C2408911A12EF26004A785F /* assets.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
-				5CB324F01A3AC3610019E659 /* bgm in Resources */,
+				5CEA24011A3FCD34007C4E00 /* bgm in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */,
