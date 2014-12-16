@@ -108,9 +108,9 @@ void Building::initNode()
         {
             auto buildingNode = CSLoader::createNode("res/GoldBank.csb");
             auto motionAction = tmx->actionTimelineCache->createAction("res/GoldBank.csb");
-            motionAction->setTag(BuildingActionTag);
-            buildingNode->runAction(motionAction);
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
+            buildingNode->runAction(motionAction);
+            motionAction->setTag(BuildingActionTag);
             motionAction->gotoFrameAndPause(6);
             buildingNode->setScale(0.7);
             break;
@@ -160,6 +160,7 @@ inline void Building::updateLifeGage()
         // ライフゲージ初期化
         // 0〜100フレームまであって徐々に減らしていくことで操作できる
         lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
+        lifeGageNode->setScale(0.5);
         lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageBuilding.csb");
         lifeGageNode->runAction(lifeGageAction);
         parent->addChild(lifeGageNode,LifeGageZOrder);
@@ -193,10 +194,12 @@ void Building::broken()
         return;
     }
     if (lifeGageNode) {
-        parent->removeChild(lifeGageNode);
+        lifeGageNode->setVisible(false);
+//        parent->removeChild(lifeGageNode);
     }
     if (targetMarkNode) {
-        parent->removeChild(targetMarkNode);
+        targetMarkNode->setVisible(false);
+//        parent->removeChild(targetMarkNode);
     }
     
     this->brokenEffect();
@@ -255,7 +258,14 @@ void Building::addWrack()
     }
 //    auto prevPos = buildingNode->getPosition();
 //    wrackNode->setPosition(prevPos);
+    
     this->addChild(wrackNode);
+    
+    auto parent = getParent();
+    if (parent) {
+        // 残骸はユニットより下に表示されるべき
+        parent->reorderChild(this,coord.x + coord.y - 2);
+    }
 }
 
 BuildingSpace Building::getSpace()
@@ -272,6 +282,7 @@ void Building::putTargetMark()
     if (!targetMarkNode) {
         // ターゲットマークの初期化
         targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
+        targetMarkNode->setScale(0.5);
         targetMarkAction = tmx->actionTimelineCache->createAction("res/TargetMarkerNode.csb");
         targetMarkNode->setPosition(getPosition().x,getPosition().y + 5);
         targetMarkNode->runAction(targetMarkAction);

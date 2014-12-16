@@ -13,7 +13,7 @@ void UnitWallbreaker::startAttacking()
         //        action = Walking;
         //        //        this->updateMotionNode();
         
-        this->scheduleOnce(schedule_selector(Unit::play), 0);
+        this->scheduleOnce(schedule_selector(Unit::play), 0.1);
         this->unschedule(schedule_selector(Unit::attack));
         
         

@@ -83,6 +83,7 @@ public:
     void finished();
     
 protected:
+    const Vec2 ERROR_COORD = Vec2(-1,-1);
     float hitpoints;
     float damagePerAttack;
     float attackSpeed;

@@ -31,7 +31,6 @@ void ArcherOnTower::shoot()
     if (targetUnit->status == Unit::Alive) {
         arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
         arrow->setPosition(baseParent->getPosition() + getPosition());
-        arrow->setScale(2);
         
         // 矢を施設方向に向けて回転
         float degree = tmx->calcDegree(coord, targetUnit->coord);

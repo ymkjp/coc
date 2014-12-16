@@ -241,7 +241,6 @@ void Tmx::killAllUnits(float frame)
     }
 }
 
-
 UnitType Tmx::getSelectedUnit()
 {
     return ui->selectedUnit;

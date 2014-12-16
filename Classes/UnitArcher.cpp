@@ -22,11 +22,10 @@ std::vector<Vec2> UnitArcher::getSurroundedCoords(Vec2 targetCoord)
 
 void UnitArcher::shoot()
 {
-    if (targetBuilding->status == Building::Alive) {
+    if (status == Alive && targetBuilding->status == Building::Alive) {
         
         auto arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
         arrow->setPosition(this->getPosition());
-        arrow->setScale(2);
 
         // 矢を施設方向に向けて回転
         float degree = tmx->calcDegree(coord, targetBuilding->coord);
@@ -35,6 +34,7 @@ void UnitArcher::shoot()
         auto parent = getParent();
         auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
+            
             tmx->playSE("arrow_hit");
             targetBuilding->attacked(damagePerAttack);
             if (parent) {
