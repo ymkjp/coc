@@ -83,8 +83,8 @@ void BuildingTrenchmortar::shoot()
         
         auto bulletShadow = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet_shadow.png");
         bulletShadow->setPosition(this->getPosition());
+        bulletShadow->setOpacity(120);
         
-        auto spot = targetUnit->getPosition();
         auto parentNode = getParent();
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
@@ -100,8 +100,9 @@ void BuildingTrenchmortar::shoot()
 //        CCLOG("targetUnit->coord.getDistanceSq(%f)",distance);
         float sec = distance * 0.02;
         sec = (sec < 1.5) ? 1.5 : sec;
-        auto jump = JumpTo::create(sec, targetUnit->getPosition(), distance * 2, 1);
-        auto rotate = RotateBy::create(sec, (180 < comassDegreeGoal) ? - 360 * 8 : 360 * 8);
+        auto jump = JumpTo::create(sec, aimedUnitPos, distance * 2, 1);
+        float rotation = 360 * 3 * sec;
+        auto rotate = RotateBy::create(sec, (180 < comassDegreeGoal) ? - rotation : rotation);
         auto jumpRotate = Spawn::create(jump, rotate, NULL);
         
         auto prevCoord = targetUnit->coord;
@@ -115,7 +116,7 @@ void BuildingTrenchmortar::shoot()
                 auto impactAction = tmx->actionTimelineCache->createAction("res/MortarImpact.csb");
                 impactNode->runAction(impactAction);
                 parentNode->addChild(impactNode,MortalImpactZOrder);
-                impactNode->setPosition(spot);
+                impactNode->setPosition(aimedUnitPos);
                 impactAction->gotoFrameAndPlay(0, false);
 
                 

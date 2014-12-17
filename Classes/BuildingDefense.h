@@ -29,6 +29,7 @@ public:
     virtual void idle() {};
     
 protected:
+    Vec2 aimedUnitPos;
     float damagePerShot;
     float attackSpeed;
     void scan(float frame);

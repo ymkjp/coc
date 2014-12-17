@@ -6,8 +6,8 @@ USING_NS_CC;
 
 bool BuildingDefense::startScan()
 {
-    this->minRange = this->getMinRange();
-    this->maxRange = this->getMaxRange();
+    this->minRange = this->getMinRange() * 0.6;
+    this->maxRange = this->getMaxRange() * 0.6;
     this->schedule(schedule_selector(BuildingDefense::scan), getAttackSpeed());
     return true;
 }
@@ -36,6 +36,9 @@ void BuildingDefense::scan(float frame)
         }
     }
     if (targetUnit) {
+        // スキャン時点のcoordを jumpto の移動先にする
+        aimedUnitPos = targetUnit->getPosition();
+        
         this->attack();
     }
     

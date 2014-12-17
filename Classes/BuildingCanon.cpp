@@ -78,7 +78,10 @@ void BuildingCanon::expandAndShrink()
     auto sequence = Sequence::create(shootBullet,expandAction,shrinkAction, NULL);
     auto node = this->getChildByTag(BuildingNodeTag);
     if (node) {
-        node->runAction(sequence);
+        Node* barrel = node->getChildByName("Barrel");
+        if (barrel) {
+            barrel->runAction(sequence);
+        }
     }
 }
 
@@ -88,11 +91,11 @@ void BuildingCanon::shoot()
         auto smokeNode = this->getChildByTag(SmokeNodeTag);
         auto luminousNode = this->getChildByTag(LuminousNodeTag);
         if (!smokeNode || !luminousNode) {
-            CCLOG("NONE! (!smokeNode || !luminousNode!)");
             return;
         }
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
         bullet->setScale(0.6);
+        bullet->setRotation(-90);
         auto shootingPos = this->getPosition() + adjustedBulletPos;
         bullet->setPosition(shootingPos);
         
