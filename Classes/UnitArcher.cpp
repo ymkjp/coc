@@ -26,6 +26,7 @@ void UnitArcher::shoot()
         
         auto arrow = CCSprite::createWithSpriteFrameName("unit/archer/arrow/dark.png");
         arrow->setPosition(this->getPosition());
+        arrow->setScale(1.6);
 
         // 矢を施設方向に向けて回転
         float degree = tmx->calcDegree(coord, targetBuilding->coord);
@@ -42,7 +43,12 @@ void UnitArcher::shoot()
             }
         });
         auto disappear = FadeOut::create(0.1);
-        auto sequence = Sequence::create(shot, hit, disappear, NULL);
+        FiniteTimeAction* invisible = CallFunc::create([=]() {
+            if (arrow) {
+                arrow->setVisible(false);
+            }
+        });
+        auto sequence = Sequence::create(shot, hit, disappear, invisible, NULL);
         arrow->runAction(sequence);
 
         if (parent) {

@@ -49,13 +49,14 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     // デプロイされた場所で建物の射程距離
     this->pushTobuildingAttackRange(coord);
     
-    this->play(1);
+    this->scheduleOnce(schedule_selector(Unit::play), SOON);
+
     return true;
 }
 
 void Unit::play(float frame)
 {
-    CCLOG("Unit(%i)::play frame[%f]",type,frame);
+    CCLOG("[Unit::play] type(%i),frame(%f)",type,frame);
     if (status == Died) {
         return;
     }
@@ -67,10 +68,10 @@ void Unit::play(float frame)
     auto startCoord = this->coord;
     auto goalCoord = this->findPointToGo();
     auto path = tmx->navigate(startCoord, goalCoord);
-//    CCLOG("startCoord(%f,%f),goalCoord(%f,%f),path.size(%lu)",
-//          startCoord.x,startCoord.y,
-//          goalCoord.x,goalCoord.y,
-//          path.size());
+    CCLOG("startCoord(%f,%f),goalCoord(%f,%f),path.size(%lu)",
+          startCoord.x,startCoord.y,
+          goalCoord.x,goalCoord.y,
+          path.size());
     
     // 経路を閾値内で見つけられなかった場合
     if (!path.empty() && path.top() == ERROR_COORD) {
@@ -80,15 +81,20 @@ void Unit::play(float frame)
         if (goalCoord == ERROR_COORD) {
             // エラーケース
             CCLOG("[ERROR_COORD] Wall not found!");
-            this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+            this->unschedule(schedule_selector(Unit::play));
+            this->scheduleOnce(schedule_selector(Unit::play), WAITING_SEC);
+            return;
         }
         path = tmx->navigate(startCoord, goalCoord);
         
-//        CCLOG("[Wall]goalCoord(%f,%f),path.size(%lu)",goalCoord.x,goalCoord.y,path.size());
+        CCLOG("[Wall]goalCoord(%f,%f),path.size(%lu)",goalCoord.x,goalCoord.y,path.size());
     }
     if (!path.empty() && path.top() == ERROR_COORD) {
         CCLOG("NOT FOUND");
-        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+        this->setScale(2);
+        this->unschedule(schedule_selector(Unit::play));
+        this->scheduleOnce(schedule_selector(Unit::play), WAITING_SEC);
+        return;
     }
     
     // 初回の場合は施設上にターゲットマークを描写
@@ -109,15 +115,15 @@ void Unit::play(float frame)
         moveAction = MoveTo::create(movementSpeedByType.at(type), directionPoint);
         
         // 向き先に応じてアニメーションを切り替え
-        FiniteTimeAction* func = CallFunc::create([=]() {
-//            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
+        FiniteTimeAction* transferring = CallFunc::create([=]() {
+            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
             if (status == Alive) {
                 
                 // 移動中に目標の建物が壊れていたら探しなおす
                 if (targetBuilding->status == Building::Died)
                 {
                     this->stopActionByTag(PlayingSequence);
-                    this->play(1);
+                    this->scheduleOnce(schedule_selector(Unit::play), SOON);
                     return;
                 }
                 
@@ -135,8 +141,7 @@ void Unit::play(float frame)
                 this->coord = nextCoord;
             }
         });
-        arrayOfactions.pushBack(func);
-        
+        arrayOfactions.pushBack(transferring);
         arrayOfactions.pushBack(moveAction);
         path.pop();
         prevCoord = nextCoord;
@@ -243,8 +248,7 @@ void Unit::addGrave()
 void Unit::startAttacking()
 {
     CCLOG("startAttacking!");
-    Unit::attack(1);
-    this->schedule(schedule_selector(Unit::attack), attackSpeed);
+    this->scheduleOnce(schedule_selector(Unit::attack), SOON);
 }
 
 
@@ -256,7 +260,6 @@ void Unit::attack(float frame)
         this->playStartAttackingVoice();
         
         // 攻撃動作アニメーション
-        // @todo delay
         auto prevMotionNode = this->getChildByTag(MotionTag);
         auto nextMotionNode = this->getActingNode();
         auto action = this->getActionTimeline();
@@ -276,17 +279,27 @@ void Unit::attack(float frame)
         this->shoot();
     }
     if (targetBuilding->status == Building::Died) {
+        // 建物が破壊されると play に戻って新たな探索を始める
 //        CCLOG("Unit::attack target died!");
         action = Walking;
         this->updateMotionNode();
-        this->unschedule(schedule_selector(Unit::attack));
-        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+        this->scheduleOnce(schedule_selector(Unit::play), SOON);
         return;
     } else if (targetBuilding->type == Wall) {
-        this->unschedule(schedule_selector(Unit::attack));
-        this->scheduleOnce(schedule_selector(Unit::play), attackSpeedByType.at(type));
+        // Wall の場合は攻撃のたびに play に戻って新たな探索を始める
+        this->scheduleOnce(schedule_selector(Unit::play), attackSpeed);
+        return;
+    } else {
+        // 攻撃速度で攻撃を続ける
+        CCLOG("keep punching!");
+        this->scheduleOnce(schedule_selector(Unit::play), attackSpeed);
         return;
     }
+}
+
+void Unit::update( float frame )
+{
+    // nothing by frame
 }
 
 void Unit::shoot()
@@ -681,7 +694,3 @@ void Unit::testAdd(__String fileName, Vec2 pos)
     this->addChild(node);
 }
 
-void Unit::update( float frame )
-{
-    // nothing by frame
-}

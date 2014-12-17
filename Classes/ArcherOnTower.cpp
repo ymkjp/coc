@@ -36,6 +36,7 @@ void ArcherOnTower::shoot()
         // 矢を施設方向に向けて回転
         float degree = tmx->calcDegree(coord, targetUnit->coord);
         arrow->setRotation(225 + degree);
+        arrow->setScale(1.6);
         
         // シークエンス
         FiniteTimeAction* shootMotion = CallFunc::create([=]() {
@@ -50,9 +51,11 @@ void ArcherOnTower::shoot()
         FiniteTimeAction* hit = CallFunc::create([=]() {
             CCLOG("ArcherOnTower::Hit");
             targetUnit->attacked(damagePerShot);
+            if (arrow) {
+                arrow->setVisible(false);
+            }
         });
-        auto disappear = FadeOut::create(0.1);
-        auto sequence = Sequence::create(shootMotion, shot, hit, disappear, NULL);
+        auto sequence = Sequence::create(shootMotion, shot, hit, NULL);
         arrow->runAction(sequence);
         
         auto mapLayer = baseParent->getParent();

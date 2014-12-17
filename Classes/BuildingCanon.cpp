@@ -119,7 +119,12 @@ void BuildingCanon::shoot()
             }
         });
         auto disappear = FadeOut::create(0.1);
-        auto sequence = Sequence::create(fire, shot, hit, disappear, NULL);
+        FiniteTimeAction* invisible = CallFunc::create([=]() {
+            if (bullet) {
+                bullet->setVisible(false);
+            }
+        });
+        auto sequence = Sequence::create(fire, shot, hit, disappear, invisible, NULL);
         bullet->runAction(sequence);
         
         if (parent) {

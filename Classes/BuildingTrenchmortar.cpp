@@ -142,7 +142,12 @@ void BuildingTrenchmortar::shoot()
         
         // 影も移動
         auto shadowMoving = MoveTo::create(sec, targetUnit->getPosition());
-        auto shadowSequence = Sequence::create(shadowMoving,FadeOut::create(0.1), NULL);
+        FiniteTimeAction* invisible = CallFunc::create([=]() {
+            if (bulletShadow) {
+                bulletShadow->setVisible(false);
+            }
+        });
+        auto shadowSequence = Sequence::create(shadowMoving,FadeOut::create(0.1),invisible, NULL);
         if (bulletShadow) {
             bulletShadow->runAction(shadowSequence);
         }

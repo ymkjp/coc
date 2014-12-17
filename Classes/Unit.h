@@ -84,6 +84,8 @@ public:
     
 protected:
     const Vec2 ERROR_COORD = Vec2(-1,-1);
+    const float WAITING_SEC = 3;
+    const float SOON = 0.01;
     float hitpoints;
     float damagePerAttack;
     float attackSpeed;

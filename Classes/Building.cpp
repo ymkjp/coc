@@ -223,7 +223,12 @@ void Building::brokenEffect()
         //時間, 移動距離, ジャンプの最高点, ジャンプの回数
         auto jump = JumpTo::create(1, Vec2(rand() % 180 - 90, rand() % 180 - 90), rand() % 100, 2);
         auto disapear = FadeOut::create(2.5);
-        shard->runAction(Spawn::create(jump,disapear, NULL));
+        FiniteTimeAction* invisible = CallFunc::create([=]() {
+            if (shard) {
+                shard->setVisible(false);
+            }
+        });
+        shard->runAction(Spawn::create(jump,disapear,invisible, NULL));
     }
     this->addChild(node,BuildingExplosionShardsOrder);
 }
@@ -266,11 +271,13 @@ void Building::addWrack()
     
     this->addChild(wrackNode);
     
-    auto parent = getParent();
-    if (parent) {
-        // 残骸はユニットより下に表示されるべき
-        parent->reorderChild(this,coord.x + coord.y - 2);
-    }
+    
+    // 残骸はユニットより下に表示されるべき
+    this->setLocalZOrder(coord.x + coord.y - 2);
+//    auto parent = getParent();
+//    if (parent) {
+//        parent->reorderChild(this,coord.x + coord.y - 2);
+//    }
 }
 
 BuildingSpace Building::getSpace()
