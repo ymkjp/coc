@@ -24,8 +24,11 @@ void BuildingDefense::scan(float frame)
     for (auto unit: targetUnits) {
         if (!inAttackRange(unit) || unit->status == Unit::Died)
         {
+            // レンジ外から外れるか死んでいたらコンテナから抜く
             targetUnits.eraseObject(unit);;
         }
+        
+        // 一番近いユニットをターゲットとする
         distanceSq = fabsf(unit->coord.getDistanceSq(this->coord));
         if (bestDistance == -1 || distanceSq < bestDistance) {
             bestDistance = distanceSq;
@@ -42,12 +45,10 @@ void BuildingDefense::scan(float frame)
 
 inline bool BuildingDefense::inAttackRange(Unit* unit)
 {
-    return true;
-    
-    auto distance = unit->coord.getDistanceSq(this->coord);
-    CCLOG("BuildingDefense::inAttackRange(%f),getMaxRange(%f),getMinRange(%f),",distance,getMaxRange(),getMinRange());
-    // @fixme
-    return (getMinRange() <= distance && distance <= getMaxRange());
+    float distance = unit->coord.getDistanceSq(this->coord);
+    Size tileSize = tmx->tiledMap->getTileSize();
+    float range = distance / tileSize.width;
+    return (getMinRange() <= range && range <= getMaxRange());
 }
 
 void BuildingDefense::updateAttackRangeGrid(Tmx* tmx)
@@ -64,11 +65,6 @@ void BuildingDefense::updateAttackRangeGrid(Tmx* tmx)
     
     // まずキャッシュをクリアする
     tmx->buildingAttackRangeGrid = {};
-//    for (auto row: tmx->buildingAttackRangeGrid) {
-//        for (auto deffenses: row) {
-//            deffenses.clear();
-//        }
-//    }
     
     for (auto building: tmx->buildings) {
         defense = dynamic_cast<BuildingDefense*>(building);
