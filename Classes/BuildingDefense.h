@@ -14,7 +14,7 @@ public:
     float maxRange;
     
     static void updateAttackRangeGrid(Tmx* tmx);
-    bool virtualInit();
+    bool startScan();
     
     // 子クラスで再定義されてもよいメソッド
     virtual float getMinRange() {return 0;};

@@ -271,6 +271,9 @@ void Tmx::increaseBattleScore(ScoreType type, float amount)
         ui->updateBattleScore(type, earnedBattleScoreByType.at(type));
         
         remainingScoreByType[type] -= amount;
+        if (remainingScoreByType[type] < 0) {
+            remainingScoreByType[type] = 0;
+        }
         ui->updateRemainingAssetScore(type, remainingScoreByType.at(type));
     }
 }

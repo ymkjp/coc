@@ -10,7 +10,9 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     type = this->getType();
     coord = _coord;
 
-    this->virtualInit();
+    hitpoints = getFullHitPoints();
+    
+    this->startScan();
     this->initNode();
     
     // 子で各々行う初期化
@@ -142,6 +144,8 @@ void Building::attacked(float damage)
     hitpoints -= damage;
     hitpointPercentage = hitpoints / getFullHitPoints() * 100;
     
+//    CCLOG("prevHitpoints(%f),damage(%f),hitpoints(%f)/getFullHitPoints(%f)*100=hitpointPercentage(%f)",prevHitpoints,damage,hitpoints,getFullHitPoints(),hitpointPercentage);
+    
     this->damagedEffect();
     this->updateLifeGage();
     this->increaseResourceScore(damage);
@@ -150,7 +154,6 @@ void Building::attacked(float damage)
         hitpoints = 0;
         this->broken();
     }
-//    CCLOG("Building[%i]::hitpoints %f",type,hitpoints);
 }
 
 inline void Building::updateLifeGage()

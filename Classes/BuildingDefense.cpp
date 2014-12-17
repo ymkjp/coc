@@ -4,7 +4,7 @@
 
 USING_NS_CC;
 
-bool BuildingDefense::virtualInit()
+bool BuildingDefense::startScan()
 {
     this->minRange = this->getMinRange();
     this->maxRange = this->getMaxRange();

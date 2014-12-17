@@ -71,7 +71,7 @@ public:
     void brokenEffect();
     
 protected:
-    float hitpoints = 400;
+    float hitpoints;
     float hitpointPercentage = 100;
     
     Tmx* tmx;
@@ -99,7 +99,7 @@ protected:
     virtual BuildingType getType() = 0;
 
     // 子クラスで再定義されてもいいメソッド
-    virtual bool virtualInit() {return true;};
+    virtual bool startScan() {return true;};
     virtual void updateLifeGage();
     virtual void damagedEffect() {};
     virtual void initArchersOnTower() {};
