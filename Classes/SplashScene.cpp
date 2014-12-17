@@ -41,7 +41,7 @@ bool SplashScene::init()
     audioManager = AudioManager::getInstance();
     audioManager->preloadSE("loading/jingle");
     audioManager->playSE("loading/jingle");
-
+    
     if (QUICK_DEBUG_MODE) {
         // デバッグ用に遷移する！
         this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);

@@ -41,6 +41,10 @@ public:
     void shoot();
     void initOwn();
     
+protected:
+    const float ADJUST_SMALL   = 20;
+    const float ADJUST_REGULAR = 40;
+    const float ADJUST_LARGE   = 60;
 };
 
 #endif // __BUILDING_CANON_H__
