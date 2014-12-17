@@ -182,7 +182,6 @@ void Building::broken()
 {
     status = Died;
     
-    // @todo tmx のキャッシュを再構築
     tmx->eraseBuilding(this);
     
     this->stopAllActions();
@@ -228,7 +227,7 @@ void Building::brokenEffect()
                 shard->setVisible(false);
             }
         });
-        shard->runAction(Spawn::create(jump,disapear,invisible, NULL));
+        shard->runAction(Sequence::create(Spawn::create(jump,disapear, NULL),invisible,NULL));
     }
     this->addChild(node,BuildingExplosionShardsOrder);
 }

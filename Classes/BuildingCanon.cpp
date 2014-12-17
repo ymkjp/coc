@@ -89,6 +89,7 @@ void BuildingCanon::shoot()
             return;
         }
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
+        bullet->setScale(0.6);
         auto shootingPos = this->getPosition() + adjustedBulletPos;
         bullet->setPosition(shootingPos);
         
@@ -113,18 +114,18 @@ void BuildingCanon::shoot()
         auto shot = MoveTo::create(sec, targetUnit->getPosition());
         auto parent = getParent();
         
+        auto disappear = FadeOut::create(0.01);
         FiniteTimeAction* hit = CallFunc::create([=]() {
             if (targetUnit && targetUnit->coord == prevCoord) {
                 targetUnit->attacked(getDamagePerShot());
             }
         });
-        auto disappear = FadeOut::create(0.1);
         FiniteTimeAction* invisible = CallFunc::create([=]() {
             if (bullet) {
                 bullet->setVisible(false);
             }
         });
-        auto sequence = Sequence::create(fire, shot, hit, disappear, invisible, NULL);
+        auto sequence = Sequence::create(fire, shot, disappear, hit, invisible, NULL);
         bullet->runAction(sequence);
         
         if (parent) {

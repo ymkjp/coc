@@ -47,10 +47,16 @@ void ArcherOnTower::shoot()
                 this->motionAction->gotoFrameAndPlay(0, false);
             }
         });
+        
+        // 射程外に出たときはノーダメージ
+        auto prevCoord = targetUnit->coord;
+        
         auto shot = JumpTo::create(0.6, targetUnit->getPosition(),20,1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
-            CCLOG("ArcherOnTower::Hit");
-            targetUnit->attacked(damagePerShot);
+            if (targetUnit && targetUnit->status == Unit::Alive && targetUnit->coord == prevCoord)
+            {
+                targetUnit->attacked(damagePerShot);
+            }
             if (arrow) {
                 arrow->setVisible(false);
             }

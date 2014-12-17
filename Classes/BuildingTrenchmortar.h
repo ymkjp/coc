@@ -46,8 +46,18 @@ public:
     void shoot();
     void initOwn();
     
-//    Node* bullet;
-//    Node* bulletShadow;
+protected:
+    const float SPLASH_RANGE = 2;
+    
+    inline bool isImpactRange(Vec2 impactCoord, Vec2 unitCoord)
+    {
+        auto coordDiff = impactCoord - unitCoord;
+        float coordDiffX = fabs(coordDiff.x);
+        float coordDiffY = fabs(coordDiff.y);
+        
+        return (0 <= coordDiffX && coordDiffX <= SPLASH_RANGE)
+        && (0 <= coordDiffY && coordDiffY <= SPLASH_RANGE);
+    }
 };
 
 #endif // __BUILDING_TRENCHMORTAR_H__

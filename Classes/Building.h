@@ -108,7 +108,7 @@ protected:
     
     const std::map<BuildingType, float> hitpointsByType =
     {
-        {TownHall, 2100},
+        {TownHall, 2400},
         {ElixerTank, 1200},
         {GoldBank, 1200},
         {Canon, 400},

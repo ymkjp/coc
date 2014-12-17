@@ -187,9 +187,6 @@ void Unit::die()
     
     this->playDeathVoice();
     
-//    this->removeAllChildrenWithCleanup(true);
-    
-    
     auto ghostNode = CSLoader::createNode("res/Ghost.csb");
     auto ghostAction = tmx->actionTimelineCache->createAction("res/Ghost.csb");
     ghostNode->setScale(1.4);
@@ -202,6 +199,8 @@ void Unit::die()
 
     this->addChild(ghostNode, GhostOrder);
     this->addGrave();
+    
+    tmx->units.eraseObject(this);
 }
 
 void Unit::finishBattle()

@@ -104,8 +104,10 @@ void BuildingTrenchmortar::shoot()
         auto rotate = RotateBy::create(sec, (180 < comassDegreeGoal) ? - 360 * 8 : 360 * 8);
         auto jumpRotate = Spawn::create(jump, rotate, NULL);
         
+        auto prevCoord = targetUnit->coord;
+        
         FiniteTimeAction* hit = CallFunc::create([=]() {
-            // @todo 射程距離にいるユニットにダメージ
+            
             tmx->playSE("mortar_hit");
             CCLOG("mortar_hit");
             if (parentNode) {
@@ -116,7 +118,13 @@ void BuildingTrenchmortar::shoot()
                 impactNode->setPosition(spot);
                 impactAction->gotoFrameAndPlay(0, false);
 
-                targetUnit->attacked(getDamagePerShot());
+                
+                // 衝撃波の届くユニットにダメージ
+                for (auto unit: tmx->units) {
+                    if (unit && unit->status == Unit::Alive && isImpactRange(prevCoord, unit->coord)) {
+                        unit->attacked(getDamagePerShot());
+                    }
+                }
 //                parentNode->removeChildByTag(BulletNodeTag);
 //                parentNode->removeChildByTag(BulletShadowNodeTag);
             }

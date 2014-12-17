@@ -34,6 +34,7 @@ void UnitArcher::shoot()
         
         auto parent = getParent();
         auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
+        auto disappear = FadeOut::create(0.1);
         FiniteTimeAction* hit = CallFunc::create([=]() {
             
             tmx->playSE("arrow_hit");
@@ -42,13 +43,7 @@ void UnitArcher::shoot()
                 parent->removeChild(arrow);
             }
         });
-        auto disappear = FadeOut::create(0.1);
-        FiniteTimeAction* invisible = CallFunc::create([=]() {
-            if (arrow) {
-                arrow->setVisible(false);
-            }
-        });
-        auto sequence = Sequence::create(shot, hit, disappear, invisible, NULL);
+        auto sequence = Sequence::create(shot, disappear, hit, NULL);
         arrow->runAction(sequence);
 
         if (parent) {
