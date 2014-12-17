@@ -95,6 +95,7 @@ protected:
     Building* targetBuilding;
     virtual bool isNextCoord(float num);
     virtual void setCompass(Vec2 prevCoord, Vec2 nextCoord);
+    void updateDirection();
     
     void die();
     void finishBattle();

@@ -92,6 +92,30 @@ public:
         return degree;
     }
     
+    static Compass convertToCompass(float degree)
+    {
+        float compassIndex = ceil(degree / 45);
+        if (compassIndex == 0) {
+            return North;
+        } else if (compassIndex == 1) {
+            return NorthEast;
+        } else if (compassIndex == 2) {
+            return East;
+        } else if (compassIndex == 3) {
+            return SouthEast;
+        } else if (compassIndex == 4) {
+            return South;
+        } else if (compassIndex == 5) {
+            return SouthWest;
+        } else if (compassIndex == 6) {
+            return West;
+        } else if (compassIndex == 7) {
+            return NorthWest;
+        } else {
+            return North;
+        }
+    }
+    
     Vector<Sprite*> domainCells = {};
     Vector<Sprite*> buildingShadowCells = {};
     Vector<Sprite*> grassCells = {};

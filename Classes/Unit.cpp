@@ -68,10 +68,10 @@ void Unit::play(float frame)
     auto startCoord = this->coord;
     auto goalCoord = this->findPointToGo();
     auto path = tmx->navigate(startCoord, goalCoord);
-    CCLOG("startCoord(%f,%f),goalCoord(%f,%f),path.size(%lu)",
-          startCoord.x,startCoord.y,
-          goalCoord.x,goalCoord.y,
-          path.size());
+//    CCLOG("startCoord(%f,%f),goalCoord(%f,%f),path.size(%lu)",
+//          startCoord.x,startCoord.y,
+//          goalCoord.x,goalCoord.y,
+//          path.size());
     
     // 経路を閾値内で見つけられなかった場合
     if (!path.empty() && path.top() == ERROR_COORD) {
@@ -101,6 +101,9 @@ void Unit::play(float frame)
     if (!alreadyMarked) {
         this->putTargetMark();
     }
+    
+    // アーチャーは移動せずに攻撃を始めることがあるため、ここで向きを変えさせる
+    this->updateDirection();
     
     Vec2 nextCoord;
     Vec2 prevCoord = startCoord;
@@ -345,6 +348,21 @@ inline void Unit::updateLifeGage()
 inline bool Unit::isNextCoord(float num)
 {
     return (num == -1.0f || num == 0.0f || num == 1.0f);
+}
+
+void Unit::updateDirection()
+{
+    if (!targetBuilding || targetBuilding->Died) {
+        return;
+    }
+    
+    float comassDegreeGoal = tmx->calcCompassDegree(coord, targetBuilding->coord) + 45;
+    if (360 < comassDegreeGoal) {
+        comassDegreeGoal -= 360;
+    }
+    compass = tmx->convertToCompass(comassDegreeGoal);
+    
+    this->updateMotionNode();
 }
 
 void Unit::setCompass(Vec2 prevCoord, Vec2 nextCoord)
@@ -626,7 +644,8 @@ __String Unit::createFilename()
             break;
     }
     
-    // 東・西・東・南西・北東・北西 (真北と真南は直前の compass に依存するため渡ってこない想定)
+    // 東・西・東・南西・北東・北西
+    // @note 真北と真南は西に寄せているので直前の compass に依存させたければここ以前で compass を上書きする必要あり
     if (this->compass == East) {
         fileName.append("East");
     } else if (this->compass == West) {
@@ -639,9 +658,13 @@ __String Unit::createFilename()
         fileName.append("SouthEast");
     } else if (this->compass == SouthWest) {
         fileName.append("SouthWest");
+    } else if (this->compass == North) {
+        fileName.append("NorthWest");
+    } else if (this->compass == South) {
+        fileName.append("SouthWest");
     } else {
         CCLOG("[default] Unit::getActionTimeline unexpected direction:%i",this->compass);
-        fileName.append("SouthEast");
+        fileName.append("NorthWest");
     }
     
     fileName.append(".csb");

@@ -27,7 +27,7 @@ void BuildingArchertower::attack()
             if (360 < comassDegreeGoal) {
                 comassDegreeGoal -= 360;
             }
-            this->setDirection(comassDegreeGoal);
+            direction = tmx->convertToCompass(comassDegreeGoal);
             this->updateArchersDirection();
         }
     });
@@ -35,28 +35,6 @@ void BuildingArchertower::attack()
     FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BuildingArchertower::shoot, this));
     auto seq = Sequence::create(turn, attack, nullptr);
     this->runAction(seq);
-}
-
-inline void BuildingArchertower::setDirection(float degree)
-{
-    float compassIndex = ceil(degree / 45);
-    if (compassIndex == 0) {
-        direction = North;
-    } else if (compassIndex == 1) {
-        direction = NorthEast;
-    } else if (compassIndex == 2) {
-        direction = East;
-    } else if (compassIndex == 3) {
-        direction = SouthEast;
-    } else if (compassIndex == 4) {
-        direction = South;
-    } else if (compassIndex == 5) {
-        direction = SouthWest;
-    } else if (compassIndex == 6) {
-        direction = West;
-    } else if (compassIndex == 7) {
-        direction = NorthWest;
-    }
 }
 
 void BuildingArchertower::updateArchersDirection()

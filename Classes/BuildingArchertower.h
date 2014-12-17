@@ -51,7 +51,7 @@ protected:
     
     Node* bullet;
     Compass direction;
-    void setDirection(float degree);
+    
 };
 
 #endif // __BUILDING_ARCHERTOWER_H__
