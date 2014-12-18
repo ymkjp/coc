@@ -39,21 +39,21 @@ void BuildingCanon::attack()
             
             // 発火位置調整
             if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
-                adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_LARGE);
+                adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_HUGE);
             } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {
                 adjustedBulletPos = Vec2(ADJUST_LARGE,ADJUST_REGULAR);
             } else if (90 < comassDegreeGoal && comassDegreeGoal <= 135) {
                 adjustedBulletPos = Vec2(ADJUST_LARGE,-ADJUST_SMALL);
             } else if (135 < comassDegreeGoal && comassDegreeGoal <= 180) {
-                adjustedBulletPos = Vec2(ADJUST_SMALL,-ADJUST_LARGE);
+                adjustedBulletPos = Vec2(ADJUST_REGULAR,-ADJUST_REGULAR);
             } else if (180 < comassDegreeGoal && comassDegreeGoal <= 225) {
-                adjustedBulletPos = Vec2(-ADJUST_SMALL,-ADJUST_REGULAR);
+                adjustedBulletPos = Vec2(-ADJUST_REGULAR,-ADJUST_REGULAR);
             } else if (225 < comassDegreeGoal && comassDegreeGoal <= 270) {
-                adjustedBulletPos = Vec2(-ADJUST_LARGE,-ADJUST_SMALL);
+                adjustedBulletPos = Vec2(-ADJUST_LARGE,-ADJUST_REGULAR);
             } else if (270 < comassDegreeGoal && comassDegreeGoal <= 315) {
                 adjustedBulletPos = Vec2(-ADJUST_LARGE,ADJUST_SMALL);
             } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
-                adjustedBulletPos = Vec2(-ADJUST_SMALL,ADJUST_LARGE);
+                adjustedBulletPos = Vec2(-ADJUST_SMALL,ADJUST_HUGE);
             }
 //            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
         }

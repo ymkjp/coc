@@ -45,6 +45,7 @@ protected:
     const float ADJUST_SMALL   = 20;
     const float ADJUST_REGULAR = 40;
     const float ADJUST_LARGE   = 60;
+    const float ADJUST_HUGE    = 80;
 };
 
 #endif // __BUILDING_CANON_H__

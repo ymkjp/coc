@@ -6,8 +6,8 @@ USING_NS_CC;
 
 bool BuildingDefense::startScan()
 {
-    this->minRange = this->getMinRange() * 0.6;
-    this->maxRange = this->getMaxRange() * 0.6;
+    this->minRange = this->getMinRange() * 0.85;
+    this->maxRange = this->getMaxRange() * 0.75;
     this->schedule(schedule_selector(BuildingDefense::scan), getAttackSpeed());
     return true;
 }

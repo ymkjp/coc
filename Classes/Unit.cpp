@@ -114,7 +114,11 @@ void Unit::play(float frame)
     // 道のりがあれば移動 (なければ攻撃開始)
     while (!path.empty()) {
         nextCoord = path.top();
+        
         directionPoint = tmx->convertToRealPos(nextCoord);
+        if (path.size() == 1) {
+            directionPoint += Vec2(rand() % 20 - 10, rand() % 20 - 10);
+        }
         moveAction = MoveTo::create(movementSpeedByType.at(type), directionPoint);
         
         // 向き先に応じてアニメーションを切り替え
@@ -236,7 +240,6 @@ void Unit::finished()
 void Unit::addGrave()
 {
     // GraveGrid ですでにお墓が建っていないかチェック
-    // @todo 建設可能coordか
     auto parent = getParent();
     if (parent && !tmx->graveGrid[coord.x][coord.y])
     {

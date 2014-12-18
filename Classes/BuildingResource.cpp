@@ -7,7 +7,7 @@ void BuildingResource::initOwn()
     // ダメージエフェクトの初期化
     auto node = tmx->csLoader->createNode(motionNameByType.at(type));
     auto action = tmx->actionTimelineCache->createAction(motionNameByType.at(type));
-    this->addChild(node,1,DamagedEffectNodeTag);
+    this->addChild(node,DamagedEffectOrder,DamagedEffectNodeTag);
     action->setTag(DamagedEffectActionTag);
     node->setPositionY(5);
     node->runAction(action);
@@ -46,7 +46,7 @@ void BuildingResource::damagedEffect()
         return;
     }
     auto damagedEffectAction = dynamic_cast<timeline::ActionTimeline*>(damagedNode->getActionByTag(DamagedEffectNodeTag));
-    if (damagedEffectAction) {
+    if (damagedEffectAction && !damagedEffectAction->isPlaying()) {
         damagedEffectAction->gotoFrameAndPlay(0,false);
     }
 }

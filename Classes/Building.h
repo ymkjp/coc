@@ -25,6 +25,7 @@ public:
     enum LocalZOrder {
         DefaultOrder = 1,
         BuildingOrder,
+        DamagedEffectOrder,
         BuildingExplosionShardsOrder,
         CanonSmokeOrder,
         LuminousCirclebOrder, 

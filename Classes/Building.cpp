@@ -275,11 +275,7 @@ void Building::addWrack()
     
     
     // 残骸はユニットより下に表示されるべき
-    this->setLocalZOrder(coord.x + coord.y - 2);
-//    auto parent = getParent();
-//    if (parent) {
-//        parent->reorderChild(this,coord.x + coord.y - 2);
-//    }
+    this->setLocalZOrder(coord.x + coord.y - 12); // タウンホールの残骸のうえをユニットが歩くように
 }
 
 BuildingSpace Building::getSpace()
