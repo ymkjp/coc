@@ -60,7 +60,6 @@ void Unit::play(float frame)
     if (status == Died) {
         return;
     }
-    action = Walking;
     if (tmx->noBuildings()) {
         this->finishBattle();
         return;
@@ -108,17 +107,17 @@ void Unit::play(float frame)
     Vec2 nextCoord;
     Vec2 prevCoord = startCoord;
     Vec2 directionPoint;
+    Vec2 adjustPos = Vec2(rand() % 12 - 6, 0);
     Vector<FiniteTimeAction*> arrayOfactions;
     MoveTo* moveAction;
     
     // 道のりがあれば移動 (なければ攻撃開始)
+    if (!path.empty()) {
+        action = Walking;
+    }
     while (!path.empty()) {
         nextCoord = path.top();
-        
-        directionPoint = tmx->convertToRealPos(nextCoord);
-        if (path.size() == 1) {
-            directionPoint += Vec2(rand() % 20 - 10, rand() % 20 - 10);
-        }
+        directionPoint = tmx->convertToRealPos(nextCoord) + adjustPos;
         moveAction = MoveTo::create(movementSpeedByType.at(type), directionPoint);
         
         // 向き先に応じてアニメーションを切り替え
@@ -259,7 +258,6 @@ void Unit::startAttacking()
 
 void Unit::attack(float frame)
 {
-    CCLOG("attack");
     if (status == Alive && targetBuilding && targetBuilding->status == Building::Alive) {
         this->action = Attacking;
         this->playStartAttackingVoice();
@@ -285,18 +283,10 @@ void Unit::attack(float frame)
     }
     if (targetBuilding->status == Building::Died) {
         // 建物が破壊されると play に戻って新たな探索を始める
-//        CCLOG("Unit::attack target died!");
-        action = Walking;
-        this->updateMotionNode();
         this->scheduleOnce(schedule_selector(Unit::play), SOON);
-        return;
-    } else if (targetBuilding->type == Wall) {
-        // Wall の場合は攻撃のたびに play に戻って新たな探索を始める
-        this->scheduleOnce(schedule_selector(Unit::play), attackSpeed);
         return;
     } else {
         // 攻撃速度で攻撃を続ける
-        CCLOG("keep punching!");
         this->scheduleOnce(schedule_selector(Unit::play), attackSpeed);
         return;
     }
