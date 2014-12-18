@@ -82,7 +82,7 @@ void Building::initNode()
         }
         case TrenchMortar:
         {
-            auto buildingNode = CSLoader::createNode("res/TrenchMortar.csb");
+            auto buildingNode = tmx->csLoader->createNode("res/TrenchMortar.csb");
             auto motionAction = tmx->actionTimelineCache->createAction("res/TrenchMortar.csb");
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
@@ -92,13 +92,13 @@ void Building::initNode()
         }
         case TownHall:
         {
-            auto buildingNode = CSLoader::createNode("res/TownHall.csb");
+            auto buildingNode = tmx->csLoader->createNode("res/TownHall.csb");
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             break;
         }
         case Canon:
         {
-            auto buildingNode = CSLoader::createNode("res/Canon.csb");
+            auto buildingNode = tmx->csLoader->createNode("res/Canon.csb");
             auto motionAction = tmx->actionTimelineCache->createAction("res/Canon.csb");
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
@@ -108,7 +108,7 @@ void Building::initNode()
         }
         case GoldBank:
         {
-            auto buildingNode = CSLoader::createNode("res/GoldBank.csb");
+            auto buildingNode = tmx->csLoader->createNode("res/GoldBank.csb");
             auto motionAction = tmx->actionTimelineCache->createAction("res/GoldBank.csb");
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             buildingNode->runAction(motionAction);
@@ -119,7 +119,7 @@ void Building::initNode()
         }
         case ElixerTank:
         {
-            auto buildingNode = CSLoader::createNode("res/ElixerTank.csb");
+            auto buildingNode = tmx->csLoader->createNode("res/ElixerTank.csb");
             auto motionAction = tmx->actionTimelineCache->createAction("res/ElixerTank.csb");
             this->addChild(buildingNode,BuildingOrder,BuildingNodeTag);
             motionAction->setTag(BuildingActionTag);
@@ -162,7 +162,7 @@ inline void Building::updateLifeGage()
     if (parent && !lifeGageNode) {
         // ライフゲージ初期化
         // 0〜100フレームまであって徐々に減らしていくことで操作できる
-        lifeGageNode = CSLoader::createNode("res/LifeGageBuilding.csb");
+        lifeGageNode = tmx->csLoader->createNode("res/LifeGageBuilding.csb");
         lifeGageNode->setScale(0.5);
         lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageBuilding.csb");
         lifeGageNode->runAction(lifeGageAction);
@@ -219,7 +219,7 @@ void Building::broken()
 
 void Building::brokenEffect()
 {
-    auto node = CSLoader::createNode("res/Broken.csb");
+    auto node = tmx->csLoader->createNode("res/Broken.csb");
     auto children = node->getChildren();
     for (auto shard: children) {
         //時間, 移動距離, ジャンプの最高点, ジャンプの回数
@@ -295,7 +295,7 @@ void Building::putTargetMark()
     }
     if (!targetMarkNode) {
         // ターゲットマークの初期化
-        targetMarkNode = CSLoader::createNode("res/TargetMarkerNode.csb");
+        targetMarkNode = tmx->csLoader->createNode("res/TargetMarkerNode.csb");
         targetMarkNode->setScale(0.5);
         targetMarkAction = tmx->actionTimelineCache->createAction("res/TargetMarkerNode.csb");
         targetMarkNode->setPosition(getPosition().x,getPosition().y + 5);

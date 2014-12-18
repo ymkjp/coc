@@ -47,7 +47,7 @@ public:
     UI* ui;
     MapNavigator* mapNavigator;
     
-    
+    CSLoader* csLoader;
     timeline::ActionTimelineCache* actionTimelineCache;
     
     Vec2 convertToCoord(Vec2 pos);

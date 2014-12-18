@@ -48,7 +48,7 @@ bool BattleScene::init(Stages stage)
 void BattleScene::showCloud()
 {
     // 画面切り替え時の雲を表示
-    auto cloudLayer = CSLoader::createNode("res/CloudSecondLayer.csb");
+    auto cloudLayer = tmx->csLoader->createNode("res/CloudSecondLayer.csb");
     auto cloudAction = tmx->actionTimelineCache->createAction("res/CloudSecondLayer.csb");
     cloudLayer->runAction(cloudAction);
     cloudAction->gotoFrameAndPlay(0, false);
@@ -115,7 +115,7 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
-    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta() * 0.5);
+    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta() * 0.2);
 }
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)

@@ -181,7 +181,7 @@ void ArcherOnTower::updateMotionNode()
             
             filename.append(".csb");
             
-            auto motionNode = CSLoader::createNode(filename.getCString());
+            auto motionNode = tmx->csLoader->createNode(filename.getCString());
             motionAction = tmx->actionTimelineCache->createAction(filename.getCString());
             motionNode->runAction(motionAction);
             

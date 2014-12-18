@@ -4,14 +4,14 @@ USING_NS_CC;
 
 void BuildingCanon::initOwn()
 {
-    auto smokeNode = CSLoader::createNode("res/CanonSmoke.csb");
+    auto smokeNode = tmx->csLoader->createNode("res/CanonSmoke.csb");
     auto smokeAction = tmx->actionTimelineCache->createAction("res/CanonSmoke.csb");
     this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
     
-    auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
+    auto luminousNode = tmx->csLoader->createNode("res/LuminousCircle.csb");
     auto luminousAction = tmx->actionTimelineCache->createAction("res/LuminousCircle.csb");
     this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
     luminousAction->setTag(LuminousActionTag);

@@ -36,7 +36,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
 //    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
 
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
-    auto lifeGageNode = CSLoader::createNode("res/LifeGageUnit.csb");
+    auto lifeGageNode = tmx->csLoader->createNode("res/LifeGageUnit.csb");
     auto lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageUnit.csb");
     lifeGageNode->runAction(lifeGageAction);
     lifeGageNode->setScale(0.5);
@@ -190,7 +190,7 @@ void Unit::die()
     
     this->playDeathVoice();
     
-    auto ghostNode = CSLoader::createNode("res/Ghost.csb");
+    auto ghostNode = tmx->csLoader->createNode("res/Ghost.csb");
     auto ghostAction = tmx->actionTimelineCache->createAction("res/Ghost.csb");
     ghostNode->setScale(1.4);
     ghostNode->runAction(ghostAction);
@@ -221,7 +221,7 @@ void Unit::finished()
     this->unscheduleAllCallbacks();
     this->stopAllActions();
     
-    auto elixerNode = CSLoader::createNode("res/ElixerBubble.csb");
+    auto elixerNode = tmx->csLoader->createNode("res/ElixerBubble.csb");
     auto elixerAction = tmx->actionTimelineCache->createAction("res/ElixerBubble.csb");
     elixerNode->runAction(elixerAction);
     elixerAction->gotoFrameAndPlay(0,false);
@@ -614,7 +614,7 @@ std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 
 Node* Unit::getActingNode()
 {
-    return CSLoader::createNode(this->createFilename().getCString());
+    return tmx->csLoader->createNode(this->createFilename().getCString());
 }
 
 timeline::ActionTimeline* Unit::getActionTimeline()
@@ -707,7 +707,7 @@ void Unit::playStartAttackingVoice()
 void Unit::testAdd(__String fileName, Vec2 pos)
 {
     // 動作確認用
-    auto node = CSLoader::createNode(fileName.getCString());
+    auto node = tmx->csLoader->createNode(fileName.getCString());
     auto anim = tmx->actionTimelineCache->createAction(fileName.getCString());
     node->runAction(anim);
     anim->gotoFrameAndPlay(0, true);

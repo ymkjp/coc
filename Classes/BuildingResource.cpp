@@ -5,7 +5,7 @@ USING_NS_CC;
 void BuildingResource::initOwn()
 {
     // ダメージエフェクトの初期化
-    auto node = CSLoader::createNode(motionNameByType.at(type));
+    auto node = tmx->csLoader->createNode(motionNameByType.at(type));
     auto action = tmx->actionTimelineCache->createAction(motionNameByType.at(type));
     this->addChild(node,1,DamagedEffectNodeTag);
     action->setTag(DamagedEffectActionTag);

@@ -54,7 +54,7 @@ bool StageSelectorScene::init()
                 
                 FiniteTimeAction* shootCloud = CallFunc::create([=]() {
                     // 画面切り替え時の雲を表示
-                    auto cloudLayer = CSLoader::createNode("res/CloudFirstLayer.csb");
+                    auto cloudLayer = CSLoader::getInstance()->createNode("res/CloudFirstLayer.csb");
                     auto cloudAction = timeline::ActionTimelineCache::getInstance()->createAction("res/CloudFirstLayer.csb");
                     cloudLayer->runAction(cloudAction);
                     cloudAction->gotoFrameAndPlay(0, false);

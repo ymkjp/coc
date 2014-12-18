@@ -38,7 +38,8 @@ bool Tmx::init(Stages stage)
     // 経路探索マップナビゲータの初期化
     mapNavigator = MapNavigator::create();
     mapNavigator->retain();
-    
+
+    csLoader = CSLoader::getInstance();
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
 
 //    SimpleAudioEngine::getInstance()->playEffect("planning.mp3", false, 1.0f, 0.0f, 1.0f);

@@ -4,14 +4,14 @@ USING_NS_CC;
 
 void BuildingTrenchmortar::initOwn()
 {
-    auto smokeNode = CSLoader::createNode("res/MortarSmoke.csb");
+    auto smokeNode = tmx->csLoader->createNode("res/MortarSmoke.csb");
     auto smokeAction = tmx->actionTimelineCache->createAction("res/MortarSmoke.csb");
     this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
     smokeAction->gotoFrameAndPause(60);
     
-    auto luminousNode = CSLoader::createNode("res/LuminousCircle.csb");
+    auto luminousNode = tmx->csLoader->createNode("res/LuminousCircle.csb");
     auto luminousAction = tmx->actionTimelineCache->createAction("res/LuminousCircle.csb");
     this->addChild(luminousNode,LuminousCirclebOrder, LuminousNodeTag);
     luminousAction->setTag(LuminousActionTag);
@@ -112,7 +112,7 @@ void BuildingTrenchmortar::shoot()
             tmx->playSE("mortar_hit");
             CCLOG("mortar_hit");
             if (parentNode) {
-                auto impactNode = CSLoader::createNode("res/MortarImpact.csb");
+                auto impactNode = tmx->csLoader->createNode("res/MortarImpact.csb");
                 auto impactAction = tmx->actionTimelineCache->createAction("res/MortarImpact.csb");
                 impactNode->runAction(impactAction);
                 parentNode->addChild(impactNode,MortalImpactZOrder);
