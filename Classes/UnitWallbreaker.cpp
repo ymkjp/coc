@@ -10,20 +10,10 @@ void UnitWallbreaker::startAttacking()
         return;
     }
     if (!this->targetBuilding || this->targetBuilding->status == Building::Died) {
-        //        action = Walking;
-        //        //        this->updateMotionNode();
-        
-        this->scheduleOnce(schedule_selector(Unit::play), 0.1);
-        this->unschedule(schedule_selector(Unit::attack));
-        
-        
+        this->scheduleOnce(schedule_selector(Unit::play), SOON);
     }
+    
     if (status == Alive && this->targetBuilding->status == Building::Alive) {
-        //        this->action = Attacking;
-        //        this->updateMotionNode();
-        
-        this->unschedule(schedule_selector(Unit::attack));
-        
         // 攻撃
         this->targetBuilding->attacked(damagePerAttack);
         

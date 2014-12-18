@@ -108,7 +108,7 @@ bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_eve
 {
     // 長押ししてたらデプロイし続ける
     targetTouch = touch;
-    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), 0.2);
+    this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), UNIT_DEPLOY_INTERVAL);
     return true;
 }
 

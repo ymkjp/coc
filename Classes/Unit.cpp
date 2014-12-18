@@ -79,14 +79,14 @@ void Unit::play(float frame)
         goalCoord = findNearestWallGoalCoord();
         if (goalCoord == ERROR_COORD) {
             // エラーケース
-            CCLOG("[ERROR_COORD] Wall not found!");
+//            CCLOG("[ERROR_COORD] Wall not found!");
             this->unschedule(schedule_selector(Unit::play));
             this->scheduleOnce(schedule_selector(Unit::play), WAITING_SEC);
             return;
         }
         path = tmx->navigate(startCoord, goalCoord);
         
-        CCLOG("[Wall]goalCoord(%f,%f),path.size(%lu)",goalCoord.x,goalCoord.y,path.size());
+//        CCLOG("[Wall]goalCoord(%f,%f),path.size(%lu)",goalCoord.x,goalCoord.y,path.size());
     }
     if (!path.empty() && path.top() == ERROR_COORD) {
         CCLOG("NOT FOUND");
@@ -122,7 +122,7 @@ void Unit::play(float frame)
         
         // 向き先に応じてアニメーションを切り替え
         FiniteTimeAction* transferring = CallFunc::create([=]() {
-            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
+//            CCLOG("[CallFunc] prevCoord(%f,%f),nextCoord(%f,%f)",prevCoord.x,prevCoord.y,nextCoord.x,nextCoord.y);
             if (status == Alive) {
                 
                 // 移動中に目標の建物が壊れていたら探しなおす
@@ -607,7 +607,9 @@ std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 
 Node* Unit::getActingNode()
 {
-    return tmx->csLoader->createNode(this->createFilename().getCString());
+    auto node = tmx->csLoader->createNode(this->createFilename().getCString());
+    node->setScale(0.94);
+    return node;
 }
 
 timeline::ActionTimeline* Unit::getActionTimeline()

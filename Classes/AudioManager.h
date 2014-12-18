@@ -1,6 +1,8 @@
 #ifndef __AUDIO_MANAGER_H__
 #define __AUDIO_MANAGER_H__
 
+#include <time.h>
+
 #include "cocos2d.h"
 USING_NS_CC;
 
@@ -21,6 +23,7 @@ public:
     
 protected:
     const char* getFileName(const std::string &id);
+    std::map<std::string, time_t> playingSE;
     
 private:
     AudioManager();
