@@ -251,7 +251,11 @@ void Unit::addGrave()
 
 void Unit::startAttacking()
 {
-    CCLOG("startAttacking!");
+//    // @todo debug
+//    return;
+    
+    // 攻撃対象の方を向いて、攻撃開始
+    this->updateDirection();
     this->scheduleOnce(schedule_selector(Unit::attack), SOON);
 }
 
@@ -608,7 +612,7 @@ std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 Node* Unit::getActingNode()
 {
     auto node = tmx->csLoader->createNode(this->createFilename().getCString());
-    node->setScale(0.94);
+    node->setScale(0.92);
     return node;
 }
 

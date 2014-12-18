@@ -11,7 +11,8 @@ class BuildingCanon : public BuildingDefense
 {
 public:
     float maxRange = 9;
-    
+    int idNum;
+    int times;
     Vec2 adjustedBulletPos = Vec2::ZERO;
     
     static BuildingCanon* create(Tmx* tmx, Vec2 coord) {
@@ -42,10 +43,10 @@ public:
     void initOwn();
     
 protected:
-    const float ADJUST_SMALL   = 20;
-    const float ADJUST_REGULAR = 40;
-    const float ADJUST_LARGE   = 60;
-    const float ADJUST_HUGE    = 80;
+    const float ADJUST_SMALL   = 10;
+    const float ADJUST_REGULAR = 20;
+    const float ADJUST_LARGE   = 30;
+    const float ADJUST_HUGE    = 40;
 };
 
 #endif // __BUILDING_CANON_H__

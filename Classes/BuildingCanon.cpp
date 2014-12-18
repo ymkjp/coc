@@ -4,6 +4,8 @@ USING_NS_CC;
 
 void BuildingCanon::initOwn()
 {
+    idNum = rand() % 100;
+    
     auto smokeNode = tmx->csLoader->createNode("res/CanonSmoke.csb");
     auto smokeAction = tmx->actionTimelineCache->createAction("res/CanonSmoke.csb");
     this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
@@ -24,42 +26,90 @@ void BuildingCanon::attack()
     auto node = this->getChildByTag(BuildingNodeTag);
     auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingNodeTag));
     // 向き先に応じてアニメーションを切り替え
-    FiniteTimeAction* turn = CallFunc::create([=]() {
-        if (targetUnit->status == Unit::Alive) {
-            float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord) + 45;
-            if (360 < comassDegreeGoal) {
-                comassDegreeGoal -= 360;
+    
+    if (!node || !action || targetUnit->status == Unit::Died) {
+        return;
+    }
+    
+    // 180度未満の場合は10度づつ順回転、180度以上の場合は逆回転
+    Vector<FiniteTimeAction*> arrayOfactions = {};
+    float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord) + 45;
+    if (360 < comassDegreeGoal) {
+        comassDegreeGoal -= 360;
+    }
+    int goalFrame = ceil(comassDegreeGoal * 0.1);
+    goalFrame = (goalFrame == 36) ? 0 : goalFrame;
+    
+    int currentFrame = action->getCurrentFrame();
+    int frameDiff = goalFrame - currentFrame;
+    bool isClockwiseRotation = frameDiff < 18.0;
+    if (frameDiff < 0) {
+        isClockwiseRotation = 18.0 < abs(frameDiff);
+    }
+    
+    CCLOG("\n\n\n[id:%i]currentFrame(%i),goalFrame(%i),isCWR(%i,%i)",idNum,currentFrame,goalFrame,isClockwiseRotation,goalFrame - currentFrame);
+    ++times;
+    int count = 0;
+    int breaker = 37;
+    while (currentFrame != goalFrame) {
+        ++count;
+        if (breaker < count) {
+            break;
+        }
+        
+        CCLOG("[%i.01]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
+        
+        if (isClockwiseRotation) {
+            currentFrame = abs(currentFrame + 1) % 36;
+        } else if (!isClockwiseRotation && currentFrame == 0) {
+            currentFrame = 35;
+        } else if (!isClockwiseRotation) {
+            currentFrame = abs(currentFrame - 1) % 36;
+        }
+        CCLOG("[%i.02]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
+        
+        
+        FiniteTimeAction* tick = CallFunc::create([=]() {
+            if (action && targetUnit->status == Unit::Alive) {
+                action->gotoFrameAndPause(currentFrame % 36);
             }
-            float goalFrame = ceil(comassDegreeGoal * 0.1);
-//            CCLOG("goalFrame(%f),comassDegreeGoal(%f)",goalFrame,comassDegreeGoal);
-            if (node && action) {
-                action->gotoFrameAndPause(goalFrame);
-            }
-            
-            // 発火位置・リコイル深度の調整値を算出
-            if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
-                adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_HUGE);
-            } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {
-                adjustedBulletPos = Vec2(ADJUST_LARGE,ADJUST_REGULAR);
-            } else if (90 < comassDegreeGoal && comassDegreeGoal <= 135) {
-                adjustedBulletPos = Vec2(ADJUST_LARGE,-ADJUST_SMALL);
-            } else if (135 < comassDegreeGoal && comassDegreeGoal <= 180) {
-                adjustedBulletPos = Vec2(ADJUST_REGULAR,-ADJUST_REGULAR);
-            } else if (180 < comassDegreeGoal && comassDegreeGoal <= 225) {
-                adjustedBulletPos = Vec2(-ADJUST_REGULAR,-ADJUST_REGULAR);
-            } else if (225 < comassDegreeGoal && comassDegreeGoal <= 270) {
-                adjustedBulletPos = Vec2(-ADJUST_LARGE,-ADJUST_REGULAR);
-            } else if (270 < comassDegreeGoal && comassDegreeGoal <= 315) {
-                adjustedBulletPos = Vec2(-ADJUST_LARGE,ADJUST_SMALL);
-            } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
-                adjustedBulletPos = Vec2(-ADJUST_SMALL,ADJUST_HUGE);
-            }
-//            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
+        });
+        arrayOfactions.pushBack(tick);
+        arrayOfactions.pushBack(DelayTime::create(0.01));
+    }
+    
+    // 最終地点の角度に到達させる
+    FiniteTimeAction* lastTick = CallFunc::create([=]() {
+        if (action && targetUnit->status == Unit::Alive) {
+            action->gotoFrameAndPause(goalFrame);
         }
     });
+    arrayOfactions.pushBack(lastTick);
+    
+    // 発火位置・リコイル深度の調整値を算出
+    if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
+        adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_HUGE);
+    } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {
+        adjustedBulletPos = Vec2(ADJUST_LARGE,ADJUST_REGULAR);
+    } else if (90 < comassDegreeGoal && comassDegreeGoal <= 135) {
+        adjustedBulletPos = Vec2(ADJUST_LARGE,-ADJUST_SMALL);
+    } else if (135 < comassDegreeGoal && comassDegreeGoal <= 180) {
+        adjustedBulletPos = Vec2(ADJUST_REGULAR,-ADJUST_REGULAR);
+    } else if (180 < comassDegreeGoal && comassDegreeGoal <= 225) {
+        adjustedBulletPos = Vec2(-ADJUST_REGULAR,-ADJUST_REGULAR);
+    } else if (225 < comassDegreeGoal && comassDegreeGoal <= 270) {
+        adjustedBulletPos = Vec2(-ADJUST_LARGE,-ADJUST_REGULAR);
+    } else if (270 < comassDegreeGoal && comassDegreeGoal <= 315) {
+        adjustedBulletPos = Vec2(-ADJUST_LARGE,ADJUST_SMALL);
+    } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
+        adjustedBulletPos = Vec2(-ADJUST_SMALL,ADJUST_HUGE);
+    }
+    //            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
     
     FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BuildingCanon::expandAndShrink, this));
-    auto seq = Sequence::create(turn, attack, nullptr);
+    arrayOfactions.pushBack(attack);
+    
+    auto seq = Sequence::create(arrayOfactions);
     this->runAction(seq);
 }
 
@@ -104,7 +154,7 @@ void BuildingCanon::shoot()
             if (luminousNode && smokeNode && luminousAction && smokeAction && status == Alive) {
                 // 発火・煙のエフェクト
                 tmx->playSE("cannon_attack");
-                smokeNode->setPosition(adjustedBulletPos * 0.4);
+                smokeNode->setPosition(adjustedBulletPos * 0.96);
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }

@@ -13,14 +13,14 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
     
     // 塔の上のアーチャー
     auto motionNode = CCSprite::createWithSpriteFrameName("unit/archer/idle/south.png");
-    motionNode->setScale(0.94);
+    motionNode->setScale(0.92);
     this->addChild(motionNode,MotionOrder,MotionTag);
     
     // ユニットの影
     auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
     this->addChild(shadowSprite,ShadowOrder,ShadowTag);
     shadowSprite->setOpacity(220);
-    shadowSprite->setPosition(3,-14);
+    shadowSprite->setPosition(3,-12);
     return true;
 }
 

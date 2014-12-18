@@ -172,7 +172,7 @@ protected:
         {Archer,50},
         {Giant,50},
         {Goblin,50},
-        {Wallbreaker,50},
+        {Wallbreaker,5},
 //        {Barbarian,20},
 //        {Archer,20},
 //        {Giant,20},
