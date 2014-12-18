@@ -61,9 +61,7 @@ public:
     };
 
     const static std::map<BuildingSpace, std::vector<Vec2>> coordsSurround;
-    const static std::map<BuildingSpace, std::vector<Vec2>> coordsBuildingSpace;
 
-    bool isBuildingRange(Vec2 coord);
     bool isTargetLayer(std::string name, Vec2 coord);
     void attacked(float damage);
     void broken();

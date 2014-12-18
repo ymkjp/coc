@@ -45,7 +45,6 @@ public:
     };
     
     virtual bool init(Tmx* tmx, Vec2 coord);
-    const static std::map<Vec2, Compass> compassByCoords;
 
     const std::map<UnitType, BuildingCategory> attackType = {
         {Barbarian, Melee},

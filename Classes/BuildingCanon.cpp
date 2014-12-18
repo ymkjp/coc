@@ -25,7 +25,6 @@ void BuildingCanon::attack()
     auto action = dynamic_cast<timeline::ActionTimeline*>(node->getActionByTag(BuildingNodeTag));
     // 向き先に応じてアニメーションを切り替え
     FiniteTimeAction* turn = CallFunc::create([=]() {
-        // @todo 180度未満の場合は10度づつ順回転、180度以上の場合は逆回転
         if (targetUnit->status == Unit::Alive) {
             float comassDegreeGoal = tmx->calcCompassDegree(coord, targetUnit->coord) + 45;
             if (360 < comassDegreeGoal) {
@@ -37,7 +36,7 @@ void BuildingCanon::attack()
                 action->gotoFrameAndPause(goalFrame);
             }
             
-            // 発火位置調整
+            // 発火位置・リコイル深度の調整値を算出
             if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
                 adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_HUGE);
             } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {

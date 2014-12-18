@@ -665,19 +665,6 @@ __String Unit::createFilename()
     return fileName.getCString();
 }
 
-
-const std::map<Vec2, Compass> Unit::compassByCoords =
-{
-    {Vec2(-1,-1), North},
-    {Vec2(-1,0),  NorthEast},
-    {Vec2(1,-1),  East},
-    {Vec2(1,0),   SouthEast},
-    {Vec2(1,1),   South},
-    {Vec2(0,1),   SouthWest},
-    {Vec2(-1,1),  West},
-    {Vec2(-1,0),  NorthWest},
-};
-
 void Unit::putTargetMark()
 {
     // マーク済みのフラグを立てる

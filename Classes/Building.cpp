@@ -25,23 +25,6 @@ bool Building::init(Tmx* _tmx, Vec2 _coord)
     return true;
 }
 
-bool Building::isBuildingRange(Vec2 targetCoord)
-{
-    if (targetCoord == this->coord) {
-        return true;
-    }
-    Vec2 coordInRange;
-    auto space = this->getSpace();
-    auto diffCoords = Building::coordsBuildingSpace.at(space);
-    for (auto diffCoord: diffCoords) {
-        coordInRange = this->coord + diffCoord;
-        if (coordInRange == targetCoord) {
-            return true;
-        }
-    }
-    return false;
-}
-
 inline bool Building::isTargetLayer(std::string name, Vec2 coord)
 {
     return (isInMapRange(coord) && 0 != tmx->tiledMap->getLayer(name.c_str())->getTileGIDAt(coord));
@@ -331,18 +314,5 @@ const BuildingVec2sBySpace Building::coordsSurround = {
         Vec2(0,0), Vec2(0,2),
         Vec2(1,0), Vec2(1,2),
         Vec2(2,-2), Vec2(2,-1), Vec2(2,0), Vec2(2,1), Vec2(2,2),
-    }},
-};
-
-const BuildingVec2sBySpace Building::coordsBuildingSpace = {
-    {Small, /** count: 1 */ {
-        Vec2(0,0), // @fixme
-    }},
-    {Regular, /** count: 4 */ {
-        Vec2(0,1), Vec2(1,1), Vec2(1,0)
-    }},
-    {Large,  /** count: 9 */ {
-        Vec2(0,1), Vec2(1,1), Vec2(1,0),
-        Vec2(0,2), Vec2(1,2), Vec2(2,0), Vec2(2,1), Vec2(2,2),
     }},
 };
