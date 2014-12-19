@@ -33,8 +33,19 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     motionAction->gotoFrameAndPlay(0, true);
     this->addChild(motionNode, MotionOrder, MotionTag);
     
-//    CCLOG("[a]this->getChildrenCount(%lu)",this->getChildrenCount());
-
+    // デプロイ時のアニメーション
+    auto verticalExtension = ScaleBy::create(0, 0.5, 2);
+    auto returnToNormal = ScaleTo::create(0.6, 1);
+    this->runAction(Sequence::create(verticalExtension,returnToNormal, NULL));
+    
+    auto deployedMarkNode = tmx->csLoader->createNode("res/DeployedMark.csb");
+    auto deployedMarkAction = tmx->actionTimelineCache->createAction("res/DeployedMark.csb");
+    this->addChild(deployedMarkNode);
+    deployedMarkNode->runAction(deployedMarkAction);
+    deployedMarkNode->setScaleX(2.8);
+    deployedMarkNode->setScaleY(0.8);
+    deployedMarkAction->gotoFrameAndPlay(0, false);
+    
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
     auto lifeGageNode = tmx->csLoader->createNode("res/LifeGageUnit.csb");
     auto lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageUnit.csb");
