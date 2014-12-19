@@ -143,12 +143,33 @@ protected:
         {Wallbreaker, -8},
     };
     
+    const std::map<UnitType, float> shadowScaleByType =
+    {
+        {Archer, 1.8},
+        {Barbarian, 1.8},
+        {Giant, 2.6},
+        {Goblin, 1.8},
+        {Wallbreaker, 1.8},
+    };
+    
+    const std::map<UnitType, float> deployedExtensionYLengthByType =
+    {
+        {Archer, 2},
+        {Barbarian, 2},
+        {Giant, 1.4},
+        {Goblin, 2},
+        {Wallbreaker, 2},
+    };
+    /*
+     コメントは wiki に記載されている値
+     @link http://clashofclans.wikia.com/wiki/Clash_of_Clans_Wiki
+     **/
     const std::map<UnitType, float> movementSpeedByType =
     {
-        {Archer, 0.5},    // 24
-        {Barbarian, 0.65}, // 16
-        {Giant, 0.8},     // 12
-        {Goblin, 0.4},     // 32
+        {Archer, 0.5},      // 24
+        {Barbarian, 0.65},  // 16
+        {Giant, 0.8},       // 12
+        {Goblin, 0.4},      // 32
         {Wallbreaker, 0.5}, // 24
     };
     

@@ -24,14 +24,14 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
     this->addChild(shadowSprite,ShadowOrder,ShadowTag);
     shadowSprite->setPositionY(shadowPosYByType.at(type));
-    shadowSprite->setScale(1.8);
+    shadowSprite->setScale(shadowScaleByType.at(type));
     
     // 歩きのアクション
     auto motionNode = this->getActingNode();
     this->addChild(motionNode, MotionOrder, MotionTag);
     
     // デプロイ時のアニメーション
-    auto verticalExtension = ScaleBy::create(0, 0.2, 2);
+    auto verticalExtension = ScaleBy::create(0, 0.2, deployedExtensionYLengthByType.at(type));
     auto returnToNormal = ScaleTo::create(0.2, 1);
     this->runAction(Sequence::create(verticalExtension,returnToNormal, NULL));
     
@@ -297,7 +297,14 @@ void Unit::update( float frame )
 
 void Unit::shoot()
 {
-    targetBuilding->attacked(damagePerAttack);
+    if (type == Goblin
+        && targetBuilding
+        && (targetBuilding->type == ElixerTank || targetBuilding->type == GoldBank)) {
+        // ゴブリンはリソースタイプに対しては攻撃力2倍
+        targetBuilding->attacked(damagePerAttack * 2);
+    } else {
+        targetBuilding->attacked(damagePerAttack);
+    }
 }
 
 void Unit::updateMotionNode(bool b_loop)
@@ -543,7 +550,6 @@ Vec2 Unit::findNearestWallGoalCoord()
 //    }
 
 //    CCLOG("targetWalls.size(%lu)",targetWalls.size());
-
 
     // 3. リストアップされた壁の中からユニットに最も近い壁をターゲットとする
     // 予期しないケースで size 0 の場合は、エラー値 ERROR_COORD を返す
