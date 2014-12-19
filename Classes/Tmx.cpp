@@ -42,13 +42,6 @@ bool Tmx::init(Stages stage)
     csLoader = CSLoader::getInstance();
     actionTimelineCache = timeline::ActionTimelineCache::getInstance();
 
-//    SimpleAudioEngine::getInstance()->playEffect("planning.mp3", false, 1.0f, 0.0f, 1.0f);
-    
-    SimpleAudioEngine::getInstance()->setEffectsVolume(0.8);
-    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.8);
-//    SimpleAudioEngine::getInstance()->preloadBackgroundMusic("planning.mp3");
-//    SimpleAudioEngine::getInstance()->playBackgroundMusic("planning.mp3",true);
-//
     audioManager = AudioManager::getInstance();
     audioManager->playBgm("planning",true);
 
