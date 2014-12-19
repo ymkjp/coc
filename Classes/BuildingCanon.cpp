@@ -118,7 +118,7 @@ void BuildingCanon::expandAndShrink()
     if (!targetUnit || targetUnit->status == Unit::Died) {
         return;
     }
-    auto recoilPos = adjustedBulletPos * -0.1;
+    auto recoilPos = adjustedBulletPos * -0.26;
     auto expandAction = Spawn::create(ScaleTo::create(0.2, 1.1), MoveBy::create(0.2,recoilPos) ,NULL);
     auto shrinkAction = Spawn::create(ScaleTo::create(0.2, 1), MoveBy::create(0.2,recoilPos * -1) ,NULL);
     FiniteTimeAction* shootBullet = CallFunc::create([=]() {

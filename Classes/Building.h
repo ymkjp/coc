@@ -116,6 +116,17 @@ protected:
         {Wall,700},
     };
     
+    const std::map<BuildingType, float> lifeGageYPosByType =
+    {
+        {TownHall, 140},
+        {ElixerTank, 62},
+        {GoldBank, 62},
+        {Canon, 62},
+        {TrenchMortar, 62},
+        {ArcherTower, 82},
+        {Wall,28},
+    };
+    
     float getFullHitPoints()
     {
         return hitpointsByType.at(type);
@@ -128,7 +139,6 @@ protected:
             return;
         }
     }
-    
 };
 
 #endif // __BUILDING_H__

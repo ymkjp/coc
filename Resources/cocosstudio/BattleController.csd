@@ -755,7 +755,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="OverallDamagePanel" CanEdit="False" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="OverallDamagePanel" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="764.3737" Y="173.1256" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
@@ -834,13 +834,148 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
+              <NodeObjectData Name="Panel_Star_1" ActionTag="-797988982" Alpha="0" VisibleForFrame="False" FrameEvent="" Tag="175" ObjectIndex="16" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Position X="-400.0000" Y="90.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="200.0000" Y="200.0000" />
+                <PrePosition X="-2.2222" Y="0.8182" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <Children>
+                  <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="-1556307157" FrameEvent="" Tag="172" ObjectIndex="43" ctype="SpriteObjectData">
+                    <Position X="98.2000" Y="117.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.4910" Y="0.5850" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage_Shadow" ActionTag="-1072217907" FrameEvent="" Tag="174" ObjectIndex="37" FontSize="20" LabelText="Wonderful!" ctype="TextObjectData">
+                    <Position X="106.0900" Y="11.7579" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="20" G="20" B="20" />
+                    <Size X="166.0000" Y="22.0000" />
+                    <PrePosition X="0.5304" Y="0.0588" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage" ActionTag="1295114350" FrameEvent="" Tag="173" ObjectIndex="36" FontSize="20" LabelText="Wonderful!" ctype="TextObjectData">
+                    <Position X="101.0900" Y="15.7578" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="166.0000" Y="22.0000" />
+                    <PrePosition X="0.5055" Y="0.0788" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                </Children>
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </NodeObjectData>
+              <NodeObjectData Name="Panel_Star_2" ActionTag="-740490888" Alpha="0" VisibleForFrame="False" FrameEvent="" Tag="176" ObjectIndex="17" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Position X="-400.0000" Y="90.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="200.0000" Y="200.0000" />
+                <PrePosition X="-2.2222" Y="0.8182" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <Children>
+                  <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="-1602599727" FrameEvent="" Tag="177" ObjectIndex="44" ctype="SpriteObjectData">
+                    <Position X="98.2000" Y="117.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.4910" Y="0.5850" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage_Shadow" ActionTag="-73690462" FrameEvent="" Tag="178" ObjectIndex="38" FontSize="20" LabelText="Excellent!" ctype="TextObjectData">
+                    <Position X="106.0900" Y="11.7600" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="20" G="20" B="20" />
+                    <Size X="146.0000" Y="22.0000" />
+                    <PrePosition X="0.5304" Y="0.0588" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage" ActionTag="-954497453" FrameEvent="" Tag="179" ObjectIndex="39" FontSize="20" LabelText="Excellent!" ctype="TextObjectData">
+                    <Position X="101.0900" Y="15.7600" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="146.0000" Y="22.0000" />
+                    <PrePosition X="0.5055" Y="0.0788" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                </Children>
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </NodeObjectData>
+              <NodeObjectData Name="Panel_Star_3" ActionTag="2073662657" Alpha="0" VisibleForFrame="False" FrameEvent="" Tag="180" ObjectIndex="18" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+                <Position X="-400.0000" Y="90.0000" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <AnchorPoint />
+                <CColor A="255" R="255" G="255" B="255" />
+                <Size X="200.0000" Y="200.0000" />
+                <PrePosition X="-2.2222" Y="0.8182" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <Children>
+                  <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="2070427370" FrameEvent="" Tag="181" ObjectIndex="45" ctype="SpriteObjectData">
+                    <Position X="98.2000" Y="117.0000" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.4910" Y="0.5850" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage_Shadow" ActionTag="-748501933" FrameEvent="" Tag="182" ObjectIndex="40" FontSize="20" LabelText="Perfect!" ctype="TextObjectData">
+                    <Position X="106.0900" Y="11.7600" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="20" G="20" B="20" />
+                    <Size X="129.0000" Y="22.0000" />
+                    <PrePosition X="0.5304" Y="0.0588" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Text_StarMessage" ActionTag="1099757767" FrameEvent="" Tag="183" ObjectIndex="41" FontSize="20" LabelText="Perfect!&#xA;" ctype="TextObjectData">
+                    <Position X="101.0900" Y="15.7600" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="129.0000" Y="22.0000" />
+                    <PrePosition X="0.5055" Y="0.0788" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                </Children>
+                <SingleColor A="255" R="150" G="200" B="255" />
+                <FirstColor A="255" R="150" G="200" B="255" />
+                <EndColor A="255" R="255" G="255" B="255" />
+                <ColorVector ScaleY="1.0000" />
+              </NodeObjectData>
             </Children>
             <SingleColor A="255" R="37" G="37" B="37" />
             <FirstColor A="255" R="37" G="37" B="37" />
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="Panel_Message" ActionTag="-753520007" FrameEvent="" Tag="75" ObjectIndex="14" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="Panel_Message" CanEdit="False" ActionTag="-753520007" FrameEvent="" Tag="75" ObjectIndex="14" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="173.0000" Y="159.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
@@ -875,7 +1010,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="Panel_Warn" ActionTag="-732399591" FrameEvent="" Tag="76" ObjectIndex="15" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="Panel_Warn" CanEdit="False" ActionTag="-732399591" FrameEvent="" Tag="76" ObjectIndex="15" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="174.0000" Y="392.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />

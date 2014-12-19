@@ -399,16 +399,10 @@
 				5C062A451A0A496C00FA2D45 /* Definitions.h */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
-				5C02A09E1A2FF4A10067B758 /* UI.cpp */,
-				5C02A09F1A2FF4A10067B758 /* UI.h */,
-				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
-				5C02A0781A2ED8DB0067B758 /* NodeFactory.h */,
 				5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */,
 				5CEA4CC41A384AED0044AD7E /* AudioManager.h */,
-				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
-				5CF8E6BC1A265C8200D50450 /* Tmx.h */,
-				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
-				5CF695211A198DC0000939B2 /* MapNavigator.h */,
+				5CEA24041A4441EE007C4E00 /* Battle */,
+				5CEA24031A444156007C4E00 /* UI */,
 				5CD19AA61A3171020045BB87 /* Scene */,
 				5CD19AA31A31707B0045BB87 /* Unit */,
 				5CD19AA51A3170AE0045BB87 /* Building */,
@@ -525,6 +519,28 @@
 				5C062A441A0A496C00FA2D45 /* BattleScene.h */,
 			);
 			name = Scene;
+			sourceTree = "<group>";
+		};
+		5CEA24031A444156007C4E00 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5C02A09E1A2FF4A10067B758 /* UI.cpp */,
+				5C02A09F1A2FF4A10067B758 /* UI.h */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		5CEA24041A4441EE007C4E00 /* Battle */ = {
+			isa = PBXGroup;
+			children = (
+				5CF8E6BB1A265C8200D50450 /* Tmx.cpp */,
+				5CF8E6BC1A265C8200D50450 /* Tmx.h */,
+				5CF695201A198DC0000939B2 /* MapNavigator.cpp */,
+				5CF695211A198DC0000939B2 /* MapNavigator.h */,
+				5C02A0771A2ED8DB0067B758 /* NodeFactory.cpp */,
+				5C02A0781A2ED8DB0067B758 /* NodeFactory.h */,
+			);
+			name = Battle;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

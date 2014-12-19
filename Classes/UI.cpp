@@ -54,7 +54,7 @@ void UI::showBattleController()
                                {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
                                        CCLOG("Button_EndButtle");
-                                       tmx->showBattleResult();
+                                       tmx->endBattle();
                                    }
                                });
 }
@@ -85,6 +85,50 @@ void UI::updateBattleScore(ScoreType type, float earnedScore)
                                                   ->getChildByName("PlayersAssetPanel")
                                                   ->getChildByName("Text_Players" + name));
     label->setString(labelText.c_str());
+}
+
+void UI::showStar(int starId)
+{
+    // OverOverallDamagePanel(-400,90) -> Panel_Star_{1|2|3} -> {stage_battle_result_silver_star|Text_StarMessage|Text_StarMessage_Shadow}
+
+    // Star_1 (32,32.6) 20%
+    // Star_2 (70,32.6) 20%
+    // Star_3 (105,32.6) 20%
+    
+    // アニメーション順序
+    // 1. 10 frame で star と message fadein
+    // 2. 10 frame そのまま固定
+    // 3. 30 frame で star は所定の位置へ縮小しながら移動, message も同じく追従する
+    // 4. 移動完了後、message は消去
+
+    auto parentPanel = ui->getChildByName("OverallDamagePanel");
+    if (!parentPanel) {
+        return;
+    }
+    
+    auto panelName = StringUtils::format("Panel_Star_%d", starId);
+    CCLOG("panelName(%s)",panelName.c_str());
+    
+    auto starPanel = parentPanel->getChildByName(panelName);
+    auto fadeIn = FadeIn::create(0.5);
+    auto stay = DelayTime::create(0.5);
+    auto moving = MoveTo::create(1, starPos.at(starId));
+    auto shrinking = ScaleTo::create(1, 0.2);
+    FiniteTimeAction* deleteMessage = CallFunc::create([=]() {
+        if (starPanel) {
+            auto message = starPanel->getChildByName("Text_StarMessage");
+            auto messageShadow = starPanel->getChildByName("Text_StarMessage_Shadow");
+            if (message && messageShadow) {
+                message->setVisible(false);
+                messageShadow->setVisible(false);
+            }
+        }
+    });
+    auto seq = Sequence::create(fadeIn,stay,Spawn::create(moving,shrinking, NULL),deleteMessage, NULL);
+    if (starPanel) {
+        starPanel->setVisible(true);
+        starPanel->runAction(seq);
+    }
 }
 
 void UI::updateRemainingAssetScore(ScoreType type, float remainingScore)

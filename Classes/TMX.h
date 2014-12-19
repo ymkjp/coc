@@ -67,7 +67,7 @@ public:
     Vector<Unit*> units;
     Vector<Building*> buildings;
     
-    void showBattleResult();
+    void endBattle();
     
     UnitType getSelectedUnit();
     
@@ -144,6 +144,8 @@ public:
         audioManager->playSE(id);
     }
     
+    void townhallDestroyed();
+    
 protected:
     AudioManager* audioManager;
     
@@ -152,11 +154,18 @@ protected:
     int fullBuildingCount = 0;
     int currentBuildingCount = 0;
     
+    bool halfDestroyed = false;
+    bool fullDestroyed = false;
+    
     UnitCountByType unitRemainedCounterByType;
     
     void decreaseTimerCount(float frame);
     void detectUnitAnnihilation(float frame);
     
+    void incrementStar();
+    
+    void showBattleResult(float frame);
+
     void hideMessage(float frame);
     
     void killAllUnits(float frame);
@@ -172,7 +181,7 @@ protected:
         {Archer,50},
         {Giant,50},
         {Goblin,50},
-        {Wallbreaker,5},
+        {Wallbreaker,20},
 //        {Barbarian,20},
 //        {Archer,20},
 //        {Giant,20},
@@ -184,7 +193,6 @@ protected:
         {ElixerScore,0},
         {CoinScore,0},
         {DestructionRatioScore,0},
-        {StarCountScore,0},
     };
     
     BattleScoreByType earnedBattleScoreByType = {

@@ -38,6 +38,7 @@ public:
     
     void showWarning(std::string message);
     void hideMessage();
+    void showStar(int starId);
     
 protected:
     Tmx* tmx;
@@ -47,6 +48,12 @@ protected:
     
     void changeFrameVisibility();
     void goToStageSelectorScene();
+    
+    std::map<int,Vec2> starPos = {
+        {1,Vec2(32.0,32.6)},
+        {2,Vec2(70.0,32.6)},
+        {3,Vec2(105.0,32.6)},
+    };
 };
 
 #endif // __UI_H__

@@ -145,13 +145,21 @@ protected:
     
     const std::map<UnitType, float> movementSpeedByType =
     {
-        {Archer, 0.4},    // 24
-        {Barbarian, 0.55}, // 16
-        {Giant, 0.7},     // 12
-        {Goblin, 0.3},     // 32
-        {Wallbreaker, 0.4}, // 24
+        {Archer, 0.5},    // 24
+        {Barbarian, 0.65}, // 16
+        {Giant, 0.8},     // 12
+        {Goblin, 0.4},     // 32
+        {Wallbreaker, 0.5}, // 24
     };
     
+    const std::map<UnitType, float> lifeGageYPosByType =
+    {
+        {Archer, 26},
+        {Barbarian, 26},
+        {Giant, 40},
+        {Goblin, 24},
+        {Wallbreaker, 26},
+    };
     
     float getFullHitPoints()
     {
@@ -160,7 +168,10 @@ protected:
     
     void pushTobuildingAttackRange(Vec2 coord);
     void testAdd(__String fileName, Vec2 pos);
-    void updateMotionNode();
+
+    std::tuple<__ACTION,Compass> motionStatus;
+    void updateMotionNode(bool b_loop);
+    
     void updateLifeGage();
     
     void hideLifeGage(float frame)

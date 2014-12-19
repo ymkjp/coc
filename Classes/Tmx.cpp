@@ -77,7 +77,7 @@ void Tmx::decreaseTimerCount(float frame)
     }
     
     if (currentBattleSecound < 0) {
-        showBattleResult();
+        endBattle();
     }
 }
 
@@ -107,7 +107,7 @@ void Tmx::detectUnitAnnihilation(float frame)
 
     if (remainTypeCount <= 0 && aliveCount <= 0) {
         // CCLOG("[units]size(%lu),alive(%i),remainTypeCount(%i)",units.size(),aliveCount,remainTypeCount);
-        showBattleResult();
+        endBattle();
     }
 }
 
@@ -212,12 +212,18 @@ void Tmx::initWorldGrid()
     }
 }
 
-void Tmx::showBattleResult()
+void Tmx::endBattle()
 {
     if (battleStatus == Finished) {
         return;
     }
     battleStatus = Finished;
+    
+    scheduleOnce(schedule_selector(Tmx::showBattleResult), 1.0);
+}
+
+void Tmx::showBattleResult(float frame)
+{
     scheduleOnce(schedule_selector(Tmx::killAllUnits), 1.0);
     
     float percentage = earnedBattleScoreByType.at(DestructionRatioScore);
@@ -247,8 +253,6 @@ void Tmx::decrementUnitCounter()
 
     if (0 <= remainCount && battleStatus == Playing) {
         unitRemainedCounterByType[unitType] = remainCount;
-        
-        // @todo 長押しでつまることがあるので1秒に1回までに留める
         ui->updateUnitCounter(unitType, remainCount);
     }
 }
@@ -277,6 +281,17 @@ BattleScoreByType* Tmx::getBattleScoreResult()
     return &earnedBattleScoreByType;
 }
 
+void Tmx::townhallDestroyed()
+{
+    incrementStar();
+}
+
+void Tmx::incrementStar()
+{
+    ++earnedBattleScoreByType[StarCountScore];
+    CCLOG("earnedBattleScoreByType[StarCountScore]%f",earnedBattleScoreByType[StarCountScore]);
+    ui->showStar((int)earnedBattleScoreByType[StarCountScore]);
+}
 
 void Tmx::countUpRemainingScore(ScoreType type, float amount)
 {
@@ -296,6 +311,14 @@ void Tmx::decrementBuildingCount()
 
     float ratio = 100 - ((float)currentBuildingCount / (float)fullBuildingCount * 100);
     earnedBattleScoreByType[DestructionRatioScore] = ratio;
+    
+    if (!fullDestroyed && 100 <= ratio) {
+        fullDestroyed = true;
+        incrementStar();
+    } else if (!halfDestroyed && 50 <= ratio) {
+        halfDestroyed = true;
+        incrementStar();
+    }
 //    CCLOG("currentBuildingCount(%i),fullBuildingCount(%i),ratio(%f)",currentBuildingCount,fullBuildingCount,ratio);
     if (battleStatus == Playing) {
         ui->updateDestructionRatio(ratio);

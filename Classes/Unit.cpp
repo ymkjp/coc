@@ -28,14 +28,11 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     
     // 歩きのアクション
     auto motionNode = this->getActingNode();
-    auto motionAction = this->getActionTimeline();
-    motionNode->runAction(motionAction);
-    motionAction->gotoFrameAndPlay(0, true);
     this->addChild(motionNode, MotionOrder, MotionTag);
     
     // デプロイ時のアニメーション
-    auto verticalExtension = ScaleBy::create(0, 0.5, 2);
-    auto returnToNormal = ScaleTo::create(0.6, 1);
+    auto verticalExtension = ScaleBy::create(0, 0.2, 2);
+    auto returnToNormal = ScaleTo::create(0.2, 1);
     this->runAction(Sequence::create(verticalExtension,returnToNormal, NULL));
     
     auto deployedMarkNode = tmx->csLoader->createNode("res/DeployedMark.csb");
@@ -43,16 +40,16 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     this->addChild(deployedMarkNode);
     deployedMarkNode->runAction(deployedMarkAction);
     deployedMarkNode->setScaleX(2.8);
-    deployedMarkNode->setScaleY(0.8);
+    deployedMarkNode->setScaleY(1.8);
     deployedMarkAction->gotoFrameAndPlay(0, false);
     
     // ライフゲージ 0〜100フレームまであって徐々に減らしていくことで操作できる
     auto lifeGageNode = tmx->csLoader->createNode("res/LifeGageUnit.csb");
     auto lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageUnit.csb");
     lifeGageNode->runAction(lifeGageAction);
-    lifeGageNode->setScale(0.5);
+    lifeGageNode->setScale(0.4);
     lifeGageAction->gotoFrameAndPause(100);
-    lifeGageNode->setPositionY(40);
+    lifeGageNode->setPositionY(lifeGageYPosByType.at(type));
     lifeGageNode->setVisible(false);
     this->addChild(lifeGageNode,LifeGageOrder,LifeGageTag);
     lifeGageAction->setTag(LifeGageActionTag);
@@ -149,7 +146,7 @@ void Unit::play(float frame)
                 
                 // 向きをセットしてモーションを更新
                 this->setCompass(prevCoord, nextCoord);
-                this->updateMotionNode();
+                this->updateMotionNode(true);
                 
                 // 防衛施設の射程に入ったことを通知
                 this->pushTobuildingAttackRange(nextCoord);
@@ -223,7 +220,7 @@ void Unit::die()
 void Unit::finishBattle()
 {
     finished();
-    tmx->showBattleResult();
+    tmx->endBattle();
 }
 
 void Unit::finished()
@@ -278,21 +275,7 @@ void Unit::attack(float frame)
         this->playStartAttackingVoice();
         
         // 攻撃動作アニメーション
-        auto prevMotionNode = this->getChildByTag(MotionTag);
-        auto nextMotionNode = this->getActingNode();
-        auto action = this->getActionTimeline();
-        if (nextMotionNode) {
-            nextMotionNode->runAction(action);
-        }
-        if (action) {
-            action->gotoFrameAndPlay(0, false);
-        }
-        if (prevMotionNode) {
-            this->removeChild(prevMotionNode);
-        }
-        if (nextMotionNode) {
-            this->addChild(nextMotionNode, MotionOrder, MotionTag);
-        }
+        this->updateMotionNode(false);
         
         this->shoot();
     }
@@ -317,9 +300,16 @@ void Unit::shoot()
     targetBuilding->attacked(damagePerAttack);
 }
 
-inline void Unit::updateMotionNode()
+void Unit::updateMotionNode(bool b_loop)
 {
-    if (status == Alive) {
+    auto nextStatus = std::make_tuple(action,compass);
+    
+    // モーションアップデート対象
+    // 1. ループしていない1回限りのアクション
+    // 2. ループしていて直前のアクションと異なるアクション
+    bool isToUpdate = (!b_loop || motionStatus != nextStatus);
+    if (status == Alive && isToUpdate) {
+        motionStatus = nextStatus;
         auto prevMotionNode = this->getChildByTag(MotionTag);
         auto nextMotionNode = this->getActingNode();
         auto action = this->getActionTimeline();
@@ -327,7 +317,7 @@ inline void Unit::updateMotionNode()
             nextMotionNode->runAction(action);
         }
         if (action) {
-            action->gotoFrameAndPlay(0, true);
+            action->gotoFrameAndPlay(0, b_loop);
         }
         if (prevMotionNode) {
             this->removeChild(prevMotionNode);
@@ -370,7 +360,7 @@ void Unit::updateDirection()
     }
     compass = tmx->convertToCompass(comassDegreeGoal);
     
-    this->updateMotionNode();
+    this->updateMotionNode(true);
 }
 
 void Unit::setCompass(Vec2 prevCoord, Vec2 nextCoord)
@@ -623,7 +613,9 @@ std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 Node* Unit::getActingNode()
 {
     auto node = tmx->csLoader->createNode(this->createFilename().getCString());
-    node->setScale(0.92);
+    if (node) {
+        node->setScale(0.92);
+    }
     return node;
 }
 

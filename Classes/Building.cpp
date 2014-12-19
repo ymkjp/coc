@@ -146,16 +146,15 @@ inline void Building::updateLifeGage()
         // ライフゲージ初期化
         // 0〜100フレームまであって徐々に減らしていくことで操作できる
         lifeGageNode = tmx->csLoader->createNode("res/LifeGageBuilding.csb");
-        lifeGageNode->setScale(0.5);
+        lifeGageNode->setScale(0.4);
         lifeGageAction = tmx->actionTimelineCache->createAction("res/LifeGageBuilding.csb");
         lifeGageNode->runAction(lifeGageAction);
         parent->addChild(lifeGageNode,LifeGageZOrder);
     }
     if (parent && lifeGageNode && 0 <= hitpointPercentage && hitpointPercentage <= 100) {
 //        CCLOG("BuildingLifeGage::percentage(%i)",percentage);
-        // @fixme 建物の高さに応じた lifeGage pos セット
         lifeGageNode->setVisible(true);
-        lifeGageNode->setPosition(getPosition().x, getPosition().y + 60);
+        lifeGageNode->setPosition(getPosition().x, getPosition().y + lifeGageYPosByType.at(type));
         
         if (lifeGageAction) {
             lifeGageAction->gotoFrameAndPause((int)hitpointPercentage);
@@ -195,6 +194,9 @@ void Building::broken()
     this->brokenEffect();
     this->addWrack();
     
+    if (type == TownHall) {
+        tmx->townhallDestroyed();
+    }
     if (type != Wall) {
         tmx->decrementBuildingCount();
     }

@@ -168,12 +168,6 @@ const std::map<UnitType, std::string> unitSmallCaseNameByType =
 };
 
 
-/**
- ElixerScore,
- CoinScore,
- DestructionRatioScore,
- StarCountScore,
- */
 const std::map<ScoreType, std::string> scoreNameByType =
 {
     {ElixerScore, "Elixer"},
