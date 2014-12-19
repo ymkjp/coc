@@ -131,16 +131,12 @@ void UI::updateUnitCounter(UnitType unitType, int count)
     // 0 になったらボタンを黒くする
     // UnitSelectorPanel -> Panel_Barbarian -> Button_Barbarian
     if (count <= 0) {
-        auto buttonName = "Button_" + unitName;
-        auto button = selector
+        auto blind = selector
         ->getChildByName(panelName.c_str())
-        ->getChildByName(buttonName.c_str());
+        ->getChildByName("stage_ui_unit_black");
         
-//        CCLOG("unitName(%s),count(%i),button?(%i)",unitName.c_str(),count,!!button);
-        button->setVisible(true);
-        button->setOpacity(220);
-        button->setColor(Color3B::GRAY);
-        button->setScale(1.01);
+        CCLOG("unitName(%s),count(%i),blind?(%i)",unitName.c_str(),count,!!blind);
+        blind->setVisible(true);
     }
 }
 

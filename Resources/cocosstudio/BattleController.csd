@@ -70,6 +70,16 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/CCBackBeat-Light_5.ttf" />
                   </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_black" ActionTag="1822495324" Rotation="90.0000" RotationSkewX="90.0000" RotationSkewY="90.0000" Alpha="235" VisibleForFrame="False" FrameEvent="" Tag="87" ObjectIndex="42" ctype="SpriteObjectData">
+                    <Position X="43.0009" Y="53.5000" />
+                    <Scale ScaleX="2.4000" ScaleY="2.6400" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="48.0000" Y="36.0000" />
+                    <PrePosition X="0.5181" Y="0.4864" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_black.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Button_Barbarian" CanEdit="False" ActionTag="-1132376506" Alpha="0" FrameEvent="" Tag="59" ObjectIndex="8" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
                     <Position X="0.0000" Y="0.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -137,6 +147,16 @@
                     <PrePosition X="0.4940" Y="0.8727" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/CCBackBeat-Light_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_black" ActionTag="1101650737" Rotation="90.0000" RotationSkewX="90.0000" RotationSkewY="90.0000" Alpha="235" VisibleForFrame="False" FrameEvent="" Tag="86" ObjectIndex="41" ctype="SpriteObjectData">
+                    <Position X="43.0007" Y="53.5000" />
+                    <Scale ScaleX="2.4000" ScaleY="2.6400" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="48.0000" Y="36.0000" />
+                    <PrePosition X="0.5181" Y="0.4864" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_black.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Button_Archer" CanEdit="False" ActionTag="-956704879" Alpha="0" FrameEvent="" Tag="58" ObjectIndex="7" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
                     <Position X="0.0000" Y="0.0000" />
@@ -206,6 +226,16 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/CCBackBeat-Light_5.ttf" />
                   </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_black" ActionTag="-62026433" Rotation="90.0000" RotationSkewX="90.0000" RotationSkewY="90.0000" Alpha="235" VisibleForFrame="False" FrameEvent="" Tag="85" ObjectIndex="40" ctype="SpriteObjectData">
+                    <Position X="43.0007" Y="53.5000" />
+                    <Scale ScaleX="2.4000" ScaleY="2.6400" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="48.0000" Y="36.0000" />
+                    <PrePosition X="0.5181" Y="0.4864" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_black.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Button_Goblin" CanEdit="False" ActionTag="-1701015806" Alpha="0" FrameEvent="" Tag="57" ObjectIndex="6" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
                     <Position X="0.0000" Y="0.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -273,6 +303,16 @@
                     <PrePosition X="0.4940" Y="0.8727" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/CCBackBeat-Light_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_ui_unit_black" ActionTag="1489013445" Rotation="90.0000" RotationSkewX="90.0000" RotationSkewY="90.0000" Alpha="235" VisibleForFrame="False" FrameEvent="" Tag="83" ObjectIndex="38" ctype="SpriteObjectData">
+                    <Position X="43.0004" Y="53.5000" />
+                    <Scale ScaleX="2.4000" ScaleY="2.6400" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="48.0000" Y="36.0000" />
+                    <PrePosition X="0.5181" Y="0.4864" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_black.png" Plist="assets.plist" />
                   </NodeObjectData>
                   <NodeObjectData Name="Button_Giant" CanEdit="False" ActionTag="-1825358047" Alpha="0" FrameEvent="" Tag="56" ObjectIndex="5" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
                     <Position X="0.0000" Y="0.0000" />
@@ -342,7 +382,17 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/CCBackBeat-Light_5.ttf" />
                   </NodeObjectData>
-                  <NodeObjectData Name="Button_Wallbreaker" CanEdit="False" ActionTag="1745189163" Alpha="0" FrameEvent="" Tag="55" ObjectIndex="4" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
+                  <NodeObjectData Name="stage_ui_unit_black" ActionTag="1657591544" Rotation="90.0000" RotationSkewX="90.0000" RotationSkewY="90.0000" Alpha="235" VisibleForFrame="False" FrameEvent="" Tag="81" ObjectIndex="36" ctype="SpriteObjectData">
+                    <Position X="43.0002" Y="53.5000" />
+                    <Scale ScaleX="2.4000" ScaleY="2.6400" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="48.0000" Y="36.0000" />
+                    <PrePosition X="0.5181" Y="0.4864" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/ui/unit_black.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="Button_Wallbreaker" ActionTag="1745189163" Alpha="0" FrameEvent="" Tag="55" ObjectIndex="4" TouchEnable="True" FontSize="14" ButtonText="" Scale9Enable="True" Scale9Width="46" Scale9Height="36" ctype="ButtonObjectData">
                     <Position X="0.0000" Y="0.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint />
@@ -743,6 +793,36 @@
                 <PrePosition X="0.5250" Y="0.8200" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_battle_result_silver_star_Copy" ActionTag="-130159365" FrameEvent="" Tag="299" ObjectIndex="34" ctype="SpriteObjectData">
+                <Position X="51.7347" Y="56.5292" />
+                <Scale ScaleX="0.2000" ScaleY="0.2000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <Size X="176.0000" Y="169.0000" />
+                <PrePosition X="0.2874" Y="0.5139" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="-140327131" FrameEvent="" Tag="298" ObjectIndex="33" ctype="SpriteObjectData">
+                <Position X="125.3916" Y="56.5292" />
+                <Scale ScaleX="0.2000" ScaleY="0.2000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <Size X="176.0000" Y="169.0000" />
+                <PrePosition X="0.6966" Y="0.5139" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_battle_result_silver_star_Copy_Copy" ActionTag="-1749027724" FrameEvent="" Tag="300" ObjectIndex="35" ctype="SpriteObjectData">
+                <Position X="88.5632" Y="56.5292" />
+                <Scale ScaleX="0.2000" ScaleY="0.2000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <Size X="176.0000" Y="169.0000" />
+                <PrePosition X="0.4920" Y="0.5139" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
               </NodeObjectData>
               <NodeObjectData Name="Text_OverallDamage" ActionTag="69" FrameEvent="" Tag="67" ObjectIndex="23" FontSize="14" LabelText="Overall Damage" ctype="TextObjectData">
                 <Position X="88.3130" Y="85.0000" />

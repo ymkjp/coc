@@ -119,13 +119,33 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/battle_result/ribbon.png" Plist="assets.plist" />
                   </NodeObjectData>
+                  <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="-340829610" FrameEvent="" Tag="100" ObjectIndex="9" ctype="SpriteObjectData">
+                    <Position X="185.4200" Y="105.9700" />
+                    <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.5794" Y="1.3246" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_battle_result_silver_star_Copy" ActionTag="86856486" FrameEvent="" Tag="101" ObjectIndex="10" ctype="SpriteObjectData">
+                    <Position X="51.6999" Y="79.0516" />
+                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.1616" Y="0.9881" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
                   <NodeObjectData Name="Text_Victory_Shadow" ActionTag="-1939945564" FrameEvent="" Tag="87" ObjectIndex="11" FontSize="36" LabelText="Victory" ctype="TextObjectData">
-                    <Position X="179.5000" Y="-2.5000" />
+                    <Position X="179.5000" Y="0.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="21" G="21" B="21" />
                     <Size X="197.0000" Y="40.0000" />
-                    <PrePosition X="0.5609" Y="-0.0313" />
+                    <PrePosition X="0.5609" Y="0.0000" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                   </NodeObjectData>
@@ -138,6 +158,16 @@
                     <PrePosition X="0.5703" Y="-0.0562" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_battle_result_silver_star_Copy_Copy" ActionTag="40904850" FrameEvent="" Tag="102" ObjectIndex="11" ctype="SpriteObjectData">
+                    <Position X="318.6993" Y="79.0521" />
+                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.9959" Y="0.9882" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
                   </NodeObjectData>
                 </Children>
                 <SingleColor A="255" R="150" G="200" B="255" />
@@ -154,63 +184,43 @@
                 <PrePosition X="-0.4900" Y="0.0925" />
                 <PreSize X="0.1667" Y="0.0938" />
                 <Children>
-                  <NodeObjectData Name="stage_battle_result_1512.1" CanEdit="False" ActionTag="-64154672" Alpha="205" FrameEvent="" Tag="79" ObjectIndex="6" ctype="SpriteObjectData">
-                    <Position X="409.0001" Y="351.9966" />
-                    <Scale ScaleX="2.6000" ScaleY="2.6000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <CColor A="255" R="0" G="0" B="0" />
-                    <Size X="135.0000" Y="48.0000" />
-                    <PrePosition X="2.5563" Y="5.8666" />
-                    <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/stars.png" Plist="assets.plist" />
-                  </NodeObjectData>
-                  <NodeObjectData Name="stage_battle_result_1512.1_Copy" CanEdit="False" ActionTag="-1481626295" FrameEvent="" Tag="80" ObjectIndex="7" ctype="SpriteObjectData">
-                    <Position X="408.0007" Y="351.9967" />
-                    <Scale ScaleX="2.6000" ScaleY="2.6000" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <Size X="135.0000" Y="48.0000" />
-                    <PrePosition X="2.5500" Y="5.8666" />
-                    <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/stars.png" Plist="assets.plist" />
-                  </NodeObjectData>
                   <NodeObjectData Name="Text_TotalDamage_Shadow" ActionTag="-265980536" FrameEvent="" Tag="82" ObjectIndex="7" FontSize="12" LabelText="Total damage:" ctype="TextObjectData">
-                    <Position X="412.0000" Y="357.0000" />
+                    <Position X="412.0000" Y="352.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="20" G="20" B="20" />
                     <Size X="124.0000" Y="13.0000" />
-                    <PrePosition X="2.5750" Y="5.9500" />
+                    <PrePosition X="2.5750" Y="5.8667" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_TotalDamage" ActionTag="-368436074" FrameEvent="" Tag="81" ObjectIndex="6" FontSize="12" LabelText="Total damage:" ctype="TextObjectData">
-                    <Position X="411.0000" Y="359.0000" />
+                    <Position X="411.0000" Y="354.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <Size X="124.0000" Y="13.0000" />
-                    <PrePosition X="2.5687" Y="5.9833" />
+                    <PrePosition X="2.5687" Y="5.9000" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_Percentage_Shadow" ActionTag="-640856056" FrameEvent="" Tag="85" ObjectIndex="9" FontSize="36" LabelText="100%" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                    <Position X="416.0000" Y="327.0000" />
+                    <Position X="416.0000" Y="322.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="18" G="18" B="18" />
                     <Size X="127.0000" Y="40.0000" />
-                    <PrePosition X="2.6000" Y="5.4500" />
+                    <PrePosition X="2.6000" Y="5.3667" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                   </NodeObjectData>
                   <NodeObjectData Name="Text_Percentage" ActionTag="-1771514206" FrameEvent="" Tag="84" ObjectIndex="8" FontSize="36" LabelText="100%" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                    <Position X="413.0000" Y="329.0000" />
+                    <Position X="413.0000" Y="324.0000" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="163" G="255" B="184" />
                     <Size X="127.0000" Y="40.0000" />
-                    <PrePosition X="2.5812" Y="5.4833" />
+                    <PrePosition X="2.5812" Y="5.4000" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                   </NodeObjectData>
@@ -226,6 +236,66 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
+          <NodeObjectData Name="Text_GoldScore" ActionTag="-718899036" FrameEvent="" Tag="108" ObjectIndex="12" FontSize="20" LabelText="198800" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+            <Position X="482.2978" Y="300.5954" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="106.0000" Y="22.0000" />
+            <PrePosition X="0.5024" Y="0.4697" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+          </NodeObjectData>
+          <NodeObjectData Name="Text_ElixerScore" ActionTag="873278050" FrameEvent="" Tag="109" ObjectIndex="13" FontSize="20" LabelText="198800" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
+            <Position X="483.5676" Y="258.0687" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="106.0000" Y="22.0000" />
+            <PrePosition X="0.5037" Y="0.4032" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+          </NodeObjectData>
+          <NodeObjectData Name="stage_ui_gold" ActionTag="-609928528" FrameEvent="" Tag="105" ObjectIndex="14" ctype="SpriteObjectData">
+            <Position X="567.6656" Y="302.3488" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="36.0000" Y="37.0000" />
+            <PrePosition X="0.5913" Y="0.4724" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="PlistSubImage" Path="stage/ui/gold.png" Plist="assets.plist" />
+          </NodeObjectData>
+          <NodeObjectData Name="stage_ui_elixer" ActionTag="97784080" FrameEvent="" Tag="107" ObjectIndex="15" ctype="SpriteObjectData">
+            <Position X="568.6387" Y="258.8079" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="33.0000" Y="38.0000" />
+            <PrePosition X="0.5923" Y="0.4044" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="PlistSubImage" Path="stage/ui/elixer.png" Plist="assets.plist" />
+          </NodeObjectData>
+          <NodeObjectData Name="stage_battle_result_line" ActionTag="1179467898" FrameEvent="" Tag="103" ObjectIndex="12" ctype="SpriteObjectData">
+            <Position X="488.5294" Y="280.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="673.0000" Y="2.0000" />
+            <PrePosition X="0.5089" Y="0.4375" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="PlistSubImage" Path="stage/battle_result/line.png" Plist="assets.plist" />
+          </NodeObjectData>
+          <NodeObjectData Name="stage_battle_result_line_Copy" ActionTag="-709614644" FrameEvent="" Tag="104" ObjectIndex="13" ctype="SpriteObjectData">
+            <Position X="489.5291" Y="240.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="673.0000" Y="2.0000" />
+            <PrePosition X="0.5099" Y="0.3750" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FileData Type="PlistSubImage" Path="stage/battle_result/line.png" Plist="assets.plist" />
+          </NodeObjectData>
           <NodeObjectData Name="Panel_ReturnHome" ActionTag="1700139942" FrameEvent="" Tag="63" ObjectIndex="1" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="467.0000" Y="104.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -236,12 +306,12 @@
             <PreSize X="0.1437" Y="0.1187" />
             <Children>
               <NodeObjectData Name="Button_ReturnHome" ActionTag="-1963118851" FrameEvent="" Tag="67" ObjectIndex="1" TouchEnable="True" FontSize="24" ButtonText="Home    " Scale9Width="158" Scale9Height="75" ctype="ButtonObjectData">
-                <Position X="0.0000" Y="0.0000" />
+                <Position X="27.9974" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="158.0000" Y="75.0000" />
-                <PrePosition X="0.0000" Y="0.0000" />
+                <PrePosition X="0.2029" Y="0.0000" />
                 <PreSize X="1.1377" Y="0.9868" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
                 <TextColor A="255" R="37" G="37" B="37" />
