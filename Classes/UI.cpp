@@ -54,7 +54,7 @@ void UI::showBattleController()
                                {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
                                        CCLOG("Button_EndButtle");
-                                       tmx->endBattle();
+                                       tmx->endBattle(0.01);
                                    }
                                });
 }
@@ -150,7 +150,7 @@ void UI::updateDestructionRatio(float percentage)
     // OverallDamagePanel -> Text_DamagePercent{_Shadow}
     percentage = (percentage > 100) ? 100 : percentage;
     auto text = StringUtils::format("%d", (int)percentage);
-    text.append(" %");
+    text.append("%");
     auto panel = ui->getChildByName("OverallDamagePanel");
     auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent"));
     auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent_Shadow"));
@@ -257,8 +257,10 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     float percentage = battleScoreByType.at(DestructionRatioScore);
     percentage = (percentage > 100) ? 100 : percentage;
 
-    bool isWon = (50 <= percentage);
+    int starCount = battleScoreByType[StarCountScore];
+    bool isWon = (1 <= starCount);
     
+    // 勝敗を表示
     // Panel_MainResult -> Panel_Ribbon -> Text_Victory{_Shadow}
     auto winningText = isWon ? "Victory" : "Defeated";
     auto ribbonPanel = mainResultPanel->getChildByName("Panel_Ribbon");
@@ -269,15 +271,42 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     winningLabel->setString(winningText);
     winningLabelShadow->setString(winningText);
     
+    // 破壊率を表示
     // Panel_MainResult -> Panel_TotalDamage -> Text_Percentage{_Shadow}
     auto text = StringUtils::format("%d", (int)percentage);
     text.append("%");
     auto panel = mainResultPanel->getChildByName("Panel_TotalDamage");
-    auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage"));
-    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage_Shadow"));
+    auto labelDamaged = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage"));
+    auto labelDamagedShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_Percentage_Shadow"));
     
-    label->setString(text.c_str());
-    labelShadow->setString(text.c_str());
+    labelDamaged->setString(text.c_str());
+    labelDamagedShadow->setString(text.c_str());
+    
+    // 獲得星数を表示
+    // 処理としては獲得できなかった星の数を黒く塗りつぶす
+    // Panel_MainResult -> Panel_Ribbon -> stage_battle_result_silver_star_{1|2|3}
+    auto starFirst = ribbonPanel->getChildByName("stage_battle_result_silver_star_1");
+    auto starSecond = ribbonPanel->getChildByName("stage_battle_result_silver_star_2");
+    auto starThird = ribbonPanel->getChildByName("stage_battle_result_silver_star_3");
+    if (starCount <= 0 && starFirst && starSecond && starThird) {
+        starFirst->setColor(Color3B::BLACK);
+        starSecond->setColor(Color3B::BLACK);
+        starThird->setColor(Color3B::BLACK);
+    } else if (starCount == 1 && starSecond && starThird) {
+        starSecond->setColor(Color3B::BLACK);
+        starThird->setColor(Color3B::BLACK);
+    } else if (starCount == 2 && starThird) {
+        starThird->setColor(Color3B::BLACK);
+    }
+    
+    // 獲得した Gold, Elixer の量を表示
+    // Text_GoldScore, Text_ElixerScore
+    auto lebelGold = dynamic_cast<cocos2d::ui::Text*>(ui->getChildByName("Text_GoldScore"));
+    auto lebelElixer = dynamic_cast<cocos2d::ui::Text*>(ui->getChildByName("Text_ElixerScore"));
+    auto goldText = StringUtils::format("%d", (int)battleScoreByType[CoinScore]);
+    auto elixerText = StringUtils::format("%d", (int)battleScoreByType[ElixerScore]);
+    lebelGold->setString(goldText);
+    lebelElixer->setString(elixerText);
 }
 
 void UI::goToStageSelectorScene()

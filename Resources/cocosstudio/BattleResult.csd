@@ -3,14 +3,7 @@
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="200" Speed="1.0000">
-        <Timeline ActionTag="-1582794760" FrameType="PositionFrame">
-          <PointFrame FrameIndex="0" X="207.0000" Y="305.0000" />
-        </Timeline>
-        <Timeline ActionTag="-1582794760" FrameType="ScaleFrame">
-          <PointFrame FrameIndex="0" X="10.0000" Y="10.0000" />
-        </Timeline>
         <Timeline ActionTag="-1582794760" FrameType="RotationSkewFrame">
-          <PointFrame FrameIndex="0" X="0.0000" Y="0.0000" />
           <PointFrame FrameIndex="200" X="359.9000" Y="359.9000" />
         </Timeline>
       </Animation>
@@ -80,7 +73,7 @@
             <PrePosition X="0.2802" Y="0.2469" />
             <PreSize X="0.4167" Y="0.6250" />
             <Children>
-              <NodeObjectData Name="stage_battle_result_954.0" CanEdit="False" ActionTag="-1582794760" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
+              <NodeObjectData Name="stage_battle_result_954.0" CanEdit="False" ActionTag="-1582794760" Rotation="359.9000" RotationSkewX="359.9000" RotationSkewY="359.9000" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
                 <Position X="207.0000" Y="305.0000" />
                 <Scale ScaleX="10.0000" ScaleY="10.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -90,7 +83,7 @@
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/battle_result/background_bright.png" Plist="assets.plist" />
               </NodeObjectData>
-              <NodeObjectData Name="Panel_Ribbon" ActionTag="-1764269216" FrameEvent="" Tag="77" ObjectIndex="5" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+              <NodeObjectData Name="Panel_Ribbon" CanEdit="False" ActionTag="-1764269216" FrameEvent="" Tag="77" ObjectIndex="5" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="26.9996" Y="271.9995" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
@@ -119,7 +112,7 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/battle_result/ribbon.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="stage_battle_result_silver_star" ActionTag="-340829610" FrameEvent="" Tag="100" ObjectIndex="9" ctype="SpriteObjectData">
+                  <NodeObjectData Name="stage_battle_result_silver_star_1" ActionTag="-340829610" FrameEvent="" Tag="100" ObjectIndex="9" ctype="SpriteObjectData">
                     <Position X="185.4200" Y="105.9700" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -129,13 +122,23 @@
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
                   </NodeObjectData>
-                  <NodeObjectData Name="stage_battle_result_silver_star_Copy" ActionTag="86856486" FrameEvent="" Tag="101" ObjectIndex="10" ctype="SpriteObjectData">
+                  <NodeObjectData Name="stage_battle_result_silver_star_2" ActionTag="86856486" FrameEvent="" Tag="101" ObjectIndex="10" ctype="SpriteObjectData">
                     <Position X="51.6999" Y="79.0516" />
                     <Scale ScaleX="0.6800" ScaleY="0.6800" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                     <CColor A="255" R="255" G="255" B="255" />
                     <Size X="176.0000" Y="169.0000" />
                     <PrePosition X="0.1616" Y="0.9881" />
+                    <PreSize X="0.0000" Y="0.0000" />
+                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
+                  </NodeObjectData>
+                  <NodeObjectData Name="stage_battle_result_silver_star_3" ActionTag="40904850" FrameEvent="" Tag="102" ObjectIndex="11" ctype="SpriteObjectData">
+                    <Position X="318.6993" Y="79.0521" />
+                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
+                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <Size X="176.0000" Y="169.0000" />
+                    <PrePosition X="0.9959" Y="0.9882" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
                   </NodeObjectData>
@@ -158,16 +161,6 @@
                     <PrePosition X="0.5703" Y="-0.0562" />
                     <PreSize X="0.0000" Y="0.0000" />
                     <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
-                  </NodeObjectData>
-                  <NodeObjectData Name="stage_battle_result_silver_star_Copy_Copy" ActionTag="40904850" FrameEvent="" Tag="102" ObjectIndex="11" ctype="SpriteObjectData">
-                    <Position X="318.6993" Y="79.0521" />
-                    <Scale ScaleX="0.6800" ScaleY="0.6800" />
-                    <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <CColor A="255" R="255" G="255" B="255" />
-                    <Size X="176.0000" Y="169.0000" />
-                    <PrePosition X="0.9959" Y="0.9882" />
-                    <PreSize X="0.0000" Y="0.0000" />
-                    <FileData Type="PlistSubImage" Path="stage/battle_result/silver_star.png" Plist="assets.plist" />
                   </NodeObjectData>
                 </Children>
                 <SingleColor A="255" R="150" G="200" B="255" />

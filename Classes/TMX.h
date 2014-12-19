@@ -67,7 +67,7 @@ public:
     Vector<Unit*> units;
     Vector<Building*> buildings;
     
-    void endBattle();
+    void endBattle(float delay);
     
     UnitType getSelectedUnit();
     

@@ -77,7 +77,7 @@ void Tmx::decreaseTimerCount(float frame)
     }
     
     if (currentBattleSecound < 0) {
-        endBattle();
+        endBattle(1.0);
     }
 }
 
@@ -107,7 +107,7 @@ void Tmx::detectUnitAnnihilation(float frame)
 
     if (remainTypeCount <= 0 && aliveCount <= 0) {
         // CCLOG("[units]size(%lu),alive(%i),remainTypeCount(%i)",units.size(),aliveCount,remainTypeCount);
-        endBattle();
+        endBattle(1.0);
     }
 }
 
@@ -212,22 +212,22 @@ void Tmx::initWorldGrid()
     }
 }
 
-void Tmx::endBattle()
+void Tmx::endBattle(float delay)
 {
     if (battleStatus == Finished) {
         return;
     }
     battleStatus = Finished;
     
-    scheduleOnce(schedule_selector(Tmx::showBattleResult), 1.0);
+    scheduleOnce(schedule_selector(Tmx::showBattleResult), delay);
 }
 
 void Tmx::showBattleResult(float frame)
 {
     scheduleOnce(schedule_selector(Tmx::killAllUnits), 1.0);
     
-    float percentage = earnedBattleScoreByType.at(DestructionRatioScore);
-    bool isWon = (50 <= percentage);
+    // 星を1つでも獲得していれば勝利
+    bool isWon = (1 <= earnedBattleScoreByType[StarCountScore]);
     audioManager->playBgm(isWon ? "winwinwin" : "battle_lost_02", false);
     ui->showBattleResult(earnedBattleScoreByType);
 }
@@ -289,7 +289,7 @@ void Tmx::townhallDestroyed()
 void Tmx::incrementStar()
 {
     ++earnedBattleScoreByType[StarCountScore];
-    CCLOG("earnedBattleScoreByType[StarCountScore]%f",earnedBattleScoreByType[StarCountScore]);
+//    CCLOG("earnedBattleScoreByType[StarCountScore]%f",earnedBattleScoreByType[StarCountScore]);
     ui->showStar((int)earnedBattleScoreByType[StarCountScore]);
 }
 

@@ -220,7 +220,7 @@ void Unit::die()
 void Unit::finishBattle()
 {
     finished();
-    tmx->endBattle();
+    tmx->endBattle(1.0);
 }
 
 void Unit::finished()
