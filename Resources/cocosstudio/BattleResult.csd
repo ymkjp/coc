@@ -73,7 +73,7 @@
             <PrePosition X="0.2802" Y="0.2469" />
             <PreSize X="0.4167" Y="0.6250" />
             <Children>
-              <NodeObjectData Name="stage_battle_result_954.0" CanEdit="False" ActionTag="-1582794760" Rotation="359.9000" RotationSkewX="359.9000" RotationSkewY="359.9000" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
+              <NodeObjectData Name="stage_battle_result_light" CanEdit="False" ActionTag="-1582794760" Rotation="359.9000" RotationSkewX="359.9000" RotationSkewY="359.9000" FrameEvent="" Tag="88" ObjectIndex="8" ctype="SpriteObjectData">
                 <Position X="207.0000" Y="305.0000" />
                 <Scale ScaleX="10.0000" ScaleY="10.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />

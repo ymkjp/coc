@@ -290,13 +290,19 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     auto starThird = ribbonPanel->getChildByName("stage_battle_result_silver_star_3");
     if (starCount <= 0 && starFirst && starSecond && starThird) {
         starFirst->setColor(Color3B::BLACK);
+        starFirst->setOpacity(200);
         starSecond->setColor(Color3B::BLACK);
+        starSecond->setOpacity(200);
         starThird->setColor(Color3B::BLACK);
+        starThird->setOpacity(200);
     } else if (starCount == 1 && starSecond && starThird) {
         starSecond->setColor(Color3B::BLACK);
+        starSecond->setOpacity(200);
         starThird->setColor(Color3B::BLACK);
+        starThird->setOpacity(200);
     } else if (starCount == 2 && starThird) {
         starThird->setColor(Color3B::BLACK);
+        starThird->setOpacity(200);
     }
     
     // 獲得した Gold, Elixer の量を表示
@@ -307,6 +313,12 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     auto elixerText = StringUtils::format("%d", (int)battleScoreByType[ElixerScore]);
     lebelGold->setString(goldText);
     lebelElixer->setString(elixerText);
+    
+    // 後ろで回転している光
+    // Panel_MainResult -> stage_battle_result_light
+    auto backLight = mainResultPanel->getChildByName("stage_battle_result_light");
+    auto rotation = RepeatForever::create(RotateBy::create(12, 360));
+    backLight->runAction(rotation);
 }
 
 void UI::goToStageSelectorScene()
