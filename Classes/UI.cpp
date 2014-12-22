@@ -153,10 +153,7 @@ void UI::updateDestructionRatio(float percentage)
     text.append("%");
     auto panel = ui->getChildByName("OverallDamagePanel");
     auto label = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent"));
-    auto labelShadow = dynamic_cast<cocos2d::ui::Text*>(panel->getChildByName("Text_DamagePercent_Shadow"));
-    
     label->setString(text.c_str());
-    labelShadow->setString(text.c_str());
 }
 
 void UI::updateUnitCounter(UnitType unitType, int count)
@@ -243,6 +240,7 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,1,BattleResultUI);
     
+    // ボタンの表示 (結果表示画面の裏でユニットの消滅アクションなどが走っているのでボタンをアクティブにするのは遅延させている)
     // Panel_ReturnHome -> Button_ReturnHome
     auto btn = dynamic_cast<cocos2d::ui::Button*>(ui
                                                   ->getChildByName("Panel_ReturnHome")

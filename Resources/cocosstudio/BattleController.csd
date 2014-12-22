@@ -12,7 +12,7 @@
         <PrePosition X="0.0000" Y="0.0000" />
         <PreSize X="0.0000" Y="0.0000" />
         <Children>
-          <NodeObjectData Name="UnitSelectorPanel" ActionTag="6" FrameEvent="" Tag="4" ObjectIndex="1" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="UnitSelectorPanel" ActionTag="6" FrameEvent="" Tag="4" ObjectIndex="1" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="940" Scale9Height="135" ctype="PanelObjectData">
             <Position X="10.0000" Y="10.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
@@ -452,6 +452,7 @@
                 <FileData Type="PlistSubImage" Path="stage/ui/Empty_Unit.png" Plist="assets.plist" />
               </NodeObjectData>
             </Children>
+            <FileData Type="PlistSubImage" Path="stage/ui/931_PanelFrame_01.png" Plist="assets.plist" />
             <SingleColor A="255" R="37" G="37" B="37" />
             <FirstColor A="255" R="37" G="37" B="37" />
             <EndColor A="255" R="255" G="255" B="255" />
@@ -755,32 +756,22 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="OverallDamagePanel" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
-            <Position X="764.3737" Y="173.1256" />
+          <NodeObjectData Name="OverallDamagePanel" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="190" Scale9Height="90" ctype="PanelObjectData">
+            <Position X="771.3700" Y="148.1300" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
             <Size X="180.0000" Y="110.0000" />
-            <PrePosition X="0.7962" Y="0.2705" />
+            <PrePosition X="0.8035" Y="0.2315" />
             <PreSize X="0.1875" Y="0.1719" />
             <Children>
-              <NodeObjectData Name="Text_DamagePercent_Shadow" ActionTag="1454007507" FrameEvent="" Tag="51" ObjectIndex="30" FontSize="22" LabelText="100%" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
-                <Position X="96.5001" Y="19.0000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <CColor A="255" R="25" G="25" B="25" />
-                <Size X="75.0000" Y="24.0000" />
-                <PrePosition X="0.5361" Y="0.1727" />
-                <PreSize X="0.4667" Y="0.2182" />
-                <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
-              </NodeObjectData>
               <NodeObjectData Name="Text_DamagePercent" ActionTag="67" FrameEvent="" Tag="65" ObjectIndex="21" FontSize="22" LabelText="100%" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">
-                <Position X="94.5001" Y="22.0000" />
+                <Position X="89.5001" Y="24.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="75.0000" Y="24.0000" />
-                <PrePosition X="0.5250" Y="0.2000" />
+                <PrePosition X="0.4972" Y="0.2182" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
@@ -970,6 +961,7 @@
                 <ColorVector ScaleY="1.0000" />
               </NodeObjectData>
             </Children>
+            <FileData Type="PlistSubImage" Path="stage/ui/931_PanelFrame_02.png" Plist="assets.plist" />
             <SingleColor A="255" R="37" G="37" B="37" />
             <FirstColor A="255" R="37" G="37" B="37" />
             <EndColor A="255" R="255" G="255" B="255" />
