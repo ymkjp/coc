@@ -19,7 +19,7 @@ bool ArcherOnTower::init(Tmx* _tmx, Vec2 _coord, float _damagePerShot)
     // ユニットの影
     auto shadowSprite = CCSprite::createWithSpriteFrameName("unit/shadow/0.0.png");
     this->addChild(shadowSprite,ShadowOrder,ShadowTag);
-    shadowSprite->setOpacity(220);
+    shadowSprite->setOpacity(120);
     shadowSprite->setPosition(3,-12);
     return true;
 }

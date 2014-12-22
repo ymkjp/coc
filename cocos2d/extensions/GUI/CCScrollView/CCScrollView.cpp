@@ -773,7 +773,6 @@ void ScrollView::onTouchMoved(Touch* touch, Event* event)
                 
                 int divisionNum = 220;
                 float offsetWeight;
-                CCLOG("divisionNum(%i)",divisionNum);
                 
                 float widthDiff = 0.0f;
                 if (getContentSize().width < getViewSize().width) {

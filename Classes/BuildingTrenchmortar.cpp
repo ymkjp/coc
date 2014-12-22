@@ -89,7 +89,7 @@ void BuildingTrenchmortar::shoot()
         
         FiniteTimeAction* fire = CallFunc::create([=]() {
             if (status == Alive && luminousAction && smokeAction && luminousNode && smokeNode) {
-                smokeNode->setPositionY(18);
+                smokeNode->setPositionY(24);
                 luminousAction->gotoFrameAndPlay(0, false);
                 smokeAction->gotoFrameAndPlay(0, false);
             }

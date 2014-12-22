@@ -89,6 +89,7 @@
 		5CD19AA11A30C10C0045BB87 /* map_03.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9E1A30C10C0045BB87 /* map_03.tmx */; };
 		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
 		5CEA24011A3FCD34007C4E00 /* bgm in Resources */ = {isa = PBXBuildFile; fileRef = 5CEA24001A3FCD34007C4E00 /* bgm */; };
+		5CEA240A1A47F99A007C4E00 /* CsbCacher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA24081A47F99A007C4E00 /* CsbCacher.cpp */; };
 		5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */; };
 		5CEA4CC21A37FDEB0044AD7E /* ArcherOnTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */; };
 		5CEA4CC51A384AED0044AD7E /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */; };
@@ -237,6 +238,8 @@
 		5CD19A9E1A30C10C0045BB87 /* map_03.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = map_03.tmx; sourceTree = "<group>"; };
 		5CD19A9F1A30C10C0045BB87 /* tileset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tileset.png; sourceTree = "<group>"; };
 		5CEA24001A3FCD34007C4E00 /* bgm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bgm; sourceTree = "<group>"; };
+		5CEA24081A47F99A007C4E00 /* CsbCacher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CsbCacher.cpp; sourceTree = "<group>"; };
+		5CEA24091A47F99A007C4E00 /* CsbCacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsbCacher.h; sourceTree = "<group>"; };
 		5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grave.cpp; sourceTree = "<group>"; };
 		5CEA4CBB1A37DBD50044AD7E /* Grave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grave.h; sourceTree = "<group>"; };
 		5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcherOnTower.cpp; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				5C062A501A0A4BE700FA2D45 /* AppDelegate.cpp */,
 				5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */,
 				5CEA4CC41A384AED0044AD7E /* AudioManager.h */,
+				5CEA24081A47F99A007C4E00 /* CsbCacher.cpp */,
+				5CEA24091A47F99A007C4E00 /* CsbCacher.h */,
 				5CEA24041A4441EE007C4E00 /* Battle */,
 				5CEA24031A444156007C4E00 /* UI */,
 				5CD19AA61A3171020045BB87 /* Scene */,
@@ -701,6 +706,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C02A0881A2EF2180067B758 /* BuildingElixertank.cpp in Sources */,
+				5CEA240A1A47F99A007C4E00 /* CsbCacher.cpp in Sources */,
 				5CF8E6BD1A265C8200D50450 /* Tmx.cpp in Sources */,
 				5C062A4C1A0A496C00FA2D45 /* SplashScene.cpp in Sources */,
 				5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */,

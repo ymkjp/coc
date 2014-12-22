@@ -618,7 +618,12 @@ std::vector<Vec2> Unit::getTargetCoords(BuildingCategory category)
 
 Node* Unit::getActingNode()
 {
-    auto node = tmx->csLoader->createNode(this->createFilename().getCString());
+    Node* node;
+    try {
+        node = CSLoader::createNode(createFilename());
+    } catch (...) {
+        CCLOG("CSLoader error!");
+    }
     if (node) {
         node->setScale(0.92);
     }
@@ -627,17 +632,21 @@ Node* Unit::getActingNode()
 
 timeline::ActionTimeline* Unit::getActionTimeline()
 {
-    return tmx->actionTimelineCache->createAction(this->createFilename().getCString());
+    timeline::ActionTimeline* action;
+    try {
+        action = CsbCacher::getInstance()->createActionTimeline(createFilename());
+    } catch (...) {
+        CCLOG("ActionTimeline error!");
+    }
+    return action;
 }
 
 /**
  @example "res/UnitArcherWalkEast.csb"
  */
-__String Unit::createFilename()
+std::string Unit::createFilename()
 {
-    __String fileName = "res/Unit";
-    
-    fileName.append(unitNameByType.at(this->type));
+    std::string fileName = "res/Unit" + unitNameByType.at(this->type);
     
     switch (this->action) {
         case Unit::Attacking:
@@ -676,8 +685,7 @@ __String Unit::createFilename()
     }
     
     fileName.append(".csb");
-//    CCLOG("fileName:%s,this->action:%i,,this->compass:%i",fileName.getCString(),this->action,this->compass);
-    return fileName.getCString();
+    return fileName;
 }
 
 void Unit::putTargetMark()

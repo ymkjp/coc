@@ -208,7 +208,7 @@ void Building::brokenEffect()
     auto children = node->getChildren();
     for (auto shard: children) {
         //時間, 移動距離, ジャンプの最高点, ジャンプの回数
-        auto jump = JumpTo::create(1, Vec2(rand() % 180 - 90, rand() % 180 - 90), rand() % 100, 2);
+        auto jump = JumpTo::create(2, Vec2(rand() % 180 - 90, rand() % 180 - 90), rand() % 100, 2);
         auto disapear = FadeOut::create(2.5);
         FiniteTimeAction* invisible = CallFunc::create([=]() {
             if (shard) {

@@ -9,6 +9,7 @@ using namespace cocostudio;
 
 #include "Definitions.h"
 #include "AudioManager.h"
+#include "CsbCacher.h"
 #include "Tmx.h"
 #include "MapNavigator.h"
 #include "Building.h"
@@ -68,7 +69,7 @@ public:
     virtual std::vector<Vec2> getSurroundedCoords(Vec2 targetCoord);
     virtual Node* getActingNode();
     virtual timeline::ActionTimeline* getActionTimeline();
-    virtual __String createFilename();
+    virtual std::string createFilename();
     virtual void shoot();
     
     UnitType type;
