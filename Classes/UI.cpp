@@ -247,6 +247,14 @@ void UI::showBattleResult(BattleScoreByType battleScoreByType)
     auto btn = dynamic_cast<cocos2d::ui::Button*>(ui
                                                   ->getChildByName("Panel_ReturnHome")
                                                   ->getChildByName("Button_ReturnHome"));
+    btn->setTouchEnabled(false);
+    btn->setOpacity(0);
+    FiniteTimeAction* btnVisible = CallFunc::create([=]() {
+        btn->setTouchEnabled(true);
+    });
+    auto sequence = Sequence::create(DelayTime::create(1), btnVisible, FadeIn::create(0.1),NULL);
+    btn->runAction(sequence);
+    
     btn->addTouchEventListener([=](Ref* sender, ui::Widget::TouchEventType type) {
                                    if (type == ui::Widget::TouchEventType::ENDED) {
                                        this->goToStageSelectorScene();
