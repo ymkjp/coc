@@ -57,6 +57,9 @@ void BattleScene::showCloud()
 
 void  BattleScene::deployUnit()
 {
+    if (!(tmx->battleStatus == Tmx::WaitingForStart || tmx->battleStatus == Tmx::Playing)) {
+        return;
+    }
     if (!tmx->isRemainedUnitSelected()) {
         // 選択中のユニットが残り0
         tmx->showWarning("Select different Unit!");
@@ -103,24 +106,36 @@ void BattleScene::deployUnitIfKeptTouching(float frame)
     deployUnit();
 }
 
-
+/**
+ @see cocos2d/extensions/GUI/CCScrollView/CCScrollView.cpp
+ */
 bool BattleScene::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     // 長押ししてたらデプロイし続ける
     targetTouch = touch;
+    scrollView->setDirection(cocos2d::extension::ScrollView::Direction::NONE);
+    
+    touchStartingTime = clock();
     this->schedule(schedule_selector(BattleScene::deployUnitIfKeptTouching), UNIT_DEPLOY_INTERVAL);
     return true;
 }
 
 void BattleScene::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
-    this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
-    backgroundLayer->setPosition(backgroundLayer->getPosition() + touch->getDelta() * 0.2);
+    auto movedTime = clock();
+    if (UNIT_DEPLOY_LONG_TAP_THRESHOLD_MSEC <= movedTime - touchStartingTime) {
+        // ロングタップしていれば指を動かしてもデプロイしつづける
+    } else {
+        // ロングタップでなければスクロールさせる
+        this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
+        scrollView->setDirection(cocos2d::extension::ScrollView::Direction::BOTH);
+    }
 }
 
 void BattleScene::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *unused_event)
 {
     this->unschedule(schedule_selector(BattleScene::deployUnitIfKeptTouching));
+    scrollView->setDirection(cocos2d::extension::ScrollView::Direction::BOTH);
     if (scrollStatus.scrollingDelay) {
         return;
     }

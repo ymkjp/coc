@@ -31,7 +31,7 @@ bool Unit::init(Tmx* _tmx, Vec2 _coord)
     this->addChild(motionNode, MotionOrder, MotionTag);
     
     // デプロイ時のアニメーション
-    auto verticalExtension = ScaleBy::create(0, 0.2, deployedExtensionYLengthByType.at(type));
+    auto verticalExtension = ScaleBy::create(0, deployedExtensionXLengthByType.at(type), deployedExtensionYLengthByType.at(type));
     auto returnToNormal = ScaleTo::create(0.2, 1);
     this->runAction(Sequence::create(verticalExtension,returnToNormal, NULL));
     

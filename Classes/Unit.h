@@ -152,14 +152,24 @@ protected:
         {Wallbreaker, 1.8},
     };
     
+    const std::map<UnitType, float> deployedExtensionXLengthByType =
+    {
+        {Archer, 0.6},
+        {Barbarian, 0.6},
+        {Giant, 0.8},
+        {Goblin, 0.6},
+        {Wallbreaker, 0.6},
+    };
+    
     const std::map<UnitType, float> deployedExtensionYLengthByType =
     {
-        {Archer, 2},
-        {Barbarian, 2},
-        {Giant, 1.4},
-        {Goblin, 2},
-        {Wallbreaker, 2},
+        {Archer, 1.2},
+        {Barbarian, 1.2},
+        {Giant, 1.1},
+        {Goblin, 1.2},
+        {Wallbreaker, 1.2},
     };
+
     /*
      コメントは wiki に記載されている値
      @link http://clashofclans.wikia.com/wiki/Clash_of_Clans_Wiki

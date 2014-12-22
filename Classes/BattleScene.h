@@ -75,6 +75,8 @@ private:
     Layer *tiledMapLayer;
     Layer *deployAreaLayer;
 
+    clock_t touchStartingTime;
+    
     Tmx* tmx;
     NodeFactory* nodeFactory;
     

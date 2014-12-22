@@ -716,6 +716,10 @@ void ScrollView::onTouchMoved(Touch* touch, Event* event)
                     moveDistance.x *= BOUNCE_BACK_FACTOR;
                 }
             }
+            else if (_direction == Direction::NONE)
+            {
+                CCLOG("Direction::NONE");
+            }
             else
             {
                 dis = sqrtf(moveDistance.x*moveDistance.x + moveDistance.y*moveDistance.y);
@@ -762,6 +766,53 @@ void ScrollView::onTouchMoved(Touch* touch, Event* event)
                 newX     = _container->getPosition().x + moveDistance.x;
                 newY     = _container->getPosition().y + moveDistance.y;
 
+                // http://korosame.wordpress.com/2013/12/18/%EF%BC%88cocos2d-x%EF%BC%89scrollviewccscrollview%E3%81%AE%E5%8B%95%E3%81%8D%E3%82%92ios%E3%81%AEuiscrollview%E3%81%A3%E3%81%BD%E3%81%8F%E3%81%99%E3%82%8B/
+                //追加ここから
+                const Point minOffset = this->minContainerOffset();
+                const Point maxOffset = this->maxContainerOffset();
+                
+                int divisionNum = 220;
+                float offsetWeight;
+                CCLOG("divisionNum(%i)",divisionNum);
+                
+                float widthDiff = 0.0f;
+                if (getContentSize().width < getViewSize().width) {
+                    widthDiff = getContentSize().width - getViewSize().width;
+                }
+                if (minOffset.x > newX) {
+                    offsetWeight = newX - minOffset.x;
+                    offsetWeight /= divisionNum;
+                    if (offsetWeight > -1)
+                        offsetWeight = -1;
+                    newX = newX - (moveDistance.x + (moveDistance.x / offsetWeight)) ;
+                    moveDistance.x = 0.0f;
+                } else if (maxOffset.x < newX){
+                    offsetWeight = newX - maxOffset.x;
+                    offsetWeight /= divisionNum;
+                    if (offsetWeight < 1)
+                        offsetWeight = 1;
+                    newX = newX - (moveDistance.x - (moveDistance.x / offsetWeight)) ;
+                    moveDistance.x = 0.0f;
+                }
+                
+                if (minOffset.y > newY) {
+                    offsetWeight = newY - minOffset.y;
+                    offsetWeight /= divisionNum;
+                    if (offsetWeight > -1)
+                        offsetWeight = -1;
+                    newY = newY - (moveDistance.y + (moveDistance.y / offsetWeight)) ;
+                    moveDistance.y = 0.0f;
+                } else if (maxOffset.y  < newY){
+                    
+                    offsetWeight = newY - maxOffset.y;
+                    offsetWeight /= divisionNum;
+                    if (offsetWeight < 1)
+                        offsetWeight = 1;
+                    newY = newY - (moveDistance.y - (moveDistance.y / offsetWeight)) ;
+                    moveDistance.y = 0.0f;
+                }
+                //ここまで
+                
                 _scrollDistance = moveDistance;
                 this->setContentOffset(Vec2(newX, newY));
             }
