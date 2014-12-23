@@ -48,16 +48,20 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back("bgm");
         resDirOrders.push_back("sfx");
     } else {
-        resDirOrders.push_back("");
-        resDirOrders.push_back("loading");
-        resDirOrders.push_back(fileUtils->getWritablePath());
-        resDirOrders.push_back(fileUtils->getWritablePath() + "cocosstudio");
-        resDirOrders.push_back(fileUtils->getWritablePath() + "res");
-        resDirOrders.push_back(fileUtils->getWritablePath() + "bgm");
-        resDirOrders.push_back(fileUtils->getWritablePath() + "sfx");
+        // ダウンロード先ディレクトリをサーチ対象に追加
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl");
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl/map");
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl/plist");
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl/raw");
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl/bgm");
+        resDirOrders.push_back(fileUtils->getWritablePath() + "dl/sfx");
     }
     
     fileUtils->setSearchPaths(resDirOrders);
+    
+    for (auto path: fileUtils->getSearchPaths()) {
+        CCLOG("SearchPaths:%s",path.c_str());
+    }
     
     return true;
 }

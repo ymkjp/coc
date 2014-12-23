@@ -24,6 +24,8 @@ USING_NS_CC;
 
 #define TILEDMAP_VISIBLE_ON false
 
+#define WRITABLE_PATH FileUtils::getInstance()->getWritablePath()
+
 class Tmx;
 class MapNavigator;
 class UI;

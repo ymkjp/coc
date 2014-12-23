@@ -45,8 +45,6 @@ private:
     void updateMessage(std::string message);
     
     AssetsManager* getAssetManager();
-    void initDownloadDir();
-    std::string _pathToSave = "";
     
     AudioManager* audioManager;
     void preloadAudioResources();
@@ -55,21 +53,19 @@ private:
     void updateProgressBar(int percent);
     
     const std::vector<std::string> sfxList = {
+        "archer_death",
+        "archer_deploy",
+        "archer_tower_shoot",
         "arrow_hit",
         "arrow_shoot",
-        "archer_tower_shoot",
+        "barbarian_attack_hit",
+        "barbarian_death",
+        "barbarian_deploy",
         "button_click",
         "cannon_attack",
         "coin_steal",
         "elixir_steal",
         "explosion",
-        "mortar_hit",
-        "mortar_shoot",
-        "archer_death",
-        "archer_deploy",
-        "barbarian_attack_hit",
-        "barbarian_death",
-        "barbarian_deploy",
         "giant_attack_hit",
         "giant_attack_start",
         "giant_death",
@@ -77,6 +73,8 @@ private:
         "goblin_attack_hit",
         "goblin_death",
         "goblin_deploy",
+        "mortar_hit",
+        "mortar_shoot",
         "wallbreaker_attack_hit",
         "wallbreaker_deploy",
     };

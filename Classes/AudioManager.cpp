@@ -1,5 +1,4 @@
 #include "AudioManager.h"
-#include "Definitions.h"
 
 USING_NS_CC;
 
@@ -29,8 +28,9 @@ unsigned int AudioManager::playSE(const std::string &id)
     clock_t currentClock = clock();
     auto key = playingSE.find(id);
     if (key != playingSE.end()
-        && currentClock - CLOCKS_PER_SEC * UNIT_DEPLOY_INTERVAL * 0.5 <= playingSE.at(id)) {
+        && currentClock - CLOCKS_PER_SEC * 0.1 <= playingSE.at(id)) {
         // 再生履歴が見つかって、それが100ミリセカンド以内だとそれ以上は再生しない
+        // これはユニットのデプロイ時の効果音が再生できる程度の調整値である
 //        CCLOG("SE SKIPPED(%s,%li)",id.c_str(),currentClock);
         return 0;
     }
@@ -63,9 +63,8 @@ const char* AudioManager::getFileName(const std::string &id)
     std::string fileName;
     fileName += id;
     fileName += ".mp3";
+//    CCLOG("audio fileName:%s", fileName.c_str());
     return fileName.data();
-//    std::string filePath = FileUtils::getInstance()->fullPathForFilename(fileName);
-//    CCLOG("[filePath]%s",filePath.data());
-//    return filePath.data();
 }
+
 

@@ -46,9 +46,6 @@ bool SplashScene::init()
         // デバッグ用に遷移する (Resource 以下にファイルがあることが前提)
         this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     } else {
-        // アセットマネジャの初期化
-        initDownloadDir();
-        
         // 前回ダウンロードしたものを削除
         reset();
     
@@ -126,6 +123,7 @@ void SplashScene::onSuccess()
     // ダウンロード成功後、ステージ選択画面に遷移
     updateMessage("Download succeessfully completed");
     updateProgressBar(100);
+    
     this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
 }
 
@@ -134,37 +132,13 @@ AssetsManager* SplashScene::getAssetManager()
     static AssetsManager *assetManager = NULL;
     if (!assetManager)
     {
-        assetManager = new AssetsManager("http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/download_package.zip",
+        assetManager = new AssetsManager("http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/dl.zip",
                                          "http://dev-kenta-ky-yamamoto2.dev.gree-dev.net/ky-tools/coc-my-assets/version.txt",
-                                         _pathToSave.c_str());
+                                         WRITABLE_PATH.c_str());
         assetManager->setDelegate(this);
         assetManager->setConnectionTimeout(120);
     }
     return assetManager;
-}
-
-void SplashScene::initDownloadDir()
-{
-    CCLOG("initDownloadDir");
-    _pathToSave = CCFileUtils::getInstance()->getWritablePath();
-    
-    CCLOG("[initDownloadDir]Path: %s", _pathToSave.c_str());
-    
-//#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
-//    DIR *pDir = NULL;
-//    pDir = opendir(_pathToSave.c_str());
-//    if (!pDir)
-//    {
-//        mkdir(_pathToSave.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);
-//    }
-//#else
-//    if ((GetFileAttributesA(_pathToSave.c_str())) == INVALID_FILE_ATTRIBUTES)
-//    {
-//        CreateDirectoryA(_pathToSave.c_str(), 0);
-//    }
-//#endif
-    
-    CCLOG("initDownloadDir end");
 }
 
 void SplashScene::reset()
@@ -174,16 +148,15 @@ void SplashScene::reset()
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
     std::string command = "rm -r ";
     // Path may include space.
-    command += "\"" + _pathToSave + "\"";
+    command += "\"" + WRITABLE_PATH + "\"";
     system(command.c_str());
 #else
     std::string command = "rd /s /q ";
     // Path may include space.
-    command += "\"" + _pathToSave + "\"";
+    command += "\"" + WRITABLE_PATH + "\"";
     system(command.c_str());
 #endif
     getAssetManager()->deleteVersion();
-    initDownloadDir();
 }
 
 

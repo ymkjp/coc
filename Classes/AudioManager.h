@@ -14,13 +14,13 @@ class AudioManager
 {
 public:
     static AudioManager* getInstance();
-
+    
     void preloadSE(const std::string &id);
     unsigned int playSE(const std::string &id);
     void preloadBgm(const std::string &id);
     void playBgm(const std::string &id, bool bLoop);
     void stopBgm();
-    
+                                   
 protected:
     const char* getFileName(const std::string &id);
     std::map<std::string, time_t> playingSE;
