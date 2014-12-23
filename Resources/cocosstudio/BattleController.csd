@@ -656,22 +656,22 @@
             <PreSize X="0.1667" Y="0.0437" />
             <Children>
               <NodeObjectData Name="Text_Timer_Shadow" ActionTag="-1335267161" FrameEvent="" Tag="49" ObjectIndex="28" FontSize="22" LabelText="2 m 32 s" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                <Position X="3.0000" Y="0.0000" />
+                <Position X="19.0000" Y="0.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="30" G="30" B="30" />
                 <Size X="119.0000" Y="24.0000" />
-                <PrePosition X="0.0250" Y="0.0000" />
+                <PrePosition X="0.1187" Y="0.0000" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
               <NodeObjectData Name="Text_Timer" ActionTag="49" FrameEvent="" Tag="47" ObjectIndex="12" FontSize="22" LabelText="2 m 32 s" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
-                <Position X="0.0000" Y="2.0000" />
+                <Position X="17.0000" Y="2.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="119.0000" Y="24.0000" />
-                <PrePosition X="0.0000" Y="0.0714" />
+                <PrePosition X="0.1063" Y="0.0714" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
               </NodeObjectData>
@@ -757,12 +757,12 @@
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
           <NodeObjectData Name="OverallDamagePanel" ActionTag="64" FrameEvent="" Tag="62" ObjectIndex="13" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="190" Scale9Height="90" ctype="PanelObjectData">
-            <Position X="771.3700" Y="148.1300" />
+            <Position X="766.3700" Y="148.1300" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />
             <CColor A="255" R="255" G="255" B="255" />
             <Size X="180.0000" Y="110.0000" />
-            <PrePosition X="0.8035" Y="0.2315" />
+            <PrePosition X="0.7983" Y="0.2315" />
             <PreSize X="0.1875" Y="0.1719" />
             <Children>
               <NodeObjectData Name="Text_DamagePercent" ActionTag="67" FrameEvent="" Tag="65" ObjectIndex="21" FontSize="22" LabelText="100%" HorizontalAlignmentType="HT_Right" ctype="TextObjectData">

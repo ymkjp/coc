@@ -225,11 +225,15 @@ void Building::addWrack()
     if (type == Wall) {
         // 残骸の代わりに音だけ表示
         tmx->playSE("explosion");
-        return;
     }
     
     Node* wrackNode;
     switch (type) {
+        case Wall:
+        {
+            wrackNode = CCSprite::createWithSpriteFrameName("stage/battle_effect/wall_broken.png");
+            break;
+        }
         case TownHall:
         {
             wrackNode = CCSprite::createWithSpriteFrameName("stage/town_hall/broken.png");
@@ -253,8 +257,6 @@ void Building::addWrack()
             wrackNode = CCSprite::createWithSpriteFrameName("stage/battle_effect/defense_broken.png");
             break;
     }
-//    auto prevPos = buildingNode->getPosition();
-//    wrackNode->setPosition(prevPos);
     
     this->addChild(wrackNode);
     

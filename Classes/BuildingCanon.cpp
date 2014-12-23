@@ -11,7 +11,7 @@ void BuildingCanon::initOwn()
     this->addChild(smokeNode,CanonSmokeOrder,SmokeNodeTag);
     smokeAction->setTag(SmokeActionTag);
     smokeNode->runAction(smokeAction);
-    smokeAction->gotoFrameAndPause(60);
+    smokeAction->gotoFrameAndPause(0);
     
     auto luminousNode = tmx->csLoader->createNode("res/LuminousCircle.csb");
     auto luminousAction = tmx->actionTimelineCache->createAction("res/LuminousCircle.csb");
@@ -47,7 +47,7 @@ void BuildingCanon::attack()
         isClockwiseRotation = 18.0 < abs(frameDiff);
     }
     
-    CCLOG("\n\n\n[id:%i]currentFrame(%i),goalFrame(%i),isCWR(%i,%i)",idNum,currentFrame,goalFrame,isClockwiseRotation,goalFrame - currentFrame);
+//    CCLOG("\n\n\n[id:%i]currentFrame(%i),goalFrame(%i),isCWR(%i,%i)",idNum,currentFrame,goalFrame,isClockwiseRotation,goalFrame - currentFrame);
     ++times;
     int count = 0;
     int breaker = 37;
@@ -57,7 +57,7 @@ void BuildingCanon::attack()
             break;
         }
         
-        CCLOG("[%i.01]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
+//        CCLOG("[%i.01]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
         
         if (isClockwiseRotation) {
             currentFrame = abs(currentFrame + 1) % 36;
@@ -66,8 +66,7 @@ void BuildingCanon::attack()
         } else if (!isClockwiseRotation) {
             currentFrame = abs(currentFrame - 1) % 36;
         }
-        CCLOG("[%i.02]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
-        
+//        CCLOG("[%i.02]currentFrame(%i),goalFrame(%i),isCWR(%i)",times,currentFrame,goalFrame,isClockwiseRotation);
         
         FiniteTimeAction* tick = CallFunc::create([=]() {
             if (action && targetUnit->status == Unit::Alive) {
@@ -87,24 +86,12 @@ void BuildingCanon::attack()
     arrayOfactions.pushBack(lastTick);
     
     // 発火位置・リコイル深度の調整値を算出
-    if (0 < comassDegreeGoal && comassDegreeGoal <= 45) {
-        adjustedBulletPos = Vec2(ADJUST_SMALL,ADJUST_HUGE);
-    } else if (45 < comassDegreeGoal && comassDegreeGoal <= 90) {
-        adjustedBulletPos = Vec2(ADJUST_LARGE,ADJUST_REGULAR);
-    } else if (90 < comassDegreeGoal && comassDegreeGoal <= 135) {
-        adjustedBulletPos = Vec2(ADJUST_LARGE,-ADJUST_SMALL);
-    } else if (135 < comassDegreeGoal && comassDegreeGoal <= 180) {
-        adjustedBulletPos = Vec2(ADJUST_REGULAR,-ADJUST_REGULAR);
-    } else if (180 < comassDegreeGoal && comassDegreeGoal <= 225) {
-        adjustedBulletPos = Vec2(-ADJUST_REGULAR,-ADJUST_REGULAR);
-    } else if (225 < comassDegreeGoal && comassDegreeGoal <= 270) {
-        adjustedBulletPos = Vec2(-ADJUST_LARGE,-ADJUST_REGULAR);
-    } else if (270 < comassDegreeGoal && comassDegreeGoal <= 315) {
-        adjustedBulletPos = Vec2(-ADJUST_LARGE,ADJUST_SMALL);
-    } else if (315 < comassDegreeGoal && comassDegreeGoal <= 360) {
-        adjustedBulletPos = Vec2(-ADJUST_SMALL,ADJUST_HUGE);
+    if (0 <= goalFrame && goalFrame <= 18) {
+        adjustedBulletPos = adjustingFirePos.at(goalFrame);
+    } else if (19 <= goalFrame && goalFrame <= 36) {
+        auto flippedPos = adjustingFirePos.at(36 - goalFrame);
+        adjustedBulletPos = Vec2(-flippedPos.x, flippedPos.y);
     }
-    //            CCLOG("adjustedBulletPos(%f,%f)",adjustedBulletPos.x,adjustedBulletPos.y);
     
     FiniteTimeAction* attack = CallFunc::create(CC_CALLBACK_0(BuildingCanon::expandAndShrink, this));
     arrayOfactions.pushBack(attack);
@@ -143,7 +130,7 @@ void BuildingCanon::shoot()
             return;
         }
         auto bullet = CCSprite::createWithSpriteFrameName("stage/battle_effect/bullet.png");
-        bullet->setScale(0.6);
+        bullet->setScale(0.8);
         bullet->setRotation(-90);
         auto shootingPos = this->getPosition() + adjustedBulletPos;
         bullet->setPosition(shootingPos);
@@ -163,7 +150,7 @@ void BuildingCanon::shoot()
         auto prevCoord = targetUnit->coord;
         float distance = targetUnit->coord.getDistanceSq(coord);
         float sec = distance * 0.006;
-        CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
+//        CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
         sec = (sec < 0.26) ? 0.26 : sec;
         
         auto shot = MoveTo::create(sec, targetUnit->getPosition());

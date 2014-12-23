@@ -25,38 +25,38 @@
             <PrePosition X="0.0000" Y="0.0016" />
             <PreSize X="1.0000" Y="1.0000" />
             <Children>
-              <NodeObjectData Name="stage_battle_result_barbarianking_brack" CanEdit="False" ActionTag="888245552" FrameEvent="" Tag="71" ObjectIndex="2" ctype="SpriteObjectData">
-                <Position X="765.0000" Y="340.5000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <CColor A="255" R="0" G="0" B="0" />
-                <Size X="314.0000" Y="358.0000" />
-                <PrePosition X="0.7969" Y="0.5320" />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/battle_result/barbarianking_brack.png" Plist="assets.plist" />
-              </NodeObjectData>
-              <NodeObjectData Name="stage_battle_result_wizerd_black" CanEdit="False" ActionTag="756191313" FrameEvent="" Tag="72" ObjectIndex="3" ctype="SpriteObjectData">
-                <Position X="148.0000" Y="340.5000" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <CColor A="255" R="0" G="0" B="0" />
-                <Size X="287.0000" Y="386.0000" />
-                <PrePosition X="0.1542" Y="0.5320" />
-                <PreSize X="0.0000" Y="0.0000" />
-                <FileData Type="PlistSubImage" Path="stage/battle_result/wizerd_black.png" Plist="assets.plist" />
-              </NodeObjectData>
               <NodeObjectData Name="Bottom" ActionTag="1129870946" FrameEvent="" Tag="90" ObjectIndex="7" TouchEnable="True" ComboBoxIndex="1" ColorAngle="90.0000" ctype="PanelObjectData">
                 <Position X="0.0000" Y="-1.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="0" G="0" B="0" />
-                <Size X="960.0000" Y="180.0000" />
+                <Size X="960.0000" Y="100.0000" />
                 <PrePosition X="0.0000" Y="-0.0016" />
-                <PreSize X="1.0000" Y="0.2813" />
+                <PreSize X="1.0000" Y="0.1563" />
                 <SingleColor A="255" R="18" G="18" B="18" />
                 <FirstColor A="255" R="18" G="18" B="18" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_battle_result_wizerd_black" ActionTag="-628096276" FrameEvent="" Tag="123" ObjectIndex="16" ctype="SpriteObjectData">
+                <Position X="833.9978" Y="221.9973" />
+                <Scale ScaleX="3.2000" ScaleY="3.2000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <Size X="82.0000" Y="110.0000" />
+                <PrePosition X="0.8687" Y="0.3469" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/wizerd_black.png" Plist="assets.plist" />
+              </NodeObjectData>
+              <NodeObjectData Name="stage_battle_result_barbarianking_brack" ActionTag="472671465" FrameEvent="" Tag="124" ObjectIndex="17" ctype="SpriteObjectData">
+                <Position X="135.9989" Y="219.9994" />
+                <Scale ScaleX="3.2000" ScaleY="3.2000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <CColor A="255" R="0" G="0" B="0" />
+                <Size X="82.0000" Y="93.0000" />
+                <PrePosition X="0.1417" Y="0.3437" />
+                <PreSize X="0.0000" Y="0.0000" />
+                <FileData Type="PlistSubImage" Path="stage/battle_result/barbarianking_brack.png" Plist="assets.plist" />
               </NodeObjectData>
             </Children>
             <SingleColor A="255" R="30" G="30" B="30" />
@@ -64,7 +64,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="Panel_MainResult" CanEdit="False" ActionTag="-1181834641" FrameEvent="" Tag="75" ObjectIndex="3" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
+          <NodeObjectData Name="Panel_MainResult" ActionTag="-1181834641" FrameEvent="" Tag="75" ObjectIndex="3" TouchEnable="True" BackColorAlpha="102" ColorAngle="90.0000" ctype="PanelObjectData">
             <Position X="269.0000" Y="158.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <AnchorPoint />

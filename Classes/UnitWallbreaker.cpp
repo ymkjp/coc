@@ -17,6 +17,13 @@ void UnitWallbreaker::startAttacking()
         // 攻撃
         this->targetBuilding->attacked(damagePerAttack);
         
+        // 煙
+        auto explosion = tmx->csLoader->createNode("res/Explosion.csb");
+        auto explosionAction = tmx->actionTimelineCache->createAction("res/Explosion.csb");
+        targetBuilding->addChild(explosion);
+        explosion->runAction(explosionAction);
+        explosionAction->gotoFrameAndPlay(0,false);
+        
         // 攻撃したらすぐ死ぬ
         this->die();
     }

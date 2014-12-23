@@ -137,8 +137,8 @@ protected:
     
     const std::map<UnitType, float> shadowPosYByType =
     {
-        {Archer, -14},
-        {Barbarian, -14},
+        {Archer, -12},
+        {Barbarian, -12},
         {Giant, -16},
         {Goblin, -8},
         {Wallbreaker, -8},

@@ -90,6 +90,7 @@
 		5CD19AA21A30C10C0045BB87 /* tileset.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD19A9F1A30C10C0045BB87 /* tileset.png */; };
 		5CEA24011A3FCD34007C4E00 /* bgm in Resources */ = {isa = PBXBuildFile; fileRef = 5CEA24001A3FCD34007C4E00 /* bgm */; };
 		5CEA240A1A47F99A007C4E00 /* CsbCacher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA24081A47F99A007C4E00 /* CsbCacher.cpp */; };
+		5CEA240C1A48522C007C4E00 /* mortar_ball_smoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5CEA240B1A48522C007C4E00 /* mortar_ball_smoke.plist */; };
 		5CEA4CBC1A37DBD50044AD7E /* Grave.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */; };
 		5CEA4CC21A37FDEB0044AD7E /* ArcherOnTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */; };
 		5CEA4CC51A384AED0044AD7E /* AudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5CEA4CC31A384AED0044AD7E /* AudioManager.cpp */; };
@@ -240,6 +241,7 @@
 		5CEA24001A3FCD34007C4E00 /* bgm */ = {isa = PBXFileReference; lastKnownFileType = folder; path = bgm; sourceTree = "<group>"; };
 		5CEA24081A47F99A007C4E00 /* CsbCacher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CsbCacher.cpp; sourceTree = "<group>"; };
 		5CEA24091A47F99A007C4E00 /* CsbCacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsbCacher.h; sourceTree = "<group>"; };
+		5CEA240B1A48522C007C4E00 /* mortar_ball_smoke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = mortar_ball_smoke.plist; sourceTree = "<group>"; };
 		5CEA4CBA1A37DBD50044AD7E /* Grave.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Grave.cpp; sourceTree = "<group>"; };
 		5CEA4CBB1A37DBD50044AD7E /* Grave.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grave.h; sourceTree = "<group>"; };
 		5CEA4CC01A37FDEB0044AD7E /* ArcherOnTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArcherOnTower.cpp; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 		46880B7519C43A67006E1F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CEA240B1A48522C007C4E00 /* mortar_ball_smoke.plist */,
 				5CEA24001A3FCD34007C4E00 /* bgm */,
 				5CFB9B851A39CA5D00F63148 /* LoadingLayer.csd */,
 				5CF0C7801A39760D00D1F8E4 /* loading */,
@@ -655,6 +658,7 @@
 				5C02A0A61A3013420067B758 /* cocosstudio in Resources */,
 				5C24088F1A12EF26004A785F /* assets.plist in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				5CEA240C1A48522C007C4E00 /* mortar_ball_smoke.plist in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
