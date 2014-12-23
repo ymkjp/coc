@@ -42,10 +42,11 @@ public:
 
     
 private:
+    void updateMessage(std::string message);
+    
     AssetsManager* getAssetManager();
     void initDownloadDir();
     std::string _pathToSave = "";
-    Label *_showDownloadInfo = {};
     
     AudioManager* audioManager;
     void preloadAudioResources();

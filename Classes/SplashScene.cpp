@@ -37,30 +37,48 @@ bool SplashScene::init()
     ui->setScale(visibleSize.width / ui->getContentSize().width);
     this->addChild(ui,UIOrder,UITag);
     
-    // オーディオマネジャの初期化とジングル
+    // オーディオマネジャの初期化とジングルプリロード、再生はダウンロード開始時
     audioManager = AudioManager::getInstance();
     audioManager->preloadSE("loading/jingle");
     audioManager->playSE("loading/jingle");
     
     if (QUICK_DEBUG_MODE) {
-        // デバッグ用に遷移する！
+        // デバッグ用に遷移する (Resource 以下にファイルがあることが前提)
         this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     } else {
         // アセットマネジャの初期化
         initDownloadDir();
-        _showDownloadInfo = Label::createWithSystemFont("", "Arial", 20);
-        this->addChild(_showDownloadInfo);
-        _showDownloadInfo->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2 - 20));
         
         // 前回ダウンロードしたものを削除
         reset();
-        
+    
         // アセットをダウンロード
+        updateMessage("Now Downloading ...");
         getAssetManager()->update();
     }
     
     return true;
 }
+
+void SplashScene::updateMessage(std::string message)
+{
+    auto ui = getChildByTag(UITag);
+    if (!ui) {
+        return;
+    }
+
+    // 「ダウンロード中」などのメッセージ表示用ラベル
+    auto label = ui->getChildByName<cocos2d::ui::Text*>("Text_Message");
+    auto labelLeft = ui->getChildByName<cocos2d::ui::Text*>("Text_Message_Shadow_Left");
+    auto labelRight = ui->getChildByName<cocos2d::ui::Text*>("Text_Message_Shadow_Right");
+    
+    if (label && labelLeft && labelRight) {
+        label->setString(message.c_str());
+        labelLeft->setString(message.c_str());
+        labelRight->setString(message.c_str());
+    }
+}
+
 
 void SplashScene::updateProgressBar(int percent)
 {
@@ -76,18 +94,17 @@ void SplashScene::onError(AssetsManager::ErrorCode errorCode)
 {
     if (errorCode == AssetsManager::ErrorCode::NO_NEW_VERSION)
     {
+        updateMessage("No new version of files");
         this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
     }
     else if (errorCode == AssetsManager::ErrorCode::NETWORK)
     {
-        _showDownloadInfo->setString("network error");
-        CCLOG("Retry because of network error");
+        updateMessage("Network error, retrying...");
         getAssetManager()->update();
     }
     else if (errorCode == AssetsManager::ErrorCode::CREATE_FILE)
     {
-        CCLOG("Create file error");
-        _showDownloadInfo->setString("create file error");
+        updateMessage("Creating file error...");
     }
 }
 
@@ -96,15 +113,19 @@ void SplashScene::onProgress(int percent)
     if (percent < 0) {
         return;
     }
-//    CCLOG("download::onProgress(%i)",percent);
-    updateProgressBar(percent);
+    // プログレスバーはダウンロード完了で 90%, uncompress 完了で 100% で表示する
+    updateProgressBar(percent * 0.9);
+    
+    if (percent == 100) {
+        updateMessage("Loading files ...");
+    }
 }
 
 void SplashScene::onSuccess()
 {
-    CCLOG("download success");
-    
     // ダウンロード成功後、ステージ選択画面に遷移
+    updateMessage("Download succeessfully completed");
+    updateProgressBar(100);
     this->scheduleOnce(schedule_selector(SplashScene::GoToStageSelectorScene), DISPLAY_TIME_SPLASH_SCENE);
 }
 
@@ -149,7 +170,6 @@ void SplashScene::initDownloadDir()
 void SplashScene::reset()
 {
     // 動作確認用リセット
-    _showDownloadInfo->setString("");
     // Remove downloaded files
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
     std::string command = "rm -r ";
@@ -173,6 +193,7 @@ void SplashScene::GoToStageSelectorScene(float dt)
     SpriteFrameCache* cache = SpriteFrameCache::getInstance();
     cache->addSpriteFramesWithFile("assets.plist");
     
+    // 音楽ファイルのプリロード
     preloadAudioResources();
     
     auto scene = StageSelectorScene::createScene();

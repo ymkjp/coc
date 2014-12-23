@@ -22,12 +22,12 @@
             <PreSize X="0.5417" Y="1.0000" />
             <Children>
               <NodeObjectData Name="stage_map_0.0" ActionTag="-1129606388" FrameEvent="" Tag="13" ObjectIndex="2" ctype="SpriteObjectData">
-                <Position X="0.0000" Y="-20.0000" />
-                <Scale ScaleX="6.2000" ScaleY="22.0000" />
+                <Position X="-6.9999" Y="-20.0000" />
+                <Scale ScaleX="6.2800" ScaleY="22.0000" />
                 <AnchorPoint />
                 <CColor A="255" R="255" G="255" B="255" />
                 <Size X="84.0000" Y="42.0000" />
-                <PrePosition X="0.0000" Y="-0.0238" />
+                <PrePosition X="-0.0135" Y="-0.0238" />
                 <PreSize X="0.0000" Y="0.0000" />
                 <FileData Type="PlistSubImage" Path="stage/map/0.0.png" Plist="assets.plist" />
               </NodeObjectData>

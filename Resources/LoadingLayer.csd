@@ -35,7 +35,7 @@
             <EndColor A="255" R="255" G="255" B="255" />
             <ColorVector ScaleY="1.0000" />
           </NodeObjectData>
-          <NodeObjectData Name="LoadingBar_1" ActionTag="-1529998110" FrameEvent="" Tag="111" ObjectIndex="1" ProgressInfo="100" ctype="LoadingBarObjectData">
+          <NodeObjectData Name="LoadingBar_1" ActionTag="-1529998110" FrameEvent="" Tag="111" ObjectIndex="1" ProgressInfo="1" ctype="LoadingBarObjectData">
             <Position X="477.2800" Y="78.0002" />
             <Scale ScaleX="12.0000" ScaleY="12.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
@@ -44,6 +44,36 @@
             <PrePosition X="0.4972" Y="0.1219" />
             <PreSize X="0.0000" Y="0.0000" />
             <ImageFileData Type="Normal" Path="loading/progress_bar.png" />
+          </NodeObjectData>
+          <NodeObjectData Name="Text_Message_Shadow_Right" ActionTag="-576994649" FrameEvent="" Tag="68" ObjectIndex="2" FontSize="24" LabelText="Download succeessfully completed" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+            <Position X="461.0000" Y="141.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="24" G="24" B="24" />
+            <Size X="609.0000" Y="26.0000" />
+            <PrePosition X="0.4802" Y="0.2203" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+          </NodeObjectData>
+          <NodeObjectData Name="Text_Message_Shadow_Left" ActionTag="-1897299735" FrameEvent="" Tag="69" ObjectIndex="3" FontSize="24" LabelText="Download succeessfully completed" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+            <Position X="458.0000" Y="138.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="24" G="24" B="24" />
+            <Size X="609.0000" Y="26.0000" />
+            <PrePosition X="0.4771" Y="0.2156" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
+          </NodeObjectData>
+          <NodeObjectData Name="Text_Message" ActionTag="971820007" FrameEvent="" Tag="67" ObjectIndex="1" FontSize="24" LabelText="Download succeessfully completed" HorizontalAlignmentType="HT_Center" ctype="TextObjectData">
+            <Position X="460.0000" Y="140.0000" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <Size X="609.0000" Y="26.0000" />
+            <PrePosition X="0.4792" Y="0.2188" />
+            <PreSize X="0.0000" Y="0.0000" />
+            <FontResource Type="Normal" Path="fonts/Supercell-Magic_5.ttf" />
           </NodeObjectData>
         </Children>
         <SingleColor A="255" R="0" G="0" B="0" />

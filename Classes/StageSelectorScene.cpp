@@ -36,6 +36,11 @@ bool StageSelectorScene::init()
     ui->setPosition(origin);
     this->addChild(ui);
     
+    auto multiPlaySprite = Sprite::create("multi_play.png");
+    multiPlaySprite->setPosition(Vec2(visibleSize.width * 0.25 - 23, visibleSize.height * 0.5));
+    multiPlaySprite->setScale(visibleSize.width / multiPlaySprite->getContentSize().width * 0.45);
+    ui->addChild(multiPlaySprite);
+    
     // ScrollView_1 -> Button_Amigo
     auto scrollView = ui->getChildByName("ScrollView_1");
     

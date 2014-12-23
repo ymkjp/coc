@@ -48,8 +48,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back("bgm");
         resDirOrders.push_back("sfx");
     } else {
+        resDirOrders.push_back("");
+        resDirOrders.push_back("loading");
         resDirOrders.push_back(fileUtils->getWritablePath());
-        resDirOrders.push_back(fileUtils->getWritablePath() + "loading");
         resDirOrders.push_back(fileUtils->getWritablePath() + "cocosstudio");
         resDirOrders.push_back(fileUtils->getWritablePath() + "res");
         resDirOrders.push_back(fileUtils->getWritablePath() + "bgm");
