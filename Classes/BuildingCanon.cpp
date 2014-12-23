@@ -74,7 +74,7 @@ void BuildingCanon::attack()
             }
         });
         arrayOfactions.pushBack(tick);
-        arrayOfactions.pushBack(DelayTime::create(0.01));
+        arrayOfactions.pushBack(DelayTime::create(0.03));
     }
     
     // 最終地点の角度に到達させる
@@ -152,7 +152,7 @@ void BuildingCanon::shoot()
         if (distance <= 2) {
             bullet->setVisible(false);
         }
-        float sec = distance * 0.005;
+        float sec = distance * 0.008;
         CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
         sec = (sec < 0.26) ? 0.26 : sec;
         

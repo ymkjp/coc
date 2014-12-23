@@ -176,12 +176,13 @@ protected:
         {Carmen,"map_03.tmx"},
     };
     
+    // 仕様は60体、ゲームバランスとしては80体くらいがよい
     const UnitCountByType unitInitNumberByType = {
-        {Barbarian,50},
-        {Archer,50},
-        {Giant,50},
-        {Goblin,50},
-        {Wallbreaker,20},
+        {Barbarian,20},
+        {Archer,20},
+        {Giant,15},
+        {Goblin,15},
+        {Wallbreaker,10},
 //        {Barbarian,20},
 //        {Archer,20},
 //        {Giant,20},
