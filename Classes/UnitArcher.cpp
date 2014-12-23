@@ -28,15 +28,33 @@ void UnitArcher::shoot()
         arrow->setPosition(this->getPosition());
         arrow->setScale(1.6);
 
-        // 矢を施設方向に向けて回転
-        float degree = tmx->calcDegree(coord, targetBuilding->coord);
-        arrow->setRotation(225 + degree);
+        // 矢を施設方向に向けて角度調整
+        // 10度下げた状態から、10度上げた状態へ (位置関係による)
+        float degree =  tmx->calcCompassDegree(targetBuilding->coord, coord) + 45 /** isometric */;
+        if (360 < degree) {
+            degree = degree - 360;
+        }
+        // 調整値
+        float adjustingRotation;
+        if (0 < degree && degree < 180) {
+            adjustingRotation = 10;
+        } else {
+            adjustingRotation = -10;
+        }
+        arrow->setRotation(degree + adjustingRotation);
         
+        // 矢の速さ
+        float distance = targetBuilding->coord.getDistanceSq(coord);
+        float sec = distance / 30;
+//        CCLOG("sec(%f)",sec);
+
+        auto aimPos = Vec2(targetBuilding->getPosition().x,targetBuilding->getPosition().y + 8);
         auto parent = getParent();
-        auto shot = JumpTo::create(0.6, targetBuilding->getPosition(),20,1);
+        auto jump = JumpTo::create(sec, aimPos,20,1);
+        auto rotation = RotateBy::create(sec, adjustingRotation * -2);
         auto disappear = FadeOut::create(0.1);
+        auto shot = Spawn::create(jump, EaseBackInOut::create(rotation), NULL);
         FiniteTimeAction* hit = CallFunc::create([=]() {
-            
             tmx->playSE("arrow_hit");
             targetBuilding->attacked(damagePerAttack);
             if (parent) {

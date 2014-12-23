@@ -149,8 +149,11 @@ void BuildingCanon::shoot()
         
         auto prevCoord = targetUnit->coord;
         float distance = targetUnit->coord.getDistanceSq(coord);
-        float sec = distance * 0.006;
-//        CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
+        if (distance <= 2) {
+            bullet->setVisible(false);
+        }
+        float sec = distance * 0.005;
+        CCLOG("targetUnit->coord.getDistanceSq(%f),sec(%f)",distance,sec);
         sec = (sec < 0.26) ? 0.26 : sec;
         
         auto shot = MoveTo::create(sec, targetUnit->getPosition());

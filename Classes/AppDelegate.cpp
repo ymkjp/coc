@@ -59,9 +59,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     
     fileUtils->setSearchPaths(resDirOrders);
     
-    for (auto path: fileUtils->getSearchPaths()) {
-        CCLOG("SearchPaths:%s",path.c_str());
-    }
+//    for (auto path: fileUtils->getSearchPaths()) {
+//        CCLOG("SearchPaths:%s",path.c_str());
+//    }
     
     return true;
 }

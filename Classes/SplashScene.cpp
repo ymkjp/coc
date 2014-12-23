@@ -114,7 +114,7 @@ void SplashScene::onProgress(int percent)
     updateProgressBar(percent * 0.9);
     
     if (percent == 100) {
-        updateMessage("Loading files ...");
+        updateMessage("Preparing files ...");
     }
 }
 
