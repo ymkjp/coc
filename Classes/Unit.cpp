@@ -98,7 +98,6 @@ void Unit::play(float frame)
     }
     if (!path.empty() && path.top() == ERROR_COORD) {
         CCLOG("NOT FOUND");
-        this->setScale(2);
         this->unschedule(schedule_selector(Unit::play));
         this->scheduleOnce(schedule_selector(Unit::play), WAITING_SEC);
         return;

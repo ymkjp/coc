@@ -180,8 +180,8 @@ protected:
     const UnitCountByType unitInitNumberByType = {
         {Barbarian,20},
         {Archer,20},
-        {Giant,15},
-        {Goblin,15},
+        {Giant,10},
+        {Goblin,10},
         {Wallbreaker,10},
 //        {Barbarian,20},
 //        {Archer,20},

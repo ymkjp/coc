@@ -17689,15 +17689,15 @@ void Frame::SharedDtor() {
   #else
   if (this != default_instance_) {
   #endif
-    delete visibleframe_;
-    delete zorderframe_;
-    delete rotationskewframe_;
-    delete eventframe_;
-    delete anchorpointframe_;
-    delete positionframe_;
-    delete scaleframe_;
-    delete colorframe_;
-    delete textureframe_;
+//    delete visibleframe_;
+//    delete zorderframe_;
+//    delete rotationskewframe_;
+//    delete eventframe_;
+//    delete anchorpointframe_;
+//    delete positionframe_;
+//    delete scaleframe_;
+//    delete colorframe_;
+//    delete textureframe_;
   }
 }
 

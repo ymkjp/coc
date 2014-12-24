@@ -45,7 +45,7 @@ void UnitArcher::shoot()
         
         // 矢の速さ
         float distance = targetBuilding->coord.getDistanceSq(coord);
-        float sec = distance / 30;
+        float sec = distance / 36;
 //        CCLOG("sec(%f)",sec);
 
         auto aimPos = Vec2(targetBuilding->getPosition().x,targetBuilding->getPosition().y + 8);
