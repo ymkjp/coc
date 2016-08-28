@@ -1,5 +1,3 @@
-# https://git.gree-dev.net/athena/client/blob/ba23862fee291cdbb97c54f01a175b7226d4ce1d/.gitignore
-
 # Ignore files build by ndk and eclipse
 libs/
 bin/
